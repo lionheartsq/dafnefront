@@ -1,4 +1,187 @@
-/* You can add global styles to this file, and also import other style files */
+@media (min-width:768px){
 
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+  * {
+      box-sizing: border-box;
+    }
+
+  html, body { height: 100%; }
+  body { background: #fff; background-color: #fff; margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+  h1 {
+      margin: 0;
+      padding: 0;
+    }
+  .custom-div {
+      min-width: 400px;
+      max-width: 50%;
+      margin: 0px auto;
+      background: #fff;
+      padding: 2rem 2rem;
+      margin: auto;
+      background-color: #fff;
+      color: black;
+      margin-top: 0rem;
+    }
+  .custom-form {
+      min-width: 300px;
+      max-width: 60%;
+      margin: 0px auto;
+      background: #fff;
+      padding: 2rem 2rem;
+      margin: auto;
+      border-radius: 0.5rem;
+      background-color: #ecf0f3;
+      color: black;
+      margin-top: 3rem;
+    }
+  .custom-form input {
+      display: block;
+      margin: 2rem 0;
+      width: 100%;
+      border-radius: 0.5rem;
+      padding: 1rem;
+      border: none;
+      border: 1px solid rgba(0,0,0,0.2);
+      background: #ebf5fc;
+    }
+  .custom-form button {
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      border: none;
+      font-size: 1.1rem;
+      color: #ffffff;
+      /*text-shadow: -2px 2px 0 #0a0e27, -2px 2px 0 #0a0e27;*/
+      font-weight: bold;
+      background-color: #33cc99;
+      width: 100%;
+      display: block;
+      padding: 0.875rem;
+      border-radius: 0.5rem;
+      cursor: pointer;
+    }
+  .general{
+    min-width: 600px;
+    max-width: 100%;
+    font-size: 0.9rem;
+    margin: 0px auto;
+    background: #fff;
+    padding: 1rem 1rem;
+    margin: auto;
+    background-color: #fff;
+    color: black;
+    margin-top: 0rem;
+  }
+  .general table{
+    min-width: 98%;
+    max-width: 100%;
+    margin: 1rem auto;
+  }
+  .general input {
+    display: block;
+    font-size: 0.7rem;
+    border-radius: 0.3rem;
+    padding: 1rem;
+    border: 1px solid rgba(0,0,0,0.2);
+  }
+  .mat-sidenav-content{
+    background: #fff;
+    background-color: #fff;
+  }
+  .menumovil{
+    display: none;
+  }
+
+  }
+
+  @media (max-width:767px){
+
+    * {
+      box-sizing: border-box;
+    }
+    html, body { height: 100%; }
+    body { background: #fff; background-color: #fff; margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+    h1 {
+      margin: 0;
+      padding: 0;
+    }
+    .custom-div {
+      min-width: 400px;
+      max-width: 50%;
+      margin: 0px auto;
+      background: #fff;
+      padding: 2rem 2rem;
+      margin: auto;
+      background-color: #fff;
+      color: black;
+      margin-top: 0rem;
+    }
+    .custom-form {
+      min-width: 300px;
+      max-width: 60%;
+      margin: 0px auto;
+      background: #fff;
+      padding: 2rem 2rem;
+      margin: auto;
+      border-radius: 0.5rem;
+      background-color: #ecf0f3;
+      color: black;
+      margin-top: 2rem;
+    }
+    .custom-form input {
+      display: block;
+      margin: 2rem 0;
+      width: 100%;
+      border-radius: 0.5rem;
+      padding: 1rem;
+      border: none;
+      border: 1px solid rgba(0,0,0,0.2);
+      background: #ebf5fc;
+    }
+    .custom-form button {
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      border: none;
+      font-size: 1.1rem;
+      color: #ffffff;
+      text-shadow: -2px 2px 0 #0a0e27, -2px 2px 0 #0a0e27;
+      font-weight: bold;
+      background-color: #bcd8c1;
+      width: 100%;
+      display: block;
+      padding: 0.875rem;
+      border-radius: 0.5rem;
+      cursor: pointer;
+    }
+
+  .general{
+      min-width: 50%;
+      max-width: 96%;
+      font-size: 0.9rem;
+      margin: 0px auto;
+      background: #fff;
+      padding: 1rem 1rem;
+      margin: auto;
+      background-color: #fff;
+      color: black;
+      margin-top: 0rem;
+    }
+    .general table{
+      min-width: 98%;
+      max-width: 100%;
+      margin: 1rem auto;
+    }
+    .general input {
+      display: block;
+      font-size: 0.7rem;
+      border-radius: 0.3rem;
+      padding: 1rem;
+      border: 1px solid rgba(0,0,0,0.2);
+    }
+    .mat-sidenav-content{
+      background: #fff;
+      background-color: #fff;
+    }
+    .menuweb{
+      display: none;
+    }
+
+  }
