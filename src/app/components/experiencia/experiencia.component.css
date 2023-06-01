@@ -1,0 +1,17 @@
+.container {
+  margin-top: 50px;
+  margin-left: 50px;
+  margin-right: 20px;
+}
+
+.form-check-input {
+  margin-right: 5px;
+}
+
+.btn {
+  margin-top: 20px;
+}
+
+h1 {
+  text-align: center;
+}

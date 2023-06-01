@@ -1,0 +1,12 @@
+.container {
+  margin-top: 50px;
+}
+
+.img-fluid {
+  height: 100%;
+  width: auto;
+}
+
+h1 {
+  text-align: center;
+}

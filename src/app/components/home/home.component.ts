@@ -15,4 +15,8 @@ export class HomeComponent {
     this.router.navigate(['home']);
   }
 
+  basicosRoute(){
+    this.router.navigate(['basicos']);
+  }
+
 }

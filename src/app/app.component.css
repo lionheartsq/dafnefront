@@ -1,0 +1,28 @@
+.container {
+  margin-top: 20px;
+}
+
+.row {
+  display: flex;
+}
+
+.col-md-6 {
+  flex-basis: 50%;
+}
+
+.img-fluid {
+  width: 100%;
+  height: auto;
+}
+
+.form-group {
+  margin-bottom: 20px;
+}
+
+.form-check-label {
+  margin-left: 5px;
+}
+
+.btn-primary {
+  margin-top: 10px;
+}

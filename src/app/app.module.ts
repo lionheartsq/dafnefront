@@ -42,6 +42,14 @@ registerLocaleData(localeEs, 'es');
 import { AuthInterceptor } from './interceptors/auth.interceptor';
 import { SessionInterceptor } from './interceptors/session.interceptor';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { BasicosComponent } from './components/basicos/basicos.component';
+import { ExperienciaComponent } from './components/experiencia/experiencia.component';
+import { HobbiesComponent } from './components/hobbies/hobbies.component';
+import { SuenosComponent } from './components/suenos/suenos.component';
+import { IdeasComponent } from './components/ideas/ideas.component';
+import { EvaluacionComponent } from './components/evaluacion/evaluacion.component';
+import { SeleccionComponent } from './components/seleccion/seleccion.component';
+import { ResumenComponent } from './components/resumen/resumen.component';
 
 const materialModules = [
   MatCardModule,
@@ -74,7 +82,15 @@ const materialModules = [
   declarations: [
     AppComponent,
     LoginComponent,
-    HomeComponent
+    HomeComponent,
+    BasicosComponent,
+    ExperienciaComponent,
+    HobbiesComponent,
+    SuenosComponent,
+    IdeasComponent,
+    EvaluacionComponent,
+    SeleccionComponent,
+    ResumenComponent
   ],
   imports: [
     BrowserModule,

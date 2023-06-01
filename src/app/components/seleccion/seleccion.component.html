@@ -1,0 +1,90 @@
+<h1>Selección de idea de negocio</h1>
+<div class="container">
+  <div class="row">
+
+    <div class="col-md-6">
+      <div class="left-section">
+        <img src="./assets/seleccion.png" alt="Imagen" class="img-fluid">
+      </div>
+    </div>
+    <div class="col-md-6">
+      <div class="row">
+        <div class="col-md-12">
+          <table class="table">
+            <thead>
+              <tr>
+                <th>Opción</th>
+                <th>Posición</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Idea de negocio 1</td>
+                <td>1</td>
+              </tr>
+              <tr>
+                <td>Idea de negocio 2</td>
+                <td>2</td>
+              </tr>
+              <tr>
+                <td>Idea de negocio 3</td>
+                <td>3</td>
+              </tr>
+              <tr>
+                <td>Idea de negocio 4</td>
+                <td>4</td>
+              </tr>
+              <tr>
+                <td>Idea de negocio 5</td>
+                <td>5</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-6">
+          <div class="form-group">
+            <div class="form-check">
+              <input type="radio" id="Idea de negocio 1" class="form-check-input" name="ideaNegocio" value="Idea de negocio 1" [(ngModel)]="ideaNegocio">
+              <label for="Idea de negocio 1" class="form-check-label">Idea de negocio 1</label>
+            </div>
+            <div class="form-check">
+              <input type="radio" id="Idea de negocio 2" class="form-check-input" name="ideaNegocio" value="Idea de negocio 2" [(ngModel)]="ideaNegocio">
+              <label for="Idea de negocio 2" class="form-check-label">Idea de negocio 2</label>
+            </div>
+            <div class="form-check">
+              <input type="radio" id="Idea de negocio 3" class="form-check-input" name="ideaNegocio" value="Idea de negocio 3" [(ngModel)]="ideaNegocio">
+              <label for="Idea de negocio 3" class="form-check-label">Idea de negocio 3</label>
+            </div>
+            <div class="form-check">
+              <input type="radio" id="Idea de negocio 4" class="form-check-input" name="ideaNegocio" value="Idea de negocio 4" [(ngModel)]="ideaNegocio">
+              <label for="Idea de negocio 4" class="form-check-label">Idea de negocio 4</label>
+            </div>
+            <div class="form-check">
+              <input type="radio" id="Idea de negocio 5" class="form-check-input" name="ideaNegocio" value="Idea de negocio 5" [(ngModel)]="ideaNegocio">
+              <label for="Idea de negocio 5" class="form-check-label">Idea de negocio 5</label>
+            </div>
+          </div>
+          <div class="col-xs-12 col-md-4">
+            <div class="custom-div">
+             <form class="custom-form" method="post">
+               <button type="submit" (click)="resumenRoute()">Continuemos</button>
+             </form>
+           </div>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <p>Ahora puedes seleccionar la idea de negocio
+            más adecuada para continuar con el proceso;
+            el cuadro muestra el orden de las ideas
+            organizadas según la relevancia y afinidad con
+            tu información; para continuar, elije la opción
+            que más te agrade del listado que se muestra.</p>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+</div>
