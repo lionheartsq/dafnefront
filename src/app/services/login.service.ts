@@ -16,7 +16,7 @@ import { Router } from '@angular/router';
 })
 export class LoginService {
 
-  endpoint: string = 'http://test.venko.co:31518/documentomvp/servicio/auth';
+  endpoint: string = 'http://127.0.0.1:8000/api/auth/login';
   headers = new HttpHeaders().set('Content-Type', 'application/json');
   currentUser = {};
 
@@ -26,9 +26,10 @@ export class LoginService {
     signIn(user:any, usuario:any) {
       return this.http.post<any>(`${this.endpoint}`, user)
         .subscribe((res: any) => {
-          localStorage.setItem('access_token', res.info.access_token);
+          localStorage.setItem('access_token', res.access_token);
           localStorage.setItem('nombre_usuario', usuario);
-          this.router.navigate(['home']);
+          console.log("Token: "+res.access_token);
+          //this.router.navigate(['home']);
         })
     }
 
