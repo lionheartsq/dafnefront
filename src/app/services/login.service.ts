@@ -28,8 +28,8 @@ export class LoginService {
         .subscribe((res: any) => {
           localStorage.setItem('access_token', res.access_token);
           localStorage.setItem('nombre_usuario', usuario);
-          console.log("Token: "+res.access_token);
-          //this.router.navigate(['home']);
+          //console.log("Token: "+res.access_token);
+          this.router.navigate(['home']);
         })
     }
 
