@@ -12,7 +12,10 @@
         </div>
         <div class="form-group">
           <label for="tipoDocumento">Tipo de documento:</label>
-          <input type="text" id="tipoDocumento" class="form-control" [(ngModel)]="tipoDocumento" placeholder="Cédula de Ciudadanía">
+          <select id="tipoDocumento" class="form-control" [(ngModel)]="tipoDocumento" placeholder="Tipo de documento">
+            <option value="Cédula">Cédula</option>
+            <option value="Tarjeta de identidad">Tarjeta de identidad</option>
+          </select>
         </div>
         <div class="form-group">
           <label for="numeroDocumento">Número de documento:</label>
@@ -35,9 +38,7 @@
       <div class="form-group">
         <label for="ciudad">Ciudad:</label>
         <select id="ciudad" class="form-control" [(ngModel)]="ciudad" placeholder="Ciudad">
-          <option value="ciudad1">Ciudad 1</option>
-          <option value="ciudad2">Ciudad 2</option>
-          <option value="ciudad3">Ciudad 3</option>
+          <option *ngFor="let option of options" [value]="option">{{ option }}</option>
         </select>
       </div>
       <div class="form-group">
@@ -53,7 +54,8 @@
         <div class="col-xs-12 col-md-4">
           <div class="custom-div">
            <form class="custom-form" method="post">
-             <button type="submit" (click)="experienciaRoute()">Continuemos</button>
+             <!-- <button type="submit" (click)="experienciaRoute()">Continuemos</button> -->
+             <button type="submit" (click)="basicosSave()">Continuemos</button>
            </form>
          </div>
         </div>

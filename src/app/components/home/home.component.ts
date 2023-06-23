@@ -19,4 +19,12 @@ export class HomeComponent {
     this.router.navigate(['basicos']);
   }
 
+  simulacionRoute(){
+    this.router.navigate(['basicos']);
+  }
+
+  formalizacionRoute(){
+    this.router.navigate(['basicos']);
+  }
+
 }

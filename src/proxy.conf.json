@@ -2,5 +2,20 @@
   "http://127.0.0.1:8000/api/auth/login": {
     "target": "http://127.0.0.1:8000/api/auth/login",
     "secure": false
+  },
+
+  "http://127.0.0.1:8000/api/auth/usuario/store": {
+    "target": "http://127.0.0.1:8000/api/auth/usuario/store",
+    "secure": false
+  },
+
+  "http://127.0.0.1:8000/api/auth/usuario": {
+    "target": "http://127.0.0.1:8000/api/auth/usuario",
+    "secure": false
+  },
+
+  "http://127.0.0.1:8000/api/auth/ciudad": {
+    "target": "http://127.0.0.1:8000/api/auth/ciudad",
+    "secure": false
   }
 }
