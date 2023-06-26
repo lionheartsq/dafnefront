@@ -17,5 +17,35 @@
   "http://127.0.0.1:8000/api/auth/ciudad": {
     "target": "http://127.0.0.1:8000/api/auth/ciudad",
     "secure": false
+  },
+
+  "http://127.0.0.1:8000/api/auth/escolaridad": {
+    "target": "http://127.0.0.1:8000/api/auth/escolaridad",
+    "secure": false
+  },
+
+  "http://127.0.0.1:8000/api/auth/ocupacion": {
+    "target": "http://127.0.0.1:8000/api/auth/ocupacion",
+    "secure": false
+  },
+
+  "http://127.0.0.1:8000/api/auth/experiencia": {
+    "target": "http://127.0.0.1:8000/api/auth/experiencia",
+    "secure": false
+  },
+
+  "http://127.0.0.1:8000/api/auth/usuario/selectemail": {
+    "target": "http://127.0.0.1:8000/api/auth/usuario/selectemail",
+    "secure": false
+  },
+
+  "http://127.0.0.1:8000/api/auth/hobbies/selecthobbiesgeneral": {
+    "target": "http://127.0.0.1:8000/api/auth/hobbies/selecthobbiesgeneral",
+    "secure": false
+  },
+
+  "http://127.0.0.1:8000/api/auth/hobbies/selecthobbiespropio": {
+    "target": "http://127.0.0.1:8000/api/auth/hobbies/selecthobbiespropio",
+    "secure": false
   }
 }

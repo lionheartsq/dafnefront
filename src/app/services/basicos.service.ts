@@ -9,25 +9,26 @@ import { Router } from '@angular/router';
   providedIn: 'root'
 })
 export class BasicosService {
+  private urlBase='http://127.0.0.1:8000';
 
-  private endpoint='http://127.0.0.1:8000/api/auth/usuario/store';
+  private endpoint='api/auth/usuario/store';
 
-  private endpointUsuarios='http://127.0.0.1:8000/api/auth/usuario';
+  private endpointUsuarios='api/auth/usuario';
 
-  private endpointUsuario='http://127.0.0.1:8000/api/auth/usuario/selectusuario';
+  private endpointUsuario='api/auth/usuario/selectusuario';
 
   constructor(private httpClient: HttpClient) { }
 
   crearUsuario(user: any): Observable<any>{
-    return this.httpClient.post(`${this.endpoint}`, user)
+    return this.httpClient.post(`${this.urlBase}/${this.endpoint}`, user)
   }
 
   public lecturaUsuarios(): Observable<any> {
-    return this.httpClient.get(`${this.endpointUsuarios}`);
+    return this.httpClient.get(`${this.urlBase}/${this.endpointUsuarios}`);
   }
 
   public lecturaUsuario(id:any): Observable<any> {
-    return this.httpClient.get(`${this.endpointUsuario}/${id}`);
+    return this.httpClient.get(`${this.urlBase}/${this.endpointUsuario}/${id}`);
   }
 
 }

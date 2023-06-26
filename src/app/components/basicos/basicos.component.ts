@@ -27,6 +27,7 @@ export class BasicosComponent {
   idCiudad: any;
   nombreCiudad: any;
   ordinal:number=0;
+  idUsuarioCreado:any;
 
   constructor(private basicosService: BasicosService, public router:Router, private loginService:LoginService, private utilsService:UtilsService) {}
 
@@ -47,12 +48,11 @@ export class BasicosComponent {
         for (let dato in data.ciudad){
           this.idCiudad=data.ciudad[dato].ciudad;
           this.options[this.ordinal] = data.ciudad[dato].ciudad; // Asigna los datos obtenidos al arreglo de opciones
-          console.log("Array vuelta: "+this.ordinal+" - "+this.options[this.ordinal]);
+          //console.log("Array vuelta: "+this.ordinal+" - "+this.options[this.ordinal]);
           this.ordinal=this.ordinal+1;
           //console.log("CIUDAD: "+this.nombreCiudad);
         }
-
-        console.log("Array salida: "+this.options);
+        //console.log("Array salida: "+this.options);
       },
       (err) => {
         console.log(err); // Manejo de errores
@@ -71,8 +71,11 @@ export class BasicosComponent {
           footer: data.message
         }
       ).then(() => {
+        this.idUsuarioCreado=data.idUsuario;
         // Aquí la alerta se ha cerrado
-        this.router.navigateByUrl('experiencia');
+        //this.router.navigateByUrl('experiencia');
+        //
+        this.router.navigate(['experiencia'], { queryParams: { id: this.idUsuarioCreado} } );
       });
     }, (err) => {
       //debugger

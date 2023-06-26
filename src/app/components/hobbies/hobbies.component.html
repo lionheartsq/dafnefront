@@ -2,125 +2,26 @@
 <div class="container">
   <div class="row">
     <div class="col-md-6">
-      <p>De la siguiente lista, selecciona o adiciona de
-        ser necesario máximo 5 hobbies, valoralos
-        según su importancia.</p>
+      <p>De la siguiente lista, selecciona o adiciona de ser necesario máximo 5 hobbies, valoralos según su importancia.</p>
       <img src="./assets/hobbies.jpg" alt="Imagen" class="img-fluid" style="max-height: 90%; max-height: 90%;">
     </div>
     <div class="col-md-6">
       <div class="row">
         <div class="col-md-6">
-          <div class="form-check">
-            <input type="checkbox" id="opcion1" class="form-check-input" name="opcion1" [(ngModel)]="opcion1" (change)="onCheckboxChange($event)" value="Leer">
-            <label for="opcion1" class="form-check-label">Leer</label>
+          <div class="form-check"*ngFor="let elemento of arrayOpciones">
+            <label>
+              <input type="checkbox" class="form-check-input" [(ngModel)]="elemento.seleccionado" (change)="onCheckboxChange($event)" value="{{elemento.idHobby}}">
+              {{ elemento.hobby }}
+            </label>
           </div>
           <div class="form-check">
-            <input type="checkbox" id="opcion2" class="form-check-input" name="opcion2" [(ngModel)]="opcion2" (change)="onCheckboxChange($event)" value="Cocinar">
-            <label for="opcion2" class="form-check-label">Cocinar</label>
+            <input type="checkbox" id="otros" class="form-check-input" name="otros" [(ngModel)]="otros">
+            <label for="otros" class="form-check-label">Otros</label>
           </div>
-          <div class="form-check">
-            <input type="checkbox" id="opcion3" class="form-check-input" name="opcion3" [(ngModel)]="opcion3" (change)="onCheckboxChange($event)" value="Hacer ejercicio">
-            <label for="opcion3" class="form-check-label">Hacer ejercicio</label>
-          </div>
-          <div class="form-check">
-            <input type="checkbox" id="opcion4" class="form-check-input" name="opcion4" [(ngModel)]="opcion4" (change)="onCheckboxChange($event)" value="Ver películas o series">
-            <label for="opcion4" class="form-check-label">Ver películas o series</label>
-          </div>
-          <div class="form-check">
-            <input type="checkbox" id="opcion5" class="form-check-input" name="opcion5" [(ngModel)]="opcion5" (change)="onCheckboxChange($event)" value="Viajar">
-            <label for="opcion5" class="form-check-label">Viajar</label>
-          </div>
-          <div class="form-check">
-            <input type="checkbox" id="opcion6" class="form-check-input" name="opcion6" [(ngModel)]="opcion6" (change)="onCheckboxChange($event)" value="Jugar videojuegos">
-            <label for="opcion6" class="form-check-label">Jugar videojuegos</label>
-          </div>
-          <div class="form-check">
-            <input type="checkbox" id="opcion7" class="form-check-input" name="opcion7" [(ngModel)]="opcion7" (change)="onCheckboxChange($event)" value="Pintar y dibujar">
-            <label for="opcion7" class="form-check-label">Pintar y dibujar</label>
-          </div>
-          <div class="form-check">
-            <input type="checkbox" id="opcion8" class="form-check-input" name="opcion8" [(ngModel)]="opcion8" (change)="onCheckboxChange($event)" value="Hacer manualidades">
-            <label for="opcion8" class="form-check-label">Hacer manualidades</label>
-          </div>
-          <div class="form-check">
-            <input type="checkbox" id="opcion9" class="form-check-input" name="opcion9" [(ngModel)]="opcion9" (change)="onCheckboxChange($event)" value="Escuchas música">
-            <label for="opcion9" class="form-check-label">Escuchar música</label>
-          </div>
-          <div class="form-check">
-            <input type="checkbox" id="opcion10" class="form-check-input" name="opcion10" [(ngModel)]="opcion10" (change)="onCheckboxChange($event)" value="Pasar tiempo en redes sociales">
-            <label for="opcion10" class="form-check-label">Pasar tiempo en redes sociales</label>
-          </div>
-          <div class="form-check">
-            <input type="checkbox" id="opcion11" class="form-check-input" name="opcion11" [(ngModel)]="opcion11" (change)="onCheckboxChange($event)" value="Otros">
-            <label for="opcion11" class="form-check-label">Otros</label>
-          </div>
-        </div>
-        <div class="col-md-6">
-          <div *ngIf="opcion1 && checkedCount<6" class="form-group">
-            <div class="form-group">
-              <label class="form-check-label">Leer</label>
-              <input type="text" class="form-control" [(ngModel)]="valorImportancia" placeholder="Valor de importancia">
-            </div>
-          </div>
-          <div *ngIf="opcion2 && checkedCount<6" class="form-group">
-            <div class="form-group">
-              <label class="form-check-label">Cocinar</label>
-              <input type="text" class="form-control" [(ngModel)]="valorImportancia" placeholder="Valor de importancia">
-            </div>
-          </div>
-          <div *ngIf="opcion3 && checkedCount<6" class="form-group">
-            <div class="form-group">
-              <label class="form-check-label">Hacer ejercicio</label>
-              <input type="text" class="form-control" [(ngModel)]="valorImportancia" placeholder="Valor de importancia">
-            </div>
-          </div>
-          <div *ngIf="opcion4 && checkedCount<6" class="form-group">
-            <div class="form-group">
-              <label class="form-check-label">Ver películas o series</label>
-              <input type="text" class="form-control" [(ngModel)]="valorImportancia" placeholder="Valor de importancia">
-            </div>
-          </div>
-          <div *ngIf="opcion5 && checkedCount<6" class="form-group">
-            <div class="form-group">
-              <label class="form-check-label">Viajar</label>
-              <input type="text" class="form-control" [(ngModel)]="valorImportancia" placeholder="Valor de importancia">
-            </div>
-          </div>
-          <div *ngIf="opcion6 && checkedCount<6" class="form-group">
-            <div class="form-group">
-              <label class="form-check-label">Jugar videojuegos</label>
-              <input type="text" class="form-control" [(ngModel)]="valorImportancia" placeholder="Valor de importancia">
-            </div>
-          </div>
-          <div *ngIf="opcion7 && checkedCount<6" class="form-group">
-            <div class="form-group">
-              <label class="form-check-label">Pintar y dibujar</label>
-              <input type="text" class="form-control" [(ngModel)]="valorImportancia" placeholder="Valor de importancia">
-            </div>
-          </div>
-          <div *ngIf="opcion8 && checkedCount<6" class="form-group">
-            <div class="form-group">
-              <label class="form-check-label">Hacer manualidades</label>
-              <input type="text" class="form-control" [(ngModel)]="valorImportancia" placeholder="Valor de importancia">
-            </div>
-          </div>
-          <div *ngIf="opcion9 && checkedCount<6" class="form-group">
-            <div class="form-group">
-              <label class="form-check-label">Escuchar música</label>
-              <input type="text" class="form-control" [(ngModel)]="valorImportancia" placeholder="Valor de importancia">
-            </div>
-          </div>
-          <div *ngIf="opcion10 && checkedCount<6" class="form-group">
-            <div class="form-group">
-              <label class="form-check-label">Pasar tiempo en redes sociales</label>
-              <input type="text" class="form-control" [(ngModel)]="valorImportancia" placeholder="Valor de importancia">
-            </div>
-          </div>
-          <div *ngIf="opcion11 && checkedCount<6" class="form-group">
-            <div class="form-group">
-              <label class="form-check-label">Otros</label>
-              <input type="text" class="form-control" [(ngModel)]="valorImportancia" placeholder="Valor de importancia">
-            </div>
+          <div *ngIf="otros" class="form-group">
+            <label>Ingresa tu hobbie personalizado:</label>
+            <input type="text" class="form-control" [(ngModel)]="hobbienuevo" (change)="onCheckboxChange($event)" placeholder="Nombre del hobbie">
+            <button type="submit" (click)="hobbieSave()">Guardar Nuevo</button>
           </div>
         </div>
       </div>
@@ -130,7 +31,7 @@
       <div class="col-xs-12 col-md-4">
         <div class="custom-div">
          <form class="custom-form" method="post">
-           <button type="submit" (click)="suenosRoute()">Continuemos</button>
+           <button *ngIf="checkedCount<6" type="submit" (click)="validateHobbies()">Continuemos</button>
          </form>
        </div>
     </div>

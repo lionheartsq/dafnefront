@@ -15,8 +15,9 @@ import { Router } from '@angular/router';
   providedIn: 'root'
 })
 export class LoginService {
+  private urlBase='http://127.0.0.1:8000';
 
-  endpoint: string = 'http://127.0.0.1:8000/api/auth/login';
+  private endpoint= 'api/auth/login';
   headers = new HttpHeaders().set('Content-Type', 'application/json');
   currentUser = {};
 
@@ -24,7 +25,7 @@ export class LoginService {
 
     // Sign-in
     signIn(user:any, usuario:any) {
-      return this.http.post<any>(`${this.endpoint}`, user)
+      return this.http.post<any>(`${this.urlBase}/${this.endpoint}`, user)
         .subscribe((res: any) => {
           localStorage.setItem('access_token', res.access_token);
           localStorage.setItem('nombre_usuario', usuario);
