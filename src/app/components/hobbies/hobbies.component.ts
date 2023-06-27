@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
+import { ElementRef, QueryList, ViewChildren } from '@angular/core';
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 import { UtilsService } from 'src/app/services/utils.service';
 import { LoginService } from 'src/app/services/login.service';
@@ -24,6 +25,9 @@ export class HobbiesComponent {
   hobbieGeneral: any;
   hobbiePropio: any;
   elementos: any[] = [];
+  @ViewChildren('checkboxes') checkboxesRef!: QueryList<ElementRef>;
+  idHobby: any;
+  idUsuario: any;
 
   constructor(public router:Router, private loginService:LoginService, private utilsService:UtilsService, private route: ActivatedRoute, private hobbiesService:HobbiesService) {
   }
@@ -76,12 +80,9 @@ export class HobbiesComponent {
     );
   }
 
-  onCheckboxChange(event: any) {
-    if (event.target.checked) {
-      this.checkedCount++;
-    } else {
-      this.checkedCount--;
-    }
+  onCheckboxChange(event: any, elemento: any) {
+    elemento.seleccionado = event.target.checked;
+    this.checkedCount = this.arrayOpciones.filter((e: any) => e.seleccionado).length;
   }
 
   hobbieSave(){
@@ -145,8 +146,39 @@ export class HobbiesComponent {
   }
 
   validateHobbies() {
-    const elementosSeleccionados = this.elementos.filter(elemento => elemento.seleccionado);
-    console.log(elementosSeleccionados);
+    const elementosSeleccionados = this.arrayOpciones
+      .filter((elemento: any) => elemento.seleccionado)
+      .map((elemento: any) => {
+        return { idHobby: elemento.idHobby, hobby: elemento.hobby };
+      });
+    if(this.checkedCount<6){
+      //console.log(elementosSeleccionados);
+      for (let dato in elementosSeleccionados){
+        this.idHobby=elementosSeleccionados[dato].idHobby;
+        this.idUsuario=this.idUsuarioCreado;
+        //console.log("ID HOBBY LOOP: "+this.idHobby);
+        //console.log("ID USER LOOP: "+this.idUsuario);
+        const varUsuario = {idUsuario:this.idUsuario, idHobby:this.idHobby};
+        this.hobbiesService.cerrarRelacionHobbies(varUsuario).subscribe( (data)=>{
+          console.log("Ok");
+        }, (err) => {
+          //debugger
+          console.log("Error");
+        });
+      }
+      Swal.fire(
+        {
+          icon: 'success',
+          title: 'Solicitud enviada',
+          text: 'Hobbies registrados correctamente',
+          footer: 'Hobbies guardados'
+        }
+      ).then(() => {
+        this.router.navigate(['suenos'], { queryParams: { id: this.idUsuarioCreado} } );
+      });
+    } else{
+      console.log("Excede la cantidad de hobbies");
+    }
     // Realiza cualquier otra lógica que necesites con los elementos seleccionados
   }
 

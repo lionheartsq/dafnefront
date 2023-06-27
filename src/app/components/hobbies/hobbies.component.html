@@ -8,9 +8,9 @@
     <div class="col-md-6">
       <div class="row">
         <div class="col-md-6">
-          <div class="form-check"*ngFor="let elemento of arrayOpciones">
+          <div class="form-check" #checkboxes *ngFor="let elemento of arrayOpciones">
             <label>
-              <input type="checkbox" class="form-check-input" [(ngModel)]="elemento.seleccionado" (change)="onCheckboxChange($event)" value="{{elemento.idHobby}}">
+              <input type="checkbox" class="form-check-input" [(ngModel)]="elemento.seleccionado" (change)="onCheckboxChange($event, elemento)" value="{{elemento.idHobby}}">
               {{ elemento.hobby }}
             </label>
           </div>
@@ -20,7 +20,7 @@
           </div>
           <div *ngIf="otros" class="form-group">
             <label>Ingresa tu hobbie personalizado:</label>
-            <input type="text" class="form-control" [(ngModel)]="hobbienuevo" (change)="onCheckboxChange($event)" placeholder="Nombre del hobbie">
+            <input type="text" class="form-control" [(ngModel)]="hobbienuevo" placeholder="Nombre del hobbie">
             <button type="submit" (click)="hobbieSave()">Guardar Nuevo</button>
           </div>
         </div>
