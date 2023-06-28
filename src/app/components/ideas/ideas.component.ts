@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute, ParamMap } from '@angular/router';
+import { ApigptService } from 'src/app/services/apigpt.service';
 
 @Component({
   selector: 'app-ideas',
@@ -24,19 +25,42 @@ export class IdeasComponent {
   opcion14: string | undefined;
   opcion15: string | undefined;
   checkedCount: number = 0;
+  idUsuarioCreado: any;
 
-  constructor(public router: Router) {
+  constructor(public router: Router, private route: ActivatedRoute, private apigptService:ApigptService) {
   }
 
-  evaluacionRoute(){
-    this.router.navigate(['evaluacion']);
+  ngOnInit(): void {
+    this.route.queryParams.subscribe(params => {
+      this.idUsuarioCreado = params['id'];
+      //console.log(this.idUsuarioCreado);
+      });
+
+    this.llamarAPI();
+    //this.contarSuenosPropio(this.idUsuarioCreado);
   }
+
   onCheckboxChange(event: any) {
     if (event.target.checked) {
       this.checkedCount++;
     } else {
       this.checkedCount--;
     }
+  }
+
+  evaluacionRoute(){
+    this.router.navigate(['evaluacion']);
+  }
+
+  public llamarAPI(): void {
+    this.apigptService.sendChatRequest().subscribe(
+      (response) => {
+        console.log(response); // Maneja la respuesta de la API aquí
+      },
+      (error) => {
+        console.error(error); // Maneja los errores aquí
+      }
+    );
   }
 
 }

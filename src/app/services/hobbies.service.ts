@@ -19,6 +19,8 @@ export class HobbiesService {
 
   private endpointCloseRelacion='api/auth/usuario_hobbies/closedeal';
 
+  private endpointCountRelacion='api/auth/usuario_hobbies/counthobbies';
+
   constructor(private httpClient: HttpClient) { }
 
   crearHobbies(user: any): Observable<any>{
@@ -35,5 +37,9 @@ export class HobbiesService {
 
   cerrarRelacionHobbies(user: any): Observable<any>{
     return this.httpClient.post(`${this.urlBase}/${this.endpointCloseRelacion}`, user)
+  }
+
+  public countHobbiesPropio(id:any): Observable<any> {
+    return this.httpClient.get(`${this.urlBase}/${this.endpointCountRelacion}/${id}`);
   }
 }

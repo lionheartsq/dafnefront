@@ -28,6 +28,7 @@ export class HobbiesComponent {
   @ViewChildren('checkboxes') checkboxesRef!: QueryList<ElementRef>;
   idHobby: any;
   idUsuario: any;
+  countHobbies: number=0;
 
   constructor(public router:Router, private loginService:LoginService, private utilsService:UtilsService, private route: ActivatedRoute, private hobbiesService:HobbiesService) {
   }
@@ -39,6 +40,7 @@ export class HobbiesComponent {
       });
 
     this.obtenerHobbiesGeneral();
+    this.contarHobbiesPropio(this.idUsuarioCreado);
   }
 
   obtenerHobbiesGeneral(){
@@ -57,6 +59,20 @@ export class HobbiesComponent {
       }
     );
   }
+
+  contarHobbiesPropio(id:any){
+    this.hobbiesService.countHobbiesPropio(id).subscribe(
+      (data) => {
+        //console.log("Data Gen:"+data);
+        this.countHobbies=data.message;
+        //console.log("Data Mess:"+this.countHobbies);
+      },
+      (err) => {
+        console.log(err); // Manejo de errores
+      }
+    );
+  }
+
 
   obtenerHobbiesPropios(){
     this.hobbiesService.lecturaHobbiesPropio(this.idUsuarioCreado).subscribe(
@@ -87,58 +103,42 @@ export class HobbiesComponent {
 
   hobbieSave(){
     const varNuevoHobby = {idUsuario:this.idUsuarioCreado, hobby:this.hobbienuevo};
-    this.hobbiesService.crearHobbies(varNuevoHobby).subscribe( (data)=>{
-      Swal.fire(
-        {
-          icon: 'success',
-          title: 'Solicitud enviada',
-          text: 'Nuevo hobbie registrado correctamente',
-          footer: data.message
-        }
-      ).then(() => {
-        //this.router.navigateByUrl('hobbies');
-        //
-        window.location.reload();
+    if(this.countHobbies<5){
+      this.hobbiesService.crearHobbies(varNuevoHobby).subscribe( (data)=>{
+        Swal.fire(
+          {
+            icon: 'success',
+            title: 'Solicitud enviada',
+            text: 'Nuevo hobbie registrado correctamente',
+            footer: data.message
+          }
+        ).then(() => {
+          //this.router.navigateByUrl('hobbies');
+          //
+          window.location.reload();
+        });
+      }, (err) => {
+        //debugger
+        Swal.fire(
+          {
+            icon: 'error',
+            title: 'Error al crear',
+            html: 'Por favor verifique los datos e intente nuevamente',
+            footer: 'No se ha podido completar el registro'
+          }
+        )
       });
-    }, (err) => {
-      //debugger
+    }else{
       Swal.fire(
         {
           icon: 'error',
           title: 'Error al crear',
-          html: 'Por favor verifique los datos e intente nuevamente',
+          html: 'Llegaste al máximo de hobbies propios creados',
           footer: 'No se ha podido completar el registro'
         }
       )
-    });
-  }
+    }
 
-  hobbiesSave(){
-    const varNuevoHobby = {idUsuario:this.idUsuarioCreado, hobby:this.hobbienuevo};
-    this.hobbiesService.crearHobbies(varNuevoHobby).subscribe( (data)=>{
-      Swal.fire(
-        {
-          icon: 'success',
-          title: 'Solicitud enviada',
-          text: 'Nuevo hobbie registrado correctamente',
-          footer: data.message
-        }
-      ).then(() => {
-        //this.router.navigateByUrl('hobbies');
-        //
-        window.location.reload();
-      });
-    }, (err) => {
-      //debugger
-      Swal.fire(
-        {
-          icon: 'error',
-          title: 'Error al crear',
-          html: 'Por favor verifique los datos e intente nuevamente',
-          footer: 'No se ha podido completar el registro'
-        }
-      )
-    });
   }
 
   agregarElemento(nombre: string) {

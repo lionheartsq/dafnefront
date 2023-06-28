@@ -47,5 +47,16 @@
   "http://127.0.0.1:8000/api/auth/hobbies/selecthobbiespropio": {
     "target": "http://127.0.0.1:8000/api/auth/hobbies/selecthobbiespropio",
     "secure": false
+  },
+
+  "http://localhost:4200": {
+    "target": "https://api.openai.com/v1/chat/completions",
+    "secure": true,
+    "changeOrigin": true,
+    "logLevel": "debug",
+    "headers": {
+      "Host": "https://api.openai.com"
+    }
   }
+
 }
