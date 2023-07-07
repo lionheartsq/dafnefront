@@ -1,14 +1,19 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { GlobalConstants } from '../common/global-constants';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ApigptService {
 
-      private apiUrl = 'https://api.openai.com/v1/chat/completions';
-      private apiKey = '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'; // Reemplaza esto con tu propia API key de OpenAI
+      private apiUrl = GlobalConstants.apiGPT;
+      private apiKey = GlobalConstants.tokenGPT; // Reemplaza esto con tu propia API key de OpenAI
+
+
+      //private apiUrl = 'https://api.openai.com/v1/chat/completions';
+      //private apiKey = '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'; // Reemplaza esto con tu propia API key de OpenAI
 
       constructor(private http: HttpClient) { }
 
@@ -19,7 +24,7 @@ export class ApigptService {
 
         const options = {
             headers,
-            withCredentials: true // Habilitar envío de credenciales
+            withCredentials: false // Habilitar envío de credenciales
           };
 
         const body = {

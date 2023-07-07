@@ -4,12 +4,16 @@ import { Observable } from 'rxjs';
 import { throwError } from 'rxjs';
 import { retry, catchError, tap } from 'rxjs/operators';
 import { Router } from '@angular/router';
+import { GlobalConstants } from '../common/global-constants';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ExperienciaService {
-  private urlBase='http://127.0.0.1:8000';
+
+  private urlBase=GlobalConstants.apiURL;
+
+  //private urlBase='http://127.0.0.1:8000';
 
   private endpointSaveEscolaridad='api/auth/escolaridad/store';
 

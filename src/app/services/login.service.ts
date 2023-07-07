@@ -10,12 +10,16 @@ import { Observable, throwError } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
 import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
 import { Router } from '@angular/router';
+import { GlobalConstants } from '../common/global-constants';
 
 @Injectable({
   providedIn: 'root'
 })
 export class LoginService {
-  private urlBase='http://127.0.0.1:8000';
+
+  private urlBase=GlobalConstants.apiURL;
+
+  //private urlBase='http://127.0.0.1:8000';
 
   private endpoint= 'api/auth/login';
   headers = new HttpHeaders().set('Content-Type', 'application/json');

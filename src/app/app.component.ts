@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { Observable } from 'rxjs';
 import { map, shareReplay } from 'rxjs/operators';
+import{ GlobalConstants } from './common/global-constants';
 
 @Component({
   selector: 'app-root',
@@ -18,7 +19,7 @@ export class AppComponent {
     shareReplay()
   );
 
-  title = 'emprendimientofront';
+  title = GlobalConstants.siteTitle;
 
   constructor(public authService: LoginService, public router: Router, private breakpointObserver: BreakpointObserver) { }
 

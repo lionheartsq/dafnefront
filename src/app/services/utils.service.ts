@@ -5,12 +5,16 @@ import { throwError } from 'rxjs';
 import { retry, catchError, tap } from 'rxjs/operators';
 import { Router } from '@angular/router';
 import { LoginService } from './login.service';
+import { GlobalConstants } from '../common/global-constants';
 
 @Injectable({
   providedIn: 'root'
 })
 export class UtilsService {
-  private urlBase='http://127.0.0.1:8000';
+
+  private urlBase=GlobalConstants.apiURL;
+
+  //private urlBase='http://127.0.0.1:8000';
 
   private endpointCiudades='api/auth/ciudad';
 
