@@ -175,7 +175,7 @@ export class SuenosComponent {
           footer: 'Sueños guardados'
         }
       ).then(() => {
-        this.router.navigate(['ideas'], { queryParams: { id: this.idUsuarioCreado} } );
+        this.router.navigate(['valorsuenos'], { queryParams: { id: this.idUsuarioCreado} } );
       });
     } else{
       console.log("Excede la cantidad de sueños");

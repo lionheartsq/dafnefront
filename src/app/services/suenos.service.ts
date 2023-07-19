@@ -25,6 +25,10 @@ export class SuenosService {
 
   private endpointCountRelacion='api/auth/usuario_suenos/countsuenos';
 
+  private endpointGetRelacion='api/auth/usuario_suenos/usuariosuenos';
+
+  private endpointUpdateRelacion='api/auth/usuario_suenos/updateusuariosuenos';
+
   constructor(private httpClient: HttpClient) { }
 
   crearSuenos(user: any): Observable<any>{
@@ -45,5 +49,14 @@ export class SuenosService {
 
   public countSuenosPropio(id:any): Observable<any> {
     return this.httpClient.get(`${this.urlBase}/${this.endpointCountRelacion}/${id}`);
+  }
+
+  public getSuenosPropio(id:any): Observable<any> {
+    return this.httpClient.get(`${this.urlBase}/${this.endpointGetRelacion}/${id}`);
+  }
+
+  enviarValor(data: any): Observable<any> {
+    const url = `${this.urlBase}/${this.endpointUpdateRelacion}`; // Reemplaza con la URL de tu endpoint
+    return this.httpClient.post(url, data);
   }
 }

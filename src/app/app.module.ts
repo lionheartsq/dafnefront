@@ -50,6 +50,10 @@ import { IdeasComponent } from './components/ideas/ideas.component';
 import { EvaluacionComponent } from './components/evaluacion/evaluacion.component';
 import { SeleccionComponent } from './components/seleccion/seleccion.component';
 import { ResumenComponent } from './components/resumen/resumen.component';
+import { ValorhobbiesComponent } from './components/valorhobbies/valorhobbies.component';
+import { ValorsuenosComponent } from './components/valorsuenos/valorsuenos.component';
+import { CriteriosComponent } from './components/criterios/criterios.component';
+import { ValorcriteriosComponent } from './components/valorcriterios/valorcriterios.component';
 
 const materialModules = [
   MatCardModule,
@@ -90,7 +94,11 @@ const materialModules = [
     IdeasComponent,
     EvaluacionComponent,
     SeleccionComponent,
-    ResumenComponent
+    ResumenComponent,
+    ValorhobbiesComponent,
+    ValorsuenosComponent,
+    CriteriosComponent,
+    ValorcriteriosComponent
   ],
   imports: [
     BrowserModule,

@@ -1,147 +1,37 @@
 <h1>Ahora, algunas ideas de negocio para tí...</h1>
 <div class="container">
   <div class="row">
-    <div class="col-md-6">
-      <img src="./assets/ideas.png" alt="Imagen" class="img-fluid" style="max-height: 55%; max-width: 55%;">
-      <div class="col-xs-12 col-md-4">
-        <div class="custom-div">
-         <form class="custom-form" method="post">
-           <button type="submit" (click)="evaluacionRoute()">Continuemos</button>
-         </form>
-       </div>
-      </div>
-    </div>
-    <div class="col-md-6">
-      <h2>Selecciona máximo 3 ideas que más se relacionan con tu emprendimiento.</h2>
-      <div>
-        <div class="form-check">
-          <input type="checkbox" id="opcion1" class="form-check-input" (change)="onCheckboxChange($event)">
-          <label for="opcion1" class="form-check-label">Crear una marca de ropa o accesorios personalizados</label>
+      <div class="col-md-6">
+        <img src="./assets/ideas.png" alt="Imagen" class="img-fluid" style="max-height: 55%; max-width: 55%;">
+        <div class="col-xs-12 col-md-4">
+          <div class="custom-div">
+          <form class="custom-form" method="post">
+            <button *ngIf="checkedCount<4"  type="submit" (click)="validateIdeas()">Continuemos</button>
+          </form>
+          <div *ngIf="checkedCount>3" class="form-group">
+            <p>Ha excedido la cantidad de posibilidades a elegir, por favor elija sólo un máximo de 3</p>
+          </div>
         </div>
-        <div class="form-check">
-          <input type="checkbox" id="opcion2" class="form-check-input" (change)="onCheckboxChange($event)">
-          <label for="opcion2" class="form-check-label">Crear una marca de productos naturales o artesanales</label>
-        </div>
-        <div class="form-check">
-          <input type="checkbox" id="opcion3" class="form-check-input" (change)="onCheckboxChange($event)">
-          <label for="opcion3" class="form-check-label">Crear una marca de tecnología innovadora</label>
-        </div>
-        <div class="form-check">
-          <input type="checkbox" id="opcion4" class="form-check-input" (change)="onCheckboxChange($event)">
-          <label for="opcion4" class="form-check-label">Crear una tienda online de productos populares</label>
-        </div>
-        <div class="form-check">
-          <input type="checkbox" id="opcion5" class="form-check-input" (change)="onCheckboxChange($event)">
-          <label for="opcion5" class="form-check-label">Ofrecer servicios de consultoría empresarial</label>
-        </div>
-        <div class="form-check">
-          <input type="checkbox" id="opcion6" class="form-check-input" (change)="onCheckboxChange($event)">
-          <label for="opcion6" class="form-check-label">Iniciar una empresa de diseño gráfico o desarrollo web</label>
-        </div>
-        <div class="form-check">
-          <input type="checkbox" id="opcion7" class="form-check-input" (change)="onCheckboxChange($event)">
-          <label for="opcion7" class="form-check-label">Crear una empresa de comercialización de productos o servicios</label>
-        </div>
-        <div class="form-check">
-          <input type="checkbox" id="opcion8" class="form-check-input" (change)="onCheckboxChange($event)">
-          <label for="opcion8" class="form-check-label">Crear una empresa de comida gourmet y saludable</label>
-        </div>
-        <div class="form-check">
-          <input type="checkbox" id="opcion9" class="form-check-input" (change)="onCheckboxChange($event)">
-          <label for="opcion9" class="form-check-label">Iniciar un negocio de venta de artesanías y productos locales de diferentes países</label>
-        </div>
-        <div class="form-check">
-          <input type="checkbox" id="opcion10" class="form-check-input" (change)="onCheckboxChange($event)">
-          <label for="opcion10" class="form-check-label">Crear un blog de viajes o un canal de YouTube</label>
-        </div>
-        <div class="form-check">
-          <input type="checkbox" id="opcion11" class="form-check-input" (change)="onCheckboxChange($event)">
-          <label for="opcion11" class="form-check-label">Iniciar un negocio de productos para bebés y niños</label>
-        </div>
-        <div class="form-check">
-          <input type="checkbox" id="opcion12" class="form-check-input" (change)="onCheckboxChange($event)">
-          <label for="opcion12" class="form-check-label">Crear una empresa de fotografía de familia o de eventos infantiles</label>
-        </div>
-        <div class="form-check">
-          <input type="checkbox" id="opcion13" class="form-check-input" (change)="onCheckboxChange($event)">
-          <label for="opcion13" class="form-check-label">Crear una empresa de exportación de productos locales</label>
-        </div>
-        <div class="form-check">
-          <input type="checkbox" id="opcion14" class="form-check-input" (change)="onCheckboxChange($event)">
-          <label for="opcion14" class="form-check-label">Iniciar un negocio de turismo local</label>
-        </div>
-        <div class="form-check">
-          <input type="checkbox" id="opcion15" class="form-check-input" (change)="onCheckboxChange($event)">
-          <label for="opcion15" class="form-check-label">Otros</label>
-        </div>
-        <div *ngIf="checkedCount>3" class="form-group">
-          <p>Ha excedido la cantidad de posibilidades a elegir, por favor elija sólo un máximo de 3</p>
         </div>
       </div>
-      <div>
-          <div *ngIf="opcion1 && checkedCount<4" class="form-group">
-            <div class="form-group">
-            </div>
-          </div>
-          <div *ngIf="opcion2 && checkedCount<4" class="form-group">
-            <div class="form-group">
-            </div>
-          </div>
-          <div *ngIf="opcion3 && checkedCount<4" class="form-group">
-            <div class="form-group">
-            </div>
-          </div>
-          <div *ngIf="opcion4 && checkedCount<4" class="form-group">
-            <div class="form-group">
-            </div>
-          </div>
-          <div *ngIf="opcion5 && checkedCount<4" class="form-group">
-            <div class="form-group">
-            </div>
-          </div>
-          <div *ngIf="opcion6 && checkedCount<4" class="form-group">
-            <div class="form-group">
-            </div>
-          </div>
-          <div *ngIf="opcion7 && checkedCount<4" class="form-group">
-            <div class="form-group">
-            </div>
-          </div>
-          <div *ngIf="opcion8 && checkedCount<4" class="form-group">
-            <div class="form-group">
-            </div>
-          </div>
-          <div *ngIf="opcion9 && checkedCount<4" class="form-group">
-            <div class="form-group">
-            </div>
-          </div>
-          <div *ngIf="opcion10 && checkedCount<4" class="form-group">
-            <div class="form-group">
-            </div>
-          </div>
-          <div *ngIf="opcion11 && checkedCount<4" class="form-group">
-            <div class="form-group">
-            </div>
-          </div>
-          <div *ngIf="opcion12 && checkedCount<4" class="form-group">
-            <div class="form-group">
-            </div>
-          </div>
-          <div *ngIf="opcion13 && checkedCount<4" class="form-group">
-            <div class="form-group">
-            </div>
-          </div>
-          <div *ngIf="opcion14 && checkedCount<4" class="form-group">
-            <div class="form-group">
-            </div>
-          </div>
-          <div *ngIf="opcion15 && checkedCount<4" class="form-group">
-            <div class="form-group">
-            </div>
-          </div>
+      <div class="col-md-6">
+        <h2>Selecciona máximo 3 ideas que más se relacionan con tu emprendimiento.</h2>
+        <div class="form-check" #checkboxes *ngFor="let elemento of arrayOpciones">
+          <label>
+            <input type="checkbox" class="form-check-input" [(ngModel)]="elemento.seleccionado" (change)="onCheckboxChange($event, elemento)" value="{{ elemento.idIdea }}">
+            {{ elemento.idea }}
+          </label>
+        </div>
+        <div class="form-check">
+          <input type="checkbox" id="otros" class="form-check-input" name="otros" [(ngModel)]="otros">
+          <label for="otros" class="form-check-label">Otros</label>
+        </div>
+        <div *ngIf="otros" class="form-group">
+          <label>Ingresa tu idea personalizada:</label>
+          <input type="text" class="form-control" [(ngModel)]="ideanuevo" placeholder="Nombre de la idea">
+          <button type="submit" (click)="ideaSave()">Guardar Nuevo</button>
+        </div>
       </div>
-
-    </div>
   </div>
 </div>
 

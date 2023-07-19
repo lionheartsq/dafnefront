@@ -25,6 +25,10 @@ export class HobbiesService {
 
   private endpointCountRelacion='api/auth/usuario_hobbies/counthobbies';
 
+  private endpointGetRelacion='api/auth/usuario_hobbies/usuariohobbies';
+
+  private endpointUpdateRelacion='api/auth/usuario_hobbies/updateusuariohobbies';
+
   constructor(private httpClient: HttpClient) { }
 
   crearHobbies(user: any): Observable<any>{
@@ -45,5 +49,14 @@ export class HobbiesService {
 
   public countHobbiesPropio(id:any): Observable<any> {
     return this.httpClient.get(`${this.urlBase}/${this.endpointCountRelacion}/${id}`);
+  }
+
+  public getHobbiesPropio(id:any): Observable<any> {
+    return this.httpClient.get(`${this.urlBase}/${this.endpointGetRelacion}/${id}`);
+  }
+
+  enviarValor(data: any): Observable<any> {
+    const url = `${this.urlBase}/${this.endpointUpdateRelacion}`; // Reemplaza con la URL de tu endpoint
+    return this.httpClient.post(url, data);
   }
 }

@@ -73,7 +73,6 @@ export class HobbiesComponent {
     );
   }
 
-
   obtenerHobbiesPropios(){
     this.hobbiesService.lecturaHobbiesPropio(this.idUsuarioCreado).subscribe(
       (data) => {
@@ -174,7 +173,7 @@ export class HobbiesComponent {
           footer: 'Hobbies guardados'
         }
       ).then(() => {
-        this.router.navigate(['suenos'], { queryParams: { id: this.idUsuarioCreado} } );
+        this.router.navigate(['valorhobbies'], { queryParams: { id: this.idUsuarioCreado} } );
       });
     } else{
       console.log("Excede la cantidad de hobbies");
