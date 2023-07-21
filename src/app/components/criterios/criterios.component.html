@@ -1,1 +1,38 @@
-<p>criterios works!</p>
+<h1>Ahora, algunas criterios de negocio para tí...</h1>
+<div class="container">
+  <div class="row">
+      <div class="col-md-6">
+        <img src="./assets/seleccion.png" alt="Imagen" class="img-fluid" style="max-height: 55%; max-width: 55%;">
+        <div class="col-xs-12 col-md-4">
+          <div class="custom-div">
+          <form class="custom-form" method="post">
+            <button *ngIf="checkedCount<6"  type="submit" (click)="validateCriterios()">Continuemos</button>
+          </form>
+          <div *ngIf="checkedCount>5" class="form-group">
+            <p>Ha excedido la cantidad de posibilidades a elegir, por favor elija sólo un máximo de 5</p>
+          </div>
+        </div>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <h2>Selecciona máximo 5 criterios que más se relacionan con tu emprendimiento.</h2>
+        <div class="form-check" #checkboxes *ngFor="let elemento of arrayOpciones">
+          <label>
+            <input type="checkbox" class="form-check-input" [(ngModel)]="elemento.seleccionado" (change)="onCheckboxChange($event, elemento)" value="{{ elemento.idCriterio }}">
+            {{ elemento.criterio }}
+          </label>
+        </div>
+        <div class="form-check">
+          <input type="checkbox" id="otros" class="form-check-input" name="otros" [(ngModel)]="otros">
+          <label for="otros" class="form-check-label">Otros</label>
+        </div>
+        <div *ngIf="otros" class="form-group">
+          <label>Ingresa tu criterio personalizada:</label>
+          <input type="text" class="form-control" [(ngModel)]="criterionuevo" placeholder="Nombre del criterio">
+          <button type="submit" (click)="criterioSave()">Guardar Nuevo</button>
+        </div>
+      </div>
+  </div>
+</div>
+
+

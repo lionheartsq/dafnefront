@@ -179,7 +179,7 @@ export class IdeasComponent {
           footer: 'Ideas guardadas'
         }
       ).then(() => {
-        this.router.navigate(['evaluacion'], { queryParams: { id: this.idUsuarioCreado} } );
+        this.router.navigate(['criterios'], { queryParams: { id: this.idUsuarioCreado} } );
       });
     } else{
       console.log("Excede la cantidad de ideas");

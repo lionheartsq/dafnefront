@@ -12,6 +12,8 @@ import { SeleccionComponent } from './components/seleccion/seleccion.component';
 import { ResumenComponent } from './components/resumen/resumen.component';
 import { ValorhobbiesComponent } from './components/valorhobbies/valorhobbies.component';
 import { ValorsuenosComponent } from './components/valorsuenos/valorsuenos.component';
+import { CriteriosComponent } from './components/criterios/criterios.component';
+import { ValorcriteriosComponent } from './components/valorcriterios/valorcriterios.component';
 
 const routes: Routes = [
     //{ path: "", component: AppComponent, pathMatch: "full" },
@@ -27,6 +29,8 @@ const routes: Routes = [
     { path: "resumen", component:ResumenComponent, pathMatch: "full"},
     { path: "valorhobbies", component:ValorhobbiesComponent, pathMatch: "full"},
     { path: "valorsuenos", component:ValorsuenosComponent, pathMatch: "full"},
+    { path: "criterios", component:CriteriosComponent, pathMatch: "full"},
+    { path: "valorcriterios", component:ValorcriteriosComponent, pathMatch: "full"},
 ];
 
 @NgModule({
