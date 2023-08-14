@@ -24,6 +24,8 @@ export class IdeasService {
 
   private endpointCountRelacion='api/auth/usuario_ideas/countideas';
 
+  private endpointUsuarioIdeasPropio='api/auth/usuario_ideas/usuarioideas';
+
   constructor(private httpClient: HttpClient) { }
 
   crearIdeas(user: any): Observable<any>{
@@ -44,5 +46,9 @@ export class IdeasService {
 
   public countIdeasPropio(id:any): Observable<any> {
     return this.httpClient.get(`${this.urlBase}/${this.endpointCountRelacion}/${id}`);
+  }
+
+  public lecturaUsuarioIdeasPropio(id:any): Observable<any> {
+    return this.httpClient.get(`${this.urlBase}/${this.endpointUsuarioIdeasPropio}/${id}`);
   }
 }
