@@ -54,6 +54,7 @@ import { ValorhobbiesComponent } from './components/valorhobbies/valorhobbies.co
 import { ValorsuenosComponent } from './components/valorsuenos/valorsuenos.component';
 import { CriteriosComponent } from './components/criterios/criterios.component';
 import { ValorcriteriosComponent } from './components/valorcriterios/valorcriterios.component';
+import { MatrizComponent } from './components/matriz/matriz.component';
 
 const materialModules = [
   MatCardModule,
@@ -98,7 +99,8 @@ const materialModules = [
     ValorhobbiesComponent,
     ValorsuenosComponent,
     CriteriosComponent,
-    ValorcriteriosComponent
+    ValorcriteriosComponent,
+    MatrizComponent
   ],
   imports: [
     BrowserModule,

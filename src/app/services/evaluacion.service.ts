@@ -18,6 +18,10 @@ export class EvaluacionService {
 
   private endpointGetCriterios='api/auth/usuario_criterios/usuariocriterios';
 
+  private endpointStore='api/auth/criterios_evaluacion/store';
+
+  private endpointMatriz='api/auth/criterios_evaluacion/calcularmatriz';
+
   constructor(private httpClient: HttpClient) { }
 
 
@@ -27,5 +31,13 @@ export class EvaluacionService {
 
   public getCriteriosPropio(id:any): Observable<any> {
     return this.httpClient.get(`${this.urlBase}/${this.endpointGetCriterios}/${id}`);
+  }
+
+  crearRegistro(user: any): Observable<any>{
+    return this.httpClient.post(`${this.urlBase}/${this.endpointStore}`, user)
+  }
+
+  public crearMatriz(id:any): Observable<any> {
+    return this.httpClient.get(`${this.urlBase}/${this.endpointMatriz}/${id}`);
   }
 }

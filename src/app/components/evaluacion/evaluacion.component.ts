@@ -20,7 +20,9 @@ export class EvaluacionComponent {
   arrayCriterios: any[]=[];
   idCriterioPropio: any;
   criterioPropio: any;
-  selectedValues: { [key: string]: number } = {};
+  datoVuelta: number=0;
+  criteriosIdeas: { criterioId: any, ideaId: any, idUsuario: any, porcentaje: number }[] = [];
+  porcentaje: number=0;
 
   constructor(public router:Router, private loginService:LoginService, private utilsService:UtilsService, private route: ActivatedRoute, private evaluacionService:EvaluacionService) {
   }
@@ -34,18 +36,15 @@ export class EvaluacionComponent {
     //this.llamarAPI();
     this.obtenerIdeasPropio(this.idUsuarioCreado);
     this.obtenerCriteriosPropio(this.idUsuarioCreado);
+    console.log("Data IdeasArray:"+this.arrayIdeas.length);
+    console.log("Data CriteriosArray:"+this.arrayCriterios.length);
   }
 
   obtenerIdeasPropio(id:any){
     this.evaluacionService.getIdeasPropio(id).subscribe(
       (data) => {
         //
-        console.log("Data IdeasGen:"+data);
-        for (let dato in data.ideas){
-          this.idIdeaPropia=data.ideas[dato].id;
-          this.ideaPropia=data.ideas[dato].idea;
-          this.arrayIdeas.push({idIdea:this.idIdeaPropia, idea: this.ideaPropia});
-        }
+        this.arrayIdeas=data.ideas;
       },
       (err) => {
         console.log(err); // Manejo de errores
@@ -57,17 +56,53 @@ export class EvaluacionComponent {
     this.evaluacionService.getCriteriosPropio(id).subscribe(
       (data) => {
         //
-        console.log("Data CriteriosGen:"+data);
-        for (let dato in data.criterios){
-          this.idCriterioPropio=data.criterios[dato].id;
-          this.criterioPropio=data.criterios[dato].criterio;
-          this.arrayCriterios.push({idCriterio:this.idCriterioPropio, criterio: this.criterioPropio});
-        }
+        this.arrayCriterios=data.criterios;
       },
       (err) => {
         console.log(err); // Manejo de errores
       }
     );
+  }
+
+  seleccionSave() {
+    // Create an array to store the relationships between criterios, ideas, and values
+    this.criteriosIdeas = [];
+
+    // Loop through the criterios and their associated ideas to capture the relationships and values
+    this.arrayCriterios.forEach(criterio => {
+      this.arrayIdeas.forEach(idea => {
+        const inputValue = this.getInputValue(criterio.id, idea.id);
+        if (inputValue !== null) {
+          const valor = parseInt(inputValue, 10);
+          if (!isNaN(valor) && valor >= 1 && valor <= 3) {
+
+            if(valor==1){this.porcentaje=50}
+            else if(valor==2){this.porcentaje=33}
+            else if(valor==3){this.porcentaje=17}
+
+            this.criteriosIdeas.push({ criterioId: criterio.id, ideaId: idea.id, idUsuario:this.idUsuarioCreado, porcentaje: this.porcentaje });
+
+            const usuario = {idCriterio: criterio.id, idIdea: idea.id, idUsuario:this.idUsuarioCreado, porcentaje: this.porcentaje};
+
+            this.evaluacionService.crearRegistro(usuario).subscribe( (data)=>{
+              console.log(usuario);
+          }, (err) => {
+            //debugger
+            console.log(err);
+          });
+
+          }
+        }
+      });
+    });
+
+        console.log(this.criteriosIdeas); // This will show the collected data
+        this.router.navigate(['matriz'], { queryParams: { id: this.idUsuarioCreado} } );
+  }
+
+  private getInputValue(criterioId: any, ideaId: any): string | null {
+    const inputElement = document.getElementById(`${criterioId}_${ideaId}`) as HTMLInputElement;
+    return inputElement ? inputElement.value : null;
   }
 
   seleccionRoute(){
