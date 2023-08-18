@@ -14,9 +14,13 @@ export class EvaluacionService {
 
   //private urlBase='http://127.0.0.1:8000';
 
-  private endpointGetideas='api/auth/usuario_ideas/usuarioideas';
+  private endpointGetIdeasCriterios='api/auth/relacion_ideas_criterios/relacionideascriterios';
 
-  private endpointGetCriterios='api/auth/usuario_criterios/usuariocriterios';
+  private endpointCountRelacion='api/auth/relacion_ideas_criterios/countrelacionideascriterios';
+
+  private endpointSaveIdeas='api/auth/relacion_ideas_criterios/store';
+
+  private endpointUpdateRelacion='api/auth/relacion_ideas_criterios/updaterelacionideascriterios';
 
   private endpointStore='api/auth/criterios_evaluacion/store';
 
@@ -25,12 +29,21 @@ export class EvaluacionService {
   constructor(private httpClient: HttpClient) { }
 
 
-  public getIdeasPropio(id:any): Observable<any> {
-    return this.httpClient.get(`${this.urlBase}/${this.endpointGetideas}/${id}`);
+  public getIdeasCriterios(id:any): Observable<any> {
+    return this.httpClient.get(`${this.urlBase}/${this.endpointGetIdeasCriterios}/${id}`);
   }
 
-  public getCriteriosPropio(id:any): Observable<any> {
-    return this.httpClient.get(`${this.urlBase}/${this.endpointGetCriterios}/${id}`);
+  public countRelacionPropio(id:any): Observable<any> {
+    return this.httpClient.get(`${this.urlBase}/${this.endpointCountRelacion}/${id}`);
+  }
+
+  public crearRelacion(user: any): Observable<any>{
+    return this.httpClient.post(`${this.urlBase}/${this.endpointSaveIdeas}`, user)
+  }
+
+  public enviarValor(data: any): Observable<any> {
+    const url = `${this.urlBase}/${this.endpointUpdateRelacion}`; // Reemplaza con la URL de tu endpoint
+    return this.httpClient.post(url, data);
   }
 
   crearRegistro(user: any): Observable<any>{
