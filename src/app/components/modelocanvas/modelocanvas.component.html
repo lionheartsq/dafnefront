@@ -1,12 +1,71 @@
 <div class="container">
   <h1>Modelo Canvas</h1>
-  <div class="canvas">
-    <div class="section" (click)="openEditor('section1')">Sección 1</div>
-    <div class="section" (click)="openEditor('section2')">Sección 2</div>
-    <div class="section" (click)="openEditor('section3')">Sección 3</div>
-    <div class="section" (click)="openEditor('section4')">Sección 4</div>
-    <!-- Agrega más secciones según necesites -->
+
+  <div class="row">
+    <div class="col-sm-2 section border" (click)="openEditor('7. Aliados y personas claves')">7. Aliados y personas claves
+      <br><br>
+      <p>Son las alianzas estratégicas que pueden ser de gran ayuda para tu empresa, como proveedores, distribuidores o
+        socios comerciales.
+      </p>
+    </div>
+    <div class="col-sm-3 section border">
+      <div class="row">
+        <div class="col-sm-12 section border" (click)="openEditor('5. Actividades claves')">5. Actividades claves
+          <br><br>
+          <p>Son las acciones que debes realizar para hacer funcionar tu modelo de negocio de manera eficiente y efectiva.
+          </p>
+        </div>
+        <div class="col-sm-12 section border" (click)="openEditor('6. Recursos claves')">6. Recursos claves
+          <br><br>
+          <p>Son los activos necesarios para llevar a cabo tu modelo de negocio, como infraestructura, personal,
+          tecnología, entre otros.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-sm-2 section border" (click)="openEditor('1. Proposicion de valor')">1. Proposicion de valor
+      <br><br>
+      <p>Explica cómo tu producto o servicio soluciona los problemas o satisface las necesidades de tus
+      clientes de manera única.
+      </p>
+    </div>
+
+    <div class="col-sm-3 section border">
+      <div class="row">
+        <div class="col-sm-12 section border" (click)="openEditor('3. Relaciones con el cliente')">3. Relaciones con el cliente
+          <br><br>
+          <p>Define la forma en la que establecerás y mantendrás relaciones con tus clientes.
+          </p>
+        </div>
+        <div class="col-sm-12 section border" (click)="openEditor('4. Canales')">4. Canales
+          <br><br>
+          <p>Son los medios a través de los cuales vas a llegar a tus clientes y entregarles tu propuesta de valor.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-sm-2 section border" (click)="openEditor('2. Segmento de clientes')">2. Segmento de clientes
+      <br><br>
+      <p>Describe los grupos de personas o empresas a las que se dirige el producto o servicio.
+      </p>
+    </div>
   </div>
+  <div class="row">
+    <div class="col-sm-6 section border" (click)="openEditor('9. Estructura de costos')">9. Estructura de costos
+      <br><br>
+      <p>Incluye todos los gastos necesarios para operar tu modelo de negocio, como salarios, materias primas, alquiler de
+      locales, entre otros.
+      </p>
+    </div>
+      <div class="col-sm-6 section border" (click)="openEditor('8. Flujos de ingresos')">8. Flujos de ingresos
+      <br><br>
+      <p>Indica las formas en las que tu empresa generará ingresos a través de la venta de productos o servicios.
+      </p>
+      </div>
+  </div>
+
 </div>
 
 <div class="editor-overlay" *ngIf="editingSection">
@@ -16,5 +75,6 @@
     <button class="btn btn-primary" (click)="closeEditor()">Guardar</button>
     <button class="btn btn-secondary" (click)="cancelEditor()">Cancelar</button>
   </div>
-  <button class="btn btn-success" (click)="loginFake()">Finalizar</button>
 </div>
+
+<button class="btn btn-success" (click)="loginFake()">Finalizar</button>
