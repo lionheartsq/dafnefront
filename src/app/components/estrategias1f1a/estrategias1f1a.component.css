@@ -1,0 +1,27 @@
+/* Estilos para el contenedor principal */
+.container {
+  margin-top: 20px;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Ajustes para los títulos y etiquetas */
+h1, label {
+  margin-bottom: 10px;
+}
+
+/* Ajustes para los inputs */
+.form-control {
+  width: 100%;
+  padding: 8px;
+  margin-bottom: 15px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+/* Ajustes para los botones */
+.btn {
+  margin-top: 10px;
+  margin-right: 10px;
+}

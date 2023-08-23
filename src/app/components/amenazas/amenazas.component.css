@@ -1,0 +1,20 @@
+/* Estilos para el contenedor principal */
+.container {
+  margin-top: 20px;
+}
+
+/* Estilos para los títulos y subtítulos */
+h1, h2 {
+  margin-bottom: 20px;
+}
+
+/* Ajustes para los párrafos y listas */
+p, ul {
+  margin-bottom: 15px;
+}
+
+/* Ajustes para los botones */
+.btn {
+  margin-top: 10px;
+  margin-right: 10px;
+}

@@ -15,6 +15,17 @@ import { ValorsuenosComponent } from './components/valorsuenos/valorsuenos.compo
 import { CriteriosComponent } from './components/criterios/criterios.component';
 import { ValorcriteriosComponent } from './components/valorcriterios/valorcriterios.component';
 import { MatrizComponent } from './components/matriz/matriz.component';
+import { AmenazasComponent } from './components/amenazas/amenazas.component';
+import { MatrizdofaComponent } from './components/matrizdofa/matrizdofa.component';
+import { DebilidadesComponent } from './components/debilidades/debilidades.component';
+import { FortalezasComponent } from './components/fortalezas/fortalezas.component';
+import { OportunidadesComponent } from './components/oportunidades/oportunidades.component';
+import { EstrategiasComponent } from './components/estrategias/estrategias.component';
+import { Estrategias1f10Component } from './components/estrategias1f10/estrategias1f10.component';
+import { Estrategias1d20Component } from './components/estrategias1d20/estrategias1d20.component';
+import { Estrategias1f1aComponent } from './components/estrategias1f1a/estrategias1f1a.component';
+import { Estrategias2d2aComponent } from './components/estrategias2d2a/estrategias2d2a.component';
+import { ModelocanvasComponent } from './components/modelocanvas/modelocanvas.component';
 
 const routes: Routes = [
     //{ path: "", component: AppComponent, pathMatch: "full" },
@@ -33,6 +44,17 @@ const routes: Routes = [
     { path: "criterios", component:CriteriosComponent, pathMatch: "full"},
     { path: "valorcriterios", component:ValorcriteriosComponent, pathMatch: "full"},
     { path: "matriz", component:MatrizComponent, pathMatch: "full"},
+    { path: "amenazas", component:AmenazasComponent, pathMatch: "full"},
+    { path: "matrizdofa", component:MatrizdofaComponent, pathMatch: "full"},
+    { path: "debilidades", component:DebilidadesComponent, pathMatch: "full"},
+    { path: "fortalezas", component:FortalezasComponent, pathMatch: "full"},
+    { path: "oportunidades", component:OportunidadesComponent, pathMatch: "full"},
+    { path: "estrategias", component:EstrategiasComponent, pathMatch: "full"},
+    { path: "estrategias1f10", component:Estrategias1f10Component, pathMatch: "full"},
+    { path: "estrategias1d20", component:Estrategias1d20Component, pathMatch: "full"},
+    { path: "estrategias1f1a", component:Estrategias1f1aComponent, pathMatch: "full"},
+    { path: "estrategias2d2a", component:Estrategias2d2aComponent, pathMatch: "full"},
+    { path: "modelocanvas", component:ModelocanvasComponent, pathMatch: "full"}
 ];
 
 @NgModule({

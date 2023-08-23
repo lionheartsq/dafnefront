@@ -1,0 +1,46 @@
+/* Estilos para el contenedor principal */
+.container {
+  margin-top: 20px;
+  text-align: center;
+}
+
+/* Ajustes para el lienzo Canvas */
+.canvas {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
+  margin-top: 20px;
+}
+
+.section {
+  background-color: #f0f0f0;
+  padding: 20px;
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+/* Estilos para el editor de sección */
+.editor-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.editor {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 4px;
+  width: 300px;
+}
+
+/* Ajustes para los botones */
+.btn {
+  margin-top: 10px;
+  margin-right: 10px;
+}
