@@ -55,6 +55,17 @@ import { ValorsuenosComponent } from './components/valorsuenos/valorsuenos.compo
 import { CriteriosComponent } from './components/criterios/criterios.component';
 import { ValorcriteriosComponent } from './components/valorcriterios/valorcriterios.component';
 import { MatrizComponent } from './components/matriz/matriz.component';
+import { AmenazasComponent } from './components/amenazas/amenazas.component';
+import { MatrizdofaComponent } from './components/matrizdofa/matrizdofa.component';
+import { DebilidadesComponent } from './components/debilidades/debilidades.component';
+import { FortalezasComponent } from './components/fortalezas/fortalezas.component';
+import { OportunidadesComponent } from './components/oportunidades/oportunidades.component';
+import { EstrategiasComponent } from './components/estrategias/estrategias.component';
+import { Estrategias1f10Component } from './components/estrategias1f10/estrategias1f10.component';
+import { Estrategias1d20Component } from './components/estrategias1d20/estrategias1d20.component';
+import { Estrategias1f1aComponent } from './components/estrategias1f1a/estrategias1f1a.component';
+import { Estrategias2d2aComponent } from './components/estrategias2d2a/estrategias2d2a.component';
+import { ModelocanvasComponent } from './components/modelocanvas/modelocanvas.component';
 
 const materialModules = [
   MatCardModule,
@@ -100,7 +111,18 @@ const materialModules = [
     ValorsuenosComponent,
     CriteriosComponent,
     ValorcriteriosComponent,
-    MatrizComponent
+    MatrizComponent,
+    AmenazasComponent,
+    MatrizdofaComponent,
+    DebilidadesComponent,
+    FortalezasComponent,
+    OportunidadesComponent,
+    EstrategiasComponent,
+    Estrategias1f10Component,
+    Estrategias1d20Component,
+    Estrategias1f1aComponent,
+    Estrategias2d2aComponent,
+    ModelocanvasComponent
   ],
   imports: [
     BrowserModule,
