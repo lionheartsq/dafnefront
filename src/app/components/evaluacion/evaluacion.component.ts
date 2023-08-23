@@ -12,6 +12,10 @@ export class EvaluacionComponent implements OnInit {
   arrayIdeas: any[] = [];
   arrayCriterios: any[] = [];
   criteriosIdeas: { criterioId: any, ideaId: any, idUsuario: any, porcentaje: number }[] = [];
+  arrayMatrizIdeas: any;
+  idIdeaMatriz: any;
+  nombreIdeaMatriz: any;
+  valorPorcentajeAcumuladoMatriz: any;
 
   constructor(public router: Router, private route: ActivatedRoute, private evaluacionService: EvaluacionService) {}
 
@@ -78,6 +82,34 @@ export class EvaluacionComponent implements OnInit {
     });
 
     console.log(this.criteriosIdeas);
-    this.router.navigate(['matriz'], { queryParams: { id: this.idUsuarioCreado } });
+
+    this.obtenerMatriz(this.idUsuarioCreado);
+
+    //this.router.navigate(['matriz'], { queryParams: { id: this.idUsuarioCreado } });
+  }
+
+  obtenerMatriz(id:any){
+    this.evaluacionService.crearMatriz(id).subscribe(
+      (data) => {
+        //
+        this.arrayMatrizIdeas=data.criterios_evaluacion;
+
+        console.log("Data ArrayMatrizPost: "+data);
+        console.log("Tipo ArrayMatrizPost: "+typeof(this.arrayMatrizIdeas));
+        console.log("Length ArrayMatrizPost: "+this.arrayMatrizIdeas.length);
+
+        for (let dato in this.arrayMatrizIdeas){
+          this.idIdeaMatriz=this.arrayMatrizIdeas[dato].idIdeaUsuario;
+          this.nombreIdeaMatriz=this.arrayMatrizIdeas[dato].nombreIdea;
+          this.valorPorcentajeAcumuladoMatriz=this.arrayMatrizIdeas[dato].valorPorcentajeAcumulado;
+
+          console.log("Salidas del arrayMatriz: idIdea: "+this.idIdeaMatriz+" nombreIdea: "+this.nombreIdeaMatriz+" valorPorcentaje: "+this.valorPorcentajeAcumuladoMatriz)
+        }
+
+      },
+      (err) => {
+        console.log(err); // Manejo de errores
+      }
+    );
   }
 }
