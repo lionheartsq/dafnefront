@@ -26,6 +26,7 @@ import { Estrategias1d20Component } from './components/estrategias1d20/estrategi
 import { Estrategias1f1aComponent } from './components/estrategias1f1a/estrategias1f1a.component';
 import { Estrategias2d2aComponent } from './components/estrategias2d2a/estrategias2d2a.component';
 import { ModelocanvasComponent } from './components/modelocanvas/modelocanvas.component';
+import { ResumenideacionComponent } from './components/resumenideacion/resumenideacion.component';
 
 const routes: Routes = [
     //{ path: "", component: AppComponent, pathMatch: "full" },
@@ -54,7 +55,8 @@ const routes: Routes = [
     { path: "estrategias1d20", component:Estrategias1d20Component, pathMatch: "full"},
     { path: "estrategias1f1a", component:Estrategias1f1aComponent, pathMatch: "full"},
     { path: "estrategias2d2a", component:Estrategias2d2aComponent, pathMatch: "full"},
-    { path: "modelocanvas", component:ModelocanvasComponent, pathMatch: "full"}
+    { path: "modelocanvas", component:ModelocanvasComponent, pathMatch: "full"},
+    { path: "resumenideacion", component:ResumenideacionComponent, pathMatch: "full"}
 ];
 
 @NgModule({
