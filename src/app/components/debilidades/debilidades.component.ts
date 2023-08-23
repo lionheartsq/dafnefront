@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-debilidades',
@@ -6,5 +7,10 @@ import { Component } from '@angular/core';
   styleUrls: ['./debilidades.component.css']
 })
 export class DebilidadesComponent {
+  constructor(public router: Router) {
+  }
 
+  fortalezasRoute(){
+    this.router.navigate(['fortalezas']);
+  }
 }

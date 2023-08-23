@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-matrizdofa',
@@ -6,5 +7,10 @@ import { Component } from '@angular/core';
   styleUrls: ['./matrizdofa.component.css']
 })
 export class MatrizdofaComponent {
+  constructor(public router: Router) {
+  }
 
+  amenazasRoute(){
+    this.router.navigate(['amenazas']);
+  }
 }

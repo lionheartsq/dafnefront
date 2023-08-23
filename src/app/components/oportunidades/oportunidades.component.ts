@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
+
 
 @Component({
   selector: 'app-oportunidades',
@@ -6,5 +8,10 @@ import { Component } from '@angular/core';
   styleUrls: ['./oportunidades.component.css']
 })
 export class OportunidadesComponent {
+  constructor(public router: Router) {
+  }
 
+  estrategiasRoute(){
+    this.router.navigate(['estrategias']);
+  }
 }

@@ -20,7 +20,7 @@ export class HomeComponent {
   }
 
   simulacionRoute(){
-    this.router.navigate(['basicos']);
+    this.router.navigate(['matrizdofa']);
   }
 
   formalizacionRoute(){

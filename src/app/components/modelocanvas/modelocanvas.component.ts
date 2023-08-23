@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-modelocanvas',
@@ -24,5 +25,12 @@ export class ModelocanvasComponent {
 
   cancelEditor() {
     this.editingSection = null;
+  }
+
+  constructor(public router: Router) {
+  }
+
+  loginFake(){
+    this.router.navigate(['home']);
   }
 }
