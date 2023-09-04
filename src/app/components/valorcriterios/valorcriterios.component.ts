@@ -6,6 +6,7 @@ import { CriteriosService } from 'src/app/services/criterios.service';
 import Swal from 'sweetalert2';
 import { LoginService } from 'src/app/services/login.service';
 
+
 @Component({
   selector: 'app-valorcriterios',
   templateUrl: './valorcriterios.component.html',
@@ -79,4 +80,6 @@ export class ValorcriteriosComponent implements OnInit {
       this.router.navigate(['evaluacion'], { queryParams: { id: this.idUsuarioCreado} } );
     });
   }
+
+  
 }

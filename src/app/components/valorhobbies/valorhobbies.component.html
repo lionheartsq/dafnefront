@@ -5,12 +5,19 @@
     <div class="form-group">
       <div class="row">
         <div class="col-md-6">
+          <div cdkDropList #moviesList="cdkDropList" 
+            [cdkDropListData]="arrayOpciones" class="movie-list" 
+             (cdkDropListDropped)="onDrop($event)">
+             <div class="movie-block" *ngFor="let moviesList of arrayOpciones" cdkDrag>{{ moviesList.hobby }}</div>
+          
+          <!--
           <ul>
             <li *ngFor="let item of arrayOpciones">
               {{ item.hobby }}
               <input type="number" [(ngModel)]="selectedValues[item.idHobby]" min="1" max="{{ arrayOpciones.length }}" (change)="sendNumberValue(item.idHobby, selectedValues[item.idHobby])">
             </li>
           </ul>
+          -->
         </div>
 
     <div class="col-md-4">

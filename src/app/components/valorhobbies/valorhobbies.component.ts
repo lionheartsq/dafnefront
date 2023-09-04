@@ -5,6 +5,7 @@ import { UtilsService } from 'src/app/services/utils.service';
 import { HobbiesService } from 'src/app/services/hobbies.service';
 import Swal from 'sweetalert2';
 import { LoginService } from 'src/app/services/login.service';
+import { CdkDragDrop, moveItemInArray, transferArrayItem } from '@angular/cdk/drag-drop';
 
 @Component({
   selector: 'app-valorhobbies',
@@ -78,5 +79,27 @@ export class ValorhobbiesComponent implements OnInit {
       //
       this.router.navigate(['suenos'], { queryParams: { id: this.idUsuarioCreado} } );
     });
+  }
+
+  MoviesLista  = [
+    'Blade Runner',
+    'Cool Hand Luke',
+    'Heat',
+    'Juice'
+  ];
+  //MoviesWatched = ['None'];
+  onDrop(event: CdkDragDrop<string[]>) {
+    if (event.previousContainer === event.container) {
+      moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);
+    } else {
+      transferArrayItem(event.previousContainer.data,
+        event.container.data,
+        event.previousIndex,
+        event.currentIndex);
+    }
+  }
+
+  onLista() {
+    console.log(this.MoviesLista);
   }
 }

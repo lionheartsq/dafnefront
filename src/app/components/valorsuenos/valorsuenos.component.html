@@ -1,16 +1,23 @@
 <div class="container">
   <div class="left-section">
     <br><br>
-    <p>De tu lista de sueños, valóralos de acuerdo a la importancia.</p>
+    <p>De tu lista de suenos, valóralos de acuerdo a la importancia.</p>
     <div class="form-group">
       <div class="row">
         <div class="col-md-6">
+          <div cdkDropList #moviesList="cdkDropList" 
+            [cdkDropListData]="arrayOpciones" class="movie-list" 
+             (cdkDropListDropped)="onDrop($event)">
+             <div class="movie-block" *ngFor="let moviesList of arrayOpciones" cdkDrag>{{ moviesList.sueno}}</div>
+          
+          <!--
           <ul>
             <li *ngFor="let item of arrayOpciones">
-              {{ item.sueno }}
-              <input type="number" [(ngModel)]="selectedValues[item.idSueno]" min="1" max="{{ arrayOpciones.length }}" (change)="sendNumberValue(item.idSueno, selectedValues[item.idSueno])">
+              {{ item.hobby }}
+              <input type="number" [(ngModel)]="selectedValues[item.idHobby]" min="1" max="{{ arrayOpciones.length }}" (change)="sendNumberValue(item.idHobby, selectedValues[item.idHobby])">
             </li>
           </ul>
+          -->
         </div>
 
     <div class="col-md-4">
