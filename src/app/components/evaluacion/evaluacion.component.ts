@@ -85,7 +85,8 @@ export class EvaluacionComponent implements OnInit {
 
     this.obtenerMatriz(this.idUsuarioCreado);
 
-    //this.router.navigate(['matriz'], { queryParams: { id: this.idUsuarioCreado } });
+    //
+    this.router.navigate(['matriz'], { queryParams: { id: this.idUsuarioCreado } });
   }
 
   obtenerMatriz(id:any){
