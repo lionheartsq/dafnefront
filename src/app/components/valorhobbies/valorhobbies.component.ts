@@ -81,25 +81,22 @@ export class ValorhobbiesComponent implements OnInit {
     });
   }
 
-  MoviesLista  = [
-    'Blade Runner',
-    'Cool Hand Luke',
-    'Heat',
-    'Juice'
-  ];
   //MoviesWatched = ['None'];
   onDrop(event: CdkDragDrop<string[]>) {
     if (event.previousContainer === event.container) {
       moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);
+      console.log("Misma posicion data: "+event.container.data);
+      console.log("Misma posicion prevIndex: "+event.previousIndex);
+      console.log("Misma posicion currIndex: "+event.currentIndex);     
     } else {
       transferArrayItem(event.previousContainer.data,
         event.container.data,
         event.previousIndex,
         event.currentIndex);
+      console.log("Diferente posicion data: "+event.container.data);
+      console.log("Diferente posicion prevIndex: "+event.previousIndex);
+      console.log("Diferente posicion currIndex: "+event.currentIndex);
     }
   }
 
-  onLista() {
-    console.log(this.MoviesLista);
-  }
 }
