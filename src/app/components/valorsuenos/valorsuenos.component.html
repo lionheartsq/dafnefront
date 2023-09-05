@@ -5,11 +5,13 @@
     <div class="form-group">
       <div class="row">
         <div class="col-md-6">
-          <div cdkDropList #moviesList="cdkDropList" 
-            [cdkDropListData]="arrayOpciones" class="movie-list" 
+          <div cdkDropList #item="cdkDropList"
+            [cdkDropListData]="arrayOpciones" class="item-list"
              (cdkDropListDropped)="onDrop($event)">
-             <div class="movie-block" *ngFor="let moviesList of arrayOpciones" cdkDrag>{{ moviesList.sueno}}</div>
-          
+             <div class="item-block" *ngFor="let item of arrayOpciones" cdkDrag>
+                {{ item.idsueno }}-{{ item.sueno }}
+             </div>
+
           <!--
           <ul>
             <li *ngFor="let item of arrayOpciones">

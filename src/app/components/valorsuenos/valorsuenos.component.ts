@@ -68,6 +68,12 @@ export class ValorsuenosComponent implements OnInit {
   }
 
   validateValues(): void {
+    console.log("Nuevo orden de arrayOpciones:", this.arrayOpciones);
+    this.arrayOpciones.forEach((item, index) => {
+      item.index = index;
+      var val= parseInt(item.index)+1;
+      this.sendNumberValue(item.idsueno, val);
+    });
     //Pendiente validacion
     Swal.fire({
       icon: 'success',
@@ -75,23 +81,20 @@ export class ValorsuenosComponent implements OnInit {
       text: 'Valores sueños registrados correctamente',
       footer: 'Sueños guardados'
     }).then(() => {
+      //console.log("Final orden de arrayOpciones:", this.arrayOpciones);
       // Redireccionar a la página deseada
       this.router.navigate(['ideas'], { queryParams: { id: this.idUsuarioCreado} } );
     });
   }
 
-  
-  //MoviesWatched = ['None'];
   onDrop(event: CdkDragDrop<string[]>) {
-    if (event.previousContainer === event.container) {
-      moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);
-    } else {
-      transferArrayItem(event.previousContainer.data,
-        event.container.data,
-        event.previousIndex,
-        event.currentIndex);
+    moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);
+      // Actualiza las posiciones de idHobby después de la reorganización
+      this.arrayOpciones.forEach((item, index) => {
+        item.index = index;
+      });
     }
-  }
+  
 
   
 }
