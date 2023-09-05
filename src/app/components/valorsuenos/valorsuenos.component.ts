@@ -80,12 +80,7 @@ export class ValorsuenosComponent implements OnInit {
     });
   }
 
-  MoviesLista  = [
-    'Blade Runner',
-    'Cool Hand Luke',
-    'Heat',
-    'Juice'
-  ];
+  
   //MoviesWatched = ['None'];
   onDrop(event: CdkDragDrop<string[]>) {
     if (event.previousContainer === event.container) {
@@ -98,9 +93,7 @@ export class ValorsuenosComponent implements OnInit {
     }
   }
 
-  onLista() {
-    console.log(this.MoviesLista);
-  }
+  
 }
 
 
