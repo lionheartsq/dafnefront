@@ -35,10 +35,11 @@ export class ValorsuenosComponent implements OnInit {
       (data) => {
         console.log("Data Prop:", data);
         if (data.suenos.length > 0) {
-          for (const sueno of data.suenos) {
-            const idSuenoPropio = sueno.id;
+          for (let i =0 ; i < data.suenos.length; i++) {
+            const sueno = data.suenos[i];
+            const idsuenoPropio = sueno.id;
             const suenoPropio = sueno.sueno;
-            this.arrayOpciones.push({ idSueno: idSuenoPropio, sueno: suenoPropio });
+            this.arrayOpciones.push({ idsueno: idsuenoPropio, sueno: suenoPropio, index: i });
           }
         }
       },
