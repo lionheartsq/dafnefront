@@ -37,9 +37,9 @@ export class ValorsuenosComponent implements OnInit {
         if (data.suenos.length > 0) {
           for (let i =0 ; i < data.suenos.length; i++) {
             const sueno = data.suenos[i];
-            const idsuenoPropio = sueno.id;
+            const idSuenoPropio = sueno.id;
             const suenoPropio = sueno.sueno;
-            this.arrayOpciones.push({ idsueno: idsuenoPropio, sueno: suenoPropio, index: i });
+            this.arrayOpciones.push({ idSueno: idSuenoPropio, sueno: suenoPropio, index: i });
           }
         }
       },
@@ -73,7 +73,7 @@ export class ValorsuenosComponent implements OnInit {
     this.arrayOpciones.forEach((item, index) => {
       item.index = index;
       var val= parseInt(item.index)+1;
-      this.sendNumberValue(item.idsueno, val);
+      this.sendNumberValue(item.idSueno, val);
     });
     //Pendiente validacion
     Swal.fire({
@@ -95,9 +95,9 @@ export class ValorsuenosComponent implements OnInit {
         item.index = index;
       });
     }
-  
 
-  
+
+
 }
 
 
