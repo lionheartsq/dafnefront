@@ -5,6 +5,7 @@ import { UtilsService } from 'src/app/services/utils.service';
 import { SuenosService } from 'src/app/services/suenos.service';
 import Swal from 'sweetalert2';
 import { LoginService } from 'src/app/services/login.service';
+import { CdkDragDrop, moveItemInArray, transferArrayItem } from '@angular/cdk/drag-drop';
 
 @Component({
   selector: 'app-valorhobbies',
@@ -34,10 +35,11 @@ export class ValorsuenosComponent implements OnInit {
       (data) => {
         console.log("Data Prop:", data);
         if (data.suenos.length > 0) {
-          for (const sueno of data.suenos) {
+          for (let i =0 ; i < data.suenos.length; i++) {
+            const sueno = data.suenos[i];
             const idSuenoPropio = sueno.id;
             const suenoPropio = sueno.sueno;
-            this.arrayOpciones.push({ idSueno: idSuenoPropio, sueno: suenoPropio });
+            this.arrayOpciones.push({ idSueno: idSuenoPropio, sueno: suenoPropio, index: i });
           }
         }
       },
@@ -67,6 +69,12 @@ export class ValorsuenosComponent implements OnInit {
   }
 
   validateValues(): void {
+    console.log("Nuevo orden de arrayOpciones:", this.arrayOpciones);
+    this.arrayOpciones.forEach((item, index) => {
+      item.index = index;
+      var val= parseInt(item.index)+1;
+      this.sendNumberValue(item.idSueno, val);
+    });
     //Pendiente validacion
     Swal.fire({
       icon: 'success',
@@ -74,9 +82,23 @@ export class ValorsuenosComponent implements OnInit {
       text: 'Valores sueños registrados correctamente',
       footer: 'Sueños guardados'
     }).then(() => {
+      //console.log("Final orden de arrayOpciones:", this.arrayOpciones);
       // Redireccionar a la página deseada
       this.router.navigate(['ideas'], { queryParams: { id: this.idUsuarioCreado} } );
     });
   }
+
+  onDrop(event: CdkDragDrop<string[]>) {
+    moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);
+      // Actualiza las posiciones de idHobby después de la reorganización
+      this.arrayOpciones.forEach((item, index) => {
+        item.index = index;
+      });
+    }
+
+
+
 }
+
+
 
