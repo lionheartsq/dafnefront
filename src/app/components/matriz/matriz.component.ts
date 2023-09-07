@@ -5,6 +5,7 @@ import { UtilsService } from 'src/app/services/utils.service';
 import { LoginService } from 'src/app/services/login.service';
 import { EvaluacionService } from 'src/app/services/evaluacion.service';
 import Swal from 'sweetalert2';
+import { NgModel } from '@angular/forms';
 
 @Component({
   selector: 'app-matriz',
@@ -14,6 +15,8 @@ import Swal from 'sweetalert2';
 export class MatrizComponent {
   idUsuarioCreado: any;
   arrayIdeas: any;
+  selectedIdea: any;
+  isOptionSelected: boolean = false;
 
   constructor(public router:Router, private loginService:LoginService, private utilsService:UtilsService, private route: ActivatedRoute, private evaluacionService:EvaluacionService) {
   }
@@ -29,10 +32,10 @@ export class MatrizComponent {
   }
 
   obtenerMatriz(id:any){
-    this.evaluacionService.crearMatriz(id).subscribe(
+    this.evaluacionService.obtenerMatriz(id).subscribe(
       (data) => {
         //
-        this.arrayIdeas=data.criterios_evaluacion;
+        this.arrayIdeas=data.matriz_evaluacion;
       },
       (err) => {
         console.log(err); // Manejo de errores
@@ -40,8 +43,15 @@ export class MatrizComponent {
     );
   }
 
-  seleccionSave(){
+  changeOptional(){
+    this.isOptionSelected = true;
+    console.log("Value optional: "+this.isOptionSelected);
+  }
 
+  seleccionSave() {
+      // Aquí puedes utilizar this.selectedIdea para acceder a la idea seleccionada
+      console.log('Idea seleccionada:', this.selectedIdea);
+      // Realiza las acciones que necesites con la idea seleccionada
   }
 
 }
