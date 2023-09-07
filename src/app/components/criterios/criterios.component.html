@@ -26,10 +26,8 @@
           <input type="checkbox" id="otros" class="form-check-input" name="otros" [(ngModel)]="otros">
           <label for="otros" class="form-check-label">Otros</label>
         </div>
-        <div *ngIf="otros" class="form-group">
-          <label>Ingresa tu criterio personalizada:</label>
-          <input type="text" class="form-control" [(ngModel)]="criterionuevo" placeholder="Nombre del criterio">
-          <button type="submit" (click)="criterioSave()">Guardar Nuevo</button>
+        <div class="form-group">
+          <button type="submit" (click)="openPopup()">Ingresa tu criterio personalizado</button>
         </div>
       </div>
   </div>

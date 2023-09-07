@@ -29,7 +29,6 @@ export class CriteriosComponent {
   idCriterio: any;
   idUsuario: any;
   countCriterios: number=0;
-  criterionuevo: any;
 
   constructor(public router:Router, private loginService:LoginService, private utilsService:UtilsService, private route: ActivatedRoute, private criteriosService:CriteriosService) {
   }
@@ -103,15 +102,15 @@ export class CriteriosComponent {
     this.checkedCount = this.arrayOpciones.filter((e: any) => e.seleccionado).length;
   }
 
-  criterioSave(){
-    const varNuevoCriterio = {idUsuario:this.idUsuarioCreado, criterio:this.criterionuevo};
+  criterioSave(criterionuevo:string){
+    const varNuevoCriterio = {idUsuario:this.idUsuarioCreado, criterio:criterionuevo};
     if(this.countCriterios<4){
       this.criteriosService.crearCriterios(varNuevoCriterio).subscribe( (data)=>{
         Swal.fire(
           {
             icon: 'success',
             title: 'Solicitud enviada',
-            text: 'Nueva criterio registrada correctamente',
+            text: 'Nuevo criterio registrado correctamente',
             footer: data.message
           }
         ).then(() => {
@@ -181,12 +180,37 @@ export class CriteriosComponent {
       });
     } else{
       console.log("Excede la cantidad de criterios");
+      Swal.fire(
+        {
+          icon: 'error',
+          title: 'Error al crear',
+          html: 'Por favor verifique los datos e intente nuevamente',
+          footer: 'No se ha podido completar el registro'
+        }
+      )
     }
     // Realiza cualquier otra lógica que necesites con los elementos seleccionados
   }
 
   evaluacionRoute(){
     this.router.navigate(['evaluacion']);
+  }
+
+
+  openPopup() {
+    Swal.fire({
+      title: 'Ingresa tu criterio personalizado:',
+      html:
+        '<input type="text" id="criterionuevo" class="swal2-input" placeholder="Nombre del criterio">',
+      showCancelButton: true,
+      confirmButtonText: 'Guardar Nuevo',
+      preConfirm: () => {
+        // Obtener el valor del input
+        const criterionuevo = (document.getElementById('criterionuevo') as HTMLInputElement).value;
+        // Realizar aquí las acciones necesarias con el valor ingresado
+        this.criterioSave(criterionuevo);
+      }
+    })
   }
 
 }

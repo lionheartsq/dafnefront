@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { EvaluacionService } from 'src/app/services/evaluacion.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-evaluacion',
@@ -16,6 +17,7 @@ export class EvaluacionComponent implements OnInit {
   idIdeaMatriz: any;
   nombreIdeaMatriz: any;
   valorPorcentajeAcumuladoMatriz: any;
+  showSpinner = false;
 
   constructor(public router: Router, private route: ActivatedRoute, private evaluacionService: EvaluacionService) {}
 
@@ -85,11 +87,11 @@ export class EvaluacionComponent implements OnInit {
 
     this.obtenerMatriz(this.idUsuarioCreado);
 
-    //
-    this.router.navigate(['matriz'], { queryParams: { id: this.idUsuarioCreado } });
+    //this.router.navigate(['matriz'], { queryParams: { id: this.idUsuarioCreado } });
   }
 
   obtenerMatriz(id:any){
+    this.showSpinner = true;
     this.evaluacionService.crearMatriz(id).subscribe(
       (data) => {
         //
@@ -106,10 +108,28 @@ export class EvaluacionComponent implements OnInit {
 
           console.log("Salidas del arrayMatriz: idIdea: "+this.idIdeaMatriz+" nombreIdea: "+this.nombreIdeaMatriz+" valorPorcentaje: "+this.valorPorcentajeAcumuladoMatriz)
         }
-
+        this.showSpinner = false;
+        Swal.fire(
+          {
+            icon: 'success',
+            title: 'Solicitud enviada',
+            text: 'Matriz calculada exitosamente',
+            footer: 'Matriz guardada'
+          }
+        ).then(() => {
+          this.router.navigate(['matriz'], { queryParams: { id: this.idUsuarioCreado } });
+        });
       },
       (err) => {
         console.log(err); // Manejo de errores
+        Swal.fire(
+          {
+            icon: 'error',
+            title: 'Error al crear',
+            html: 'Por favor verifique los datos e intente nuevamente',
+            footer: 'No se ha podido completar el registro'
+          }
+        )
       }
     );
   }

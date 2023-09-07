@@ -17,7 +17,6 @@ export class IdeasComponent {
   ideas: string | undefined;
   valorImportancia: string | undefined;
   otros: boolean=false;
-  suenonuevo: string='';
   checkedCount: number = 0;
   idUsuarioCreado:any;
   arrayOpciones:any=[];
@@ -105,8 +104,8 @@ export class IdeasComponent {
     this.checkedCount = this.arrayOpciones.filter((e: any) => e.seleccionado).length;
   }
 
-  ideaSave(){
-    const varNuevoIdea = {idUsuario:this.idUsuarioCreado, idea:this.ideanuevo};
+  ideaSave(ideanuevo:string){
+    const varNuevoIdea = {idUsuario:this.idUsuarioCreado, idea:ideanuevo};
     if(this.countIdeas<4){
       this.ideasService.crearIdeas(varNuevoIdea).subscribe( (data)=>{
         Swal.fire(
@@ -200,6 +199,22 @@ export class IdeasComponent {
         console.error(error); // Maneja los errores aquí
       }
     );
+  }
+
+  openPopup() {
+    Swal.fire({
+      title: 'Ingresa tu idea personalizada:',
+      html:
+        '<input type="text" id="ideanuevo" class="swal2-input" placeholder="Nombre de la idea">',
+      showCancelButton: true,
+      confirmButtonText: 'Guardar Nueva',
+      preConfirm: () => {
+        // Obtener el valor del input
+        const ideanuevo = (document.getElementById('ideanuevo') as HTMLInputElement).value;
+        // Realizar aquí las acciones necesarias con el valor ingresado
+        this.ideaSave(ideanuevo);
+      }
+    })
   }
 
 }
