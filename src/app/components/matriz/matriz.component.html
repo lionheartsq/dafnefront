@@ -3,7 +3,8 @@
   <div class="row">
     <div class="col-md-6">
       <h2>Criterios</h2>
-      <p>Estos son los porcentajes que muestran la viabilidad de tu idea, selecciona la idea con la que quieres quedarte.</p>
+      <p>Ahora puedes seleccionar la idea de negocio más adecuada para continuar con el proceso; el cuadro muestra el orden de las ideas
+        organizadas según la relevancia y afinidad con tu información; para continuar, elije la opción que más te agrade del listado que se muestra..</p>
       <img src="./assets/evaluacion.png" alt="Imagen" class="img-fluid" style="max-height: 55%; max-width: 55%;">
       <div class="col-xs-12 col-md-4">
         <div class="custom-div" *ngIf="isOptionSelected">
@@ -30,7 +31,7 @@
             <td>{{ idea.porcentaje }}</td>
             <td>
               <div class="form-check">
-                <input type="radio" name="selectedIdea" [(ngModel)]="selectedIdea" [value]="idea.id" (change)="changeOptional()">
+                <input type="radio" name="selectedIdea" [(ngModel)]="selectedIdea" [value]="idea.nombreIdea" (change)="changeOptional()">
               </div>
             </td>
           </tr>

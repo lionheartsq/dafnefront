@@ -35,7 +35,7 @@ export class EvaluacionService {
     return this.httpClient.get(`${this.urlBase}/${this.endpointGetCriterios}/${id}`);
   }
 
-  crearRegistro(user: any): Observable<any>{
+  public crearRegistro(user: any): Observable<any>{
     return this.httpClient.post(`${this.urlBase}/${this.endpointStore}`, user)
   }
 
