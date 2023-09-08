@@ -28,7 +28,7 @@ export class IdeasService {
 
   constructor(private httpClient: HttpClient) { }
 
-  crearIdeas(user: any): Observable<any>{
+  public crearIdeas(user: any): Observable<any>{
     return this.httpClient.post(`${this.urlBase}/${this.endpointSaveIdeas}`, user)
   }
 
@@ -40,7 +40,7 @@ export class IdeasService {
     return this.httpClient.get(`${this.urlBase}/${this.endpointIdeasPropio}/${id}`);
   }
 
-  cerrarRelacionIdeas(user: any): Observable<any>{
+  public cerrarRelacionIdeas(user: any): Observable<any>{
     return this.httpClient.post(`${this.urlBase}/${this.endpointCloseRelacion}`, user)
   }
 

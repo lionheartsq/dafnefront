@@ -3,66 +3,48 @@
   <div class="row">
     <div class="col-md-3">
       <label><h2>Decide un nombre para tu empresa.</h2></label>
-      <input type="text" class="form-control" placeholder="Decide un nombre para tu empresa.">
-      <img src="./assets/teclado.jpg" alt="Imagen 1" class="img-fluid" style="max-height: 16%; min-width: 100%;">
+      <form (submit)="uploadNombre()">
+        <input type="text" class="form-control" placeholder="Decide un nombre para tu empresa." [(ngModel)]="nombreEmpresa" name="nombreEmpresa">
+        <img src="./assets/teclado.jpg" alt="Imagen 1" class="img-fluid" style="max-height: 16%; min-width: 100%;">
+        <button type="submit">Subir Nombre</button>
+      </form>
       <br><br>
       <label><h2>Decide un slogan para tu empresa.</h2></label>
-      <input type="text" class="form-control" placeholder="Decide un slogan para tu empresa.">
-      <img src="./assets/slogan.jpg" alt="Imagen 3" class="img-fluid" style="max-height: 16%; min-width: 100%;">
+      <form (submit)="uploadSlogan()">
+        <input type="text" class="form-control" placeholder="Decide un slogan para tu empresa." [(ngModel)]="slogan" name="slogan">
+        <img src="./assets/slogan.jpg" alt="Imagen 3" class="img-fluid" style="max-height: 16%; min-width: 100%;">
+        <button type="submit">Subir Slogan</button>
+      </form>
     </div>
     <div class="col-md-5">
       <div class="row">
         <div class="col-md-6">
           <h2>Misión</h2>
-          <textarea cols="30" rows="18">
-            Lorem ipsum dolor sit amet,
-            consectetur adipiscing elit.
-            Curabitur venenatis ex orci,
-            vitae finibus elit ullamcorper
-            sed. Duis sodales est vel
-            quam aliquet, non
-            consectetur tortor posuere.
-            Sed ex orci, consectetur eget
-            quam ac, blandit
-            pellentesque risus. Mauris
-            ultricies in turpis nec
-            maximus. Aliquam ultricies
-            mollis maximus. In ac tempus
-            justo. Lorem ipsum dolor sit
-            amet, consectetur adipiscing
-            elit.
-          </textarea>
+          <form (submit)="uploadMision()">
+            <textarea cols="30" rows="18" [(ngModel)]="mision" name="mision">
+            </textarea>
+            <button type="submit">Subir Misión</button>
+          </form>
         </div>
         <div class="col-md-6">
           <h2>Visión</h2>
-          <textarea cols="30" rows="18">
-            Lorem ipsum dolor sit amet,
-            consectetur adipiscing elit.
-            Curabitur venenatis ex orci,
-            vitae finibus elit ullamcorper
-            sed. Duis sodales est vel
-            quam aliquet, non
-            consectetur tortor posuere.
-            Sed ex orci, consectetur eget
-            quam ac, blandit
-            pellentesque risus. Mauris
-            ultricies in turpis nec
-            maximus. Aliquam ultricies
-            mollis maximus. In ac tempus
-            justo. Lorem ipsum dolor sit
-            amet, consectetur adipiscing
-            elit.
-          </textarea>
+          <form (submit)="uploadVision()">
+            <textarea cols="30" rows="18" [(ngModel)]="vision" name="vision">
+            </textarea>
+            <button type="submit">Subir Visión</button>
+          </form>
         </div>
       </div>
     </div>
     <div class="col-md-4">
+
       <h2>&nbsp;&nbsp;&nbsp;Carga tu logo</h2>
-      <img src="./assets/logo.png" alt="Imagen 2" class="img-fluid" style="max-width: 70%; max-height: 60%;">
-      <div class="row">
-        <div class="col-md-2"></div>
-        <div class="col-md-10"><input type="file"/></div>
-      </div>
+      <img src="{{this.logo}}" alt="Imagen 2" class="img-fluid" style="max-width: 70%; max-height: 60%;">
+      <form (submit)="uploadImage()">
+        <input type="file" (change)="onImageSelect($event)" />
+        <button type="submit">Subir Imagen</button>
+      </form>
+
       <div class="row">
         <div class="col-xs-6 col-md-3">
           <div class="custom-div">

@@ -22,6 +22,8 @@ export class EvaluacionService {
 
   private endpointMatriz='api/auth/criterios_evaluacion/calcularmatriz';
 
+  private endpointLeerMatriz='api/auth/matriz_evaluacion/selectmatriz_usuario';
+
   constructor(private httpClient: HttpClient) { }
 
 
@@ -33,11 +35,15 @@ export class EvaluacionService {
     return this.httpClient.get(`${this.urlBase}/${this.endpointGetCriterios}/${id}`);
   }
 
-  crearRegistro(user: any): Observable<any>{
+  public crearRegistro(user: any): Observable<any>{
     return this.httpClient.post(`${this.urlBase}/${this.endpointStore}`, user)
   }
 
   public crearMatriz(id:any): Observable<any> {
     return this.httpClient.get(`${this.urlBase}/${this.endpointMatriz}/${id}`);
+  }
+
+  public obtenerMatriz(id:any): Observable<any> {
+    return this.httpClient.get(`${this.urlBase}/${this.endpointLeerMatriz}/${id}`);
   }
 }

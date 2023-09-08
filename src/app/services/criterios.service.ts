@@ -54,7 +54,7 @@ export class CriteriosService {
     return this.httpClient.get(`${this.urlBase}/${this.endpointGetRelacion}/${id}`);
   }
 
-  enviarValor(data: any): Observable<any> {
+  public enviarValor(data: any): Observable<any> {
     const url = `${this.urlBase}/${this.endpointUpdateRelacion}`; // Reemplaza con la URL de tu endpoint
     return this.httpClient.post(url, data);
   }

@@ -35,7 +35,7 @@ export class ExperienciaService {
 
   constructor(private httpClient: HttpClient) { }
 
-  crearEscolaridad(user: any): Observable<any>{
+  public crearEscolaridad(user: any): Observable<any>{
     return this.httpClient.post(`${this.urlBase}/${this.endpointSaveEscolaridad}`, user)
   }
 
@@ -47,7 +47,7 @@ export class ExperienciaService {
     return this.httpClient.get(`${this.urlBase}/${this.endpointOneEscolaridad}/${id}`);
   }
 
-  crearOcupacion(user: any): Observable<any>{
+  public crearOcupacion(user: any): Observable<any>{
     return this.httpClient.post(`${this.urlBase}/${this.endpointSaveOcupacion}`, user)
   }
 
@@ -59,7 +59,7 @@ export class ExperienciaService {
     return this.httpClient.get(`${this.urlBase}/${this.endpointOneOcupacion}/${id}`);
   }
 
-  crearExperiencia(user: any): Observable<any>{
+  public crearExperiencia(user: any): Observable<any>{
     return this.httpClient.post(`${this.urlBase}/${this.endpointSaveExperiencia}`, user)
   }
 

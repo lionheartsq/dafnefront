@@ -23,7 +23,7 @@ export class BasicosService {
 
   constructor(private httpClient: HttpClient) { }
 
-  crearUsuario(user: any): Observable<any>{
+  public crearUsuario(user: any): Observable<any>{
     return this.httpClient.post(`${this.urlBase}/${this.endpoint}`, user)
   }
 

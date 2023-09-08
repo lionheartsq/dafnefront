@@ -12,14 +12,8 @@
                     {{ elemento.sueno }}
                   </label>
                 </div>
-                <div class="form-check">
-                  <input type="checkbox" id="otros" class="form-check-input" name="otros" [(ngModel)]="otros">
-                  <label for="otros" class="form-check-label">Otros</label>
-                </div>
-                <div *ngIf="otros" class="form-group">
-                  <label>Ingresa tu sueño personalizado:</label>
-                  <input type="text" class="form-control" [(ngModel)]="suenonuevo" placeholder="Nombre del sueño">
-                  <button type="submit" (click)="suenoSave()">Guardar Nuevo</button>
+                <div class="form-group">
+                  <button type="submit" (click)="openPopup()">Ingresa tu sueño personalizado</button>
                 </div>
                 <div *ngIf="checkedCount>5" class="form-group">
                   <p>Ha excedido la cantidad de posibilidades a elegir, por favor elija sólo un máximo de 5</p>

@@ -31,7 +31,7 @@ export class HobbiesService {
 
   constructor(private httpClient: HttpClient) { }
 
-  crearHobbies(user: any): Observable<any>{
+  public crearHobbies(user: any): Observable<any>{
     return this.httpClient.post(`${this.urlBase}/${this.endpointSaveHobbies}`, user)
   }
 
@@ -43,7 +43,7 @@ export class HobbiesService {
     return this.httpClient.get(`${this.urlBase}/${this.endpointHobbiesPropio}/${id}`);
   }
 
-  cerrarRelacionHobbies(user: any): Observable<any>{
+  public cerrarRelacionHobbies(user: any): Observable<any>{
     return this.httpClient.post(`${this.urlBase}/${this.endpointCloseRelacion}`, user)
   }
 
@@ -55,7 +55,7 @@ export class HobbiesService {
     return this.httpClient.get(`${this.urlBase}/${this.endpointGetRelacion}/${id}`);
   }
 
-  enviarValor(data: any): Observable<any> {
+  public enviarValor(data: any): Observable<any> {
     const url = `${this.urlBase}/${this.endpointUpdateRelacion}`; // Reemplaza con la URL de tu endpoint
     return this.httpClient.post(url, data);
   }

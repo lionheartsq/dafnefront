@@ -16,7 +16,6 @@ export class SuenosComponent {
   suenos: string | undefined;
   valorImportancia: string | undefined;
   otros: boolean=false;
-  suenonuevo: string='';
   checkedCount: number = 0;
   idUsuarioCreado:any;
   arrayOpciones:any=[];
@@ -102,8 +101,8 @@ export class SuenosComponent {
     this.checkedCount = this.arrayOpciones.filter((e: any) => e.seleccionado).length;
   }
 
-  suenoSave(){
-    const varNuevoSueno = {idUsuario:this.idUsuarioCreado, sueno:this.suenonuevo};
+  suenoSave(suenonuevo: string){
+    const varNuevoSueno = {idUsuario:this.idUsuarioCreado, sueno:suenonuevo};
     if(this.countSuenos<5){
       this.suenosService.crearSuenos(varNuevoSueno).subscribe( (data)=>{
         Swal.fire(
@@ -187,5 +186,19 @@ export class SuenosComponent {
     this.router.navigate(['ideas']);
   }
 
-
+  openPopup() {
+    Swal.fire({
+      title: 'Ingresa tu sueño personalizado:',
+      html:
+        '<input type="text" id="suenonuevo" class="swal2-input" placeholder="Nombre del sueño">',
+      showCancelButton: true,
+      confirmButtonText: 'Guardar Nuevo',
+      preConfirm: () => {
+        // Obtener el valor del input
+        const suenonuevo = (document.getElementById('suenonuevo') as HTMLInputElement).value;
+        // Realizar aquí las acciones necesarias con el valor ingresado
+        this.suenoSave(suenonuevo);
+      }
+    })
+  }
 }

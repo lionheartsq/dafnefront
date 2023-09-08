@@ -5,15 +5,20 @@
     <div class="form-group">
       <div class="row">
         <div class="col-md-6">
-          
-            
-             <ul>
-             <li *ngFor="let item of arrayOpciones"> 
-              {{ item.criterio }}
-              <input type="number" [(ngModel)]="selectedValues[item.idCriterio]" min="1" max="{{ 99-arrayOpciones.length }}" (change)="sendNumberValue(item.idCriterio, selectedValues[item.idCriterio])">
-            </li>
-            </ul>
-          
+            <table>
+              <tr *ngFor="let item of arrayOpciones">
+                <div class="card">
+                  <div class="card-body">
+                    <td>
+                      {{ item.criterio }} :
+                    </td>
+                    <td>
+                      <input type="number" [(ngModel)]="selectedValues[item.idCriterio]" min="1" max="{{ 99-arrayOpciones.length }}" (change)="sendNumberValue(item.idCriterio, selectedValues[item.idCriterio])">
+                    </td>
+                  </div>
+                </div>
+              </tr>
+            </table>
         </div>
     <div class="col-md-4">
       <img src="./assets/evaluacion.png" alt="Imagen" class="img-fluid" style="max-height: 60%; max-width: 60%;">
