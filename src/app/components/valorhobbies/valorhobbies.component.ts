@@ -5,6 +5,7 @@ import { UtilsService } from 'src/app/services/utils.service';
 import { HobbiesService } from 'src/app/services/hobbies.service';
 import Swal from 'sweetalert2';
 import { LoginService } from 'src/app/services/login.service';
+import { CdkDragDrop, moveItemInArray, transferArrayItem } from '@angular/cdk/drag-drop';
 
 @Component({
   selector: 'app-valorhobbies',
@@ -34,10 +35,11 @@ export class ValorhobbiesComponent implements OnInit {
       (data) => {
         console.log("Data Prop:", data);
         if (data.hobbies.length > 0) {
-          for (const hobbie of data.hobbies) {
+          for (let i = 0; i < data.hobbies.length; i++) {
+            const hobbie = data.hobbies[i];
             const idHobbiePropio = hobbie.id;
             const hobbiePropio = hobbie.hobby;
-            this.arrayOpciones.push({ idHobby: idHobbiePropio, hobby: hobbiePropio });
+            this.arrayOpciones.push({ idHobby: idHobbiePropio, hobby: hobbiePropio, index: i });
           }
         }
       },
@@ -67,6 +69,12 @@ export class ValorhobbiesComponent implements OnInit {
   }
 
   validateValues(): void {
+    console.log("Nuevo orden de arrayOpciones:", this.arrayOpciones);
+    this.arrayOpciones.forEach((item, index) => {
+      item.index = index;
+      var val= parseInt(item.index)+1;
+      this.sendNumberValue(item.idHobby, val);
+    });
     //Pendiente validacion
     Swal.fire({
       icon: 'success',
@@ -74,9 +82,18 @@ export class ValorhobbiesComponent implements OnInit {
       text: 'Valores Hobbies registrados correctamente',
       footer: 'Hobbies guardados'
     }).then(() => {
+      //console.log("Final orden de arrayOpciones:", this.arrayOpciones);
       // Redireccionar a la página deseada
       //
       this.router.navigate(['suenos'], { queryParams: { id: this.idUsuarioCreado} } );
     });
   }
+
+  onDrop(event: CdkDragDrop<string[]>) {
+      moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);
+        // Actualiza las posiciones de idHobby después de la reorganización
+        this.arrayOpciones.forEach((item, index) => {
+          item.index = index;
+        });
+      }
 }

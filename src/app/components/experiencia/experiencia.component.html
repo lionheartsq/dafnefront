@@ -1,143 +1,159 @@
 <h1>Cuéntanos más sobre tí...</h1>
 
 <div class="container">
+
   <div class="row">
 
-    <div class="col-md-3">
-        <div class="form-group">
-          <label>Nivel de escolaridad:</label>
-          <div class="form-check">
-            <input type="radio" id="ninguna" class="form-check-input" name="escolaridad" value="ninguna" [(ngModel)]="escolaridad">
-            <label for="ninguna" class="form-check-label">Ninguna</label>
-          </div>
-          <div class="form-check">
-            <input type="radio" id="basica" class="form-check-input" name="escolaridad" value="basica" [(ngModel)]="escolaridad">
-            <label for="basica" class="form-check-label">Educación básica</label>
-          </div>
-          <div class="form-check">
-            <input type="radio" id="media" class="form-check-input" name="escolaridad" value="media" [(ngModel)]="escolaridad">
-            <label for="media" class="form-check-label">Educación media</label>
-          </div>
-          <div class="form-check">
-            <input type="radio" id="superior" class="form-check-input" name="escolaridad" value="superior" [(ngModel)]="escolaridad">
-            <label for="superior" class="form-check-label">Educación superior</label>
-          </div>
-
-          <div *ngIf="escolaridad === 'superior'" class="form-group">
-            <label for="NivelEscolar">Nivel Escolaridad:</label>
-            <select id="NivelEscolar" class="form-control" [(ngModel)]="nivelescolaridad" placeholder="Nivel Escolaridad">
-              <option value="Tecnico">Tecnico</option>
-              <option value="Tecnólogo">Tecnólogo</option>
-              <option value="Pregrado">Pregrado</option>
-              <option value="Especialización">Especialización</option>
-              <option value="Maestria">Maestria</option>
-              <option value="Doctorado">Doctorado</option>
-            </select>
-            <label>Área de conocimiento:</label>
-            <input type="text" class="form-control" [(ngModel)]="areaconocimiento" placeholder="Nombre de la carrera o área de conocimiento">
-          </div>
-
-        </div>
-      </div>
-
-      <div class="col-md-3">
-        <div class="form-group">
-          <label>Ocupación:</label>
-          <div class="form-check">
-            <input type="radio" id="estudiante" class="form-check-input" name="ocupacion" value="estudiante" [(ngModel)]="ocupacion">
-            <label for="estudiante" class="form-check-label">Estudiante</label>
-          </div>
-          <div class="form-check">
-            <input type="radio" id="dependiente" class="form-check-input" name="ocupacion" value="dependiente" [(ngModel)]="ocupacion">
-            <label for="dependiente" class="form-check-label">Dependiente</label>
-          </div>
-          <div class="form-check">
-            <input type="radio" id="independiente" class="form-check-input" name="ocupacion" value="independiente" [(ngModel)]="ocupacion">
-            <label for="independiente" class="form-check-label">Independiente</label>
-          </div>
-          <div class="form-check">
-            <input type="radio" id="otro" class="form-check-input" name="ocupacion" value="otro" [(ngModel)]="ocupacion">
-            <label for="otro" class="form-check-label">Otro</label>
-          </div>
-        </div>
-        <div *ngIf="ocupacion === 'estudiante'" class="form-group">
-          <div class="form-group">
-            <div class="form-group">
-              <label for="lugar">Donde estudia?</label>
-              <input type="text" id="lugar" class="form-control" [(ngModel)]="lugar" placeholder="Mencione el lugar donde estudio">
+    <div class="col-md-10">
+      <div class="row">
+        <div class="col-md-4">
+          <div class="card">
+            <div class="card-body">
+              <h2 class="card-title">Nivel de escolaridad: </h2>
+                <div class="form-group card-text">
+                  <div class="form-check">
+                    <input type="radio" id="ninguna" class="form-check-input" name="escolaridad" value="ninguna" [(ngModel)]="escolaridad">
+                    <label for="ninguna" class="form-check-label">Ninguna</label>
+                  </div>
+                  <div class="form-check">
+                    <input type="radio" id="basica" class="form-check-input" name="escolaridad" value="basica" [(ngModel)]="escolaridad">
+                    <label for="basica" class="form-check-label">Educación básica</label>
+                  </div>
+                  <div class="form-check">
+                    <input type="radio" id="media" class="form-check-input" name="escolaridad" value="media" [(ngModel)]="escolaridad">
+                    <label for="media" class="form-check-label">Educación media</label>
+                  </div>
+                  <div class="form-check">
+                    <input type="radio" id="superior" class="form-check-input" name="escolaridad" value="superior" [(ngModel)]="escolaridad">
+                    <label for="superior" class="form-check-label">Educación superior</label>
+                  </div>
+                  <div *ngIf="escolaridad === 'superior'" class="form-group">
+                    <label for="NivelEscolar">Nivel Escolaridad:</label>
+                    <select id="NivelEscolar" class="form-control" [(ngModel)]="nivelescolaridad" placeholder="Nivel Escolaridad">
+                      <option value="Tecnico">Tecnico</option>
+                      <option value="Tecnólogo">Tecnólogo</option>
+                      <option value="Pregrado">Pregrado</option>
+                      <option value="Especialización">Especialización</option>
+                      <option value="Maestria">Maestria</option>
+                      <option value="Doctorado">Doctorado</option>
+                    </select>
+                    <label>Área de conocimiento:</label>
+                    <input type="text" class="form-control" [(ngModel)]="areaconocimiento" placeholder="Nombre de la carrera o área de conocimiento">
+                  </div>
+                </div>
             </div>
           </div>
-          <div class="form-group">
-            <label for="areaocupacion">Que estudia?</label>
-            <input type="text" id="areaocupacion" class="form-control" [(ngModel)]="areaocupacion" placeholder="Que estudia?">
-          </div>
+         </div>
+
+         <div class="col-md-4">
+          <div class="card">
+            <div class="card-body">
+              <h2 class="card-title">Ocupación</h2>
+              <div class="form-group card-text">
+                <div class="form-check">
+                  <input type="radio" id="estudiante" class="form-check-input" name="ocupacion" value="estudiante" [(ngModel)]="ocupacion">
+                  <label for="estudiante" class="form-check-label">Estudiante</label>
+                </div>
+                <div class="form-check">
+                  <input type="radio" id="dependiente" class="form-check-input" name="ocupacion" value="dependiente" [(ngModel)]="ocupacion">
+                  <label for="dependiente" class="form-check-label">Dependiente</label>
+                </div>
+                <div class="form-check">
+                  <input type="radio" id="independiente" class="form-check-input" name="ocupacion" value="independiente" [(ngModel)]="ocupacion">
+                  <label for="independiente" class="form-check-label">Independiente</label>
+                </div>
+                <div class="form-check">
+                  <input type="radio" id="otro" class="form-check-input" name="ocupacion" value="otro" [(ngModel)]="ocupacion">
+                  <label for="otro" class="form-check-label">Otro</label>
+                </div>
+              </div>
+              <div *ngIf="ocupacion === 'estudiante'" class="form-group">
+                <div class="form-group">
+                  <div class="form-group">
+                    <label for="lugar">Donde estudia?</label>
+                    <input type="text" id="lugar" class="form-control" [(ngModel)]="lugar" placeholder="Mencione el lugar donde estudio">
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label for="areaocupacion">Que estudia?</label>
+                  <input type="text" id="areaocupacion" class="form-control" [(ngModel)]="areaocupacion" placeholder="Que estudia?">
+                </div>
+              </div>
+              <div *ngIf="ocupacion === 'dependiente'" class="form-group">
+                <div class="form-group">
+                  <label for="lugar">Empresa</label>
+                  <input type="text" id="lugar" class="form-control" [(ngModel)]="lugar" placeholder="Empresa">
+                </div>
+                <div class="form-group">
+                  <label for="areaocupacion">Cargo</label>
+                  <input type="text" id="areaocupacion" class="form-control" [(ngModel)]="areaocupacion" placeholder="Cargo">
+                </div>
+              </div>
+              <div *ngIf="ocupacion === 'independiente'" class="form-group">
+                <div class="form-group">
+                  <label for="areaocupacion">Área de desempeño</label>
+                  <input type="text" id="areaocupacion" class="form-control" [(ngModel)]="areaocupacion" placeholder="Área de desempeño">
+                </div>
+              </div>
+              <div *ngIf="ocupacion === 'otro'" class="form-group">
+                <div class="form-group">
+                  <label for="areaocupacion">Especifique</label>
+                  <input type="text" id="areaocupacion" class="form-control" [(ngModel)]="areaocupacion" placeholder="Especifique">
+                </div>
+              </div>
+            </div>
+           </div>
         </div>
-        <div *ngIf="ocupacion === 'dependiente'" class="form-group">
-          <div class="form-group">
-            <label for="lugar">Empresa</label>
-            <input type="text" id="lugar" class="form-control" [(ngModel)]="lugar" placeholder="Empresa">
-          </div>
-          <div class="form-group">
-            <label for="areaocupacion">Cargo</label>
-            <input type="text" id="areaocupacion" class="form-control" [(ngModel)]="areaocupacion" placeholder="Cargo">
-          </div>
-        </div>
-        <div *ngIf="ocupacion === 'independiente'" class="form-group">
-          <div class="form-group">
-            <label for="areaocupacion">Área de desempeño</label>
-            <input type="text" id="areaocupacion" class="form-control" [(ngModel)]="areaocupacion" placeholder="Área de desempeño">
-          </div>
-        </div>
-        <div *ngIf="ocupacion === 'otro'" class="form-group">
-          <div class="form-group">
-            <label for="areaocupacion">Especifique</label>
-            <input type="text" id="areaocupacion" class="form-control" [(ngModel)]="areaocupacion" placeholder="Especifique">
+
+        <div class="col-md-4">
+
+          <div class="card">
+            <div class="card-body">
+              <h2 class="card-title">Tiempo de experiencia:</h2>
+              <div class="form-group card-text">
+                <div class="form-check">
+                  <input type="radio" id="menos1" class="form-check-input" name="experiencia" value="menos de 1" [(ngModel)]="experiencia">
+                  <label for="menos1" class="form-check-label">Menos de 1 año</label>
+                </div>
+                <div class="form-check">
+                  <input type="radio" id="1a3" class="form-check-input" name="experiencia" value="1 a 3" [(ngModel)]="experiencia">
+                  <label for="1a3" class="form-check-label">1 a 3 años</label>
+                </div>
+                <div class="form-check">
+                  <input type="radio" id="3a5" class="form-check-input" name="experiencia" value="3 a 5" [(ngModel)]="experiencia">
+                  <label for="3a5" class="form-check-label">3 a 5 años</label>
+                </div>
+                <div class="form-check">
+                  <input type="radio" id="mas5" class="form-check-input" name="experiencia" value="mas de 5" [(ngModel)]="experiencia">
+                  <label for="mas5" class="form-check-label">Más de 5 años</label>
+                </div>
+              </div>
+
+              <div *ngIf="experiencia === 'menos de 1' || experiencia === '1 a 3' || experiencia === '3 a 5' || experiencia === 'mas de 5'" class="form-group">
+                <div class="form-group">
+                  <label>Área de experiencia:</label>
+                  <input type="text" class="form-control" [(ngModel)]="areaexperiencia" placeholder="Especifique en que área">
+                </div>
+                <div class="form-group">
+                  <label>Actividades desempeñadas:</label>
+                  <input type="text" class="form-control" [(ngModel)]="actividades" placeholder="Breve resumen de sus actividades">
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
+    </div>
 
-    <div class="col-md-3">
-        <div class="form-group">
-          <label>Tiempo de experiencia:</label>
-          <div class="form-check">
-            <input type="radio" id="menos1" class="form-check-input" name="experiencia" value="menos de 1" [(ngModel)]="experiencia">
-            <label for="menos1" class="form-check-label">Menos de 1 año</label>
-          </div>
-          <div class="form-check">
-            <input type="radio" id="1a3" class="form-check-input" name="experiencia" value="1 a 3" [(ngModel)]="experiencia">
-            <label for="1a3" class="form-check-label">1 a 3 años</label>
-          </div>
-          <div class="form-check">
-            <input type="radio" id="3a5" class="form-check-input" name="experiencia" value="3 a 5" [(ngModel)]="experiencia">
-            <label for="3a5" class="form-check-label">3 a 5 años</label>
-          </div>
-          <div class="form-check">
-            <input type="radio" id="mas5" class="form-check-input" name="experiencia" value="mas de 5" [(ngModel)]="experiencia">
-            <label for="mas5" class="form-check-label">Más de 5 años</label>
-          </div>
-        </div>
-
-        <div *ngIf="experiencia === 'menos de 1' || experiencia === '1 a 3' || experiencia === '3 a 5' || experiencia === 'mas de 5'" class="form-group">
-          <div class="form-group">
-            <label>Área de experiencia:</label>
-            <input type="text" class="form-control" [(ngModel)]="areaexperiencia" placeholder="Especifique en que área">
-          </div>
-          <div class="form-group">
-            <label>Actividades desempeñadas:</label>
-            <input type="text" class="form-control" [(ngModel)]="actividades" placeholder="Breve resumen de sus actividades">
-          </div>
-        </div>
-
+    <div class="col-md-2">
+      <div class="img-container">
+        <img src="./assets/experiencia.jpg" class="img-fluid" alt="Imagen" style="min-height: 80%; min-width: 80%;">
+        <form class="custom-form" method="post">
+          <button type="submit" (click)="experienciaSave()">Continuemos</button>
+        </form>
       </div>
-
-      <div class="col-md-3">
-        <img src="./assets/experiencia.jpg" class="img-fluid" alt="Imagen" style="max-height: 80%; max-width: 80%;">
-        <div class="custom-div">
-         <form class="custom-form" method="post">
-           <button type="submit" (click)="experienciaSave()">Continuemos</button>
-         </form>
-       </div>
     </div>
 
-    </div>
   </div>
+
+</div>

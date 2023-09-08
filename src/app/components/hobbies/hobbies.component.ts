@@ -100,8 +100,8 @@ export class HobbiesComponent {
     this.checkedCount = this.arrayOpciones.filter((e: any) => e.seleccionado).length;
   }
 
-  hobbieSave(){
-    const varNuevoHobby = {idUsuario:this.idUsuarioCreado, hobby:this.hobbienuevo};
+  hobbieSave(hobbienuevo:string){
+    const varNuevoHobby = {idUsuario:this.idUsuarioCreado, hobby:hobbienuevo};
     if(this.countHobbies<5){
       this.hobbiesService.crearHobbies(varNuevoHobby).subscribe( (data)=>{
         Swal.fire(
@@ -183,6 +183,22 @@ export class HobbiesComponent {
 
   suenosRoute(){
     this.router.navigate(['suenos']);
+  }
+
+  openPopup() {
+    Swal.fire({
+      title: 'Ingresa tu hobbie personalizado:',
+      html:
+        '<input type="text" id="hobbienuevo" class="swal2-input" placeholder="Nombre del hobbie">',
+      showCancelButton: true,
+      confirmButtonText: 'Guardar Nuevo',
+      preConfirm: () => {
+        // Obtener el valor del input
+        const hobbienuevo = (document.getElementById('hobbienuevo') as HTMLInputElement).value;
+        // Realizar aquí las acciones necesarias con el valor ingresado
+        this.hobbieSave(hobbienuevo);
+      }
+    })
   }
 
 }

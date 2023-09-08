@@ -31,7 +31,7 @@ export class SuenosService {
 
   constructor(private httpClient: HttpClient) { }
 
-  crearSuenos(user: any): Observable<any>{
+  public crearSuenos(user: any): Observable<any>{
     return this.httpClient.post(`${this.urlBase}/${this.endpointSaveSuenos}`, user)
   }
 
@@ -43,7 +43,7 @@ export class SuenosService {
     return this.httpClient.get(`${this.urlBase}/${this.endpointSuenosPropio}/${id}`);
   }
 
-  cerrarRelacionSuenos(user: any): Observable<any>{
+  public cerrarRelacionSuenos(user: any): Observable<any>{
     return this.httpClient.post(`${this.urlBase}/${this.endpointCloseRelacion}`, user)
   }
 
@@ -55,7 +55,7 @@ export class SuenosService {
     return this.httpClient.get(`${this.urlBase}/${this.endpointGetRelacion}/${id}`);
   }
 
-  enviarValor(data: any): Observable<any> {
+  public enviarValor(data: any): Observable<any> {
     const url = `${this.urlBase}/${this.endpointUpdateRelacion}`; // Reemplaza con la URL de tu endpoint
     return this.httpClient.post(url, data);
   }
