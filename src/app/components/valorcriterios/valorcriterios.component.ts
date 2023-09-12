@@ -77,9 +77,9 @@ export class ValorcriteriosComponent implements OnInit {
     }).then(() => {
       // Redireccionar a la página deseada
       //
-      this.router.navigate(['evaluacion'], { queryParams: { id: this.idUsuarioCreado} } );
+      this.router.navigate(['evaluacion'], { queryParams: { id: this.idUsuarioCreado, idC: 0} } );
     });
   }
 
-  
+
 }
