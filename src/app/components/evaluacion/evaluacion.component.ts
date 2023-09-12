@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { EvaluacionService } from 'src/app/services/evaluacion.service';
 import Swal from 'sweetalert2';
@@ -12,22 +12,34 @@ export class EvaluacionComponent implements OnInit {
   idUsuarioCreado: any;
   arrayIdeas: any[] = [];
   arrayCriterios: any[] = [];
+  arrayCriteriosParcial: any[] = [];
   criteriosIdeas: { criterioId: any, ideaId: any, idUsuario: any, porcentaje: number }[] = [];
   arrayMatrizIdeas: any;
   idIdeaMatriz: any;
   nombreIdeaMatriz: any;
   valorPorcentajeAcumuladoMatriz: any;
   showSpinner = false;
+  idParcial: any;
+  flagMax: number=0;
+  idParcialNuevo: any;
 
-  constructor(public router: Router, private route: ActivatedRoute, private evaluacionService: EvaluacionService) {}
+  constructor(public router: Router, private route: ActivatedRoute, private evaluacionService: EvaluacionService, private cdr: ChangeDetectorRef) {}
 
   ngOnInit(): void {
     this.route.queryParams.subscribe(params => {
       this.idUsuarioCreado = params['id'];
+      this.idParcial = params['idC'];
+      console.log("IDC: "+this.idParcial);
     });
 
-    this.obtenerIdeasPropio(this.idUsuarioCreado);
-    this.obtenerCriteriosPropio(this.idUsuarioCreado);
+    this.cargarDatos(this.idUsuarioCreado, this.idParcial);
+  }
+
+  cargarDatos(id:any, idc:any) {
+    this.arrayCriteriosParcial=[];
+    this.obtenerIdeasPropio(id);
+    this.obtenerCriteriosPropio(id, idc);
+    this.cdr.detectChanges(); // Forzar la detección de cambios
   }
 
   obtenerIdeasPropio(id: any) {
@@ -42,10 +54,30 @@ export class EvaluacionComponent implements OnInit {
     );
   }
 
-  obtenerCriteriosPropio(id: any) {
+  obtenerCriteriosPropio(id: any, idc: any) {
     this.evaluacionService.getCriteriosPropio(id).subscribe(
       (data) => {
         this.arrayCriterios = data.criterios;
+        this.flagMax=(this.arrayCriterios.length)-1;
+        console.log("MaxVal: "+this.flagMax);
+        const idcNumero = parseInt(idc, 10); // Convierte idc a número base 10
+
+        this.arrayCriterios.forEach((criterio, index) => {
+          console.log("Iteración: " + index);
+          console.log("Idc: " + idcNumero); // Utiliza la variable idcNumero convertida a número
+          console.log("Salidas del arrayCriterios: id: " + criterio.id + " criterio: " + criterio.criterio + " index: " + index);
+          if (index === idcNumero) {
+            console.log("Verdadero en la iteración: " + index);
+            // Almacena el valor actual en arrayCriteriosParcial
+            this.arrayCriteriosParcial.push(criterio);
+          }
+        });
+
+        this.arrayCriteriosParcial.forEach((criterio, index) => {
+          console.log("IteraciónParcial: " + index);
+          console.log("Salidas del arrayCriteriosParcial: id: " + criterio.id + " criterio: " + criterio.criterio + " index: " + index);
+        });
+
       },
       (err) => {
         console.log(err);
@@ -57,6 +89,39 @@ export class EvaluacionComponent implements OnInit {
     this.arrayIdeas.forEach(idea => {
       idea.valores = {}; // Inicializar un objeto para almacenar los valores de los criterios
     });
+  }
+
+  seleccionParcialSave() {
+    this.criteriosIdeas = [];
+
+    this.arrayCriteriosParcial.forEach(criterio => {
+      this.arrayIdeas.forEach(idea => {
+        const inputValue = idea.valores[criterio.id];
+        if (inputValue !== undefined && inputValue >= 1 && inputValue <= 3) {
+          const porcentaje = inputValue === 1 ? 50 : (inputValue === 2 ? 33 : 17);
+          this.criteriosIdeas.push({ criterioId: criterio.id, ideaId: idea.id, idUsuario: this.idUsuarioCreado, porcentaje: porcentaje });
+
+          const usuario = { idCriterio: criterio.id, idIdea: idea.id, idUsuario: this.idUsuarioCreado, porcentaje: porcentaje };
+
+          this.evaluacionService.crearRegistro(usuario).subscribe(
+            data => {
+              console.log(usuario);
+            },
+            err => {
+              console.log(err);
+            }
+          );
+        }
+      });
+    });
+
+    console.log(this.criteriosIdeas);
+
+    this.idParcialNuevo=parseInt(this.idParcial, 10)+1;
+
+    this.router.navigate(['evaluacion'], { queryParams: { id: this.idUsuarioCreado, idC: this.idParcialNuevo } });
+
+    this.cargarDatos(this.idUsuarioCreado, this.idParcialNuevo);
   }
 
   seleccionSave() {

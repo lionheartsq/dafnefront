@@ -6,15 +6,20 @@
       <p>Organiza los criterios del cuadro a continuación según la importancia que le asignas en orden ascendente de 1 a 3, siendo 1 el más importante.</p>
       <img src="./assets/evaluacion.png" alt="Imagen" class="img-fluid" style="max-height: 55%; max-width: 55%;">
       <div class="col-xs-12 col-md-4">
-        <div class="custom-div">
+        <div class="custom-div" *ngIf="this.flagMax==this.idParcial">
           <form class="custom-form" (submit)="seleccionSave()">
             <button type="submit">Continuemos</button>
+          </form>
+        </div>
+        <div class="custom-div" *ngIf="this.flagMax!=this.idParcial">
+          <form class="custom-form" (submit)="seleccionParcialSave()">
+            <button type="submit">Guardar Valores</button>
           </form>
         </div>
       </div>
     </div>
     <div class="col-md-6">
-      <div class="form-check" *ngFor="let criterio of arrayCriterios">
+      <div class="form-check" *ngFor="let criterio of arrayCriteriosParcial">
         <label>
           {{ criterio.criterio }}
         </label>
