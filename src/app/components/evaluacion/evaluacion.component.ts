@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { EvaluacionService } from 'src/app/services/evaluacion.service';
 import Swal from 'sweetalert2';
@@ -23,7 +23,7 @@ export class EvaluacionComponent implements OnInit {
   flagMax: number=0;
   idParcialNuevo: any;
 
-  constructor(public router: Router, private route: ActivatedRoute, private evaluacionService: EvaluacionService) {}
+  constructor(public router: Router, private route: ActivatedRoute, private evaluacionService: EvaluacionService, private cdr: ChangeDetectorRef) {}
 
   ngOnInit(): void {
     this.route.queryParams.subscribe(params => {
@@ -32,12 +32,14 @@ export class EvaluacionComponent implements OnInit {
       console.log("IDC: "+this.idParcial);
     });
 
-    this.cargarDatos();
+    this.cargarDatos(this.idUsuarioCreado, this.idParcial);
   }
 
-  cargarDatos() {
-    this.obtenerIdeasPropio(this.idUsuarioCreado);
-    this.obtenerCriteriosPropio(this.idUsuarioCreado, this.idParcial);
+  cargarDatos(id:any, idc:any) {
+    this.arrayCriteriosParcial=[];
+    this.obtenerIdeasPropio(id);
+    this.obtenerCriteriosPropio(id, idc);
+    this.cdr.detectChanges(); // Forzar la detección de cambios
   }
 
   obtenerIdeasPropio(id: any) {
@@ -118,6 +120,8 @@ export class EvaluacionComponent implements OnInit {
     this.idParcialNuevo=parseInt(this.idParcial, 10)+1;
 
     this.router.navigate(['evaluacion'], { queryParams: { id: this.idUsuarioCreado, idC: this.idParcialNuevo } });
+
+    this.cargarDatos(this.idUsuarioCreado, this.idParcialNuevo);
   }
 
   seleccionSave() {
