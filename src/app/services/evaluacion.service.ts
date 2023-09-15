@@ -10,6 +10,9 @@ import { GlobalConstants } from '../common/global-constants';
   providedIn: 'root'
 })
 export class EvaluacionService {
+  enviarValor(data: { id: number; value: number; }) {
+    throw new Error('Method not implemented.');
+  }
   private urlBase=GlobalConstants.apiURL;
 
   //private urlBase='http://127.0.0.1:8000';
