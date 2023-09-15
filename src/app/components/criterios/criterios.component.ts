@@ -202,7 +202,7 @@ export class CriteriosComponent {
       title: 'Ingresa tu criterio personalizado:',
       html:
         '<input type="text" id="criterionuevo" class="swal2-input" placeholder="Nombre del criterio" required><br><input type="text" id="pregunta" class="swal2-input" placeholder="Frase de comparación" required>'
-        +'<span><sub>Ej: Organiza las ideas de mayor a menor según su innovación</sub></span>',
+        +'<br><span><sub>Ej: Organiza las ideas de mayor a menor según su innovación</sub></span>',
       showCancelButton: true,
       confirmButtonText: 'Guardar Nuevo',
       preConfirm: () => {
