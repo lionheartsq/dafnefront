@@ -69,16 +69,40 @@ export class ValorcriteriosComponent implements OnInit {
 
   validateValues(): void {
     //Pendiente validacion
-    Swal.fire({
-      icon: 'success',
-      title: 'Solicitud enviada',
-      text: 'Valores Criterios registrados correctamente',
-      footer: 'Criterios guardados'
-    }).then(() => {
-      // Redireccionar a la página deseada
-      //
-      this.router.navigate(['evaluacion'], { queryParams: { id: this.idUsuarioCreado, idC: 0} } );
+     
+    console.log(this.selectedValues);
+    console.log("this.selectedValues");
+    var suma=0;
+    Object.entries(this.selectedValues).forEach(entry => {
+      const [key, value] = entry;
+      console.log(key, value);
+      suma=suma+value;
+
     });
+    if (suma==100) {
+      Swal.fire({
+        icon: 'success',
+        title: 'Solicitud enviada',
+        text: 'Valores Criterios registrados correctamente',
+        footer: 'Criterios guardados'
+      }).then(() => {
+        // Redireccionar a la página deseada
+        //
+        this.router.navigate(['evaluacion'], { queryParams: { id: this.idUsuarioCreado, idC: 0} } );
+      });
+    } else {
+      Swal.fire({
+        icon: 'error',
+        title: 'Error datos incorrectos',
+        text: 'Valores Criterios registrados correctamente',
+        footer: 'Criterios guardados'
+      }).then(() => {
+        // Redireccionar a la página deseada
+        //
+        
+      });
+    }
+    
   }
 
 
