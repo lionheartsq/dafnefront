@@ -102,8 +102,8 @@ export class CriteriosComponent {
     this.checkedCount = this.arrayOpciones.filter((e: any) => e.seleccionado).length;
   }
 
-  criterioSave(criterionuevo:string){
-    const varNuevoCriterio = {idUsuario:this.idUsuarioCreado, criterio:criterionuevo};
+  criterioSave(criterionuevo:string, pregunta:string){
+    const varNuevoCriterio = {idUsuario:this.idUsuarioCreado, criterio:criterionuevo, pregunta:pregunta};
     if(this.countCriterios<4){
       this.criteriosService.crearCriterios(varNuevoCriterio).subscribe( (data)=>{
         Swal.fire(
@@ -201,14 +201,16 @@ export class CriteriosComponent {
     Swal.fire({
       title: 'Ingresa tu criterio personalizado:',
       html:
-        '<input type="text" id="criterionuevo" class="swal2-input" placeholder="Nombre del criterio">',
+        '<input type="text" id="criterionuevo" class="swal2-input" placeholder="Nombre del criterio" required><br><input type="text" id="pregunta" class="swal2-input" placeholder="Frase de comparación" required>'
+        +'<br><span><sub>Ej: Organiza las ideas de mayor a menor según su innovación</sub></span>',
       showCancelButton: true,
       confirmButtonText: 'Guardar Nuevo',
       preConfirm: () => {
         // Obtener el valor del input
         const criterionuevo = (document.getElementById('criterionuevo') as HTMLInputElement).value;
+        const pregunta = (document.getElementById('pregunta') as HTMLInputElement).value;
         // Realizar aquí las acciones necesarias con el valor ingresado
-        this.criterioSave(criterionuevo);
+        this.criterioSave(criterionuevo, pregunta);
       }
     })
   }

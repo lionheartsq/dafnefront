@@ -30,7 +30,7 @@ export class CriteriosService {
 
   constructor(private httpClient: HttpClient) { }
 
-  crearCriterios(user: any): Observable<any>{
+  public crearCriterios(user: any): Observable<any>{
     return this.httpClient.post(`${this.urlBase}/${this.endpointSaveCriterios}`, user)
   }
 
