@@ -96,17 +96,19 @@ export class EvaluacionComponent implements OnInit {
 
   seleccionParcialSave() {
     this.criteriosIdeas = [];
+    console.log("Nuevo orden de arrayIdeas:", this.arrayIdeas);
+     this.arrayCriteriosParcial.forEach(criterio => {
+      this.arrayIdeas.forEach((item, index) => {
+        item.index = index;
+        var val= parseInt(item.index)+1;
+          const porcentaje = val === 1 ? 50 : (val === 2 ? 33 : 17);
+          this.criteriosIdeas.push({ criterioId: criterio.id, ideaId: item.id, idUsuario: this.idUsuarioCreado, porcentaje: porcentaje });
 
-    this.arrayCriteriosParcial.forEach(criterio => {
-      this.arrayIdeas.forEach(idea => {
-        const inputValue = idea.valores[criterio.id];
-        if (inputValue !== undefined && inputValue >= 1 && inputValue <= 3) {
-          const porcentaje = inputValue === 1 ? 50 : (inputValue === 2 ? 33 : 17);
-          this.criteriosIdeas.push({ criterioId: criterio.id, ideaId: idea.id, idUsuario: this.idUsuarioCreado, porcentaje: porcentaje });
+          const usuario = { idCriterio: criterio.id, idIdea: item.id, idUsuario: this.idUsuarioCreado, porcentaje: porcentaje };
 
-          const usuario = { idCriterio: criterio.id, idIdea: idea.id, idUsuario: this.idUsuarioCreado, porcentaje: porcentaje };
-
-          this.evaluacionService.crearRegistro(usuario).subscribe(
+          console.log("Val val: "+val);
+          console.log("Val Const Usuario: "+usuario);
+           this.evaluacionService.crearRegistro(usuario).subscribe(
             data => {
               console.log(usuario);
             },
@@ -114,7 +116,6 @@ export class EvaluacionComponent implements OnInit {
               console.log(err);
             }
           );
-        }
       });
     });
 
@@ -146,7 +147,7 @@ export class EvaluacionComponent implements OnInit {
             err => {
               console.log(err);
             }
-          );       
+          );
         }
       });
     });
@@ -222,7 +223,7 @@ export class EvaluacionComponent implements OnInit {
   }
 
   validateValues(): void {
-    console.log("Nuevo orden de arrayCriterios:", this.arrayCriterios);
+    console.log("Nuevo orden de arrayIdeas:", this.arrayIdeas);
     this.arrayCriterios.forEach((item, index) => {
       item.index = index;
       var val= parseInt(item.index)+1;
@@ -240,11 +241,11 @@ export class EvaluacionComponent implements OnInit {
       this.router.navigate(['ideas'], { queryParams: { id: this.idUsuarioCreado} } );
     });
   }
-  
+
   onDrop(event: CdkDragDrop<string[]>) {
     moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);
       // Actualiza las posiciones de idHobby después de la reorganización
-      this.arrayCriterios.forEach((item, index) => {
+      this.arrayIdeas.forEach((item, index) => {
         item.index = index;
       });
     }
