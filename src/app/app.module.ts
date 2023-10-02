@@ -69,6 +69,7 @@ import { Estrategias1f1aComponent } from './components/estrategias1f1a/estrategi
 import { Estrategias2d2aComponent } from './components/estrategias2d2a/estrategias2d2a.component';
 import { ModelocanvasComponent } from './components/modelocanvas/modelocanvas.component';
 import { ResumenideacionComponent } from './components/resumenideacion/resumenideacion.component';
+import { CaracterizacionComponent } from './components/caracterizacion/caracterizacion.component';
 
 const materialModules = [
   MatCardModule,
@@ -126,7 +127,8 @@ const materialModules = [
     Estrategias1f1aComponent,
     Estrategias2d2aComponent,
     ModelocanvasComponent,
-    ResumenideacionComponent
+    ResumenideacionComponent,
+    CaracterizacionComponent
   ],
   imports: [
     BrowserModule,
