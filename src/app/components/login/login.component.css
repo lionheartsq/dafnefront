@@ -1,0 +1,16 @@
+h1{
+  font-weight: 900;
+  font-size: 2rem;
+}
+.logo{
+  text-align: center;
+  align-items: center;
+}
+.button-design{
+  justify-content: center;
+  align-items: center;
+  background: #FE7A3C 0% 0% no-repeat padding-box;
+  max-width: 50%;
+  margin: 0 auto; /* Agrega esta línea para centrar horizontalmente el botón */
+  display: block;
+}

@@ -58,7 +58,7 @@ export class ResumenComponent {
         console.log("Actual slogan: "+this.slogan);
         console.log("Actual logo: "+this.logo);
         if(this.logo === null){
-          this.logo="./assets/logo.png";
+          this.logo="./assets/nologo.png";
         }
         console.log("Real logo: "+this.logo);
       },

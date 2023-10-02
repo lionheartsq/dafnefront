@@ -26,3 +26,11 @@
 .btn-primary {
   margin-top: 10px;
 }
+
+.mat-toolbar {
+  background-color: #F5F5F5; /* Cambia el color al que desees, en este caso verde */
+}
+
+.fill-space {
+  flex: 1 1 auto;
+}

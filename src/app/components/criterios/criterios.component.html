@@ -1,20 +1,19 @@
-<h1>Ahora, algunos criterios para evaluar tus ideas de negocio...</h1>
 <div class="container">
+
+  <br>
+  <span><img src="./assets/iconos/bombilla.svg" style="max-width: 40px; max-height: 40px;" alt="Imagen" class="img-fluid"></span>
+  <span><b style="font-size: 1.8rem;">  Ideación</b></span>
+  <hr>
+  <h1>Ahora, algunos criterios para evaluar tus ideas de negocio...</h1>
+  <img src="./assets/imagenes/separador.jpg" style="max-width: 140px; max-height: 20px;" alt="Imagen" class="img-fluid">
+  <br>
+
   <div class="row">
-      <div class="col-md-6">
-        <img src="./assets/seleccion.png" alt="Imagen" class="img-fluid" style="max-height: 55%; max-width: 55%;">
-        <div class="col-xs-12 col-md-4">
-          <div class="custom-div">
-          <form class="custom-form" method="post">
-            <button *ngIf="checkedCount<6"  type="submit" (click)="validateCriterios()">Continuemos</button>
-          </form>
-          <div *ngIf="checkedCount>5" class="form-group">
-            <p>Ha excedido la cantidad de posibilidades a elegir, por favor elija sólo un máximo de 5</p>
-          </div>
-        </div>
-        </div>
-      </div>
-      <div class="col-md-6">
+
+      <div class="col-md-2"></div>
+
+      <div class="col-md-5">
+        <br>
         <h2>Selecciona máximo 5 criterios que más se relacionan con tu emprendimiento.</h2>
         <div class="form-check" #checkboxes *ngFor="let elemento of arrayOpciones">
           <label>
@@ -23,9 +22,20 @@
           </label>
         </div>
         <div class="form-group">
-          <button type="submit" (click)="openPopup()">Ingresa tu criterio personalizado</button>
+          <button class="plus-button" type="submit" (click)="openPopup()">Ingresa tu criterio personalizado</button>
         </div>
+        <div *ngIf="checkedCount>5" class="form-group">
+          <p>Ha excedido la cantidad de posibilidades a elegir, por favor elija sólo un máximo de 5</p>
+        </div>
+        <form method="post">
+          <button class="ideacion-button" *ngIf="checkedCount<6 && checkedCount>0"  type="submit" (click)="validateCriterios()">Continuemos</button>
+        </form>
       </div>
+
+      <div class="col-md-5">
+        <img src="./assets/imagenes/criterios-sentado.png" alt="Imagen" class="img-fluid" style="max-height: 80%; max-width: 80%;">
+      </div>
+
   </div>
 </div>
 

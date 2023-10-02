@@ -3,9 +3,25 @@
 }
 
 h1 {
-  text-align: center;
+  text-align: left;
 }
 
 h2 {
   font-size: 0.9rem;
+}
+
+.ideacion-button {
+  margin-top: 10px;
+  padding: 8px;
+  background: #FFD401 0% 0% no-repeat padding-box;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+}
+
+.step-button {
+  margin-top: 10px;
+  padding: 8px;
+  background: #F5F5F5 0% 0% no-repeat padding-box;
+  border-radius: 4px;
+  border: 1px solid #ccc;
 }

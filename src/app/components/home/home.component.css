@@ -1,0 +1,19 @@
+/* Estilo para las tarjetas */
+.example-card {
+  border: 1px solid rgba(0, 0, 0, 0.125);
+  border-radius: 0.5rem;
+  padding: 0rem;
+  background-color: #F5F5F5; /* Puedes personalizar el fondo de las tarjetas */
+  text-align: center;
+}
+
+/* Estilo para las imágenes dentro de las tarjetas */
+.example-card img {
+  min-width: 95%;
+  max-height: 800px;
+}
+
+/* Estilo para los botones dentro de las tarjetas */
+.example-card button {
+  margin-top: 1rem;
+}

@@ -1,59 +1,53 @@
-<h1>Resumen</h1>
 <div class="container">
+
+  <br>
+  <span><img src="./assets/iconos/bombilla.svg" style="max-width: 40px; max-height: 40px;" alt="Imagen" class="img-fluid"></span>
+  <span><b style="font-size: 1.8rem;">  Ideación</b></span>
+  <hr>
+  <h1>Generalidades</h1>
+  <img src="./assets/imagenes/separador.jpg" style="max-width: 140px; max-height: 20px;" alt="Imagen" class="img-fluid">
+  <br>
+
   <div class="row">
-    <div class="col-md-3">
-      <label><h2>Decide un nombre para tu empresa.</h2></label>
+    <div class="col-md-6">
+      <h2>Decide un nombre para tu empresa.</h2>
       <form (submit)="uploadNombre()">
         <input type="text" class="form-control" placeholder="Decide un nombre para tu empresa." [(ngModel)]="nombreEmpresa" name="nombreEmpresa">
-        <img src="./assets/teclado.jpg" alt="Imagen 1" class="img-fluid" style="max-height: 16%; min-width: 100%;">
-        <button type="submit">Subir Nombre</button>
+        <button class="step-button" type="submit">Subir Nombre</button>
       </form>
-      <br><br>
-      <label><h2>Decide un slogan para tu empresa.</h2></label>
-      <form (submit)="uploadSlogan()">
-        <input type="text" class="form-control" placeholder="Decide un slogan para tu empresa." [(ngModel)]="slogan" name="slogan">
-        <img src="./assets/slogan.jpg" alt="Imagen 3" class="img-fluid" style="max-height: 16%; min-width: 100%;">
-        <button type="submit">Subir Slogan</button>
+      <br>
+      <h2>Misión</h2>
+      <form (submit)="uploadMision()">
+        <textarea cols="102" rows="5" [(ngModel)]="mision" name="mision">
+        </textarea>
+        <button class="step-button" type="submit">Subir Misión</button>
       </form>
-    </div>
-    <div class="col-md-5">
-      <div class="row">
-        <div class="col-md-6">
-          <h2>Misión</h2>
-          <form (submit)="uploadMision()">
-            <textarea cols="30" rows="18" [(ngModel)]="mision" name="mision">
-            </textarea>
-            <button type="submit">Subir Misión</button>
-          </form>
-        </div>
-        <div class="col-md-6">
-          <h2>Visión</h2>
-          <form (submit)="uploadVision()">
-            <textarea cols="30" rows="18" [(ngModel)]="vision" name="vision">
-            </textarea>
-            <button type="submit">Subir Visión</button>
-          </form>
-        </div>
-      </div>
-    </div>
-    <div class="col-md-4">
-
+      <br>
       <h2>&nbsp;&nbsp;&nbsp;Carga tu logo</h2>
-      <img src="{{this.logo}}" alt="Imagen 2" class="img-fluid" style="max-width: 70%; max-height: 60%;">
+      <img src="{{this.logo}}" alt="Imagen 2" class="img-fluid" style="max-width: 30%; max-height: 30%;">
       <form (submit)="uploadImage()">
         <input type="file" (change)="onImageSelect($event)" />
-        <button type="submit">Subir Imagen</button>
+        <button class="step-button" type="submit">Subir Imagen</button>
       </form>
+    </div>
 
-      <div class="row">
-        <div class="col-xs-6 col-md-3">
-          <div class="custom-div">
-           <form class="custom-form" method="post">
-             <button type="submit" (click)="fakeRoute()">Continuemos</button>
-           </form>
-         </div>
-        </div>
-      </div>
+    <div class="col-md-6">
+      <h2>Decide un slogan para tu empresa.</h2>
+      <form (submit)="uploadSlogan()">
+        <input type="text" class="form-control" placeholder="Decide un slogan para tu empresa." [(ngModel)]="slogan" name="slogan">
+        <button class="step-button" type="submit">Subir Slogan</button>
+      </form>
+      <br>
+      <h2>Visión</h2>
+      <form (submit)="uploadVision()">
+        <textarea cols="102" rows="5" [(ngModel)]="vision" name="vision">
+        </textarea>
+        <button class="step-button" type="submit">Subir Visión</button>
+      </form>
+      <br>
+      <form method="post">
+        <button class="ideacion-button" type="submit" (click)="fakeRoute()">Continuemos</button>
+      </form>
 
     </div>
 
