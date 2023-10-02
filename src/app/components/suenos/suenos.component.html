@@ -16,6 +16,7 @@
 
               <div class="col-md-6">
                 <p>De la siguiente lista, selecciona o adiciona máximo 5 aspiraciones que tengas.</p>
+
                 <div class="form-check" #checkboxes *ngFor="let elemento of arrayOpciones">
                   <label>
                     <input type="checkbox" class="form-check-input" [(ngModel)]="elemento.seleccionado" (change)="onCheckboxChange($event, elemento)" value="{{ elemento.idSueno }}">
