@@ -3,7 +3,7 @@
 }
 
 h1 {
-  text-align: center;
+  text-align: left;
 }
 
 .row {
@@ -23,9 +23,6 @@ label {
   font-weight: bold;
 }
 
-input[type="text"],
-input[type="email"],
-input[type="tel"],
 select {
   width: 100%;
   padding: 8px;
@@ -37,10 +34,10 @@ select {
   height: 38px;
 }
 
-.form-check-input {
-  margin-top: 6px;
-}
-
-.btn-primary {
-  margin-top: 20px;
+.ideacion-button {
+  margin-top: 10px;
+  padding: 8px;
+  background: #FFD401 0% 0% no-repeat padding-box;
+  border-radius: 4px;
+  border: 1px solid #ccc;
 }

@@ -4,12 +4,6 @@
     text-align: center;
     padding: 0 20px;
   }
-  .container {
-    width: 90%;
-    margin: 0 25px 25px 0;
-    display: inline-block;
-    vertical-align: top;
-  }
   .item-list {
     width: 80%;
     border: solid 1px #ccc;
@@ -60,4 +54,12 @@
 
 .example-disabled {
   display: inline-block;
+}
+
+.ideacion-button {
+  margin-top: 10px;
+  padding: 8px;
+  background: #FFD401 0% 0% no-repeat padding-box;
+  border-radius: 4px;
+  border: 1px solid #ccc;
 }

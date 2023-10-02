@@ -1,51 +1,68 @@
-<h1>Resumen Ideación</h1>
 <div class="container">
+
+  <br>
+  <span><img src="./assets/iconos/bombilla.svg" style="max-width: 40px; max-height: 40px;" alt="Imagen" class="img-fluid"></span>
+  <span><b style="font-size: 1.8rem;">  Ideación</b></span>
+  <hr>
+  <h1>Resumen</h1>
+  <img src="./assets/imagenes/separador.jpg" style="max-width: 140px; max-height: 20px;" alt="Imagen" class="img-fluid">
+  <br>
+
   <div class="row">
+
     <div class="col-md-8">
+
       <div class="row">
         <div class="col-md-6">
-          <div class="card">
-            <div class="card-body">
-              <h2 class="card-title">Nombre de tu empresa</h2>
-              <p class="card-text">{{ nombreEmpresa }}</p>
-            </div>
-          </div>
+          <mat-card class="empresa-card">
+            <mat-card-header>
+              <div mat-card-avatar class="empresa-header-image"></div>
+              <mat-card-title>Nombre de tu empresa</mat-card-title>
+              <mat-card-subtitle>{{ nombreEmpresa }}</mat-card-subtitle>
+            </mat-card-header>
+          </mat-card>
         </div>
         <div class="col-md-6">
-          <div class="card">
-            <div class="card-body">
-              <h2 class="card-title">Slogan de tu empresa</h2>
-              <p class="card-text">{{ slogan }}</p>
-            </div>
-          </div>
+          <mat-card class="slogan-card">
+            <mat-card-header>
+              <div mat-card-avatar class="slogan-header-image"></div>
+              <mat-card-title>Slogan de tu empresa</mat-card-title>
+              <mat-card-subtitle>{{ slogan }}</mat-card-subtitle>
+            </mat-card-header>
+          </mat-card>
         </div>
       </div>
+      <br>
       <div class="row">
         <div class="col-md-6">
-          <div class="card">
-            <div class="card-body">
-              <h2 class="card-title">Misión</h2>
-              <p class="card-text">{{ mision }}</p>
-            </div>
-          </div>
+          <mat-card class="mision-card">
+            <mat-card-header>
+              <div mat-card-avatar class="mision-header-image"></div>
+              <mat-card-title>Misión</mat-card-title>
+              <mat-card-subtitle>{{ mision }}</mat-card-subtitle>
+            </mat-card-header>
+          </mat-card>
         </div>
         <div class="col-md-6">
-          <div class="card">
-            <div class="card-body">
-              <h2 class="card-title">Visión</h2>
-              <p class="card-text">{{ vision }}</p>
-            </div>
-          </div>
+          <mat-card class="vision-card">
+            <mat-card-header>
+              <div mat-card-avatar class="vision-header-image"></div>
+              <mat-card-title>Visión</mat-card-title>
+              <mat-card-subtitle>{{ vision }}</mat-card-subtitle>
+            </mat-card-header>
+          </mat-card>
         </div>
       </div>
+      <br>
       <div class="row">
         <div class="col-md-12">
-          <div class="card">
-            <div class="card-body">
-              <h2 class="card-title">Idea emprendedora</h2>
-              <p class="card-text">{{ nombreIdea }}</p>
-            </div>
-          </div>
+          <mat-card class="idea-card">
+            <mat-card-header>
+              <div mat-card-avatar class="idea-header-image"></div>
+              <mat-card-title>Idea emprendedora</mat-card-title>
+              <mat-card-subtitle>{{ nombreIdea }}</mat-card-subtitle>
+            </mat-card-header>
+          </mat-card>
         </div>
       </div>
     </div>
@@ -53,20 +70,30 @@
         <div class="card">
           <h2 class="card-title">Logo</h2>
           <div class="card-body">
-            <img src="{{ logo }}" class="card-img-top" alt="Logo de la empresa">
+            <img src="{{ logo }}" class="card-img-top" alt="Logo de la empresa" style="max-height: 11.3rem;">
           </div>
         </div>
     </div>
+
   </div>
   <br>
 
   <h1>Perfil emprendedor</h1>
 
     <div class="row">
+
       <div class="col-md-3">
         <div class="card">
+          <div class="card-header">
+            <span>
+              <img src="./assets/iconos/datos-personales.svg" style="max-width: 25px; max-height: 25px;" alt="Imagen" class="img-fluid">
+            </span>
+            <span>&nbsp;&nbsp;</span>
+            <span>
+              <h2 class="card-title"> Datos Personales</h2>
+            </span>
+          </div>
           <div class="card-body">
-            <h2 class="card-title">Datos Personales</h2>
             <p class="card-text">Nombre: {{ nombre }}</p>
             <p class="card-text">Tipo documento: {{ tipodocumento }}</p>
             <p class="card-text">Documento: {{ documento }}</p>
@@ -82,8 +109,16 @@
         <div class="row">
           <div class="col-md-4">
             <div class="card">
+              <div class="card-header">
+                <span>
+                  <img src="./assets/iconos/nivel-escolaridad.svg" style="max-width: 25px; max-height: 25px;" alt="Imagen" class="img-fluid">
+                </span>
+                <span>&nbsp;&nbsp;</span>
+                <span>
+                  <h2 class="card-title">Escolaridad</h2>
+                </span>
+              </div>
               <div class="card-body">
-                <h2 class="card-title">Escolaridad</h2>
                 <p class="card-text">Escolaridad: {{ escolaridad }}</p>
                 <p class="card-text">Nivel: {{ nivelescolaridad }}</p>
                 <p class="card-text">Área de conocimiento: {{ areaconocimiento }}</p>
@@ -92,8 +127,16 @@
           </div>
           <div class="col-md-4">
             <div class="card">
+              <div class="card-header">
+                <span>
+                  <img src="./assets/iconos/ocupacion.svg" style="max-width: 25px; max-height: 25px;" alt="Imagen" class="img-fluid">
+                </span>
+                <span>&nbsp;&nbsp;</span>
+                <span>
+                  <h2 class="card-title">Ocupación</h2>
+                </span>
+              </div>
               <div class="card-body">
-                <h2 class="card-title">Ocupación</h2>
                 <p class="card-text">Ocupación actual: {{ ocupacion }}</p>
                 <p class="card-text">Lugar: {{ lugar }}</p>
                 <p class="card-text">Área: {{ area }}</p>
@@ -102,8 +145,16 @@
           </div>
         <div class="col-md-4">
             <div class="card">
+              <div class="card-header">
+                <span>
+                  <img src="./assets/iconos/tiempo-experiencia.svg" style="max-width: 25px; max-height: 25px;" alt="Imagen" class="img-fluid">
+                </span>
+                <span>&nbsp;&nbsp;</span>
+                <span>
+                  <h2 class="card-title">Experiencia</h2>
+                </span>
+              </div>
               <div class="card-body">
-                <h2 class="card-title">Experiencia</h2>
                 <p class="card-text">Tiempo de experiencia: {{ experiencia }} años</p>
                 <p class="card-text">Actividades: {{ actividades }}</p>
                 <p class="card-text">Área de experiencia: {{ areaExperiencia }}</p>
@@ -114,34 +165,47 @@
       <div class="row">
         <div class="col-md-4">
             <div class="card">
+              <div class="card-header">
+                <span>
+                  <img src="./assets/iconos/hobbies.svg" style="max-width: 25px; max-height: 25px;" alt="Imagen" class="img-fluid">
+                </span>
+                <span>&nbsp;&nbsp;</span>
+                <span>
+                  <h2 class="card-title">Hobbies</h2>
+                </span>
+              </div>
               <div class="card-body">
-                <h2 class="card-title">Hobbies</h2>
                 <p class="card-text" *ngFor="let elemento of arrayHobbies">- {{ elemento.hobby }}</p>
               </div>
             </div>
         </div>
-        <div class="col-md-8">
+        <div class="col-md-4">
             <div class="card">
+              <div class="card-header">
+                <span>
+                  <img src="./assets/iconos/suenos.svg" style="max-width: 25px; max-height: 25px;" alt="Imagen" class="img-fluid">
+                </span>
+                <span>&nbsp;&nbsp;</span>
+                <span>
+                  <h2 class="card-title">Sueños</h2>
+                </span>
+              </div>
               <div class="card-body">
-                <h2 class="card-title">Sueños</h2>
                 <p class="card-text" *ngFor="let elemento of arraySuenos">- {{ elemento.sueno }}</p>
               </div>
             </div>
         </div>
-    </div>
+        <div class="col-md-4">
+          <form method="post">
+            <button class="ideacion-button" type="submit" (click)="fakeRoute()">Continuemos</button>
+          </form>
+        </div>
     </div>
     </div>
 
-        <div class="row">
-          <div class="col-md-3">
-            <div class="card">
-              <div class="card-body custom-form">
-                  <button type="submit" (submit)="fakeRoute()">Continuemos</button>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    <br>
+    </div>
+
+  </div>
+  <br>
 
 

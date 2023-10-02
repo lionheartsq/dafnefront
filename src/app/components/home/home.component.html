@@ -1,34 +1,38 @@
 <div class="general">
-
-  <div class="row">
-
-    <div class="col-xs-12 col-md-4">
-      <div class="custom-div">
-        <form class="custom-form" method="post">
-          <img src="./assets/ideacion.png" style="max-width: 95%;"/><br>
-          <button type="submit" (click)="basicosRoute()">Ideación</button>
-        </form>
-      </div>
-    </div>
-
-    <div class="col-xs-12 col-md-4">
-      <div class="custom-div">
-        <form class="custom-form" method="post">
-          <img src="./assets/simulacion.png" style="max-width: 95%;"/><br>
-          <button type="submit" (click)="simulacionRoute()">Simulación</button>
-        </form>
-      </div>
-    </div>
-
-    <div class="col-xs-12 col-md-4">
-      <div class="custom-div">
-        <form class="custom-form" method="post">
-          <img src="./assets/formalizacion.png" style="max-width: 95%;"/><br>
-          <button type="submit" (click)="loginFake()">Formalización</button>
-        </form>
-      </div>
-    </div>
-
+  <div style="text-align: center;">
+    <img src="./assets/imagenes/banner.png" style="max-width: 70%;"/><br>
   </div>
+  <br>
+  <div class="d-flex justify-content-center align-items-center">
+    <div class="row" style="max-width: 70%;">
 
+      <div class="col-xs-12 col-md-4">
+        <mat-card class="example-card" (click)="basicosRoute()">
+          <img mat-card-image src="./assets/imagenes/ideacion-small.png" alt="Ideación">
+          <mat-card-content>
+            <br><h1>Ideación</h1>
+          </mat-card-content>
+        </mat-card>
+      </div>
+
+      <div class="col-xs-12 col-md-4">
+        <mat-card class="example-card" (click)="simulacionRoute()">
+          <img mat-card-image src="./assets/imagenes/simulacion-small.png" alt="Simulación">
+          <mat-card-content>
+            <br><h1>Simulación</h1>
+          </mat-card-content>
+        </mat-card>
+      </div>
+
+      <div class="col-xs-12 col-md-4">
+        <mat-card class="example-card" (click)="loginFake()">
+          <img mat-card-image src="./assets/imagenes/formalizacion.png" alt="Formalización">
+          <mat-card-content>
+            <br><h1>Formalización</h1>
+          </mat-card-content>
+        </mat-card>
+      </div>
+
+    </div>
+  </div>
 </div>

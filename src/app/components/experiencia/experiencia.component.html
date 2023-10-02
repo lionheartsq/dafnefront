@@ -1,6 +1,11 @@
-<h1>Cuéntanos más sobre tí...</h1>
-
 <div class="container">
+  <br>
+  <span><img src="./assets/iconos/bombilla.svg" style="max-width: 40px; max-height: 40px;" alt="Imagen" class="img-fluid"></span>
+  <span><b style="font-size: 1.8rem;">  Ideación</b></span>
+  <hr>
+  <h1>Cuéntanos más sobre tí...</h1>
+  <img src="./assets/imagenes/separador.jpg" style="max-width: 140px; max-height: 20px;" alt="Imagen" class="img-fluid">
+  <br>
 
   <div class="row">
 
@@ -8,8 +13,11 @@
       <div class="row">
         <div class="col-md-4">
           <div class="card">
+            <div class="card-title" style="background-color: #F9D65D;">
+              <span><img src="./assets/iconos/nivel-escolaridad.svg" style="max-width: 40px; max-height: 40px; padding: 5px;" alt="Imagen" class="img-fluid"></span>
+              <span><b style="font-size: 0.9rem;">  Nivel de escolaridad:</b></span>
+            </div>
             <div class="card-body">
-              <h2 class="card-title">Nivel de escolaridad: </h2>
                 <div class="form-group card-text">
                   <div class="form-check">
                     <input type="radio" id="ninguna" class="form-check-input" name="escolaridad" value="ninguna" [(ngModel)]="escolaridad">
@@ -28,6 +36,7 @@
                     <label for="superior" class="form-check-label">Educación superior</label>
                   </div>
                   <div *ngIf="escolaridad === 'superior'" class="form-group">
+                    <br>
                     <label for="NivelEscolar">Nivel Escolaridad:</label>
                     <select id="NivelEscolar" class="form-control" [(ngModel)]="nivelescolaridad" placeholder="Nivel Escolaridad">
                       <option value="Tecnico">Tecnico</option>
@@ -37,6 +46,7 @@
                       <option value="Maestria">Maestria</option>
                       <option value="Doctorado">Doctorado</option>
                     </select>
+                    <br>
                     <label>Área de conocimiento:</label>
                     <input type="text" class="form-control" [(ngModel)]="areaconocimiento" placeholder="Nombre de la carrera o área de conocimiento">
                   </div>
@@ -47,8 +57,11 @@
 
          <div class="col-md-4">
           <div class="card">
+            <div class="card-title" style="background-color: #F9D65D;">
+              <span><img src="./assets/iconos/ocupacion.svg" style="max-width: 40px; max-height: 40px; padding: 5px;" alt="Imagen" class="img-fluid"></span>
+              <span><b style="font-size: 0.9rem;">  Ocupación:</b></span>
+            </div>
             <div class="card-body">
-              <h2 class="card-title">Ocupación</h2>
               <div class="form-group card-text">
                 <div class="form-check">
                   <input type="radio" id="estudiante" class="form-check-input" name="ocupacion" value="estudiante" [(ngModel)]="ocupacion">
@@ -108,8 +121,11 @@
         <div class="col-md-4">
 
           <div class="card">
+            <div class="card-title" style="background-color: #F9D65D;">
+              <span><img src="./assets/iconos/tiempo-experiencia.svg" style="max-width: 40px; max-height: 40px; padding: 5px;" alt="Imagen" class="img-fluid"></span>
+              <span><b style="font-size: 0.9rem;">  Tiempo de experiencia:</b></span>
+            </div>
             <div class="card-body">
-              <h2 class="card-title">Tiempo de experiencia:</h2>
               <div class="form-group card-text">
                 <div class="form-check">
                   <input type="radio" id="menos1" class="form-check-input" name="experiencia" value="menos de 1" [(ngModel)]="experiencia">
@@ -141,17 +157,18 @@
               </div>
             </div>
           </div>
+          <br>
+          <form method="post">
+            <!-- <button type="submit" (click)="experienciaRoute()">Continuemos</button> -->
+            <button class="ideacion-button" type="submit" (click)="experienciaSave()">Continuemos</button>
+          </form>
+
         </div>
       </div>
     </div>
 
     <div class="col-md-2">
-      <div class="img-container">
-        <img src="./assets/experiencia.jpg" class="img-fluid" alt="Imagen" style="min-height: 80%; min-width: 80%;">
-        <form class="custom-form" method="post">
-          <button type="submit" (click)="experienciaSave()">Continuemos</button>
-        </form>
-      </div>
+        <img src="./assets/imagenes/cuentanos-mas-sobre-ti.png" class="img-fluid" alt="Imagen" style="max-height: 80%; max-width: 80%;">
     </div>
 
   </div>

@@ -1,12 +1,18 @@
-<h1>Y que tal si nos cuentas sobres tus hobbies?</h1>
 <div class="container">
+  <br>
+  <span><img src="./assets/iconos/bombilla.svg" style="max-width: 40px; max-height: 40px;" alt="Imagen" class="img-fluid"></span>
+  <span><b style="font-size: 1.8rem;">  Ideación</b></span>
+  <hr>
+  <h1>Y que tal si nos cuentas sobres tus hobbies?</h1>
+  <img src="./assets/imagenes/separador.jpg" style="max-width: 140px; max-height: 20px;" alt="Imagen" class="img-fluid">
+  <br>
+
   <div class="row">
-    <div class="col-md-6">
-      <p>De la siguiente lista, selecciona o adiciona de ser necesario máximo 5 hobbies, valoralos según su importancia.</p>
-      <img src="./assets/hobbies.jpg" alt="Imagen" class="img-fluid" style="max-height: 90%; max-height: 90%;">
-    </div>
-    <div class="col-md-6">
+
+    <div class="col-md-8">
+
       <div class="row">
+
         <div class="col-md-6">
           <div class="form-check" #checkboxes *ngFor="let elemento of arrayOpciones">
             <label>
@@ -14,21 +20,32 @@
               {{ elemento.hobby }}
             </label>
           </div>
-          <div class="form-group">
-            <button type="submit" (click)="openPopup()">Ingresa tu hobbie personalizado</button>
-          </div>
         </div>
+
+        <div class="col-xs-12 col-md-6">
+          <p>De la lista, selecciona o adiciona de ser necesario máximo 5 hobbies, valoralos según su importancia.</p>
+          <div *ngIf="checkedCount>5" class="form-group">
+            <p>Ha excedido la cantidad de posibilidades a elegir, por favor elija sólo un máximo de 5</p>
+          </div>
+          <br>
+          <div class="form-group">
+            <button type="submit" class="plus-button" (click)="openPopup()">Ingresa tu hobbie personalizado</button>
+          </div>
+          <br>
+          <form method="post">
+            <!-- <button type="submit" (click)="experienciaRoute()">Continuemos</button> -->
+            <button class="ideacion-button" *ngIf="checkedCount<6 && checkedCount>0" type="submit" (click)="validateHobbies()">Continuemos</button>
+          </form>
+
+        </div>
+
       </div>
-      <div *ngIf="checkedCount>5" class="form-group">
-        <p>Ha excedido la cantidad de posibilidades a elegir, por favor elija sólo un máximo de 5</p>
-      </div>
-      <div class="col-xs-12 col-md-4">
-        <div class="custom-div">
-         <form class="custom-form" method="post">
-           <button *ngIf="checkedCount<6" type="submit" (click)="validateHobbies()">Continuemos</button>
-         </form>
-       </div>
     </div>
+
+    <div class="col-md-4">
+      <img src="./assets/imagenes/hobbies.png" class="img-fluid" alt="Imagen" style="max-height: 100%; max-width: 100%;">
     </div>
+
   </div>
+
 </div>
