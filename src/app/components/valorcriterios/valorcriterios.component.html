@@ -17,16 +17,20 @@
         <div class="col-md-3">
             <br><br>
             <p>De tu lista de criterios, valóralos porcentualmente de acuerdo a la importancia, recuerde que la suma de porcentajes no debe exceder o ser menor que el 100% y no debe repetir valores.</p>
-            <table>
+            <table style="width: 90%;">
               <tr *ngFor="let item of arrayOpciones">
                 <div class="card">
-                  <div class="card-body">
-                    <td>
-                      {{ item.criterio }} :
-                    </td>
-                    <td>
-                      <input type="number" [(ngModel)]="selectedValues[item.idCriterio]" min="1" max="{{ 99-arrayOpciones.length }}" (change)="sendNumberValue(item.idCriterio, selectedValues[item.idCriterio])">
-                    </td>
+                  <div class="card-body row">
+                    <div class="col-md-8">
+                      <td>
+                        {{ item.criterio }} :
+                      </td>
+                    </div>
+                    <div class="col-md-3">
+                      <td>
+                        <input type="number" [(ngModel)]="selectedValues[item.idCriterio]" min="1" max="{{ 99-arrayOpciones.length }}" (change)="sendNumberValue(item.idCriterio, selectedValues[item.idCriterio])">
+                      </td>
+                    </div>
                   </div>
                 </div>
               </tr>
