@@ -14,7 +14,7 @@ export class CaracterizacionService {
 
   //private urlBase='http://127.0.0.1:8000';
 
-  private endpointTomarPreguntas='api/auth/preguntas_caracterizacion/next';
+  private endpointTomarPreguntas='api/auth/preguntas_caracterizacion/pre';
 
   private endpointSeguirFlujo='api/auth/preguntas_caracterizacion/nextflow';
 
