@@ -219,7 +219,7 @@ export class ResumenideacionComponent {
   }
 
   fakeRoute(){
-    this.router.navigate(['home']);
+    this.router.navigate(['matrizdofa']);
   }
 
 }
