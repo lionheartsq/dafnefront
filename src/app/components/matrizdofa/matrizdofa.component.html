@@ -1,11 +1,17 @@
 <div class="container">
-  <h1>PALABRA DOFA SIGNIFICADO:</h1>
+  <h1>Matriz Dofa:</h1>
   <div class="row">
     <div class="col-md-6">
       <table class="table">
         <tr>
           <p>D</p>
-          <td><button class="btn btn-primary">AGREGAR</button></td>
+          <td>
+            <form (submit)="uploadDebilidades()">
+              <textarea cols="102" rows="5" [(ngModel)]="debilidades" name="debilidades">
+              </textarea>
+              <button class="step-button" type="submit">Cargar Debilidades</button>
+            </form>
+          </td>
           <p>O</p>
           <td><button class="btn btn-primary">AGREGAR</button></td>
         </tr>
