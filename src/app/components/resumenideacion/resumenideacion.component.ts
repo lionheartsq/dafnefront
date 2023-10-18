@@ -219,7 +219,7 @@ export class ResumenideacionComponent {
   }
 
   fakeRoute(){
-    this.router.navigate(['matrizdofa']);
+    this.router.navigate(['matrizdofa'], { queryParams: { id: this.idUsuarioCreado} } );
   }
 
 }

@@ -20,7 +20,7 @@ export class DofaService {
 
   private endpointDofaPropio='api/auth/matriz_dofa/selectmatriz_dofa';
 
-  private endpointUpdateDofa='api/auth/usuario_matriz_dofa/update';
+  private endpointUpdateDofa='api/auth/matriz_dofa/update';
 
   constructor(private httpClient: HttpClient) { }
 
@@ -36,8 +36,8 @@ export class DofaService {
     return this.httpClient.get(`${this.urlBase}/${this.endpointDofaPropio}/${id}`);
   }
 
-  public enviarValor(data: any): Observable<any> {
-    const url = `${this.urlBase}/${this.endpointUpdateDofa}`; // Reemplaza con la URL de tu endpoint
-    return this.httpClient.post(url, data);
+  public enviarValor(data: any): Observable<any>{
+    const url = `${this.urlBase}/${this.endpointUpdateDofa}`;
+    return this.httpClient.put(url, data);
   }
 }

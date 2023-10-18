@@ -1,5 +1,13 @@
 <div class="container">
-  <h1>Matriz Dofa:</h1>
+
+  <br>
+  <span><img src="./assets/iconos/bombilla.svg" style="max-width: 40px; max-height: 40px;" alt="Imagen" class="img-fluid"></span>
+  <span><b style="font-size: 1.8rem;">  Ideación</b></span>
+  <hr>
+  <h1>Matriz Dofa</h1>
+  <img src="./assets/imagenes/separador.jpg" style="max-width: 140px; max-height: 20px;" alt="Imagen" class="img-fluid">
+  <br>
+
   <div class="row">
     <div class="col-md-6">
       <table class="table">
@@ -7,19 +15,37 @@
           <p>D</p>
           <td>
             <form (submit)="uploadDebilidades()">
-              <textarea cols="102" rows="5" [(ngModel)]="debilidades" name="debilidades">
-              </textarea>
+              <textarea cols="40" rows="5" [(ngModel)]="debilidades" name="debilidades">
+              </textarea><br>
               <button class="step-button" type="submit">Cargar Debilidades</button>
             </form>
           </td>
           <p>O</p>
-          <td><button class="btn btn-primary">AGREGAR</button></td>
+          <td>
+            <form (submit)="uploadOportunidades()">
+              <textarea cols="40" rows="5" [(ngModel)]="oportunidades" name="oportunidades">
+              </textarea><br>
+              <button class="step-button" type="submit">Cargar Oportunidades</button>
+            </form>
+          </td>
         </tr>
         <tr>
           <p>F</p>
-          <td><button class="btn btn-primary">AGREGAR</button></td>
+          <td>
+            <form (submit)="uploadFortalezas()">
+              <textarea cols="40" rows="5" [(ngModel)]="fortalezas" name="fortalezas">
+              </textarea><br>
+              <button class="step-button" type="submit">Cargar Fortalezas</button>
+            </form>
+          </td>
           <p>A</p>
-          <td><button class="btn btn-primary">AGREGAR</button></td>
+          <td>
+            <form (submit)="uploadAmenazas()">
+              <textarea cols="40" rows="5" [(ngModel)]="amenazas" name="amenazas">
+              </textarea><br>
+              <button class="step-button" type="submit">Cargar Amenazas</button>
+            </form>
+          </td>
         </tr>
       </table>
       <button class="btn btn-primary">Ver Matriz DOFA</button>
