@@ -9,62 +9,61 @@
   <br>
 
   <div class="row">
-    <div class="col-md-8">
+    <div class="col-md-7">
       <table class="table">
         <tr>
           <p>D</p>
           <td>
-            <form (submit)="uploadDebilidades()">
-              <span><p>
-                {{this.debilidades}}
-              </p>
-              </span><br>
-              <button class="step-button" type="submit">Cargar Debilidades</button>
-            </form>
+            <mat-card class="example-card" [style.background-color]="colord">
+              <mat-card-content>
+                <form (submit)="uploadDebilidades()">
+                  <button class="step-button" type="submit">Cargar Debilidades</button>
+                </form>
+              </mat-card-content>
+            </mat-card>
           </td>
           <p>O</p>
           <td>
-            <form (submit)="uploadOportunidades()">
-              <span><p>
-                {{this.oportunidades}}
-              </p>
-              </span><br>
-              <button class="step-button" type="submit">Cargar Oportunidades</button>
-            </form>
+            <mat-card class="example-card" [style.background-color]="coloro">
+              <mat-card-content>
+                <form (submit)="uploadOportunidades()">
+                  <button class="step-button" type="submit">Cargar Oportunidades</button>
+                </form>
+              </mat-card-content>
+            </mat-card>
           </td>
         </tr>
         <tr>
           <p>F</p>
           <td>
-            <form (submit)="uploadFortalezas()">
-              <span><p>
-                {{this.fortalezas}}
-              </p>
-              </span><br>
-              <button class="step-button" type="submit">Cargar Fortalezas</button>
-            </form>
+            <mat-card class="example-card" [style.background-color]="colorf">
+              <mat-card-content>
+                <form (submit)="uploadFortalezas()">
+                  <button class="step-button" type="submit">Cargar Fortalezas</button>
+                </form>
+              </mat-card-content>
+            </mat-card>
           </td>
           <p>A</p>
           <td>
-            <form (submit)="uploadAmenazas()">
-              <span><p>
-                {{this.amenazas}}
-              </p>
-              </span><br>
-              <button class="step-button" type="submit">Cargar Amenazas</button>
-            </form>
+            <mat-card class="example-card" [style.background-color]="colora">
+              <mat-card-content>
+                <form (submit)="uploadAmenazas()">
+                  <button class="step-button" type="submit">Cargar Amenazas</button>
+                </form>
+              </mat-card-content>
+            </mat-card>
           </td>
         </tr>
       </table>
-      <button class="btn btn-primary">Ver Matriz DOFA</button>
+      <button class="btn btn-primary" (click)="matrizRoute()">Ver Matriz DOFA</button>
     </div>
-    <div class="col-md-4">
+    <div class="col-md-5">
       <p>Debilidades (D): Representan aspectos internos negativos que limitan el desempeño o el crecimiento...</p>
       <p>Oportunidades (O): Son situaciones externas favorables que pueden ser aprovechadas por el emprendimiento...</p>
       <p>Fortalezas (F): Son aspectos internos positivos que brindan una ventaja competitiva al emprendimiento...</p>
       <p>Amenazas (A): Representan factores externos negativos que pueden afectar negativamente al emprendimiento...</p>
-      <button class="btn btn-primary" (click)="amenazasRoute()">Finalizar</button>
-      <button class="btn btn-success" (click)="amenazasRoute()">Guardar y Volver al Menú</button>
+      <button class="btn btn-primary" (click)="canvasRoute()">Finalizar</button>
     </div>
   </div>
 </div>
