@@ -16,8 +16,9 @@
           <td>
             <mat-card class="example-card" [style.background-color]="colord">
               <mat-card-content>
+                <p class="avance">{{this.mensajeDebilidades}}</p>
                 <form (submit)="uploadDebilidades()">
-                  <button class="step-button" type="submit">Cargar Debilidades</button>
+                  <button class="step-button" type="submit" *ngIf="this.avanced<2">Cargar Debilidades</button>
                 </form>
               </mat-card-content>
             </mat-card>
@@ -26,8 +27,9 @@
           <td>
             <mat-card class="example-card" [style.background-color]="coloro">
               <mat-card-content>
+                <p class="avance">{{this.mensajeOportunidades}}</p>
                 <form (submit)="uploadOportunidades()">
-                  <button class="step-button" type="submit">Cargar Oportunidades</button>
+                  <button class="step-button" type="submit" *ngIf="this.avanceo<2">Cargar Oportunidades</button>
                 </form>
               </mat-card-content>
             </mat-card>
@@ -38,8 +40,9 @@
           <td>
             <mat-card class="example-card" [style.background-color]="colorf">
               <mat-card-content>
+                <p class="avance">{{this.mensajeFortalezas}}</p>
                 <form (submit)="uploadFortalezas()">
-                  <button class="step-button" type="submit">Cargar Fortalezas</button>
+                  <button class="step-button" type="submit" *ngIf="this.avancef<2">Cargar Fortalezas</button>
                 </form>
               </mat-card-content>
             </mat-card>
@@ -48,8 +51,9 @@
           <td>
             <mat-card class="example-card" [style.background-color]="colora">
               <mat-card-content>
+                <p class="avance">{{this.mensajeAmenazas}}</p>
                 <form (submit)="uploadAmenazas()">
-                  <button class="step-button" type="submit">Cargar Amenazas</button>
+                  <button class="step-button" type="submit" *ngIf="this.avancea<2">Cargar Amenazas</button>
                 </form>
               </mat-card-content>
             </mat-card>

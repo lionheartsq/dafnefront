@@ -1,8 +1,16 @@
 <div class="container">
-  <h1>ALGUNAS FORTALEZAS QUE PODEMOS PRESENTAR SON:</h1>
+
+  <br>
+  <span><img src="./assets/iconos/bombilla.svg" style="max-width: 40px; max-height: 40px;" alt="Imagen" class="img-fluid"></span>
+  <span><b style="font-size: 1.8rem;">  Ideación</b></span>
+  <hr>
+  <h1>Algunas fortalezas que podemos presentar son:</h1>
+  <img src="./assets/imagenes/separador.jpg" style="max-width: 140px; max-height: 20px;" alt="Imagen" class="img-fluid">
+  <br>
+
   <div class="row">
     <div class="col-md-6">
-      <h2>ALGUNOS EJEMPLOS DE FORTALEZAS:</h2>
+      <h2>Ejemplos de fortalezas:</h2>
       <p>1) Conocimientos- Aptitudes:</p>
       <ul>
         <li>Conocimientos en marketing digital: Saber cómo utilizar herramientas y estrategias digitales para promover un producto o servicio.</li>
@@ -11,15 +19,15 @@
       </ul>
     </div>
     <div class="col-md-6">
-      <h2>LISTEMOS ENTRE 3 Y 4 DEBILIDADES:</h2>
+      <h2>LISTEMOS ENTRE 3 Y 4 FORTALEZAS:</h2>
       <ul>
-        <input type="text" class="form-control" placeholder="Digite aquí">
-        <input type="text" class="form-control" placeholder="Digite aquí">
-        <input type="text" class="form-control" placeholder="Digite aquí">
-        <input type="text" class="form-control" placeholder="Digite aquí">
+        <input type="text" class="form-control" placeholder="Digite aquí" [(ngModel)]="fortalezas1" name="fortalezas1">
+        <input type="text" class="form-control" placeholder="Digite aquí" [(ngModel)]="fortalezas2" name="fortalezas2">
+        <input type="text" class="form-control" placeholder="Digite aquí" [(ngModel)]="fortalezas3" name="fortalezas3">
+        <input type="text" class="form-control" placeholder="Digite aquí" [(ngModel)]="fortalezas4" name="fortalezas4">
       </ul>
-      <button class="btn btn-primary" (click)="oportunidadesRoute()">Finalizar</button>
-      <button class="btn btn-success">Guardar y Volver al Menú</button>
+      <button class="btn btn-primary" (click)="terminarRoute()">Finalizar</button>
+      <button class="btn btn-success" (click)="continuarRoute()">Guardar y regresar</button>
     </div>
   </div>
 </div>

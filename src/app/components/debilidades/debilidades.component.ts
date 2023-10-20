@@ -84,10 +84,6 @@ export class DebilidadesComponent {
     );
   }
 
-  fortalezasRoute(){
-    this.router.navigate(['fortalezas'], { queryParams: { id: this.idUsuarioCreado} } );
-  }
-
   terminarRoute(){
     this.avanced=2;
     const varMensaje = {id:this.idDofa, idUsuario:this.idUsuarioCreado, debilidades1:this.debilidades1, debilidades2:this.debilidades2, debilidades3:this.debilidades3, debilidades4:this.debilidades4,

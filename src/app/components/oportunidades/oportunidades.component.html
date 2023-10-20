@@ -1,8 +1,16 @@
 <div class="container">
-  <h1>ALGUNAS OPORTUNIDADES QUE PODEMOS PRESENTAR SON:</h1>
+
+  <br>
+  <span><img src="./assets/iconos/bombilla.svg" style="max-width: 40px; max-height: 40px;" alt="Imagen" class="img-fluid"></span>
+  <span><b style="font-size: 1.8rem;">  Ideación</b></span>
+  <hr>
+  <h1>Algunas oportunidades que podemos presentar son:</h1>
+  <img src="./assets/imagenes/separador.jpg" style="max-width: 140px; max-height: 20px;" alt="Imagen" class="img-fluid">
+  <br>
+
   <div class="row">
     <div class="col-md-6">
-      <h2>ALGUNOS EJEMPLOS DE OPORTUNIDADES:</h2>
+      <h2>Ejemplos de oportunidades:</h2>
       <p>1) Empresas De Apoyo:</p>
       <ul>
         <li>Agencias de marketing: Brindan servicios de publicidad, estrategias digitales y gestión de redes sociales.</li>
@@ -16,13 +24,13 @@
     <div class="col-md-6">
       <h2>LISTEMOS ENTRE 3 Y 4 OPORTUNIDADES:</h2>
       <ul>
-        <input type="text" class="form-control" placeholder="Digite aquí">
-        <input type="text" class="form-control" placeholder="Digite aquí">
-        <input type="text" class="form-control" placeholder="Digite aquí">
-        <input type="text" class="form-control" placeholder="Digite aquí">
+        <input type="text" class="form-control" placeholder="Digite aquí" [(ngModel)]="oportunidades1" name="oportunidades1">
+        <input type="text" class="form-control" placeholder="Digite aquí" [(ngModel)]="oportunidades2" name="oportunidades2">
+        <input type="text" class="form-control" placeholder="Digite aquí" [(ngModel)]="oportunidades3" name="oportunidades3">
+        <input type="text" class="form-control" placeholder="Digite aquí" [(ngModel)]="oportunidades4" name="oportunidades4">
       </ul>
-      <button class="btn btn-primary" (click)="estrategiasRoute()">Finalizar</button>
-      <button class="btn btn-success">Guardar y Volver al Menú</button>
+      <button class="btn btn-primary" (click)="terminarRoute()">Finalizar</button>
+      <button class="btn btn-success" (click)="continuarRoute()">Guardar y regresar</button>
     </div>
   </div>
 </div>

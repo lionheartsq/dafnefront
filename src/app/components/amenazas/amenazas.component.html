@@ -1,21 +1,29 @@
 <div class="container">
-  <h1>ALGUNAS AMENAZAS QUE PODEMOS PRESENTAR SON:</h1>
+
+  <br>
+  <span><img src="./assets/iconos/bombilla.svg" style="max-width: 40px; max-height: 40px;" alt="Imagen" class="img-fluid"></span>
+  <span><b style="font-size: 1.8rem;">  Ideación</b></span>
+  <hr>
+  <h1>Algunas amenazas que podemos presentar son:</h1>
+  <img src="./assets/imagenes/separador.jpg" style="max-width: 140px; max-height: 20px;" alt="Imagen" class="img-fluid">
+  <br>
+
   <div class="row">
     <div class="col-md-6">
-      <h2>ALGUNOS EJEMPLOS DE AMENAZAS:</h2>
+      <h2>Ejemplos de amenazas:</h2>
       <p>1) Políticas Desfavorables: Algunos ejemplos de políticas desfavorables podrían incluir un aumento de impuestos para las empresas privadas, restricciones al comercio internacional.</p>
       <p>2) Normas Desfavorables: Pueden incluir restricciones a la inversión extranjera, barreras burocráticas para el registro o la obtención de permisos, reglamentaciones laborales restrictivas.</p>
     </div>
     <div class="col-md-6">
       <h2>LISTEMOS ENTRE 3 Y 4 AMENAZAS:</h2>
       <ul>
-        <input type="text" class="form-control" placeholder="Digite aquí">
-        <input type="text" class="form-control" placeholder="Digite aquí">
-        <input type="text" class="form-control" placeholder="Digite aquí">
-        <input type="text" class="form-control" placeholder="Digite aquí">
+        <input type="text" class="form-control" placeholder="Digite aquí" [(ngModel)]="amenazas1" name="amenazas1">
+        <input type="text" class="form-control" placeholder="Digite aquí" [(ngModel)]="amenazas2" name="amenazas2">
+        <input type="text" class="form-control" placeholder="Digite aquí" [(ngModel)]="amenazas3" name="amenazas3">
+        <input type="text" class="form-control" placeholder="Digite aquí" [(ngModel)]="amenazas4" name="amenazas4">
       </ul>
-      <button class="btn btn-primary" (click)="debilidadesRoute()">Finalizar</button>
-      <button class="btn btn-success">Guardar y Volver al Menú</button>
+      <button class="btn btn-primary" (click)="terminarRoute()">Finalizar</button>
+      <button class="btn btn-success" (click)="continuarRoute()">Guardar y regresar</button>
     </div>
   </div>
 </div>

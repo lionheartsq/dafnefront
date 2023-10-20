@@ -45,6 +45,10 @@ export class MatrizdofaComponent {
   coloro: string="";
   colorf: string="";
   colora: string="";
+  mensajeDebilidades: string="";
+  mensajeOportunidades: string="";
+  mensajeFortalezas: string="";
+  mensajeAmenazas: string="";
 
   constructor(public router:Router, private loginService:LoginService, private utilsService:UtilsService, private route: ActivatedRoute, private dofaService:DofaService) {}
 
@@ -92,38 +96,38 @@ export class MatrizdofaComponent {
         this.amenazasConsolidado=this.amenazas1+"\n"+this.amenazas2+"\n"+this.amenazas3+"\n"+this.amenazas4;
 
         switch(this.avanced){
-          case 0: this.colord="red";
+          case 0: this.colord="red"; this.mensajeDebilidades="No hay debilidades registradas";
             break;
-          case 1: this.colord="orange";
+          case 1: this.colord="orange"; this.mensajeDebilidades="No ha terminado el registro de debilidades";
             break;
-          case 2: this.colord="green";
+          case 2: this.colord="green"; this.mensajeDebilidades="Registro de debilidades completo";
             break;
         }
 
         switch(this.avanceo){
-          case 0: this.coloro="red";
+          case 0: this.coloro="red"; this.mensajeOportunidades="No hay oportunidades registradas";
             break;
-          case 1: this.coloro="orange";
+          case 1: this.coloro="orange"; this.mensajeOportunidades="No ha terminado el registro de oportunidades";
             break;
-          case 2: this.coloro="green";
+          case 2: this.coloro="green"; this.mensajeOportunidades="Registro de oportunidades completo";
             break;
         }
 
         switch(this.avancef){
-          case 0: this.colorf="red";
+          case 0: this.colorf="red"; this.mensajeFortalezas="No hay fortalezas registradas";
             break;
-          case 1: this.colorf="orange";
+          case 1: this.colorf="orange"; this.mensajeFortalezas="No ha terminado el registro de fortalezas";
             break;
-          case 2: this.colorf="green";
+          case 2: this.colorf="green"; this.mensajeFortalezas="Registro de fortalezas completo";
             break;
         }
 
         switch(this.avancea){
-          case 0: this.colora="red";
+          case 0: this.colora="red"; this.mensajeAmenazas="No hay amenazas registradas";
             break;
-          case 1: this.colora="orange";
+          case 1: this.colora="orange"; this.mensajeAmenazas="No ha terminado el registro de amenazas";
             break;
-          case 2: this.colora="green";
+          case 2: this.colora="green"; this.mensajeAmenazas="Registro de amenazas completo";
             break;
         }
       },
