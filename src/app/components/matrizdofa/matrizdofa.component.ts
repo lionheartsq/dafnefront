@@ -24,6 +24,7 @@ export class MatrizdofaComponent {
   idDofa: any="";
   avancef: any="";
   avancea: any="";
+  valorescarga: string="";
 
   constructor(public router:Router, private loginService:LoginService, private utilsService:UtilsService, private route: ActivatedRoute, private dofaService:DofaService) {}
 
@@ -61,122 +62,113 @@ export class MatrizdofaComponent {
   }
 
   uploadDebilidades() {
-    const varDebilidades = {id:this.idDofa, idUsuario:this.idUsuarioCreado, debilidades:this.debilidades, oportunidades:this.oportunidades, fortalezas:this.fortalezas, amenazas:this.amenazas, avanced:this.avanced, avanceo:this.avanceo, avancef:this.avancef, avancea:this.avancea};
-    console.log("Var Debilidades: "+varDebilidades);
-    this.dofaService.enviarValor(varDebilidades).subscribe( (data)=>{
-      Swal.fire(
-        {
-          icon: 'success',
-          title: 'Solicitud enviada',
-          text: 'Debilidades empresa cargadas correctamente',
-          footer: data.message
-        }
-      ).then(() => {
-        //this.router.navigate(['resumen'], { queryParams: { id: this.idUsuarioCreado} } );
-        //
-        window.location.reload();
-      });
-    }, (err) => {
-      //debugger
-      Swal.fire(
-        {
-          icon: 'error',
-          title: 'Error al crear',
-          html: 'Por favor verifique los datos e intente nuevamente',
-          footer: 'No se ha podido completar el registro'
-        }
-      )
-    });
+     this.openPopup("debilidades");
   }
 
   uploadOportunidades() {
-    const varOportunidades = {id:this.idDofa, idUsuario:this.idUsuarioCreado, debilidades:this.debilidades, oportunidades:this.oportunidades, fortalezas:this.fortalezas, amenazas:this.amenazas, avanced:this.avanced, avanceo:this.avanceo, avancef:this.avancef, avancea:this.avancea};
-    console.log("Var Oportunidades: "+varOportunidades);
-    this.dofaService.enviarValor(varOportunidades).subscribe( (data)=>{
-      Swal.fire(
-        {
-          icon: 'success',
-          title: 'Solicitud enviada',
-          text: 'Oportunidades empresa cargadas correctamente',
-          footer: data.message
-        }
-      ).then(() => {
-        //this.router.navigate(['resumen'], { queryParams: { id: this.idUsuarioCreado} } );
-        //
-        window.location.reload();
-      });
-    }, (err) => {
-      //debugger
-      Swal.fire(
-        {
-          icon: 'error',
-          title: 'Error al crear',
-          html: 'Por favor verifique los datos e intente nuevamente',
-          footer: 'No se ha podido completar el registro'
-        }
-      )
-    });
+    this.openPopup("oportunidades");
   }
 
   uploadFortalezas() {
-    const varFortalezas = {id:this.idDofa, idUsuario:this.idUsuarioCreado, debilidades:this.debilidades, oportunidades:this.oportunidades, fortalezas:this.fortalezas, amenazas:this.amenazas, avanced:this.avanced, avanceo:this.avanceo, avancef:this.avancef, avancea:this.avancea};
-    console.log("Var Fortalezas: "+varFortalezas);
-    this.dofaService.enviarValor(varFortalezas).subscribe( (data)=>{
-      Swal.fire(
-        {
-          icon: 'success',
-          title: 'Solicitud enviada',
-          text: 'Fortalezas empresa cargadas correctamente',
-          footer: data.message
-        }
-      ).then(() => {
-        //this.router.navigate(['resumen'], { queryParams: { id: this.idUsuarioCreado} } );
-        //
-        window.location.reload();
-      });
-    }, (err) => {
-      //debugger
-      Swal.fire(
-        {
-          icon: 'error',
-          title: 'Error al crear',
-          html: 'Por favor verifique los datos e intente nuevamente',
-          footer: 'No se ha podido completar el registro'
-        }
-      )
-    });
+    this.openPopup("fortalezas");
   }
 
   uploadAmenazas() {
-    const varAmenazas = {id:this.idDofa, idUsuario:this.idUsuarioCreado, debilidades:this.debilidades, oportunidades:this.oportunidades, fortalezas:this.fortalezas, amenazas:this.amenazas, avanced:this.avanced, avanceo:this.avanceo, avancef:this.avancef, avancea:this.avancea};
-    console.log("Var Amenazas: "+varAmenazas);
-    this.dofaService.enviarValor(varAmenazas).subscribe( (data)=>{
-      Swal.fire(
-        {
-          icon: 'success',
-          title: 'Solicitud enviada',
-          text: 'Amenazas empresa cargadas correctamente',
-          footer: data.message
-        }
-      ).then(() => {
-        //this.router.navigate(['resumen'], { queryParams: { id: this.idUsuarioCreado} } );
-        //
-        window.location.reload();
-      });
-    }, (err) => {
-      //debugger
-      Swal.fire(
-        {
-          icon: 'error',
-          title: 'Error al crear',
-          html: 'Por favor verifique los datos e intente nuevamente',
-          footer: 'No se ha podido completar el registro'
-        }
-      )
-    });
+    this.openPopup("amenazas");
+  }
+
+
+  openPopup(mensaje:String) {
+    switch(mensaje) {
+      case "debilidades": {
+         this.valorescarga=this.debilidades;
+         break;
+      }
+      case "oportunidades": {
+        this.valorescarga=this.oportunidades;
+        break;
+      }
+      case "fortalezas": {
+        this.valorescarga=this.fortalezas;
+        break;
+     }
+     case "amenazas": {
+        this.valorescarga=this.amenazas;
+        break;
+     }
+      default: {
+         //statements;
+         break;
+      }
+   }
+    Swal.fire({
+      title: 'Ingresa las '+mensaje+' a registrar:',
+      html:
+        '<input type="text" id="criterionuevo" class="swal2-input" placeholder="Valor a ingresar" value="'+this.valorescarga+'" required>',
+      showCancelButton: true,
+      confirmButtonText: 'Guardar',
+      preConfirm: () => {
+        // Obtener el valor del input
+        const criterionuevo = (document.getElementById('criterionuevo') as HTMLInputElement).value;
+        switch(mensaje) {
+          case "debilidades": {
+            this.debilidades=criterionuevo;
+             break;
+          }
+          case "oportunidades": {
+            this.oportunidades=criterionuevo;
+            break;
+          }
+          case "fortalezas": {
+            this.fortalezas=criterionuevo;
+            break;
+         }
+         case "amenazas": {
+            this.amenazas=criterionuevo;
+            break;
+         }
+          default: {
+             //statements;
+             break;
+          }
+       }
+        // Realizar aquí las acciones necesarias con el valor ingresado
+        const varMensaje = {id:this.idDofa, idUsuario:this.idUsuarioCreado, debilidades:this.debilidades, oportunidades:this.oportunidades, fortalezas:this.fortalezas, amenazas:this.amenazas, avanced:this.avanced, avanceo:this.avanceo, avancef:this.avancef, avancea:this.avancea};
+        console.log("Var "+mensaje+": "+varMensaje);
+
+        this.dofaService.enviarValor(varMensaje).subscribe( (data)=>{
+          Swal.fire(
+            {
+              icon: 'success',
+              title: 'Solicitud enviada',
+              text: mensaje+' empresa cargadas correctamente',
+              footer: data.message
+            }
+          ).then(() => {
+            //this.router.navigate(['resumen'], { queryParams: { id: this.idUsuarioCreado} } );
+            //
+            window.location.reload();
+          });
+        }, (err) => {
+          //debugger
+          Swal.fire(
+            {
+              icon: 'error',
+              title: 'Error al crear',
+              html: 'Por favor verifique los datos e intente nuevamente',
+              footer: 'No se ha podido completar el registro'
+            }
+          )
+        });
+      }
+    })
   }
 
   amenazasRoute(){
     this.router.navigate(['amenazas']);
+  }
+
+  homeRoute(){
+    this.router.navigate(['home']);
   }
 }

@@ -9,22 +9,26 @@
   <br>
 
   <div class="row">
-    <div class="col-md-6">
+    <div class="col-md-8">
       <table class="table">
         <tr>
           <p>D</p>
           <td>
             <form (submit)="uploadDebilidades()">
-              <textarea cols="40" rows="5" [(ngModel)]="debilidades" name="debilidades">
-              </textarea><br>
+              <span><p>
+                {{this.debilidades}}
+              </p>
+              </span><br>
               <button class="step-button" type="submit">Cargar Debilidades</button>
             </form>
           </td>
           <p>O</p>
           <td>
             <form (submit)="uploadOportunidades()">
-              <textarea cols="40" rows="5" [(ngModel)]="oportunidades" name="oportunidades">
-              </textarea><br>
+              <span><p>
+                {{this.oportunidades}}
+              </p>
+              </span><br>
               <button class="step-button" type="submit">Cargar Oportunidades</button>
             </form>
           </td>
@@ -33,16 +37,20 @@
           <p>F</p>
           <td>
             <form (submit)="uploadFortalezas()">
-              <textarea cols="40" rows="5" [(ngModel)]="fortalezas" name="fortalezas">
-              </textarea><br>
+              <span><p>
+                {{this.fortalezas}}
+              </p>
+              </span><br>
               <button class="step-button" type="submit">Cargar Fortalezas</button>
             </form>
           </td>
           <p>A</p>
           <td>
             <form (submit)="uploadAmenazas()">
-              <textarea cols="40" rows="5" [(ngModel)]="amenazas" name="amenazas">
-              </textarea><br>
+              <span><p>
+                {{this.amenazas}}
+              </p>
+              </span><br>
               <button class="step-button" type="submit">Cargar Amenazas</button>
             </form>
           </td>
@@ -50,13 +58,13 @@
       </table>
       <button class="btn btn-primary">Ver Matriz DOFA</button>
     </div>
-    <div class="col-md-6">
+    <div class="col-md-4">
       <p>Debilidades (D): Representan aspectos internos negativos que limitan el desempeño o el crecimiento...</p>
       <p>Oportunidades (O): Son situaciones externas favorables que pueden ser aprovechadas por el emprendimiento...</p>
       <p>Fortalezas (F): Son aspectos internos positivos que brindan una ventaja competitiva al emprendimiento...</p>
       <p>Amenazas (A): Representan factores externos negativos que pueden afectar negativamente al emprendimiento...</p>
       <button class="btn btn-primary" (click)="amenazasRoute()">Finalizar</button>
-      <button class="btn btn-success">Guardar y Volver al Menú</button>
+      <button class="btn btn-success" (click)="amenazasRoute()">Guardar y Volver al Menú</button>
     </div>
   </div>
 </div>
