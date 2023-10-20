@@ -11,22 +11,19 @@
   <div class="row">
     <div class="col-md-6">
       <h2>Ejemplos de oportunidades:</h2>
-      <p>1) Empresas De Apoyo:</p>
       <ul>
-        <li>Agencias de marketing: Brindan servicios de publicidad, estrategias digitales y gestión de redes sociales.</li>
-        <li>Consultorías empresariales: Ofrecen asesoramiento y recomendaciones para mejorar la eficiencia y rentabilidad de una empresa.</li>
-      </ul>
-      <p>2) Instituciones De Apoyo:</p>
-      <ul>
-        <li>Centros de formación y capacitación: Ofrecen programas de aprendizaje y desarrollo profesional.</li>
+        <li>Tecnologías Disponibles.</li>
+        <li>Inversionistas- Socios.</li>
+        <li>Leyes- Decretos- Normas favorables.</li>
+        <li>Aliados.</li>
       </ul>
     </div>
     <div class="col-md-6">
       <h2>LISTEMOS ENTRE 3 Y 4 OPORTUNIDADES:</h2>
       <ul>
-        <input type="text" class="form-control" placeholder="Digite aquí" [(ngModel)]="oportunidades1" name="oportunidades1">
-        <input type="text" class="form-control" placeholder="Digite aquí" [(ngModel)]="oportunidades2" name="oportunidades2">
-        <input type="text" class="form-control" placeholder="Digite aquí" [(ngModel)]="oportunidades3" name="oportunidades3">
+        <input type="text" class="form-control" placeholder="Digite aquí" [(ngModel)]="oportunidades1" name="oportunidades1" required>
+        <input type="text" class="form-control" placeholder="Digite aquí" [(ngModel)]="oportunidades2" name="oportunidades2" required>
+        <input type="text" class="form-control" placeholder="Digite aquí" [(ngModel)]="oportunidades3" name="oportunidades3" required>
         <input type="text" class="form-control" placeholder="Digite aquí" [(ngModel)]="oportunidades4" name="oportunidades4">
       </ul>
       <button class="btn btn-primary" (click)="terminarRoute()">Finalizar</button>

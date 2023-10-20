@@ -11,15 +11,19 @@
   <div class="row">
     <div class="col-md-6">
       <h2>Ejemplos de amenazas:</h2>
-      <p>1) Políticas Desfavorables: Algunos ejemplos de políticas desfavorables podrían incluir un aumento de impuestos para las empresas privadas, restricciones al comercio internacional.</p>
-      <p>2) Normas Desfavorables: Pueden incluir restricciones a la inversión extranjera, barreras burocráticas para el registro o la obtención de permisos, reglamentaciones laborales restrictivas.</p>
+      <ul>
+        <li>Amenazas Sociales</li>
+        <li>Amenazas Económicas</li>
+        <li>Competencia.</li>
+        <li>Impuestos Desfavorables.</li>
+      </ul>
     </div>
     <div class="col-md-6">
       <h2>LISTEMOS ENTRE 3 Y 4 AMENAZAS:</h2>
       <ul>
-        <input type="text" class="form-control" placeholder="Digite aquí" [(ngModel)]="amenazas1" name="amenazas1">
-        <input type="text" class="form-control" placeholder="Digite aquí" [(ngModel)]="amenazas2" name="amenazas2">
-        <input type="text" class="form-control" placeholder="Digite aquí" [(ngModel)]="amenazas3" name="amenazas3">
+        <input type="text" class="form-control" placeholder="Digite aquí" [(ngModel)]="amenazas1" name="amenazas1" required>
+        <input type="text" class="form-control" placeholder="Digite aquí" [(ngModel)]="amenazas2" name="amenazas2" required>
+        <input type="text" class="form-control" placeholder="Digite aquí" [(ngModel)]="amenazas3" name="amenazas3" required>
         <input type="text" class="form-control" placeholder="Digite aquí" [(ngModel)]="amenazas4" name="amenazas4">
       </ul>
       <button class="btn btn-primary" (click)="terminarRoute()">Finalizar</button>
