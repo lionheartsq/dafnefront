@@ -49,6 +49,7 @@ export class MatrizdofaComponent {
   mensajeOportunidades: string="";
   mensajeFortalezas: string="";
   mensajeAmenazas: string="";
+  totalavance: number=0;
 
   constructor(public router:Router, private loginService:LoginService, private utilsService:UtilsService, private route: ActivatedRoute, private dofaService:DofaService) {}
 
@@ -88,6 +89,7 @@ export class MatrizdofaComponent {
           this.avanceo=this.arrayDofa[dato].avanceo;
           this.avancef=this.arrayDofa[dato].avancef;
           this.avancea=this.arrayDofa[dato].avancea;
+          this.totalavance=parseInt(this.avanced.toString(), 10)+parseInt(this.avanceo.toString(), 10)+parseInt(this.avancef.toString(), 10)+parseInt(this.avancea.toString(), 10);
         }
         //console.log("Actual idEmpresa: "+this.idEmpresa);
         this.debilidadesConsolidado=this.debilidades1+"\n"+this.debilidades2+"\n"+this.debilidades3+"\n"+this.debilidades4;

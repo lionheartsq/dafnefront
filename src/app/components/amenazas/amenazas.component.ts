@@ -116,7 +116,7 @@ export class AmenazasComponent {
       });
     } else {
       this.flag=1;
-      this.avanced=2;
+      this.avancea=2;
       const varMensaje = {id:this.idDofa, idUsuario:this.idUsuarioCreado, debilidades1:this.debilidades1, debilidades2:this.debilidades2, debilidades3:this.debilidades3, debilidades4:this.debilidades4,
         oportunidades1:this.oportunidades1, oportunidades2:this.oportunidades2, oportunidades3:this.oportunidades3, oportunidades4:this.oportunidades4, fortalezas1:this.fortalezas1, fortalezas2:this.fortalezas2, fortalezas3:this.fortalezas3, fortalezas4:this.fortalezas4,
         amenazas1:this.amenazas1, amenazas2:this.amenazas2, amenazas3:this.amenazas3, amenazas4:this.amenazas4, avanced:this.avanced, avanceo:this.avanceo, avancef:this.avancef, avancea:this.avancea};
@@ -178,7 +178,7 @@ export class AmenazasComponent {
       });
     } else {
       this.flag=1;
-      this.avanced=1;
+      this.avancea=1;
       const varMensaje = {id:this.idDofa, idUsuario:this.idUsuarioCreado, debilidades1:this.debilidades1, debilidades2:this.debilidades2, debilidades3:this.debilidades3, debilidades4:this.debilidades4,
         oportunidades1:this.oportunidades1, oportunidades2:this.oportunidades2, oportunidades3:this.oportunidades3, oportunidades4:this.oportunidades4, fortalezas1:this.fortalezas1, fortalezas2:this.fortalezas2, fortalezas3:this.fortalezas3, fortalezas4:this.fortalezas4,
         amenazas1:this.amenazas1, amenazas2:this.amenazas2, amenazas3:this.amenazas3, amenazas4:this.amenazas4, avanced:this.avanced, avanceo:this.avanceo, avancef:this.avancef, avancea:this.avancea};
