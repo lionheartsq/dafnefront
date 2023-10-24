@@ -73,6 +73,15 @@ export class ResumenComponent {
   }
 
   uploadImage() {
+    const varNuevaEmpresa = {id:this.idEmpresa, idUsuario:this.idUsuarioCreado, nombreIdea:this.nombreIdea, nombreEmpresa:this.nombreEmpresa, mision:this.mision, vision:this.vision, slogan:this.slogan, logo:this.logo};
+    console.log("Var nuevaEmpresa: "+varNuevaEmpresa);
+    this.resumenempresaService.actualizarEmpresa(varNuevaEmpresa).subscribe( (data)=>{
+      console.log("Var nuevaEmpresa lanzada: "+varNuevaEmpresa);
+    }, (err) => {
+      //debugger
+      console.log("Error cargando objeto: "+varNuevaEmpresa);
+    });
+
     if (this.selectedImage) {
       const formData = new FormData();
       formData.append('image', this.selectedImage);

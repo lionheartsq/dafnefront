@@ -60,14 +60,14 @@
           </td>
         </tr>
       </table>
-      <button class="btn btn-primary" (click)="matrizRoute()">Ver Matriz DOFA</button>
+      <button  class="plus-button" (click)="matrizRoute()">Ver Matriz DOFA</button>
     </div>
     <div class="col-md-5">
       <p>Debilidades (D): Representan aspectos internos negativos que limitan el desempeño o el crecimiento...</p>
       <p>Oportunidades (O): Son situaciones externas favorables que pueden ser aprovechadas por el emprendimiento...</p>
       <p>Fortalezas (F): Son aspectos internos positivos que brindan una ventaja competitiva al emprendimiento...</p>
       <p>Amenazas (A): Representan factores externos negativos que pueden afectar negativamente al emprendimiento...</p>
-      <button class="btn btn-primary" (click)="canvasRoute()" *ngIf="this.totalavance>7">Finalizar</button>
+      <button  class="ideacion-button" (click)="canvasRoute()" *ngIf="this.totalavance>7">Finalizar</button>
     </div>
   </div>
 </div>

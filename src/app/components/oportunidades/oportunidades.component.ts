@@ -38,6 +38,7 @@ export class OportunidadesComponent {
   avancef: number=0;
   avancea: number=0;
   flag: number=0;
+  totalavance: number=0;
 
   constructor(public router:Router, private loginService:LoginService, private utilsService:UtilsService, private route: ActivatedRoute, private dofaService:DofaService) {}
 
@@ -57,26 +58,27 @@ export class OportunidadesComponent {
         this.arrayDofa=data.matriz_dofa;
         for (let dato in this.arrayDofa){
           this.idDofa=this.arrayDofa[dato].id;
-          this.debilidades1=this.arrayDofa[dato].debilidades1;
-          this.oportunidades1=this.arrayDofa[dato].oportunidades1;
-          this.fortalezas1=this.arrayDofa[dato].fortalezas1;
-          this.amenazas1=this.arrayDofa[dato].amenazas1;
-          this.debilidades2=this.arrayDofa[dato].debilidades2;
-          this.oportunidades2=this.arrayDofa[dato].oportunidades2;
-          this.fortalezas2=this.arrayDofa[dato].fortalezas2;
-          this.amenazas2=this.arrayDofa[dato].amenazas2;
-          this.debilidades3=this.arrayDofa[dato].debilidades3;
-          this.oportunidades3=this.arrayDofa[dato].oportunidades3;
-          this.fortalezas3=this.arrayDofa[dato].fortalezas3;
-          this.amenazas3=this.arrayDofa[dato].amenazas3;
-          this.debilidades4=this.arrayDofa[dato].debilidades4;
-          this.oportunidades4=this.arrayDofa[dato].oportunidades4;
-          this.fortalezas4=this.arrayDofa[dato].fortalezas4;
-          this.amenazas4=this.arrayDofa[dato].amenazas4;
+          this.debilidades1 = this.arrayDofa[dato].debilidades1 == null ? "" : this.arrayDofa[dato].debilidades1;
+          this.oportunidades1 = this.arrayDofa[dato].oportunidades1 == null ? "" : this.arrayDofa[dato].oportunidades1;
+          this.fortalezas1 = this.arrayDofa[dato].fortalezas1 == null ? "" : this.arrayDofa[dato].fortalezas1;
+          this.amenazas1 = this.arrayDofa[dato].amenazas1 == null ? "" : this.arrayDofa[dato].amenazas1;
+          this.debilidades2 = this.arrayDofa[dato].debilidades2 == null ? "" : this.arrayDofa[dato].debilidades2;
+          this.oportunidades2 = this.arrayDofa[dato].oportunidades2 == null ? "" : this.arrayDofa[dato].oportunidades2;
+          this.fortalezas2 = this.arrayDofa[dato].fortalezas2 == null ? "" : this.arrayDofa[dato].fortalezas2;
+          this.amenazas2 = this.arrayDofa[dato].amenazas2 == null ? "" : this.arrayDofa[dato].amenazas2;
+          this.debilidades3 = this.arrayDofa[dato].debilidades3 == null ? "" : this.arrayDofa[dato].debilidades3;
+          this.oportunidades3 = this.arrayDofa[dato].oportunidades3 == null ? "" : this.arrayDofa[dato].oportunidades3;
+          this.fortalezas3 = this.arrayDofa[dato].fortalezas3 == null ? "" : this.arrayDofa[dato].fortalezas3;
+          this.amenazas3 = this.arrayDofa[dato].amenazas3 == null ? "" : this.arrayDofa[dato].amenazas3;
+          this.debilidades4 = this.arrayDofa[dato].debilidades4 == null ? "" : this.arrayDofa[dato].debilidades4;
+          this.oportunidades4 = this.arrayDofa[dato].oportunidades4 == null ? "" : this.arrayDofa[dato].oportunidades4;
+          this.fortalezas4 = this.arrayDofa[dato].fortalezas4 == null ? "" : this.arrayDofa[dato].fortalezas4;
+          this.amenazas4 = this.arrayDofa[dato].amenazas4 == null ? "" : this.arrayDofa[dato].amenazas4;
           this.avanced=this.arrayDofa[dato].avanced;
           this.avanceo=this.arrayDofa[dato].avanceo;
           this.avancef=this.arrayDofa[dato].avancef;
           this.avancea=this.arrayDofa[dato].avancea;
+          this.totalavance=parseInt(this.avanced.toString(), 10)+parseInt(this.avanceo.toString(), 10)+parseInt(this.avancef.toString(), 10)+parseInt(this.avancea.toString(), 10);
         }
         //console.log("Actual idEmpresa: "+this.idEmpresa);
       },

@@ -22,6 +22,38 @@ export class DofaService {
 
   private endpointUpdateDofa='api/auth/matriz_dofa/update';
 
+  private endpointSaveFvsO='api/auth/matriz_dofa/store';
+
+  private endpointFvsOGeneral='api/auth/matriz_dofa';
+
+  private endpointFvsOPropio='api/auth/matriz_dofa/selectmatriz_dofa';
+
+  private endpointUpdateFvsO='api/auth/matriz_dofa/update';
+
+  private endpointSaveFvsA='api/auth/matriz_dofa/store';
+
+  private endpointFvsAGeneral='api/auth/matriz_dofa';
+
+  private endpointFvsAPropio='api/auth/matriz_dofa/selectmatriz_dofa';
+
+  private endpointUpdateFvsA='api/auth/matriz_dofa/update';
+
+  private endpointSaveDvsO='api/auth/matriz_dofa/store';
+
+  private endpointDvsOGeneral='api/auth/matriz_dofa';
+
+  private endpointDvsOPropio='api/auth/matriz_dofa/selectmatriz_dofa';
+
+  private endpointUpdateDvsO='api/auth/matriz_dofa/update';
+
+  private endpointSaveDvsA='api/auth/matriz_dofa/store';
+
+  private endpointDvsAGeneral='api/auth/matriz_dofa';
+
+  private endpointDvsAPropio='api/auth/matriz_dofa/selectmatriz_dofa';
+
+  private endpointUpdateDvsA='api/auth/matriz_dofa/update';
+
   constructor(private httpClient: HttpClient) { }
 
   public crearDofa(user: any): Observable<any>{

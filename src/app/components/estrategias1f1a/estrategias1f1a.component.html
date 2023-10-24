@@ -4,8 +4,12 @@
   <input type="text" id="realizara" class="form-control" placeholder="Digite aquí">
   <label for="aliados">QUE ALIADOS TENDRÁ:</label>
   <input type="text" id="aliados" class="form-control" placeholder="Digite aquí">
-  <label for="inicio">CUANDO VA A INICIAR:</label>
-  <input type="date" id="inicio" class="form-control">
-  <button class="btn btn-primary" (click)="estrategias2d2aRoute()">Finalizar</button>
-  <button class="btn btn-success">Guardar y Volver al Menú</button>
+  <div class="row">
+    <div class="col-md-6">
+      <button class="ideacion-button" (click)="estrategias2d2aRoute()">Finalizar</button>
+    </div>
+    <div class="col-md-6">
+      <button class="plus-button" (click)="partialSaveRoute()">Guardar y Volver al Menú</button>
+    </div>
+  </div>
 </div>

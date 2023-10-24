@@ -69,22 +69,22 @@ export class MatrizdofaComponent {
         this.arrayDofa=data.matriz_dofa;
         for (let dato in this.arrayDofa){
           this.idDofa=this.arrayDofa[dato].id;
-          this.debilidades1=this.arrayDofa[dato].debilidades1;
-          this.oportunidades1=this.arrayDofa[dato].oportunidades1;
-          this.fortalezas1=this.arrayDofa[dato].fortalezas1;
-          this.amenazas1=this.arrayDofa[dato].amenazas1;
-          this.debilidades2=this.arrayDofa[dato].debilidades2;
-          this.oportunidades2=this.arrayDofa[dato].oportunidades2;
-          this.fortalezas2=this.arrayDofa[dato].fortalezas2;
-          this.amenazas2=this.arrayDofa[dato].amenazas2;
-          this.debilidades3=this.arrayDofa[dato].debilidades3;
-          this.oportunidades3=this.arrayDofa[dato].oportunidades3;
-          this.fortalezas3=this.arrayDofa[dato].fortalezas3;
-          this.amenazas3=this.arrayDofa[dato].amenazas3;
-          this.debilidades4=this.arrayDofa[dato].debilidades4;
-          this.oportunidades4=this.arrayDofa[dato].oportunidades4;
-          this.fortalezas4=this.arrayDofa[dato].fortalezas4;
-          this.amenazas4=this.arrayDofa[dato].amenazas4;
+          this.debilidades1 = this.arrayDofa[dato].debilidades1 == null ? "" : this.arrayDofa[dato].debilidades1;
+          this.oportunidades1 = this.arrayDofa[dato].oportunidades1 == null ? "" : this.arrayDofa[dato].oportunidades1;
+          this.fortalezas1 = this.arrayDofa[dato].fortalezas1 == null ? "" : this.arrayDofa[dato].fortalezas1;
+          this.amenazas1 = this.arrayDofa[dato].amenazas1 == null ? "" : this.arrayDofa[dato].amenazas1;
+          this.debilidades2 = this.arrayDofa[dato].debilidades2 == null ? "" : this.arrayDofa[dato].debilidades2;
+          this.oportunidades2 = this.arrayDofa[dato].oportunidades2 == null ? "" : this.arrayDofa[dato].oportunidades2;
+          this.fortalezas2 = this.arrayDofa[dato].fortalezas2 == null ? "" : this.arrayDofa[dato].fortalezas2;
+          this.amenazas2 = this.arrayDofa[dato].amenazas2 == null ? "" : this.arrayDofa[dato].amenazas2;
+          this.debilidades3 = this.arrayDofa[dato].debilidades3 == null ? "" : this.arrayDofa[dato].debilidades3;
+          this.oportunidades3 = this.arrayDofa[dato].oportunidades3 == null ? "" : this.arrayDofa[dato].oportunidades3;
+          this.fortalezas3 = this.arrayDofa[dato].fortalezas3 == null ? "" : this.arrayDofa[dato].fortalezas3;
+          this.amenazas3 = this.arrayDofa[dato].amenazas3 == null ? "" : this.arrayDofa[dato].amenazas3;
+          this.debilidades4 = this.arrayDofa[dato].debilidades4 == null ? "" : this.arrayDofa[dato].debilidades4;
+          this.oportunidades4 = this.arrayDofa[dato].oportunidades4 == null ? "" : this.arrayDofa[dato].oportunidades4;
+          this.fortalezas4 = this.arrayDofa[dato].fortalezas4 == null ? "" : this.arrayDofa[dato].fortalezas4;
+          this.amenazas4 = this.arrayDofa[dato].amenazas4 == null ? "" : this.arrayDofa[dato].amenazas4;
           this.avanced=this.arrayDofa[dato].avanced;
           this.avanceo=this.arrayDofa[dato].avanceo;
           this.avancef=this.arrayDofa[dato].avancef;
@@ -98,38 +98,38 @@ export class MatrizdofaComponent {
         this.amenazasConsolidado=this.amenazas1+"\n"+this.amenazas2+"\n"+this.amenazas3+"\n"+this.amenazas4;
 
         switch(this.avanced){
-          case 0: this.colord="red"; this.mensajeDebilidades="No hay debilidades registradas";
+          case 0: this.colord="#E74C3C"; this.mensajeDebilidades="No hay debilidades registradas";
             break;
-          case 1: this.colord="orange"; this.mensajeDebilidades="No ha terminado el registro de debilidades";
+          case 1: this.colord="#F4D03F"; this.mensajeDebilidades="No ha terminado el registro de debilidades";
             break;
-          case 2: this.colord="green"; this.mensajeDebilidades="Registro de debilidades completo";
+          case 2: this.colord="#229954"; this.mensajeDebilidades="Registro de debilidades completo";
             break;
         }
 
         switch(this.avanceo){
-          case 0: this.coloro="red"; this.mensajeOportunidades="No hay oportunidades registradas";
+          case 0: this.coloro="#E74C3C"; this.mensajeOportunidades="No hay oportunidades registradas";
             break;
-          case 1: this.coloro="orange"; this.mensajeOportunidades="No ha terminado el registro de oportunidades";
+          case 1: this.coloro="#F4D03F"; this.mensajeOportunidades="No ha terminado el registro de oportunidades";
             break;
-          case 2: this.coloro="green"; this.mensajeOportunidades="Registro de oportunidades completo";
+          case 2: this.coloro="#229954"; this.mensajeOportunidades="Registro de oportunidades completo";
             break;
         }
 
         switch(this.avancef){
-          case 0: this.colorf="red"; this.mensajeFortalezas="No hay fortalezas registradas";
+          case 0: this.colorf="#E74C3C"; this.mensajeFortalezas="No hay fortalezas registradas";
             break;
-          case 1: this.colorf="orange"; this.mensajeFortalezas="No ha terminado el registro de fortalezas";
+          case 1: this.colorf="#F4D03F"; this.mensajeFortalezas="No ha terminado el registro de fortalezas";
             break;
-          case 2: this.colorf="green"; this.mensajeFortalezas="Registro de fortalezas completo";
+          case 2: this.colorf="#229954"; this.mensajeFortalezas="Registro de fortalezas completo";
             break;
         }
 
         switch(this.avancea){
-          case 0: this.colora="red"; this.mensajeAmenazas="No hay amenazas registradas";
+          case 0: this.colora="#E74C3C"; this.mensajeAmenazas="No hay amenazas registradas";
             break;
-          case 1: this.colora="orange"; this.mensajeAmenazas="No ha terminado el registro de amenazas";
+          case 1: this.colora="#F4D03F"; this.mensajeAmenazas="No ha terminado el registro de amenazas";
             break;
-          case 2: this.colora="green"; this.mensajeAmenazas="Registro de amenazas completo";
+          case 2: this.colora="#229954"; this.mensajeAmenazas="Registro de amenazas completo";
             break;
         }
       },
@@ -214,11 +214,12 @@ export class MatrizdofaComponent {
     }
 
   matrizRoute() {
-    this.openPopup();
+    //this.openPopup();
+    this.router.navigate(['vistadofa'], { queryParams: { id: this.idUsuarioCreado} } );
   }
 
   canvasRoute() {
     //this.openPopup("fortalezas");
-    this.router.navigate(['canvas'], { queryParams: { id: this.idUsuarioCreado} } );
+    this.router.navigate(['estrategias1f10'], { queryParams: { id: this.idUsuarioCreado} } );
   }
 }

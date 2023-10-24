@@ -1,0 +1,55 @@
+<div class="container">
+
+  <br>
+  <span><img src="./assets/iconos/bombilla.svg" style="max-width: 40px; max-height: 40px;" alt="Imagen" class="img-fluid"></span>
+  <span><b style="font-size: 1.8rem;">  Ideación</b></span>
+  <hr>
+  <h1>Matriz Dofa</h1>
+  <img src="./assets/imagenes/separador.jpg" style="max-width: 140px; max-height: 20px;" alt="Imagen" class="img-fluid">
+  <br>
+
+  <div class="row">
+    <div class="col-xs-6 col-md-12">
+      <table class="table bordered-table">
+        <tr>
+          <p>D</p>
+          <td>
+            <mat-card class="example-card" style="background-color: #FADBD8;">
+              <mat-card-content>
+                <p class="avance">{{this.debilidadesConsolidado}}</p>
+              </mat-card-content>
+            </mat-card>
+          </td>
+          <p>O</p>
+          <td>
+            <mat-card class="example-card" style="background-color: #D1F2EB;">
+              <mat-card-content>
+                <p class="avance">{{this.oportunidadesConsolidado}}</p>
+              </mat-card-content>
+            </mat-card>
+          </td>
+        </tr>
+        <tr>
+          <p>F</p>
+          <td>
+            <mat-card class="example-card" style="background-color: #D7BDE2;">
+              <mat-card-content>
+                <p class="avance">{{this.fortalezasConsolidado}}</p>
+              </mat-card-content>
+            </mat-card>
+          </td>
+          <p>A</p>
+          <td>
+            <mat-card class="example-card" style="background-color: #FDEBD0;">
+              <mat-card-content>
+                <p class="avance">{{this.amenazasConsolidado}}</p>
+              </mat-card-content>
+            </mat-card>
+          </td>
+        </tr>
+      </table>
+      <button class="plus-button" (click)="matrizRoute()">Regresar</button>
+    </div>
+  </div>
+</div>
+
