@@ -28,7 +28,7 @@ export class Estrategias1f10Component {
   }
 
   cargarDatosEstrategias(idUsuario:any){
-    this.dofaService.lecturaDofaPropio(idUsuario).subscribe(
+    this.dofaService.lecturaFOPropio(idUsuario).subscribe(
       (data) => {
         //
         this.arrayDofa=data.matriz_dofa;

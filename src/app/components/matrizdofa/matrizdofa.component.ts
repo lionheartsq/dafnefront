@@ -220,6 +220,6 @@ export class MatrizdofaComponent {
 
   canvasRoute() {
     //this.openPopup("fortalezas");
-    this.router.navigate(['estrategias1f10'], { queryParams: { id: this.idUsuarioCreado} } );
+    this.router.navigate(['estrategias'], { queryParams: { id: this.idUsuarioCreado} } );
   }
 }

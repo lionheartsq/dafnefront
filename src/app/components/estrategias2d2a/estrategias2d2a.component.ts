@@ -29,7 +29,7 @@ export class Estrategias2d2aComponent {
   }
 
   cargarDatosEstrategias(idUsuario:any){
-    this.dofaService.lecturaDofaPropio(idUsuario).subscribe(
+    this.dofaService.lecturaDAPropio(idUsuario).subscribe(
       (data) => {
         //
         this.arrayDofa=data.matriz_dofa;
