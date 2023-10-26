@@ -104,3 +104,22 @@ h2 {
 .card-header h2 {
   margin-top: 10px; /* Espacio entre el icono y el título */
 }
+
+.parrafo{
+  margin-bottom: 1vw;
+}
+
+@media (max-width:767px){
+
+  .tarjeta-resumen{
+    margin-bottom: 5.8vw;
+  }
+
+  .parrafo{
+    margin-bottom: 2vw;
+  }
+
+  .perfilemprendedor{
+    margin-bottom: 5vw;
+  }
+}

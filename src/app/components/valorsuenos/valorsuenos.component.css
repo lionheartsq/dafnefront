@@ -63,3 +63,14 @@ display: inline-block;
   border-radius: 4px;
   border: 1px solid #ccc;
 }
+
+@media (max-width:767px){
+  
+  #img-valorsuenos{
+    margin-left: 23vw;
+    padding-top: 5vw;
+    margin-bottom: 0;
+    height: 100vw;
+    
+  }
+}

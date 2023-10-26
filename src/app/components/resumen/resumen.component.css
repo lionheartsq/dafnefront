@@ -1,5 +1,6 @@
 .container {
   margin-top: 20px;
+  margin-bottom: 2vw;
 }
 
 h1 {
@@ -24,4 +25,56 @@ h2 {
   background: #F5F5F5 0% 0% no-repeat padding-box;
   border-radius: 4px;
   border: 1px solid #ccc;
+}
+
+textarea{
+  width: 45vw;
+  height: 17vw;
+}
+
+@media (max-width:767px){
+  .container {
+    margin-top: 20px;
+  }
+  
+  h1 {
+    text-align: left;
+  }
+  
+  h2 {
+    font-size: 0.9rem;
+    white-space: nowrap;
+    margin-top: 6vw;
+    font-weight: bold;
+  }
+  
+  .ideacion-button {
+    margin-top: 10px;
+    margin-bottom: 6vw;
+    padding: 8px;
+    background: #FFD401 0% 0% no-repeat padding-box;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+  }
+  
+  .step-button {
+    margin-top: 10px;
+    padding: 8px;
+    background: #F5F5F5 0% 0% no-repeat padding-box;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+  }
+
+  textarea{
+    width: 90vw;
+    height: 40vw;
+  }
+
+  #img-resumen{
+    margin-bottom: 3vw;
+  }
+
+  #btn-imagen{
+    margin-bottom: 5vw;
+  }
 }

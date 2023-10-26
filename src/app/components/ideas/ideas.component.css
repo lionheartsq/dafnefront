@@ -23,3 +23,43 @@ h1 {
   border-radius: 4px;
   border: 1px solid #ccc;
 }
+
+.container{
+  overflow-y: hidden;
+}
+
+@media (max-width:767px){
+
+  .img-fluid {
+    height: 100%;
+    width: 100%;
+  }
+  
+  h1 {
+    text-align: left;
+  }
+  
+  .ideacion-button {
+    margin-top: 10px;
+    padding: 8px;
+    background: #FFD401 0% 0% no-repeat padding-box;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+  }
+  
+  .plus-button {
+    margin-top: 10px;
+    padding: 8px;
+    background: #F9D65D 0% 0% no-repeat padding-box;
+    opacity: 0.75;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+  }  
+
+  #img-ideas{
+    width: 75vw;
+    padding-left: 7vw;
+    margin-bottom: 4vw;
+  }
+
+}

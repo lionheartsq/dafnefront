@@ -63,3 +63,16 @@
   border-radius: 4px;
   border: 1px solid #ccc;
 }
+
+@media (max-width:767px){
+  .container{
+    width: 50vw;
+    margin-left: 2vw;
+  }
+  
+  #img-valorhobbies{
+    padding-left: 20vw;
+    height: 70vw;
+    width: 70vw;
+  }
+}

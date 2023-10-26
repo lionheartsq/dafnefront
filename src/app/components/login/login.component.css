@@ -1,16 +1,91 @@
-h1{
+h1 {
   font-weight: 900;
   font-size: 2rem;
 }
-.logo{
+
+.logo {
   text-align: center;
   align-items: center;
 }
-.button-design{
+
+.button-design {
   justify-content: center;
   align-items: center;
   background: #FE7A3C 0% 0% no-repeat padding-box;
   max-width: 50%;
-  margin: 0 auto; /* Agrega esta línea para centrar horizontalmente el botón */
+  margin: 0 auto;
+  /* Agrega esta línea para centrar horizontalmente el botón */
   display: block;
+}
+
+@media (max-width:767px) {
+  .login-div {
+    text-align: center;
+    align-items: center;
+    min-width: 90vw;
+    max-width: 90%;
+    min-height: 100vw;
+    margin-left: 5vw;
+    margin-top: 6.5vw;
+    margin-bottom: 2vw;
+    background: #F5F5F5;
+    padding: 1rem;
+    border-radius: 1rem;
+    background-color: #F5F5F5;
+    color: black;
+    box-shadow: 0px 3px 6px #00000029;
+    border: 1px solid #A8A8A8;
+    border-radius: 15px;
+    opacity: 1;
+  }
+
+  .logo {
+    width: 55vw;
+  }
+
+  .login-form {
+
+    max-width: 90vw;
+    margin: 0px auto;
+    background: #F5F5F5;
+    padding: 5vw;
+    border-radius: 0.5rem;
+    background-color: #F5F5F5;
+    color: black;
+  }
+
+  #titulodafne{
+    margin-left: 8.5vw;
+  }
+
+  body{
+    height: 100vw;
+    width: 100vw;
+    margin-bottom: 0vw;
+  }
+
+  .login-form button {
+    letter-spacing: 0.15em;
+    border: none;
+    font-size: 1.1rem;
+    color: #ffffff;
+    /*text-shadow: -2px 2px 0 #0a0e27, -2px 2px 0 #0a0e27;*/
+    font-weight: thin;
+    width: 100%;
+    display: block;
+    padding: 0.875rem;
+    border-radius: 0.5rem;
+    cursor: pointer;
+    margin-top: 2vw;
+  }
+
+  .login-form input {
+    display: block;
+    margin: 2rem 0;
+    width: 100%;
+    border-radius: 0.5rem;
+    padding: 1rem;
+    border: 1px solid rgba(0,0,0,0.2);
+    background: #fff;
+  }
 }

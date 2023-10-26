@@ -16,21 +16,7 @@
         <button class="step-button" type="submit">Subir Nombre</button>
       </form>
       <br>
-      <h2>Misión</h2>
-      <form (submit)="uploadMision()">
-        <textarea cols="102" rows="5" [(ngModel)]="mision" name="mision">
-        </textarea>
-        <button class="step-button" type="submit">Subir Misión</button>
-      </form>
-      <br>
-      <h2>&nbsp;&nbsp;&nbsp;Carga tu logo</h2>
-      <img src="{{this.logo}}" alt="Imagen 2" class="img-fluid" style="max-width: 30%; max-height: 30%;">
-      <form (submit)="uploadImage()">
-        <input type="file" (change)="onImageSelect($event)" />
-        <button class="step-button" type="submit">Subir Imagen</button>
-      </form>
     </div>
-
     <div class="col-md-6">
       <h2>Decide un slogan para tu empresa.</h2>
       <form (submit)="uploadSlogan()">
@@ -38,6 +24,20 @@
         <button class="step-button" type="submit">Subir Slogan</button>
       </form>
       <br>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-6">
+      <h2>Misión</h2>
+      <form (submit)="uploadMision()">
+        <textarea cols="102" rows="5" [(ngModel)]="mision" name="mision">
+        </textarea>
+        <button class="step-button" type="submit">Subir Misión</button>
+      </form>
+      <br>
+    </div>
+    <div class="col-md-6">
       <h2>Visión</h2>
       <form (submit)="uploadVision()">
         <textarea cols="102" rows="5" [(ngModel)]="vision" name="vision">
@@ -45,11 +45,26 @@
         <button class="step-button" type="submit">Subir Visión</button>
       </form>
       <br>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-12">
+      <h2>Carga tu logo</h2>
+      <img src="{{this.logo}}" alt="Imagen 2" class="img-fluid" id="img-resumen" style="max-width: 30%; max-height: 30%;">
+      <form (submit)="uploadImage()">
+        <input type="file" (change)="onImageSelect($event)" />
+        <button class="step-button" id="btn-imagen" type="submit">Subir Imagen</button>
+      </form>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-6">
       <form method="post">
         <button class="ideacion-button" type="submit" (click)="fakeRoute()">Continuemos</button>
       </form>
-
     </div>
+  </div>
 
-    </div>
 </div>

@@ -27,3 +27,40 @@ h1 {
   border-radius: 4px;
   border: 1px solid #ccc;
 }
+
+@media (max-width:767px){
+  .container {
+    margin-top: 0vw;
+  }
+  
+  .img-fluid {
+    height: 100%;
+    width: auto;
+  }
+  
+  h1 {
+    text-align: left;
+  }
+  
+  .ideacion-button {
+    margin-top: 10px;
+    padding: 8px;
+    background: #FFD401 0% 0% no-repeat padding-box;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+  }
+  
+  .plus-button {
+    margin-top: 10px;
+    padding: 8px;
+    background: #F9D65D 0% 0% no-repeat padding-box;
+    opacity: 0.75;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+  }
+
+  #img-hobbies{
+    margin-top: 5vw;
+    margin-bottom: 10vw;
+  }
+}
