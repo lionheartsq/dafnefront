@@ -3,28 +3,19 @@
   margin-top: 20px;
 }
 
-/* Estilos para las celdas de la tabla */
-.header-cell {
-  text-align: center;
-  font-weight: bold;
-  font-size: 18px;
-  padding: 10px;
-}
-
-.category-cell {
-  text-align: center;
-  font-weight: bold;
-  padding: 10px;
-}
-
-.strategy-cell {
-  padding: 10px;
+/* Estilos para los espacios de imagen */
+.image-space {
+  margin-bottom: 10px;
 }
 
 /* Ajustes para los botones */
 .btn {
-  margin-top: 10px;
   margin-right: 10px;
+}
+
+/* Ajustes para los párrafos */
+p {
+  margin-bottom: 15px;
 }
 
 .avance {

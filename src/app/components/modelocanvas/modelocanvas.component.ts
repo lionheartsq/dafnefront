@@ -33,4 +33,8 @@ export class ModelocanvasComponent {
   loginFake(){
     this.router.navigate(['home']);
   }
+
+  canvasRoute(){
+    this.router.navigate(['home']);
+  }
 }

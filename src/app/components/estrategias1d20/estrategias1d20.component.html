@@ -1,15 +1,15 @@
 <div class="container">
   <h1>ESTRATEGIAS DEBILIDADES VS OPORTUNIDADES</h1>
   <label for="realizara">QUE REALIZARÁ:</label>
-  <input type="text" id="realizara" class="form-control" placeholder="Digite aquí">
+  <input type="text" class="form-control" placeholder="Digite aquí" [(ngModel)]="accionDO" name="accionDO" required>
   <label for="comohacer">COMO LO VA A HACER:</label>
-  <input type="text" id="comohacer" class="form-control" placeholder="Digite aquí">
+  <input type="text" class="form-control" placeholder="Digite aquí" [(ngModel)]="estrategiaDO" name="estrategiaDO" required>
   <div class="row">
     <div class="col-md-6">
-      <button class="ideacion-button" (click)="estrategias1f1aRoute()">Finalizar</button>
+      <button class="ideacion-button" (click)="terminarRoute()">Finalizar</button>
     </div>
     <div class="col-md-6">
-      <button class="plus-button" (click)="partialSaveRoute()">Guardar y Volver al Menú</button>
+      <button class="plus-button" (click)="continuarRoute()">Guardar y Volver al Menú</button>
     </div>
   </div>
 </div>

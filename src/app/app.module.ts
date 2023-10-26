@@ -71,6 +71,7 @@ import { ModelocanvasComponent } from './components/modelocanvas/modelocanvas.co
 import { ResumenideacionComponent } from './components/resumenideacion/resumenideacion.component';
 import { CaracterizacionComponent } from './components/caracterizacion/caracterizacion.component';
 import { VistadofaComponent } from './components/vistadofa/vistadofa.component';
+import { SimulacionlegalComponent } from './components/simulacionlegal/simulacionlegal.component';
 
 const materialModules = [
   MatCardModule,
@@ -130,7 +131,8 @@ const materialModules = [
     ModelocanvasComponent,
     ResumenideacionComponent,
     CaracterizacionComponent,
-    VistadofaComponent
+    VistadofaComponent,
+    SimulacionlegalComponent
   ],
   imports: [
     BrowserModule,

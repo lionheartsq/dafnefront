@@ -17,26 +17,49 @@
     <tr>
       <td class="category-cell">OPORTUNIDADES</td>
       <td class="strategy-cell">
-        <p>Estrategias FORTALEZAS VS OPORTUNIDADES: Uso de fortalezas (F) para aprovechar oportunidades (O)</p>
-        <button class="btn btn-success">AGREGAR</button>
+        <mat-card class="example-card" [style.background-color]="colorfo">
+          <mat-card-content>
+            <p class="avance">Estrategias FORTALEZAS VS OPORTUNIDADES: <br>Uso de fortalezas (F) para aprovechar oportunidades (O) <br>{{this.mensajeFO}}</p>
+            <form (submit)="uploadFO()">
+              <button class="step-button" type="submit" *ngIf="this.avanceFO<2">Cargar Estrategias F vs O</button>
+            </form>
+          </mat-card-content>
+        </mat-card>
       </td>
       <td class="strategy-cell">
-        <p>Estrategias DEBILIDADES VS OPORTUNIDADES: Vencer debilidades (D) aprovechando oportunidades (O)</p>
-        <button class="btn btn-success">AGREGAR</button>
+        <mat-card class="example-card" [style.background-color]="colordo">
+          <mat-card-content>
+            <p class="avance">Estrategias DEBILIDADES VS OPORTUNIDADES: <br>Vencer debilidades (D) aprovechando oportunidades (O) <br>{{this.mensajeDO}}</p>
+            <form (submit)="uploadDO()">
+              <button class="step-button" type="submit" *ngIf="this.avanceDO<2">Cargar Estrategias D vs O</button>
+            </form>
+          </mat-card-content>
+        </mat-card>
       </td>
     </tr>
     <tr>
       <td class="category-cell">AMENAZAS</td>
       <td class="strategy-cell">
-        <p>Estrategias FORTALEZAS VS AMENAZAS: Usar fortalezas (F) para evitar amenazas (A)</p>
-        <button class="btn btn-success">AGREGAR</button>
+        <mat-card class="example-card" [style.background-color]="colorfa">
+          <mat-card-content>
+            <p class="avance">Estrategias FORTALEZAS VS AMENAZAS: <br>Usar fortalezas (F) para evitar amenazas (A) <br>{{this.mensajeFA}}</p>
+            <form (submit)="uploadFA()">
+              <button class="step-button" type="submit" *ngIf="this.avanceFA<2">Cargar Estrategias F vs A</button>
+            </form>
+          </mat-card-content>
+        </mat-card>
       </td>
       <td class="strategy-cell">
-        <p>Estrategias DEBLIDADES VS AMENAZAS: Reducir a un mínimo debilidades (D) y evitar amenazas (A)</p>
-        <button class="btn btn-success">AGREGAR</button>
+        <mat-card class="example-card" [style.background-color]="colorda">
+          <mat-card-content>
+            <p class="avance">Estrategias DEBLIDADES VS AMENAZAS: <br>Reducir a un mínimo debilidades (D) y evitar amenazas (A) <br>{{this.mensajeDA}}</p>
+            <form (submit)="uploadDA()">
+              <button class="step-button" type="submit" *ngIf="this.avanceDA<2">Cargar Estrategias D vs A</button>
+            </form>
+          </mat-card-content>
+        </mat-card>
       </td>
     </tr>
   </table>
-      <button class="btn btn-primary" (click)="estrategias1f10Route()">Finalizar</button>
-      <button class="btn btn-success">Guardar y Volver al Menú</button>
+  <button class="ideacion-button" (click)="canvasRoute()">Finalizar</button>
 </div>

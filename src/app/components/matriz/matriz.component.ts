@@ -75,27 +75,38 @@ export class MatrizComponent {
                   footer: data.message
                 }
               ).then(() => {
-                const varNuevoCanvas = {idUsuario:this.idUsuarioCreado}
-                this.canvasService.crearCanvas(varNuevoCanvas).subscribe( (data)=>{
+                const varNuevaEstrategia = {idUsuario:this.idUsuarioCreado}
+                this.dofaService.crearEstrategias(varNuevaEstrategia).subscribe( (data)=>{
                   Swal.fire(
                     {
                       icon: 'success',
                       title: 'Solicitud enviada',
-                      text: 'Nuevo modelo canvas registrado correctamente',
+                      text: 'Matriz estrategias registrada correctamente',
                       footer: data.message
                     }
-                  )
-                }, (err) => {
-                  //debugger
-                  Swal.fire(
-                    {
-                      icon: 'error',
-                      title: 'Error al crear',
-                      html: 'Por favor verifique los datos e intente nuevamente',
-                      footer: 'No se ha podido completar el registro'
-                    }
-                  )
-                });
+                  ).then(() => {
+                    const varNuevoCanvas = {idUsuario:this.idUsuarioCreado}
+                    this.canvasService.crearCanvas(varNuevoCanvas).subscribe( (data)=>{
+                      Swal.fire(
+                        {
+                          icon: 'success',
+                          title: 'Solicitud enviada',
+                          text: 'Nuevo modelo canvas registrado correctamente',
+                          footer: data.message
+                        }
+                      )
+                    }, (err) => {
+                      //debugger
+                      Swal.fire(
+                        {
+                          icon: 'error',
+                          title: 'Error al crear',
+                          html: 'Por favor verifique los datos e intente nuevamente',
+                          footer: 'No se ha podido completar el registro'
+                        }
+                      )
+                    });
+                  });
               });
             }, (err) => {
               //debugger
@@ -123,6 +134,6 @@ export class MatrizComponent {
             }
           )
         });
-      }
-
+      });
+  }
 }

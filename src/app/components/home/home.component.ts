@@ -20,7 +20,7 @@ export class HomeComponent {
   }
 
   simulacionRoute(){
-    this.router.navigate(['matrizdofa']);
+    this.router.navigate(['simulacionlegal']);
   }
 
   formalizacionRoute(){

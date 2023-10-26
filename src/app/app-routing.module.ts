@@ -28,6 +28,7 @@ import { Estrategias2d2aComponent } from './components/estrategias2d2a/estrategi
 import { ModelocanvasComponent } from './components/modelocanvas/modelocanvas.component';
 import { ResumenideacionComponent } from './components/resumenideacion/resumenideacion.component';
 import { VistadofaComponent } from './components/vistadofa/vistadofa.component';
+import { SimulacionlegalComponent } from './components/simulacionlegal/simulacionlegal.component';
 
 const routes: Routes = [
     //{ path: "", component: AppComponent, pathMatch: "full" },
@@ -58,7 +59,8 @@ const routes: Routes = [
     { path: "estrategias2d2a", component:Estrategias2d2aComponent, pathMatch: "full"},
     { path: "modelocanvas", component:ModelocanvasComponent, pathMatch: "full"},
     { path: "resumenideacion", component:ResumenideacionComponent, pathMatch: "full"},
-    { path: "vistadofa", component:VistadofaComponent, pathMatch: "full"}
+    { path: "vistadofa", component:VistadofaComponent, pathMatch: "full"},
+    { path: "simulacionlegal", component:SimulacionlegalComponent, pathMatch: "full"}
 ];
 
 @NgModule({

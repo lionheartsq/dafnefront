@@ -22,37 +22,13 @@ export class DofaService {
 
   private endpointUpdateDofa='api/auth/matriz_dofa/update';
 
-  private endpointSaveFvsO='api/auth/fortalezas_oportunidades/store';
+  private endpointSaveEstrategias='api/auth/estrategias/store';
 
-  private endpointFvsOGeneral='api/auth/fortalezas_oportunidades';
+  private endpointEstrategiasGeneral='api/auth/estrategias';
 
-  private endpointFvsOPropio='api/auth/fortalezas_oportunidades/selectfortalezas_oportunidades';
+  private endpointEstrategiasPropio='api/auth/estrategias/selectestrategias';
 
-  private endpointUpdateFvsO='api/auth/fortalezas_oportunidades/update';
-
-  private endpointSaveFvsA='api/auth/fortalezas_amenazas/store';
-
-  private endpointFvsAGeneral='api/auth/fortalezas_amenazas';
-
-  private endpointFvsAPropio='api/auth/fortalezas_amenazas/selectfortalezas_amenazas';
-
-  private endpointUpdateFvsA='api/auth/fortalezas_amenazas/update';
-
-  private endpointSaveDvsO='api/auth/debilidades_oportunidades/store';
-
-  private endpointDvsOGeneral='api/auth/debilidades_oportunidades';
-
-  private endpointDvsOPropio='api/auth/debilidades_oportunidades/selectdebilidades_oportunidades';
-
-  private endpointUpdateDvsO='api/auth/debilidades_oportunidades/update';
-
-  private endpointSaveDvsA='api/auth/debilidades_amenazas/store';
-
-  private endpointDvsAGeneral='api/auth/debilidades_amenazas';
-
-  private endpointDvsAPropio='api/auth/debilidades_amenazas/selectdebilidades_amenazas';
-
-  private endpointUpdateDvsA='api/auth/debilidades_amenazas/update';
+  private endpointUpdateEstrategias='api/auth/estrategias/update';
 
   constructor(private httpClient: HttpClient) { }
 
@@ -75,77 +51,20 @@ export class DofaService {
 
 //////////////////////////////////////////////////////////////
 
-  public crearFO(user: any): Observable<any>{
-    return this.httpClient.post(`${this.urlBase}/${this.endpointSaveFvsO}`, user)
+  public crearEstrategias(user: any): Observable<any>{
+    return this.httpClient.post(`${this.urlBase}/${this.endpointSaveEstrategias}`, user)
   }
 
-  public lecturaFOGeneral(): Observable<any> {
-    return this.httpClient.get(`${this.urlBase}/${this.endpointFvsOGeneral}`);
+  public lecturaEstrategiasGeneral(): Observable<any> {
+    return this.httpClient.get(`${this.urlBase}/${this.endpointEstrategiasGeneral}`);
   }
 
-  public lecturaFOPropio(id:any): Observable<any> {
-    return this.httpClient.get(`${this.urlBase}/${this.endpointFvsOPropio}/${id}`);
+  public lecturaEstrategiasPropio(id:any): Observable<any> {
+    return this.httpClient.get(`${this.urlBase}/${this.endpointEstrategiasPropio}/${id}`);
   }
 
-  public enviarValorFO(data: any): Observable<any>{
-    const url = `${this.urlBase}/${this.endpointUpdateFvsO}`;
-    return this.httpClient.put(url, data);
-  }
-
-//////////////////////////////////////////////////////////////
-
-  public crearFA(user: any): Observable<any>{
-    return this.httpClient.post(`${this.urlBase}/${this.endpointSaveFvsA}`, user)
-  }
-
-  public lecturaFAGeneral(): Observable<any> {
-    return this.httpClient.get(`${this.urlBase}/${this.endpointFvsAGeneral}`);
-  }
-
-  public lecturaFAPropio(id:any): Observable<any> {
-    return this.httpClient.get(`${this.urlBase}/${this.endpointFvsAPropio}/${id}`);
-  }
-
-  public enviarValorFA(data: any): Observable<any>{
-    const url = `${this.urlBase}/${this.endpointUpdateFvsA}`;
-    return this.httpClient.put(url, data);
-  }
-
-//////////////////////////////////////////////////////////////
-
-  public crearDO(user: any): Observable<any>{
-    return this.httpClient.post(`${this.urlBase}/${this.endpointSaveDvsO}`, user)
-  }
-
-  public lecturaDOGeneral(): Observable<any> {
-    return this.httpClient.get(`${this.urlBase}/${this.endpointDvsOGeneral}`);
-  }
-
-  public lecturaDOPropio(id:any): Observable<any> {
-    return this.httpClient.get(`${this.urlBase}/${this.endpointDvsOPropio}/${id}`);
-  }
-
-  public enviarValorDO(data: any): Observable<any>{
-    const url = `${this.urlBase}/${this.endpointUpdateDvsO}`;
-    return this.httpClient.put(url, data);
-  }
-
-//////////////////////////////////////////////////////////////
-
-  public crearDA(user: any): Observable<any>{
-    return this.httpClient.post(`${this.urlBase}/${this.endpointSaveDvsA}`, user)
-  }
-
-  public lecturaDAGeneral(): Observable<any> {
-    return this.httpClient.get(`${this.urlBase}/${this.endpointDvsAGeneral}`);
-  }
-
-  public lecturaDAPropio(id:any): Observable<any> {
-    return this.httpClient.get(`${this.urlBase}/${this.endpointDvsAPropio}/${id}`);
-  }
-
-  public enviarValorDA(data: any): Observable<any>{
-    const url = `${this.urlBase}/${this.endpointUpdateDvsA}`;
+  public enviarValorEstrategias(data: any): Observable<any>{
+    const url = `${this.urlBase}/${this.endpointUpdateEstrategias}`;
     return this.httpClient.put(url, data);
   }
 

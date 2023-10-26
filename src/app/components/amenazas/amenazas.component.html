@@ -26,8 +26,14 @@
         <input type="text" class="form-control" placeholder="Digite aquí" [(ngModel)]="amenazas3" name="amenazas3" required>
         <input type="text" class="form-control" placeholder="Digite aquí" [(ngModel)]="amenazas4" name="amenazas4">
       </ul>
-      <button class="ideacion-button" (click)="terminarRoute()">Finalizar</button>
-      <button class="plus-button" (click)="continuarRoute()">Guardar y regresar</button>
+      <div class="row">
+        <div class="col-md-4">
+          <button class="ideacion-button" (click)="terminarRoute()">Finalizar</button>
+        </div>
+        <div class="col-md-4">
+          <button class="plus-button" (click)="continuarRoute()">Guardar y regresar</button>
+        </div>
+      </div>
     </div>
   </div>
 </div>

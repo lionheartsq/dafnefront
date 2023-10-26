@@ -1,0 +1,25 @@
+<div class="container">
+
+  <br>
+  <span><img src="./assets/iconos/bombilla.svg" style="max-width: 40px; max-height: 40px;" alt="Imagen" class="img-fluid"></span>
+  <span><b style="font-size: 1.8rem;">  Simulación</b></span>
+  <hr>
+  <h1>Simulación Legal</h1>
+  <img src="./assets/imagenes/separador.jpg" style="max-width: 140px; max-height: 20px;" alt="Imagen" class="img-fluid">
+  <br>
+  {{this.idUsuarioCargado}}
+  <hr>
+  {{this.idPreguntas}} <br>
+  {{this.preguntas}} <br>
+  <hr>
+  {{this.idPregunta}} <br>
+  {{this.preguntas}} <br>
+
+  No <mat-slide-toggle [(ngModel)]="isChecked"> Si: {{isChecked}}</mat-slide-toggle>
+  <br>
+  <hr>
+
+  <button class="ideacion-button" (click)="endRoute()">Finalizar</button>
+  <button class="plus-button" (click)="saveRoute()">Continuar</button>
+</div>
+

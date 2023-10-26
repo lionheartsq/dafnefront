@@ -72,7 +72,14 @@
       </p>
       </div>
   </div>
-
+  <div class="row">
+    <div class="col-sm-6">
+      <button  class="plus-button" (click)="canvasRoute()">Ver Modelo Canvas</button>
+    </div>
+    <div class="col-sm-6">
+      <button  class="ideacion-button" (click)="loginFake()">Finalizar</button>
+    </div>
+  </div>
 </div>
 
 <div class="editor-overlay" *ngIf="editingSection">
@@ -83,5 +90,3 @@
     <button class="btn btn-secondary" (click)="cancelEditor()">Cancelar</button>
   </div>
 </div>
-
-<button class="btn btn-success" (click)="loginFake()">Finalizar</button>

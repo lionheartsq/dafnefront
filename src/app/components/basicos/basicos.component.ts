@@ -72,6 +72,7 @@ export class BasicosComponent {
         }
       ).then(() => {
         this.idUsuarioCreado=data.idUsuario;
+        localStorage.setItem('identificador_usuario', this.idUsuarioCreado);
         // Aquí la alerta se ha cerrado
         //this.router.navigateByUrl('experiencia');
         //

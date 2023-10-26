@@ -1,15 +1,15 @@
 <div class="container">
   <h1>ESTRATEGIAS FORTALEZAS VS AMENAZAS</h1>
   <label for="realizara">QUE REALIZARÁ:</label>
-  <input type="text" id="realizara" class="form-control" placeholder="Digite aquí">
+  <input type="text" class="form-control" placeholder="Digite aquí" [(ngModel)]="accionFA" name="accionFA" required>
   <label for="aliados">QUE ALIADOS TENDRÁ:</label>
-  <input type="text" id="aliados" class="form-control" placeholder="Digite aquí">
+  <input type="text" class="form-control" placeholder="Digite aquí" [(ngModel)]="estrategiaFA" name="estrategiaFA" required>
   <div class="row">
     <div class="col-md-6">
-      <button class="ideacion-button" (click)="estrategias2d2aRoute()">Finalizar</button>
+      <button class="ideacion-button" (click)="terminarRoute()">Finalizar</button>
     </div>
     <div class="col-md-6">
-      <button class="plus-button" (click)="partialSaveRoute()">Guardar y Volver al Menú</button>
+      <button class="plus-button" (click)="continuarRoute()">Guardar y Volver al Menú</button>
     </div>
   </div>
 </div>
