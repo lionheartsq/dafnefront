@@ -16,23 +16,71 @@ import { CanvasService } from 'src/app/services/canvas.service';
   styleUrls: ['./matriz.component.css']
 })
 export class MatrizComponent {
-  idUsuarioCreado: any;
   arrayIdeas: any;
   selectedIdea: any;
   isOptionSelected: boolean = false;
+
+  //Inicio variables para validar bitacora ***
+  //*******************************************//
+  idUsuarioCargado:any;
+  idModulo:number=1;
+  nombreSeccion:string="matriz";
+  identificadorSeccion: string="";
+  variableSeccion: string="";
+  //*******************************************//
+  //Fin variables para validar bitacora ***
 
   constructor(public router:Router, private loginService:LoginService, private utilsService:UtilsService, private route: ActivatedRoute, private evaluacionService:EvaluacionService, private resumenempresaService:ResumenempresaService, private dofaService:DofaService, private canvasService:CanvasService) {
   }
 
   ngOnInit(): void {
-    this.route.queryParams.subscribe(params => {
-      this.idUsuarioCreado = params['id'];
-      //console.log(this.idUsuarioCreado);
-      });
+      this.idUsuarioCargado=localStorage.getItem('identificador_usuario');
+      //
+      console.log("Usuario cargado: "+this.idUsuarioCargado);
 
-    //this.llamarAPI();
-    this.obtenerMatriz(this.idUsuarioCreado);
+      this.verAvance(this.idUsuarioCargado,this.idModulo);
   }
+
+  //Inicio funciones nuevas para validar bitacora. ***
+  //*******************************************//
+  verAvance(idUsuario:any, idModulo:any){
+    this.loginService.verAvance(idUsuario, idModulo).subscribe(
+      (data) => {
+        console.log("Seccion: "+JSON.stringify(data));
+
+        if (data.seccion !== null) {
+          this.variableSeccion = String(data.seccion.seccion);
+        } else {
+          this.variableSeccion = this.nombreSeccion; // O cualquier valor predeterminado que desees
+        }
+
+        console.log("VALOR VARIABLESECCION IN: "+this.variableSeccion);
+        this.luegoDeObtenerVariableSeccion(this.variableSeccion);
+      },
+      (err) => {
+        this.luegoDeObtenerVariableSeccion(this.nombreSeccion);
+        console.log("SEC ERR: "+err); // Manejo de errores
+      }
+    );
+  }
+
+  luegoDeObtenerVariableSeccion(variableSeccion:any) {
+    console.log("VALOR VARIABLESECCION OUT: " + variableSeccion);
+    this.identificadorSeccion=variableSeccion;
+    // Coloca aquí cualquier lógica que dependa de this.variableSeccion
+    console.log("Identificador Seccion: "+this.identificadorSeccion);
+    console.log("nombre Seccion: "+this.nombreSeccion);
+
+    if(this.identificadorSeccion===this.nombreSeccion){
+      //this.llamarAPI();
+      this.obtenerMatriz(this.idUsuarioCargado);
+    }else{
+      console.log("VAL RUTA: this.router.navigate(["+this.identificadorSeccion+"])");
+      this.router.navigate([this.variableSeccion]);//validar lo del usuario
+    }
+  }
+  //*******************************************//
+  //Fin funciones nuevas para validar bitacora. ***
 
   obtenerMatriz(id:any){
     this.evaluacionService.obtenerMatriz(id).subscribe(
@@ -52,88 +100,104 @@ export class MatrizComponent {
   }
 
   seleccionSave() {
-      // Aquí puedes utilizar this.selectedIdea para acceder a la idea seleccionada
-      console.log('Idea seleccionada:', this.selectedIdea);
-      // Realiza las acciones que necesites con la idea seleccionada
-      const varNuevaEmpresa = {idUsuario:this.idUsuarioCreado, nombreIdea:this.selectedIdea};
-        this.resumenempresaService.crearEmpresa(varNuevaEmpresa).subscribe( (data)=>{
-          Swal.fire(
-            {
-              icon: 'success',
-              title: 'Solicitud enviada',
-              text: 'Nueva empresa registrada correctamente',
-              footer: data.message
-            }
-          ).then(() => {
-            const varNuevoDofa = {idUsuario:this.idUsuarioCreado}
-            this.dofaService.crearDofa(varNuevoDofa).subscribe( (data)=>{
-              Swal.fire(
-                {
-                  icon: 'success',
-                  title: 'Solicitud enviada',
-                  text: 'Nueva matriz dofa registrada correctamente',
-                  footer: data.message
-                }
-              ).then(() => {
-                const varNuevaEstrategia = {idUsuario:this.idUsuarioCreado}
-                this.dofaService.crearEstrategias(varNuevaEstrategia).subscribe( (data)=>{
-                  Swal.fire(
-                    {
-                      icon: 'success',
-                      title: 'Solicitud enviada',
-                      text: 'Matriz estrategias registrada correctamente',
-                      footer: data.message
-                    }
-                  ).then(() => {
-                    const varNuevoCanvas = {idUsuario:this.idUsuarioCreado}
-                    this.canvasService.crearCanvas(varNuevoCanvas).subscribe( (data)=>{
-                      Swal.fire(
-                        {
-                          icon: 'success',
-                          title: 'Solicitud enviada',
-                          text: 'Nuevo modelo canvas registrado correctamente',
-                          footer: data.message
-                        }
-                      )
-                    }, (err) => {
-                      //debugger
-                      Swal.fire(
-                        {
-                          icon: 'error',
-                          title: 'Error al crear',
-                          html: 'Por favor verifique los datos e intente nuevamente',
-                          footer: 'No se ha podido completar el registro'
-                        }
-                      )
-                    });
+    // Aquí puedes utilizar this.selectedIdea para acceder a la idea seleccionada
+    console.log('Idea seleccionada:', this.selectedIdea);
+    // Realiza las acciones que necesites con la idea seleccionada
+    const varNuevaEmpresa = {idUsuario:this.idUsuarioCargado, nombreIdea:this.selectedIdea};
+      this.resumenempresaService.crearEmpresa(varNuevaEmpresa).subscribe( (data)=>{
+        Swal.fire(
+          {
+            icon: 'success',
+            title: 'Solicitud enviada',
+            text: 'Nueva empresa registrada correctamente',
+            footer: data.message
+          }
+        ).then(() => {
+          const varNuevoDofa = {idUsuario:this.idUsuarioCargado}
+          this.dofaService.crearDofa(varNuevoDofa).subscribe( (data)=>{
+            Swal.fire(
+              {
+                icon: 'success',
+                title: 'Solicitud enviada',
+                text: 'Nueva matriz dofa registrada correctamente',
+                footer: data.message
+              }
+            ).then(() => {
+              const varNuevaEstrategia = {idUsuario:this.idUsuarioCargado}
+              this.dofaService.crearEstrategias(varNuevaEstrategia).subscribe( (data)=>{
+                Swal.fire(
+                  {
+                    icon: 'success',
+                    title: 'Solicitud enviada',
+                    text: 'Matriz estrategias registrada correctamente',
+                    footer: data.message
+                  }
+                ).then(() => {
+                  const varNuevoCanvas = {idUsuario:this.idUsuarioCargado}
+                  this.canvasService.crearCanvas(varNuevoCanvas).subscribe( (data)=>{
+                    Swal.fire(
+                      {
+                        icon: 'success',
+                        title: 'Solicitud enviada',
+                        text: 'Nuevo modelo canvas registrado correctamente',
+                        footer: data.message
+                      }
+                    )
+                  }, (err) => {
+                    //debugger
+                    Swal.fire(
+                      {
+                        icon: 'error',
+                        title: 'Error al crear',
+                        html: 'Por favor verifique los datos e intente nuevamente',
+                        footer: 'No se ha podido completar el registro'
+                      }
+                    )
                   });
-              });
-            }, (err) => {
-              //debugger
-              Swal.fire(
-                {
-                  icon: 'error',
-                  title: 'Error al crear',
-                  html: 'Por favor verifique los datos e intente nuevamente',
-                  footer: 'No se ha podido completar el registro'
-                }
-              )
+                });
             });
-            //
-            this.router.navigate(['resumen'], { queryParams: { id: this.idUsuarioCreado} } );
-            //window.location.reload();
+          }, (err) => {
+            //debugger
+            Swal.fire(
+              {
+                icon: 'error',
+                title: 'Error al crear',
+                html: 'Por favor verifique los datos e intente nuevamente',
+                footer: 'No se ha podido completar el registro'
+              }
+            )
           });
-        }, (err) => {
-          //debugger
-          Swal.fire(
-            {
-              icon: 'error',
-              title: 'Error al crear',
-              html: 'Por favor verifique los datos e intente nuevamente',
-              footer: 'No se ha podido completar el registro'
-            }
-          )
+          //Inicio Modificacion Bitacora ***
+          //*******************************************//
+          const bitacora = {avance:1, idSeccion:12, idUsuario:parseInt(this.idUsuarioCargado)};
+          this.loginService.crearBitacora(bitacora).subscribe( (data)=>{
+            console.log("Bitacora registrada");
+            this.router.navigate(['resumen']);
+          }, (err) => {
+            console.log(err); // Manejo de errores
+          });
+          //*******************************************//
+          //Fin Modificacion Bitacora ***
         });
+      }, (err) => {
+        //debugger
+        Swal.fire(
+          {
+            icon: 'error',
+            title: 'Error al crear',
+            html: 'Por favor verifique los datos e intente nuevamente',
+            footer: 'No se ha podido completar el registro'
+          }
+        )
       });
+    });
+}
+
+  //Inicio nueva Ruta ***
+  //*******************************************//
+  homeRoute(){
+    this.router.navigate(['home']);
   }
+  //*******************************************//
+  //Fin nueva Ruta ***
 }

@@ -17,7 +17,6 @@ export class SuenosComponent {
   valorImportancia: string | undefined;
   otros: boolean=false;
   checkedCount: number = 0;
-  idUsuarioCreado:any;
   arrayOpciones:any=[];
   arraySuenos:any=[];
   idSuenoGeneral: any;
@@ -30,18 +29,67 @@ export class SuenosComponent {
   idUsuario: any;
   countSuenos: number=0;
 
+  //Inicio variables para validar bitacora ***
+  //*******************************************//
+  idModulo:number=1;
+  nombreSeccion:string="suenos";
+  identificadorSeccion: string="";
+  variableSeccion: string="";
+  idUsuarioCargado: any;
+  //*******************************************//
+  //Fin variables para validar bitacora ***
+
   constructor(public router:Router, private loginService:LoginService, private utilsService:UtilsService, private route: ActivatedRoute, private suenosService:SuenosService) {
   }
 
   ngOnInit(): void {
-    this.route.queryParams.subscribe(params => {
-      this.idUsuarioCreado = params['id'];
-      //console.log(this.idUsuarioCreado);
-      });
+      this.idUsuarioCargado=localStorage.getItem('identificador_usuario');
+      //
+      console.log("Usuario cargado: "+this.idUsuarioCargado);
 
-    this.obtenerSuenosGeneral();
-    this.contarSuenosPropio(this.idUsuarioCreado);
+      this.verAvance(this.idUsuarioCargado,this.idModulo);
   }
+
+//Inicio funciones nuevas para validar bitacora. ***
+  //*******************************************//
+  verAvance(idUsuario:any, idModulo:any){
+    this.loginService.verAvance(idUsuario, idModulo).subscribe(
+      (data) => {
+        console.log("Seccion: "+JSON.stringify(data));
+
+        if (data.seccion !== null) {
+          this.variableSeccion = String(data.seccion.seccion);
+        } else {
+          this.variableSeccion = this.nombreSeccion; // O cualquier valor predeterminado que desees
+        }
+
+        console.log("VALOR VARIABLESECCION IN: "+this.variableSeccion);
+        this.luegoDeObtenerVariableSeccion(this.variableSeccion);
+      },
+      (err) => {
+        this.luegoDeObtenerVariableSeccion(this.nombreSeccion);
+        console.log("SEC ERR: "+err); // Manejo de errores
+      }
+    );
+  }
+
+  luegoDeObtenerVariableSeccion(variableSeccion:any) {
+    console.log("VALOR VARIABLESECCION OUT: " + variableSeccion);
+    this.identificadorSeccion=variableSeccion;
+    // Coloca aquí cualquier lógica que dependa de this.variableSeccion
+    console.log("Identificador Seccion: "+this.identificadorSeccion);
+    console.log("nombre Seccion: "+this.nombreSeccion);
+
+    if(this.identificadorSeccion===this.nombreSeccion){
+      this.obtenerSuenosGeneral();
+      this.contarSuenosPropio(this.idUsuarioCargado);
+    }else{
+      console.log("VAL RUTA: this.router.navigate(["+this.identificadorSeccion+"])");
+      this.router.navigate([this.variableSeccion]);//validar lo del usuario
+    }
+  }
+  //*******************************************//
+  //Fin funciones nuevas para validar bitacora. ***
 
   obtenerSuenosGeneral(){
     this.suenosService.lecturaSuenosGeneral().subscribe(
@@ -75,7 +123,7 @@ export class SuenosComponent {
   }
 
   obtenerSuenosPropios(){
-    this.suenosService.lecturaSuenosPropio(this.idUsuarioCreado).subscribe(
+    this.suenosService.lecturaSuenosPropio(this.idUsuarioCargado).subscribe(
       (data) => {
         //console.log("Data Prop:"+data);
         if(data.suenos.length>0){
@@ -102,7 +150,7 @@ export class SuenosComponent {
   }
 
   suenoSave(suenonuevo: string){
-    const varNuevoSueno = {idUsuario:this.idUsuarioCreado, sueno:suenonuevo};
+    const varNuevoSueno = {idUsuario:this.idUsuarioCargado, sueno:suenonuevo};
     if(this.countSuenos<5){
       this.suenosService.crearSuenos(varNuevoSueno).subscribe( (data)=>{
         Swal.fire(
@@ -155,7 +203,7 @@ export class SuenosComponent {
       //console.log(elementosSeleccionados);
       for (let dato in elementosSeleccionados){
         this.idSueno=elementosSeleccionados[dato].idSueno;
-        this.idUsuario=this.idUsuarioCreado;
+        this.idUsuario=this.idUsuarioCargado;
         //console.log("ID HOBBY LOOP: "+this.idHobby);
         //console.log("ID USER LOOP: "+this.idUsuario);
         const varUsuario = {idUsuario:this.idUsuario, idSueno:this.idSueno};
@@ -174,7 +222,17 @@ export class SuenosComponent {
           footer: 'Sueños guardados'
         }
       ).then(() => {
-        this.router.navigate(['valorsuenos'], { queryParams: { id: this.idUsuarioCreado} } );
+        //Inicio Modificacion Bitacora ***
+        //*******************************************//
+        const bitacora = {avance:1, idSeccion:6, idUsuario:parseInt(this.idUsuarioCargado)};
+        this.loginService.crearBitacora(bitacora).subscribe( (data)=>{
+          console.log("Bitacora registrada");
+          this.router.navigate(['valorsuenos']);
+        }, (err) => {
+          console.log(err); // Manejo de errores
+        });
+        //*******************************************//
+        //Fin Modificacion Bitacora ***
       });
     } else{
       console.log("Excede la cantidad de sueños");
@@ -201,4 +259,11 @@ export class SuenosComponent {
       }
     })
   }
+  //Inicio nueva Ruta ***
+  //*******************************************//
+  homeRoute(){
+    this.router.navigate(['home']);
+  }
+  //*******************************************//
+  //Fin nueva Ruta ***
 }

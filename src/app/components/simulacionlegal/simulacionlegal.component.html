@@ -7,19 +7,20 @@
   <h1>Simulación Legal</h1>
   <img src="./assets/imagenes/separador.jpg" style="max-width: 140px; max-height: 20px;" alt="Imagen" class="img-fluid">
   <br>
-  {{this.idUsuarioCargado}}
   <hr>
-  {{this.idPreguntas}} <br>
-  {{this.preguntas}} <br>
-  <hr>
-  {{this.idPregunta}} <br>
-  {{this.preguntas}} <br>
+  <div *ngIf="this.flag>0"> Felicidades, terminó el primer paso, puede continuar</div>
+  <div *ngIf="this.flag==0"> Seleccione con el botón deslizante la respuesta adecuada a cada pregunta y de click en continuar.</div><br>
+  <!-- <div *ngIf="this.flag==0">{{this.idPreguntas}}</div><br> -->
+  <div [innerHTML]="preguntas"></div>
+  <!--{{this.preguntas}} <br>-->
+  <hr *ngIf="this.flag==0"><br *ngIf="this.flag==0">
 
-  No <mat-slide-toggle [(ngModel)]="isChecked"> Si: {{isChecked}}</mat-slide-toggle>
+  <div *ngIf="this.flag==0">No <mat-slide-toggle [(ngModel)]="isChecked"></mat-slide-toggle> Si</div>
   <br>
   <hr>
 
-  <button class="ideacion-button" (click)="endRoute()">Finalizar</button>
-  <button class="plus-button" (click)="saveRoute()">Continuar</button>
+  <button class="ideacion-button" (click)="endRouteEmpresa()" *ngIf="this.flag==1">Finalizar</button>
+  <button class="ideacion-button" (click)="endRoutePersona()" *ngIf="this.flag==2">Finalizar</button>
+  <button class="plus-button" (click)="saveRoute()" *ngIf="this.flag==0">Continuar</button>
 </div>
 

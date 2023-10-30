@@ -15,23 +15,28 @@ import { SimulacionesService } from 'src/app/services/simulaciones.service';
   styleUrls: ['./simulacionlegal.component.css']
 })
 export class SimulacionlegalComponent {
-  idUsuarioCreado: any;
+  idUsuarioCreado: any=0;
   idUsuarioCargado: any;
   arrayPreguntas: any;
-  idPreguntas: any;
+  idPreguntas: number=0;
   preguntas: any;
-  idPregunta: number=0;
   valor: number=1;
   arraySiguientes: any;
   idPreguntasNext: any;
   isChecked = true;
+  flag: number=0;
+  idUsuarioSiguiente: any;
+  arrayPersonas: any;
+  idPersonasNext: any;
+  paramUsuario: any;
   constructor(public router:Router, private loginService:LoginService, private utilsService:UtilsService, private route: ActivatedRoute, private simulacionService:SimulacionesService) {}
 
   ngOnInit(): void {
     this.route.queryParams.subscribe(params => {
       this.idUsuarioCreado = params['id'];
       this.idUsuarioCargado=localStorage.getItem('identificador_usuario');
-      //console.log(this.idUsuarioCreado);
+      //
+      console.log("Usuario creado: "+this.idUsuarioCreado);
       //
       console.log("Usuario cargado: "+this.idUsuarioCargado);
 
@@ -39,10 +44,108 @@ export class SimulacionlegalComponent {
       });
   }
 
+  validarFlujo(){
+    if(this.idUsuarioCreado==0 || this.idUsuarioCreado==="" || this.idUsuarioCreado===undefined){
+      this.simulacionService.validarPregunta(this.idUsuarioCargado).subscribe(
+        (data) => {
+          //
+          this.actualizarDatosSimulacion(data);
+          //
+          console.log("Proceso IF, usuario cargado: "+this.idUsuarioCargado);
+        },
+        (err) => {
+          console.log(err); // Manejo de errores
+        }
+      );
+    }else{
+      this.simulacionService.validarPregunta(this.idUsuarioCreado).subscribe(
+        (data) => {
+          //
+          this.actualizarDatosSimulacion(data);
+          //
+          console.log("Proceso IF, usuario creado: "+this.idUsuarioCreado);
+        },
+        (err) => {
+          console.log(err); // Manejo de errores
+        }
+      );
+    }
+  }
+
+  actualizarDatosSimulacion(data: any) {
+    // Actualiza las variables con los datos de la simulación
+    try {
+      this.idPreguntas = data.pregunta_simulacion[0].id;
+      this.preguntas = data.pregunta_simulacion[0].pregunta;
+    } catch (error) {
+      this.simulacionService.lecturaSiguiente(this.idUsuarioCargado,this.idPreguntas, this.valor).subscribe(
+        (data) => {
+          //
+          this.arraySiguientes=data;
+          for (let dato in this.arraySiguientes){
+            this.idPreguntasNext=this.arraySiguientes[dato].message;
+          }
+          console.log("Siguiente pregunta CATCH: "+this.idPreguntasNext);
+          if(this.idPreguntasNext===undefined){
+            if(this.idUsuarioCreado==0 || this.idUsuarioCreado==="" || this.idUsuarioCreado===undefined){
+              console.log("ENTRA POR USUARIO CARGADO");
+              this.paramUsuario=this.idUsuarioCargado;
+              this.simulacionService.validatePersona(this.idUsuarioCargado).subscribe(
+                (data) => {
+                  //
+                  console.log("DATA PERSONA: "+JSON.stringify(data));
+                  this.idUsuarioSiguiente = data.cant_enunciado;
+
+                  if(this.idUsuarioSiguiente==0){
+                    //Si el valor es cero se va por empresa
+                    this.flag=1;
+                    console.log("idUsuarioSiguiente: "+this.idUsuarioSiguiente);
+                  }else{
+                    //Si el valor es uno se va por persona
+                    this.flag=2;
+                    console.log("idUsuarioSiguiente: "+this.idUsuarioSiguiente);
+                  }
+                },
+                (err) => {
+                  console.log(err); // Manejo de errores
+                }
+              );
+            }else{
+              console.log("ENTRA POR USUARIO CREADO");
+              this.paramUsuario=this.idUsuarioCreado;
+              this.simulacionService.validatePersona(this.idUsuarioCreado).subscribe(
+                (data) => {
+                  //
+                  console.log("DATA PERSONA: "+JSON.stringify(data));
+                  this.idUsuarioSiguiente = data.cant_enunciado;
+
+                  if(this.idUsuarioSiguiente==0){
+                    //Si el valor es cero se va por empresa
+                    this.flag=1;
+                    console.log("idUsuarioSiguiente: "+this.idUsuarioSiguiente);
+                  }else{
+                    //Si el valor es uno se va por persona
+                    this.flag=2;
+                    console.log("idUsuarioSiguiente: "+this.idUsuarioSiguiente);
+                  }
+                },
+                (err) => {
+                  console.log(err); // Manejo de errores
+                }
+              );
+            }
+          }
+        },
+        (err) => {
+          console.log(err); // Manejo de errores
+        }
+      );
+    }
+  }
 
   cargarDatosSimulacion(){
-    this.idPregunta=1; //acá debo implementar la lógica para traer el máx y de esa manera seguir el proceso.
-    this.simulacionService.lecturaPregunta(this.idUsuarioCargado,this.idPregunta).subscribe(
+    this.validarFlujo();
+    this.simulacionService.lecturaPregunta(this.idUsuarioCargado,this.idPreguntas).subscribe(
       (data) => {
         //
         this.arrayPreguntas=data.pregunta_simulacion;
@@ -50,7 +153,8 @@ export class SimulacionlegalComponent {
           this.idPreguntas=this.arrayPreguntas[dato].id;
           this.preguntas=this.arrayPreguntas[dato].pregunta;
         }
-        //console.log("Actual idEmpresa: "+this.idEmpresa);
+        //
+        console.log("Actual idPregunta: "+this.idPreguntas);
       },
       (err) => {
         console.log(err); // Manejo de errores
@@ -59,20 +163,29 @@ export class SimulacionlegalComponent {
   }
 
   cargarSiguiente(){
-    this.idPregunta=1; //acá debo implementar la lógica para traer el máx y de esa manera seguir el proceso.
-    this.simulacionService.lecturaSiguiente(this.idUsuarioCargado,this.idPregunta, this.valor).subscribe(
+    this.validarFlujo();
+    // Actualiza el valor de this.valor en función del estado del toggle
+    this.validarCheck();
+    this.simulacionService.lecturaSiguiente(this.idUsuarioCargado,this.idPreguntas, this.valor).subscribe(
       (data) => {
         //
         this.arraySiguientes=data;
         for (let dato in this.arraySiguientes){
           this.idPreguntasNext=this.arraySiguientes[dato].message;
         }
-        //console.log("Actual idEmpresa: "+this.idEmpresa);
+
+        console.log("Siguiente pregunta: "+this.idPreguntasNext);
+
+        this.recargarPagina();
       },
       (err) => {
         console.log(err); // Manejo de errores
       }
     );
+  }
+
+  recargarPagina() {
+    window.location.reload();
   }
 
   validarCheck(){
@@ -83,21 +196,21 @@ export class SimulacionlegalComponent {
     }
   }
 
-  endRoute(){
-    this.router.navigate(['simulacionlegal'], { queryParams: { id: this.idUsuarioCreado} } );
+  endRouteEmpresa(){
+    this.router.navigate(['simulaciontributaria'], { queryParams: { id: this.paramUsuario} } );
+  }
+
+  endRoutePersona(){
+    this.router.navigate(['simulaciontributariapersona'], { queryParams: { id: this.paramUsuario} } );
   }
 
   saveRoute(){
     //this.router.navigate(['simulacionlegal'], { queryParams: { id: this.idUsuarioCreado} } );
-    // Actualiza el valor de this.valor en función del estado del toggle
-    this.validarCheck();
-
-    // Llama a cargarSiguiente con el nuevo valor de this.valor
     this.cargarSiguiente();
 
     // Muestra el valor actual de this.valor en la consola
     console.log("Valor actual de this.valor: " + this.valor);
     console.log("Valor actual de this.idUsuario: " + this.idUsuarioCargado);
-    console.log("Valor actual de this.idP: " + this.idPregunta);
+    console.log("Valor actual de this.idP: " + this.idPreguntas);
   }
 }

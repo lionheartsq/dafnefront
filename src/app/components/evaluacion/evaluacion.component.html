@@ -15,7 +15,7 @@
     <div class="col-md-4">
       <h2>Criterios</h2>
       <p>Organiza los criterios del cuadro a continuación según la importancia que le asignas.</p>
-      
+
       <div class="form-check" *ngFor="let criterio of arrayCriteriosParcial">
         <label>
           <h2>{{ criterio.criterio }}</h2>
@@ -38,7 +38,6 @@
         <form method="post">
           <button class="mb-5 ideacion-button" *ngIf="this.flagMax==this.idParcial" type="submit" (click)="seleccionSave()">Continuemos</button>
         </form>
-
     </div>
 
     <div class="col-md-4 mb-4">

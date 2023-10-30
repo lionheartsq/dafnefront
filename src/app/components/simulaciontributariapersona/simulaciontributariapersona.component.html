@@ -1,0 +1,25 @@
+<div class="container">
+
+  <br>
+  <span><img src="./assets/iconos/bombilla.svg" style="max-width: 40px; max-height: 40px;" alt="Imagen" class="img-fluid"></span>
+  <span><b style="font-size: 1.8rem;">  Simulación</b></span>
+  <hr>
+  <h1>Simulación Tributaria Persona</h1>
+  <img src="./assets/imagenes/separador.jpg" style="max-width: 140px; max-height: 20px;" alt="Imagen" class="img-fluid">
+  <br>
+  <hr>
+  <div *ngIf="this.flag>0"> Felicidades, terminó el segundo paso, puede continuar</div>
+  <div *ngIf="this.flag==0"> Seleccione con el botón deslizante la respuesta adecuada a cada pregunta y de click en continuar.</div><br>
+  <!-- <div *ngIf="this.flag==0">{{this.idPreguntas}}</div><br> -->
+  <div [innerHTML]="preguntas"></div>
+  <!--{{this.preguntas}} <br>-->
+  <hr *ngIf="this.flag==0"><br *ngIf="this.flag==0">
+
+  <div *ngIf="this.flag==0">No <mat-slide-toggle [(ngModel)]="isChecked"></mat-slide-toggle> Si</div>
+  <br>
+  <hr>
+
+  <button class="ideacion-button" (click)="endRouteFinanciera()" *ngIf="this.flag==1">Finalizar</button>
+  <button class="plus-button" (click)="saveRoute()" *ngIf="this.flag==0">Continuar</button>
+</div>
+

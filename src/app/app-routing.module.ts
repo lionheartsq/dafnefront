@@ -29,10 +29,20 @@ import { ModelocanvasComponent } from './components/modelocanvas/modelocanvas.co
 import { ResumenideacionComponent } from './components/resumenideacion/resumenideacion.component';
 import { VistadofaComponent } from './components/vistadofa/vistadofa.component';
 import { SimulacionlegalComponent } from './components/simulacionlegal/simulacionlegal.component';
+import { SimulaciontributariaComponent } from './components/simulaciontributaria/simulaciontributaria.component';
+import { SimulaciontributariapersonaComponent } from './components/simulaciontributariapersona/simulaciontributariapersona.component';
+import { SimulacionfinancieraComponent } from './components/simulacionfinanciera/simulacionfinanciera.component';
+import { ResumensimulacionComponent } from './components/resumensimulacion/resumensimulacion.component';
+import { AdministradorComponent } from './components/administrador/administrador.component';
+import { CrearusuariosComponent } from './components/crearusuarios/crearusuarios.component';
+import { VerlistadoComponent } from './components/verlistado/verlistado.component';
+import { AccionesComponent } from './components/acciones/acciones.component';
 
 const routes: Routes = [
     //{ path: "", component: AppComponent, pathMatch: "full" },
     { path: "", component: LoginComponent, pathMatch: "full" },
+    { path: "login", component:LoginComponent, pathMatch: "full"},
+    { path: "administrador", component:AdministradorComponent, pathMatch: "full"},
     { path: "home", component:HomeComponent, pathMatch: "full"},
     { path: "basicos", component:BasicosComponent, pathMatch: "full"},
     { path: "experiencia", component:ExperienciaComponent, pathMatch: "full"},
@@ -60,7 +70,15 @@ const routes: Routes = [
     { path: "modelocanvas", component:ModelocanvasComponent, pathMatch: "full"},
     { path: "resumenideacion", component:ResumenideacionComponent, pathMatch: "full"},
     { path: "vistadofa", component:VistadofaComponent, pathMatch: "full"},
-    { path: "simulacionlegal", component:SimulacionlegalComponent, pathMatch: "full"}
+    { path: "simulacionlegal", component:SimulacionlegalComponent, pathMatch: "full"},
+    { path: "simulaciontributaria", component:SimulaciontributariaComponent, pathMatch: "full"},
+    { path: "simulaciontributariapersona", component:SimulaciontributariapersonaComponent, pathMatch: "full"},
+    { path: "simulacionfinanciera", component:SimulacionfinancieraComponent, pathMatch: "full"},
+    { path: "resumensimulacion", component:ResumensimulacionComponent, pathMatch: "full"},
+    { path: "crearusuarios", component:CrearusuariosComponent, pathMatch: "full"},
+    { path: "verlistado", component:VerlistadoComponent, pathMatch: "full"},
+    { path: "acciones", component:AccionesComponent, pathMatch: "full"}
+
 ];
 
 @NgModule({

@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
+import { LoginService } from 'src/app/services/login.service';
 
 @Component({
   selector: 'app-home',
@@ -7,8 +8,13 @@ import { Router } from '@angular/router';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent {
+  idUsuario:any;
 
-  constructor(public router: Router) {
+  constructor(public router: Router, private loginService:LoginService) {}
+
+  ngOnInit(): void {
+    console.log("UsuarioLocal: " + localStorage.getItem('nombre_usuario'));
+    console.log("idUsuarioLocal: " + localStorage.getItem('identificador_usuario'));
   }
 
   loginFake(){

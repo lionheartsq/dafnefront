@@ -17,7 +17,6 @@ export class HobbiesComponent {
   otros: boolean=false;
   hobbienuevo: string='';
   checkedCount: number = 0;
-  idUsuarioCreado:any;
   arrayOpciones:any=[];
   arrayHobbies:any=[];
   idHobbieGeneral: any;
@@ -30,18 +29,27 @@ export class HobbiesComponent {
   idUsuario: any;
   countHobbies: number=0;
 
+//Inicio variables para validar bitacora ***
+  //*******************************************//
+  idModulo:number=1;
+  nombreSeccion:string="hobbies";
+  identificadorSeccion: string="";
+  variableSeccion: string="";
+  idUsuarioCargado: any;
+  //*******************************************//
+  //Fin variables para validar bitacora ***
+
   constructor(public router:Router, private loginService:LoginService, private utilsService:UtilsService, private route: ActivatedRoute, private hobbiesService:HobbiesService) {
   }
 
   ngOnInit(): void {
-    this.route.queryParams.subscribe(params => {
-      this.idUsuarioCreado = params['id'];
-      //console.log(this.idUsuarioCreado);
-      });
+      this.idUsuarioCargado=localStorage.getItem('identificador_usuario');
+      //
+      console.log("Usuario cargado: "+this.idUsuarioCargado);
 
-    this.obtenerHobbiesGeneral();
-    this.contarHobbiesPropio(this.idUsuarioCreado);
+      this.verAvance(this.idUsuarioCargado,this.idModulo);
   }
+
 
   obtenerHobbiesGeneral(){
     this.hobbiesService.lecturaHobbiesGeneral().subscribe(
@@ -60,6 +68,47 @@ export class HobbiesComponent {
     );
   }
 
+  //Inicio funciones nuevas para validar bitacora. ***
+  //*******************************************//
+  verAvance(idUsuario:any, idModulo:any){
+    this.loginService.verAvance(idUsuario, idModulo).subscribe(
+      (data) => {
+        console.log("Seccion: "+JSON.stringify(data));
+
+        if (data.seccion !== null) {
+          this.variableSeccion = String(data.seccion.seccion);
+        } else {
+          this.variableSeccion = this.nombreSeccion; // O cualquier valor predeterminado que desees
+        }
+
+        console.log("VALOR VARIABLESECCION IN: "+this.variableSeccion);
+        this.luegoDeObtenerVariableSeccion(this.variableSeccion);
+      },
+      (err) => {
+        this.luegoDeObtenerVariableSeccion(this.nombreSeccion);
+        console.log("SEC ERR: "+err); // Manejo de errores
+      }
+    );
+  }
+
+  luegoDeObtenerVariableSeccion(variableSeccion:any) {
+    console.log("VALOR VARIABLESECCION OUT: " + variableSeccion);
+    this.identificadorSeccion=variableSeccion;
+    // Coloca aquí cualquier lógica que dependa de this.variableSeccion
+    console.log("Identificador Seccion: "+this.identificadorSeccion);
+    console.log("nombre Seccion: "+this.nombreSeccion);
+
+    if(this.identificadorSeccion===this.nombreSeccion){
+      this.obtenerHobbiesGeneral();
+      this.contarHobbiesPropio(this.idUsuarioCargado);
+    }else{
+      console.log("VAL RUTA: this.router.navigate(["+this.identificadorSeccion+"])");
+      this.router.navigate([this.variableSeccion]);//validar lo del usuario
+    }
+  }
+  //*******************************************//
+  //Fin funciones nuevas para validar bitacora. ***
+
   contarHobbiesPropio(id:any){
     this.hobbiesService.countHobbiesPropio(id).subscribe(
       (data) => {
@@ -74,7 +123,7 @@ export class HobbiesComponent {
   }
 
   obtenerHobbiesPropios(){
-    this.hobbiesService.lecturaHobbiesPropio(this.idUsuarioCreado).subscribe(
+    this.hobbiesService.lecturaHobbiesPropio(this.idUsuarioCargado).subscribe(
       (data) => {
         //console.log("Data Prop:"+data);
         if(data.hobbies.length>0){
@@ -101,7 +150,7 @@ export class HobbiesComponent {
   }
 
   hobbieSave(hobbienuevo:string){
-    const varNuevoHobby = {idUsuario:this.idUsuarioCreado, hobby:hobbienuevo};
+    const varNuevoHobby = {idUsuario:this.idUsuarioCargado, hobby:hobbienuevo};
     if(this.countHobbies<5){
       this.hobbiesService.crearHobbies(varNuevoHobby).subscribe( (data)=>{
         Swal.fire(
@@ -112,8 +161,6 @@ export class HobbiesComponent {
             footer: data.message
           }
         ).then(() => {
-          //this.router.navigateByUrl('hobbies');
-          //
           window.location.reload();
         });
       }, (err) => {
@@ -154,7 +201,7 @@ export class HobbiesComponent {
       //console.log(elementosSeleccionados);
       for (let dato in elementosSeleccionados){
         this.idHobby=elementosSeleccionados[dato].idHobby;
-        this.idUsuario=this.idUsuarioCreado;
+        this.idUsuario=this.idUsuarioCargado;
         //console.log("ID HOBBY LOOP: "+this.idHobby);
         //console.log("ID USER LOOP: "+this.idUsuario);
         const varUsuario = {idUsuario:this.idUsuario, idHobby:this.idHobby};
@@ -173,7 +220,18 @@ export class HobbiesComponent {
           footer: 'Hobbies guardados'
         }
       ).then(() => {
-        this.router.navigate(['valorhobbies'], { queryParams: { id: this.idUsuarioCreado} } );
+        //this.router.navigate(['valorhobbies'], { queryParams: { id: this.idUsuarioCreado} } );
+        //Inicio Modificacion Bitacora ***
+        //*******************************************//
+        const bitacora = {avance:1, idSeccion:4, idUsuario:parseInt(this.idUsuarioCargado)};
+        this.loginService.crearBitacora(bitacora).subscribe( (data)=>{
+          console.log("Bitacora registrada");
+          this.router.navigate(['valorhobbies']);
+        }, (err) => {
+          console.log(err); // Manejo de errores
+        });
+        //*******************************************//
+        //Fin Modificacion Bitacora ***
       });
     } else{
       console.log("Excede la cantidad de hobbies");
@@ -200,5 +258,12 @@ export class HobbiesComponent {
       }
     })
   }
+  //Inicio nueva Ruta ***
+  //*******************************************//
+  homeRoute(){
+    this.router.navigate(['home']);
+  }
+  //*******************************************//
+  //Fin nueva Ruta ***
 
 }

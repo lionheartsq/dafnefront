@@ -3,6 +3,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { EvaluacionService } from 'src/app/services/evaluacion.service';
 import Swal from 'sweetalert2';
 import { CdkDragDrop, moveItemInArray, transferArrayItem } from '@angular/cdk/drag-drop';
+import { LoginService } from 'src/app/services/login.service';
 
 
 @Component({
@@ -11,7 +12,6 @@ import { CdkDragDrop, moveItemInArray, transferArrayItem } from '@angular/cdk/dr
   styleUrls: ['./evaluacion.component.css']
 })
 export class EvaluacionComponent implements OnInit {
-  idUsuarioCreado: any;
   arrayIdeas: any[] = [];
   arrayCriterios: any[] = [];
   arrayCriteriosParcial: any[] = [];
@@ -26,17 +26,72 @@ export class EvaluacionComponent implements OnInit {
   idParcialNuevo: any;
   suenosService: any;
 
-  constructor(public router: Router, private route: ActivatedRoute, private evaluacionService: EvaluacionService, private cdr: ChangeDetectorRef) {}
+//Inicio variables para validar bitacora ***
+  //*******************************************//
+  idModulo:number=1;
+  nombreSeccion:string="evaluacion";
+  identificadorSeccion: string="";
+  variableSeccion: string="";
+  idUsuarioCargado: any;
+  //*******************************************//
+  //Fin variables para validar bitacora ***
+
+
+  constructor(public router: Router, private route: ActivatedRoute, private loginService:LoginService, private evaluacionService: EvaluacionService, private cdr: ChangeDetectorRef) {}
 
   ngOnInit(): void {
     this.route.queryParams.subscribe(params => {
-      this.idUsuarioCreado = params['id'];
       this.idParcial = params['idC'];
       console.log("IDC: "+this.idParcial);
     });
 
-    this.cargarDatos(this.idUsuarioCreado, this.idParcial);
+    this.idUsuarioCargado=localStorage.getItem('identificador_usuario');
+    //
+    console.log("Usuario cargado: "+this.idUsuarioCargado);
+
+    this.verAvance(this.idUsuarioCargado,this.idModulo);
   }
+
+  //Inicio funciones nuevas para validar bitacora. ***
+  //*******************************************//
+  verAvance(idUsuario:any, idModulo:any){
+    this.loginService.verAvance(idUsuario, idModulo).subscribe(
+      (data) => {
+        console.log("Seccion: "+JSON.stringify(data));
+
+        if (data.seccion !== null) {
+          this.variableSeccion = String(data.seccion.seccion);
+        } else {
+          this.variableSeccion = this.nombreSeccion; // O cualquier valor predeterminado que desees
+        }
+
+        console.log("VALOR VARIABLESECCION IN: "+this.variableSeccion);
+        this.luegoDeObtenerVariableSeccion(this.variableSeccion);
+      },
+      (err) => {
+        this.luegoDeObtenerVariableSeccion(this.nombreSeccion);
+        console.log("SEC ERR: "+err); // Manejo de errores
+      }
+    );
+  }
+
+  luegoDeObtenerVariableSeccion(variableSeccion:any) {
+    console.log("VALOR VARIABLESECCION OUT: " + variableSeccion);
+    this.identificadorSeccion=variableSeccion;
+    // Coloca aquí cualquier lógica que dependa de this.variableSeccion
+    console.log("Identificador Seccion: "+this.identificadorSeccion);
+    console.log("nombre Seccion: "+this.nombreSeccion);
+
+    if(this.identificadorSeccion===this.nombreSeccion){
+      // Cargar hobbies propios del usuario
+      this.cargarDatos(this.idUsuarioCargado, this.idParcial);
+    }else{
+      console.log("VAL RUTA: this.router.navigate(["+this.identificadorSeccion+"])");
+      this.router.navigate([this.variableSeccion]);//validar lo del usuario
+    }
+  }
+  //*******************************************//
+  //Fin funciones nuevas para validar bitacora. ***
 
   cargarDatos(id:any, idc:any) {
     this.arrayCriteriosParcial=[];
@@ -102,9 +157,9 @@ export class EvaluacionComponent implements OnInit {
         item.index = index;
         var val= parseInt(item.index)+1;
           const porcentaje = val === 1 ? 50 : (val === 2 ? 33 : 17);
-          this.criteriosIdeas.push({ criterioId: criterio.id, ideaId: item.id, idUsuario: this.idUsuarioCreado, porcentaje: porcentaje });
+          this.criteriosIdeas.push({ criterioId: criterio.id, ideaId: item.id, idUsuario: this.idUsuarioCargado, porcentaje: porcentaje });
 
-          const usuario = { idCriterio: criterio.id, idIdea: item.id, idUsuario: this.idUsuarioCreado, porcentaje: porcentaje };
+          const usuario = { idCriterio: criterio.id, idIdea: item.id, idUsuario: this.idUsuarioCargado, porcentaje: porcentaje };
 
           console.log("Val val: "+val);
           console.log("Val Const Usuario: "+usuario);
@@ -123,9 +178,9 @@ export class EvaluacionComponent implements OnInit {
 
     this.idParcialNuevo=parseInt(this.idParcial, 10)+1;
 
-    this.router.navigate(['evaluacion'], { queryParams: { id: this.idUsuarioCreado, idC: this.idParcialNuevo } });
+    this.router.navigate(['evaluacion'], { queryParams: { idC: this.idParcialNuevo } });
 
-    this.cargarDatos(this.idUsuarioCreado, this.idParcialNuevo);
+    this.cargarDatos(this.idUsuarioCargado, this.idParcialNuevo);
   }
 
   seleccionSave() {
@@ -136,9 +191,9 @@ export class EvaluacionComponent implements OnInit {
         const inputValue = idea.valores[criterio.id];
         if (inputValue !== undefined && inputValue >= 1 && inputValue <= 3) {
           const porcentaje = inputValue === 1 ? 50 : (inputValue === 2 ? 33 : 17);
-          this.criteriosIdeas.push({ criterioId: criterio.id, ideaId: idea.id, idUsuario: this.idUsuarioCreado, porcentaje: porcentaje });
+          this.criteriosIdeas.push({ criterioId: criterio.id, ideaId: idea.id, idUsuario: this.idUsuarioCargado, porcentaje: porcentaje });
 
-          const usuario = { idCriterio: criterio.id, idIdea: idea.id, idUsuario: this.idUsuarioCreado, porcentaje: porcentaje };
+          const usuario = { idCriterio: criterio.id, idIdea: idea.id, idUsuario: this.idUsuarioCargado, porcentaje: porcentaje };
 
           this.evaluacionService.crearRegistro(usuario).subscribe(
             data => {
@@ -154,9 +209,9 @@ export class EvaluacionComponent implements OnInit {
 
     console.log(this.criteriosIdeas);
 
-    this.obtenerMatriz(this.idUsuarioCreado);
+    this.obtenerMatriz(this.idUsuarioCargado);
 
-    //this.router.navigate(['matriz'], { queryParams: { id: this.idUsuarioCreado } });
+    //this.router.navigate(['matriz'], { queryParams: { id: this.idUsuarioCargado } });
   }
 
   obtenerMatriz(id:any){
@@ -186,7 +241,17 @@ export class EvaluacionComponent implements OnInit {
             footer: 'Matriz guardada'
           }
         ).then(() => {
-          this.router.navigate(['matriz'], { queryParams: { id: this.idUsuarioCreado } });
+          //Inicio Modificacion Bitacora ***
+          //*******************************************//
+          const bitacora = {avance:1, idSeccion:11, idUsuario:parseInt(this.idUsuarioCargado)};
+          this.loginService.crearBitacora(bitacora).subscribe( (data)=>{
+            console.log("Bitacora registrada");
+            this.router.navigate(['matriz']);
+          }, (err) => {
+            console.log(err); // Manejo de errores
+          });
+          //*******************************************//
+          //Fin Modificacion Bitacora ***
         });
       },
       (err) => {
@@ -222,26 +287,6 @@ export class EvaluacionComponent implements OnInit {
     );
   }
 
-  validateValues(): void {
-    console.log("Nuevo orden de arrayIdeas:", this.arrayIdeas);
-    this.arrayCriterios.forEach((item, index) => {
-      item.index = index;
-      var val= parseInt(item.index)+1;
-      this.sendNumberValue(item.idEvaluacion, val);
-    });
-    //Pendiente validacion
-    Swal.fire({
-      icon: 'success',
-      title: 'Solicitud enviada',
-      text: 'Valores criterios registrados correctamente',
-      footer: 'criterios   guardados'
-    }).then(() => {
-      //console.log("Final orden de arrayCriterios:", this.arrayCriterios);
-      // Redireccionar a la página deseada
-      this.router.navigate(['ideas'], { queryParams: { id: this.idUsuarioCreado} } );
-    });
-  }
-
   onDrop(event: CdkDragDrop<string[]>) {
     moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);
       // Actualiza las posiciones de idHobby después de la reorganización
@@ -249,4 +294,11 @@ export class EvaluacionComponent implements OnInit {
         item.index = index;
       });
     }
+    //Inicio nueva Ruta ***
+  //*******************************************//
+  homeRoute(){
+    this.router.navigate(['home']);
+  }
+  //*******************************************//
+  //Fin nueva Ruta ***
 }

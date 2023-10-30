@@ -1,0 +1,46 @@
+<div class="container">
+  <br>
+  <span><img src="./assets/iconos/bombilla.svg" style="max-width: 40px; max-height: 40px;" alt="Imagen" class="img-fluid"></span>
+  <span><b style="font-size: 1.8rem;">  Administrador</b></span>
+  <hr>
+  <h1>Crear usuario emprendedor</h1>
+  <img src="./assets/imagenes/separador.jpg" style="max-width: 140px; max-height: 20px;" alt="Imagen" class="img-fluid">
+
+  <div class="row">
+
+    <div class="col-md-5">
+        <div class="form-group">
+          <label for="nombre">Nombre:</label>
+          <input type="text" id="nombre" class="form-control" [(ngModel)]="nombre" placeholder="Nombre del emprendedor">
+        </div>
+        <div class="form-group">
+          <label for="correo">Correo:</label>
+          <input type="email" id="correo" class="form-control" [(ngModel)]="correo" placeholder="Correo">
+        </div>
+    </div>
+
+    <div class="col-md-5">
+      <div class="form-group">
+        <label for="password">Password:</label>
+        <input type="pass" id="password" class="form-control" [(ngModel)]="password" placeholder="Password">
+      </div>
+      <div class="form-group">
+        <div class="col-xs-12 col-md-4">
+           <form method="post">
+             <button class="ideacion-button" type="submit" (click)="emprendedorSave()">Continuemos</button>
+           </form>
+        </div>
+        <!--****************************************************************************-->
+        <div class="col-xs-12 col-md-4">
+            <button class="plus-button" (click)="homeRoute()">Volver al menú</button>
+        </div>
+        <!--****************************************************************************-->
+      </div>
+    </div>
+
+    <div class="col-md-2">
+      <img src="./assets/imagenes/conociendo-al-emprendedor.png" style="max-height: 70%; max-width: 70%;" alt="Imagen" class="img-fluid" id="img-basicos">
+    </div>
+
+  </div>
+</div>

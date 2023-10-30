@@ -13,7 +13,6 @@ import Swal from 'sweetalert2';
   styleUrls: ['./estrategias.component.css']
 })
 export class EstrategiasComponent {
-  idUsuarioCreado: any;
   colorda: string="#E74C3C";
   mensajeDA: string="";
   colorfa: string="#E74C3C";
@@ -37,17 +36,66 @@ export class EstrategiasComponent {
   avanceDO: number=0;
   avanceFA: number=0;
   avanceDA: number=0;
+
+    //Inicio variables para validar bitacora ***
+    //*******************************************//
+    idModulo:number=1;
+    nombreSeccion:string="estrategias";
+    identificadorSeccion: string="";
+    variableSeccion: string="";
+    idUsuarioCargado: any;
+    //*******************************************//
+    //Fin variables para validar bitacora ***
+
   constructor(public router:Router, private loginService:LoginService, private utilsService:UtilsService, private route: ActivatedRoute, private dofaService:DofaService) {}
 
   ngOnInit(): void {
-    this.route.queryParams.subscribe(params => {
-      this.idUsuarioCreado = params['id'];
-      //console.log(this.idUsuarioCreado);
+    this.idUsuarioCargado=localStorage.getItem('identificador_usuario');
+    //
+    console.log("Usuario cargado: "+this.idUsuarioCargado);
 
-      this.cargarDatosEstrategias(this.idUsuarioCreado);
-      });
+    this.verAvance(this.idUsuarioCargado,this.idModulo);
   }
 
+  //Inicio funciones nuevas para validar bitacora. ***
+  //*******************************************//
+  verAvance(idUsuario:any, idModulo:any){
+    this.loginService.verAvance(idUsuario, idModulo).subscribe(
+      (data) => {
+        console.log("Seccion: "+JSON.stringify(data));
+
+        if (data.seccion !== null) {
+          this.variableSeccion = String(data.seccion.seccion);
+        } else {
+          this.variableSeccion = this.nombreSeccion; // O cualquier valor predeterminado que desees
+        }
+
+        console.log("VALOR VARIABLESECCION IN: "+this.variableSeccion);
+        this.luegoDeObtenerVariableSeccion(this.variableSeccion);
+      },
+      (err) => {
+        this.luegoDeObtenerVariableSeccion(this.nombreSeccion);
+        console.log("SEC ERR: "+err); // Manejo de errores
+      }
+    );
+  }
+
+  luegoDeObtenerVariableSeccion(variableSeccion:any) {
+    console.log("VALOR VARIABLESECCION OUT: " + variableSeccion);
+    this.identificadorSeccion=variableSeccion;
+    // Coloca aquí cualquier lógica que dependa de this.variableSeccion
+    console.log("Identificador Seccion: "+this.identificadorSeccion);
+    console.log("nombre Seccion: "+this.nombreSeccion);
+
+    if(this.identificadorSeccion===this.nombreSeccion){
+      this.cargarDatosEstrategias(this.idUsuarioCargado);
+    }else{
+      console.log("VAL RUTA: this.router.navigate(["+this.identificadorSeccion+"])");
+      this.router.navigate([this.variableSeccion]);//validar lo del usuario
+    }
+  }
+  //*******************************************//
+  //Fin funciones nuevas para validar bitacora. ***
 
   cargarDatosEstrategias(idUsuario:any){
     this.dofaService.lecturaEstrategiasPropio(idUsuario).subscribe(
@@ -119,25 +167,43 @@ export class EstrategiasComponent {
 
   uploadFO() {
     //this.openPopup("fortalezas");
-    this.router.navigate(['estrategias1f10'], { queryParams: { id: this.idUsuarioCreado} } );
+    this.router.navigate(['estrategias1f10']);
   }
 
   uploadDO() {
       //this.openPopup("debilidades");
-      this.router.navigate(['estrategias1d20'], { queryParams: { id: this.idUsuarioCreado} } );
+      this.router.navigate(['estrategias1d20']);
   }
 
   uploadFA() {
     //this.openPopup("amenazas");
-    this.router.navigate(['estrategias1f1a'], { queryParams: { id: this.idUsuarioCreado} } );
+    this.router.navigate(['estrategias1f1a']);
   }
 
   uploadDA() {
     //this.openPopup("oportunidades");
-    this.router.navigate(['estrategias2d2a'], { queryParams: { id: this.idUsuarioCreado} } );
+    this.router.navigate(['estrategias2d2a']);
   }
 
   canvasRoute(){
-    this.router.navigate(['modelocanvas'], { queryParams: { id: this.idUsuarioCreado} } );
+    //Inicio Modificacion Bitacora ***
+    //*******************************************//
+    const bitacora = {avance:1, idSeccion:16, idUsuario:parseInt(this.idUsuarioCargado)};
+    this.loginService.crearBitacora(bitacora).subscribe( (data)=>{
+      console.log("Bitacora registrada");
+      this.router.navigate(['modelocanvas']);
+    }, (err) => {
+      console.log(err); // Manejo de errores
+    });
+    //*******************************************//
+    //Fin Modificacion Bitacora ***
   }
+
+    //Inicio nueva Ruta ***
+  //*******************************************//
+  homeRoute(){
+    this.router.navigate(['home']);
+  }
+  //*******************************************//
+  //Fin nueva Ruta ***
 }

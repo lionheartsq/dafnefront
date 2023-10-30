@@ -72,6 +72,14 @@ import { ResumenideacionComponent } from './components/resumenideacion/resumenid
 import { CaracterizacionComponent } from './components/caracterizacion/caracterizacion.component';
 import { VistadofaComponent } from './components/vistadofa/vistadofa.component';
 import { SimulacionlegalComponent } from './components/simulacionlegal/simulacionlegal.component';
+import { SimulaciontributariaComponent } from './components/simulaciontributaria/simulaciontributaria.component';
+import { SimulaciontributariapersonaComponent } from './components/simulaciontributariapersona/simulaciontributariapersona.component';
+import { SimulacionfinancieraComponent } from './components/simulacionfinanciera/simulacionfinanciera.component';
+import { ResumensimulacionComponent } from './components/resumensimulacion/resumensimulacion.component';
+import { AdministradorComponent } from './components/administrador/administrador.component';
+import { CrearusuariosComponent } from './components/crearusuarios/crearusuarios.component';
+import { VerlistadoComponent } from './components/verlistado/verlistado.component';
+import { AccionesComponent } from './components/acciones/acciones.component';
 
 const materialModules = [
   MatCardModule,
@@ -132,7 +140,15 @@ const materialModules = [
     ResumenideacionComponent,
     CaracterizacionComponent,
     VistadofaComponent,
-    SimulacionlegalComponent
+    SimulacionlegalComponent,
+    SimulaciontributariaComponent,
+    SimulaciontributariapersonaComponent,
+    SimulacionfinancieraComponent,
+    ResumensimulacionComponent,
+    AdministradorComponent,
+    CrearusuariosComponent,
+    VerlistadoComponent,
+    AccionesComponent
   ],
   imports: [
     BrowserModule,

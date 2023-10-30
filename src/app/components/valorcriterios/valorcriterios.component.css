@@ -6,6 +6,17 @@
   border: 1px solid #ccc;
 }
 
+/*******************************************/
+.plus-button {
+  margin-top: 10px;
+  padding: 8px;
+  background: #F9D65D 0% 0% no-repeat padding-box;
+  opacity: 0.75;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+}
+/*******************************************/
+
 #img-valorcriterios{
   margin-left: 6vw;
 
@@ -16,7 +27,7 @@
   #img-valorcriterios{
     padding-left: 10vw;
   }
-  
+
   .container{
     width: 90vw;
     margin-left: 2vw;

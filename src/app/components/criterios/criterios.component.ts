@@ -17,7 +17,6 @@ export class CriteriosComponent {
   otros: boolean=false;
   suenonuevo: string='';
   checkedCount: number = 0;
-  idUsuarioCreado:any;
   arrayOpciones:any=[];
   arrayCriterios:any=[];
   idCriterioGeneral: any;
@@ -30,19 +29,68 @@ export class CriteriosComponent {
   idUsuario: any;
   countCriterios: number=0;
 
+//Inicio variables para validar bitacora ***
+  //*******************************************//
+  idModulo:number=1;
+  nombreSeccion:string="criterios";
+  identificadorSeccion: string="";
+  variableSeccion: string="";
+  idUsuarioCargado: any;
+  //*******************************************//
+  //Fin variables para validar bitacora ***
+
   constructor(public router:Router, private loginService:LoginService, private utilsService:UtilsService, private route: ActivatedRoute, private criteriosService:CriteriosService) {
   }
 
   ngOnInit(): void {
-    this.route.queryParams.subscribe(params => {
-      this.idUsuarioCreado = params['id'];
-      //console.log(this.idUsuarioCreado);
-      });
+      this.idUsuarioCargado=localStorage.getItem('identificador_usuario');
+      //
+      console.log("Usuario cargado: "+this.idUsuarioCargado);
 
-    //this.llamarAPI();
-    this.obtenerCriteriosGeneral();
-    this.contarCriteriosPropio(this.idUsuarioCreado);
+      this.verAvance(this.idUsuarioCargado,this.idModulo);
   }
+
+//Inicio funciones nuevas para validar bitacora. ***
+  //*******************************************//
+  verAvance(idUsuario:any, idModulo:any){
+    this.loginService.verAvance(idUsuario, idModulo).subscribe(
+      (data) => {
+        console.log("Seccion: "+JSON.stringify(data));
+
+        if (data.seccion !== null) {
+          this.variableSeccion = String(data.seccion.seccion);
+        } else {
+          this.variableSeccion = this.nombreSeccion; // O cualquier valor predeterminado que desees
+        }
+
+        console.log("VALOR VARIABLESECCION IN: "+this.variableSeccion);
+        this.luegoDeObtenerVariableSeccion(this.variableSeccion);
+      },
+      (err) => {
+        this.luegoDeObtenerVariableSeccion(this.nombreSeccion);
+        console.log("SEC ERR: "+err); // Manejo de errores
+      }
+    );
+  }
+
+  luegoDeObtenerVariableSeccion(variableSeccion:any) {
+    console.log("VALOR VARIABLESECCION OUT: " + variableSeccion);
+    this.identificadorSeccion=variableSeccion;
+    // Coloca aquí cualquier lógica que dependa de this.variableSeccion
+    console.log("Identificador Seccion: "+this.identificadorSeccion);
+    console.log("nombre Seccion: "+this.nombreSeccion);
+
+    if(this.identificadorSeccion===this.nombreSeccion){
+      //this.llamarAPI();
+      this.obtenerCriteriosGeneral();
+      this.contarCriteriosPropio(this.idUsuarioCargado);
+    }else{
+      console.log("VAL RUTA: this.router.navigate(["+this.identificadorSeccion+"])");
+      this.router.navigate([this.variableSeccion]);//validar lo del usuario
+    }
+  }
+  //*******************************************//
+  //Fin funciones nuevas para validar bitacora. ***
 
   obtenerCriteriosGeneral(){
     this.criteriosService.lecturaCriteriosGeneral().subscribe(
@@ -76,7 +124,7 @@ export class CriteriosComponent {
   }
 
   obtenerCriteriosPropios(){
-    this.criteriosService.lecturaCriteriosPropio(this.idUsuarioCreado).subscribe(
+    this.criteriosService.lecturaCriteriosPropio(this.idUsuarioCargado).subscribe(
       (data) => {
         //console.log("Data Prop:"+data);
         if(data.criterios.length>0){
@@ -103,7 +151,7 @@ export class CriteriosComponent {
   }
 
   criterioSave(criterionuevo:string, pregunta:string){
-    const varNuevoCriterio = {idUsuario:this.idUsuarioCreado, criterio:criterionuevo, pregunta:pregunta};
+    const varNuevoCriterio = {idUsuario:this.idUsuarioCargado, criterio:criterionuevo, pregunta:pregunta};
     if(this.countCriterios<4){
       this.criteriosService.crearCriterios(varNuevoCriterio).subscribe( (data)=>{
         Swal.fire(
@@ -155,7 +203,7 @@ export class CriteriosComponent {
       //console.log(elementosSeleccionados);
       for (let dato in elementosSeleccionados){
         this.idCriterio=elementosSeleccionados[dato].idCriterio;
-        this.idUsuario=this.idUsuarioCreado;
+        this.idUsuario=this.idUsuarioCargado;
         //
         console.log("ID HOBBY LOOP: "+this.idCriterio);
         //
@@ -176,7 +224,17 @@ export class CriteriosComponent {
           footer: 'Criterios guardados'
         }
       ).then(() => {
-        this.router.navigate(['valorcriterios'], { queryParams: { id: this.idUsuarioCreado} } );
+        //Inicio Modificacion Bitacora ***
+        //*******************************************//
+        const bitacora = {avance:1, idSeccion:9, idUsuario:parseInt(this.idUsuarioCargado)};
+        this.loginService.crearBitacora(bitacora).subscribe( (data)=>{
+          console.log("Bitacora registrada");
+          this.router.navigate(['valorcriterios']);
+        }, (err) => {
+          console.log(err); // Manejo de errores
+        });
+        //*******************************************//
+        //Fin Modificacion Bitacora ***
       });
     } else{
       console.log("Excede la cantidad de criterios");
@@ -196,7 +254,6 @@ export class CriteriosComponent {
     this.router.navigate(['evaluacion']);
   }
 
-
   openPopup() {
     Swal.fire({
       title: 'Ingresa tu criterio personalizado:',
@@ -214,5 +271,11 @@ export class CriteriosComponent {
       }
     })
   }
-
+//Inicio nueva Ruta ***
+  //*******************************************//
+  homeRoute(){
+    this.router.navigate(['home']);
+  }
+  //*******************************************//
+  //Fin nueva Ruta ***
 }

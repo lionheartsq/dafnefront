@@ -1,0 +1,41 @@
+/* Estilos para el contenedor principal */
+.container {
+  margin-top: 20px;
+}
+
+/* Estilos para los espacios de imagen */
+.image-space {
+  margin-bottom: 10px;
+}
+
+/* Ajustes para los botones */
+.btn {
+  margin-right: 10px;
+}
+
+/* Ajustes para los párrafos */
+p {
+  margin-bottom: 15px;
+}
+
+.avance {
+  color:white;
+  font-size: 1.3rem;
+}
+
+.ideacion-button {
+  margin-top: 10px;
+  padding: 8px;
+  background: #FFD401 0% 0% no-repeat padding-box;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+}
+
+.plus-button {
+  margin-top: 10px;
+  padding: 8px;
+  background: #F9D65D 0% 0% no-repeat padding-box;
+  opacity: 0.75;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+}

@@ -31,7 +31,7 @@
     <div class="col-md-6">
       <h2>Misión</h2>
       <form (submit)="uploadMision()">
-        <textarea cols="102" rows="5" [(ngModel)]="mision" name="mision">
+        <textarea cols="102" [(ngModel)]="mision" name="mision">
         </textarea>
         <button class="step-button" type="submit">Subir Misión</button>
       </form>
@@ -40,7 +40,7 @@
     <div class="col-md-6">
       <h2>Visión</h2>
       <form (submit)="uploadVision()">
-        <textarea cols="102" rows="5" [(ngModel)]="vision" name="vision">
+        <textarea cols="102" [(ngModel)]="vision" name="vision">
         </textarea>
         <button class="step-button" type="submit">Subir Visión</button>
       </form>
@@ -49,7 +49,7 @@
   </div>
 
   <div class="row">
-    <div class="col-md-12">
+    <div class="col-md-6">
       <h2>Carga tu logo</h2>
       <img src="{{this.logo}}" alt="Imagen 2" class="img-fluid" id="img-resumen" style="max-width: 30%; max-height: 30%;">
       <form (submit)="uploadImage()">
@@ -57,13 +57,14 @@
         <button class="step-button" id="btn-imagen" type="submit">Subir Imagen</button>
       </form>
     </div>
-  </div>
 
-  <div class="row">
     <div class="col-md-6">
       <form method="post">
         <button class="ideacion-button" type="submit" (click)="fakeRoute()">Continuemos</button>
       </form>
+      <!--****************************************************************************-->
+        <button class="plus-button" (click)="homeRoute()">Volver al menú</button>
+      <!--****************************************************************************-->
     </div>
   </div>
 

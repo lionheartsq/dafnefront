@@ -14,7 +14,6 @@ import Swal from 'sweetalert2';
   styleUrls: ['./estrategias2d2a.component.css']
 })
 export class Estrategias2d2aComponent {
-  idUsuarioCreado: any;
   arrayEstrategias: any;
   idEstrategias: any;
   accionFO: String="";
@@ -31,15 +30,21 @@ export class Estrategias2d2aComponent {
   avanceDA: number=0;
   totalavance: number=0;
   flag: number=0;
+
+  //Inicio variables para validar bitacora ***
+  //*******************************************//
+  idUsuarioCargado: any;
+  //*******************************************//
+  //Fin variables para validar bitacora ***
+
   constructor(public router:Router, private loginService:LoginService, private utilsService:UtilsService, private route: ActivatedRoute, private dofaService:DofaService) {}
 
   ngOnInit(): void {
-    this.route.queryParams.subscribe(params => {
-      this.idUsuarioCreado = params['id'];
-      //console.log(this.idUsuarioCreado);
+    this.idUsuarioCargado=localStorage.getItem('identificador_usuario');
+    //
+    console.log("Usuario cargado: "+this.idUsuarioCargado);
 
-      this.cargarDatosEstrategias(this.idUsuarioCreado);
-      });
+    this.cargarDatosEstrategias(this.idUsuarioCargado);
   }
 
   cargarDatosEstrategias(idUsuario:any){
@@ -77,7 +82,7 @@ export class Estrategias2d2aComponent {
   terminarRoute(){
       this.flag=1;
       this.avanceDA=2;
-      const varMensaje = {id:this.idEstrategias, idUsuario:this.idUsuarioCreado, accionFO:this.accionFO, accionDO:this.accionDO, accionFA:this.accionFA, accionDA:this.accionDA,estrategiaFO:this.estrategiaFO, estrategiaDO:this.estrategiaDO,
+      const varMensaje = {id:this.idEstrategias, idUsuario:this.idUsuarioCargado, accionFO:this.accionFO, accionDO:this.accionDO, accionFA:this.accionFA, accionDA:this.accionDA,estrategiaFO:this.estrategiaFO, estrategiaDO:this.estrategiaDO,
         estrategiaFA:this.estrategiaFA, estrategiaDA:this.estrategiaDA, avanceFO:this.avanceFO, avanceDO:this.avanceDO, avanceFA:this.avanceFA, avanceDA:this.avanceDA};
 
       console.log("Var dofa: "+varMensaje);
@@ -91,7 +96,7 @@ export class Estrategias2d2aComponent {
             footer: data.message
           }
         ).then(() => {
-          this.router.navigate(['estrategias'], { queryParams: { id: this.idUsuarioCreado} } );
+          this.router.navigate(['estrategias']);
         });
       }, (err) => {
         //debugger
@@ -111,7 +116,7 @@ export class Estrategias2d2aComponent {
   continuarRoute(){
       this.flag=1;
       this.avanceDA=1;
-      const varMensaje = {id:this.idEstrategias, idUsuario:this.idUsuarioCreado, accionFO:this.accionFO, accionDO:this.accionDO, accionFA:this.accionFA, accionDA:this.accionDA,estrategiaFO:this.estrategiaFO, estrategiaDO:this.estrategiaDO,
+      const varMensaje = {id:this.idEstrategias, idUsuario:this.idUsuarioCargado, accionFO:this.accionFO, accionDO:this.accionDO, accionFA:this.accionFA, accionDA:this.accionDA,estrategiaFO:this.estrategiaFO, estrategiaDO:this.estrategiaDO,
         estrategiaFA:this.estrategiaFA, estrategiaDA:this.estrategiaDA, avanceFO:this.avanceFO, avanceDO:this.avanceDO, avanceFA:this.avanceFA, avanceDA:this.avanceDA};
 
         console.log("Var dofa: " + JSON.stringify(varMensaje, null, 2));
@@ -126,7 +131,7 @@ export class Estrategias2d2aComponent {
           }
         ).then(() => {
           //window.location.reload();
-          this.router.navigate(['estrategias'], { queryParams: { id: this.idUsuarioCreado} } );
+          this.router.navigate(['estrategias']);
         });
       }, (err) => {
         //debugger

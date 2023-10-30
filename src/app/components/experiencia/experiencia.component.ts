@@ -22,22 +22,69 @@ export class ExperienciaComponent {
   actividades: string  ='Ninguna';
   emailUsuarioActual: any;
   idUsuarioActual:any;
-  idUsuarioCreado: any;
 
+//Inicio variables para validar bitacora ***
+  //*******************************************//
+  idModulo:number=1;
+  nombreSeccion:string="experiencia";
+  identificadorSeccion: string="";
+  variableSeccion: string="";
+  idUsuarioCargado: any;
+  //*******************************************//
+  //Fin variables para validar bitacora ***
 
   constructor(public router:Router, private loginService:LoginService, private utilsService:UtilsService, private route: ActivatedRoute, private experienciaService:ExperienciaService) {
   }
 
   ngOnInit(): void {
-    this.route.queryParams.subscribe(params => {
-      this.idUsuarioCreado = params['id'];
-      //
-      console.log(this.idUsuarioCreado);
-      });
 
-    this.emailUsuarioActual=this.obtenerUsuarioActual();
-    this.obtenerIdUsuarioActual(this.emailUsuarioActual);
+      this.idUsuarioCargado=localStorage.getItem('identificador_usuario');
+      //
+      console.log("Usuario cargado: "+this.idUsuarioCargado);
+
+      this.verAvance(this.idUsuarioCargado,this.idModulo);
   }
+
+//Inicio funciones nuevas para validar bitacora. ***
+  //*******************************************//
+  verAvance(idUsuario:any, idModulo:any){
+    this.loginService.verAvance(idUsuario, idModulo).subscribe(
+      (data) => {
+        console.log("Seccion: "+JSON.stringify(data));
+
+        if (data.seccion !== null) {
+          this.variableSeccion = String(data.seccion.seccion);
+        } else {
+          this.variableSeccion = this.nombreSeccion; // O cualquier valor predeterminado que desees
+        }
+
+        console.log("VALOR VARIABLESECCION IN: "+this.variableSeccion);
+        this.luegoDeObtenerVariableSeccion(this.variableSeccion);
+      },
+      (err) => {
+        this.luegoDeObtenerVariableSeccion(this.nombreSeccion);
+        console.log("SEC ERR: "+err); // Manejo de errores
+      }
+    );
+  }
+
+  luegoDeObtenerVariableSeccion(variableSeccion:any) {
+    console.log("VALOR VARIABLESECCION OUT: " + variableSeccion);
+    this.identificadorSeccion=variableSeccion;
+    // Coloca aquí cualquier lógica que dependa de this.variableSeccion
+    console.log("Identificador Seccion: "+this.identificadorSeccion);
+    console.log("nombre Seccion: "+this.nombreSeccion);
+
+    if(this.identificadorSeccion===this.nombreSeccion){
+      this.emailUsuarioActual=this.obtenerUsuarioActual();
+      this.obtenerIdUsuarioActual(this.emailUsuarioActual);
+    }else{
+      console.log("VAL RUTA: this.router.navigate(["+this.identificadorSeccion+"])");
+      this.router.navigate([this.variableSeccion]);//validar lo del usuario
+    }
+  }
+  //*******************************************//
+  //Fin funciones nuevas para validar bitacora. ***
 
   obtenerUsuarioActual(){
     return this.loginService.getUsuario();
@@ -57,9 +104,10 @@ export class ExperienciaComponent {
   }
 
   experienciaSave(){
-      const varEscolaridad = {escolaridad:this.escolaridad, nivelescolaridad:this.nivelescolaridad, areaconocimiento:this.areaconocimiento, idUsuario:this.idUsuarioCreado};
-      const varOcupacion = {ocupacion:this.ocupacion, lugar:this.lugar, area:this.areaocupacion, idUsuario:this.idUsuarioCreado};
-      const varExperiencia = {experiencia:this.experiencia, area:this.areaexperiencia, actividades:this.actividades, idUsuario:this.idUsuarioCreado};
+    //***************** En const usuario añadir id:this.idUsuarioCargado, ************************//
+      const varEscolaridad = {escolaridad:this.escolaridad, nivelescolaridad:this.nivelescolaridad, areaconocimiento:this.areaconocimiento, idUsuario:this.idUsuarioCargado};
+      const varOcupacion = {ocupacion:this.ocupacion, lugar:this.lugar, area:this.areaocupacion, idUsuario:this.idUsuarioCargado};
+      const varExperiencia = {experiencia:this.experiencia, area:this.areaexperiencia, actividades:this.actividades, idUsuario:this.idUsuarioCargado};
       this.experienciaService.crearEscolaridad(varEscolaridad).subscribe( (data)=>{
         Swal.fire(
           {
@@ -69,6 +117,18 @@ export class ExperienciaComponent {
             footer: data.message
           }
         ).then(() => {
+            //Inicio Modificacion Bitacora ***
+            //*******************************************//
+            const bitacora = {avance:1, idSeccion:3, idUsuario:parseInt(this.idUsuarioCargado)};
+            this.loginService.crearBitacora(bitacora).subscribe( (data)=>{
+              console.log("Bitacora registrada");
+              this.router.navigate(['hobbies']);
+            }, (err) => {
+              console.log(err); // Manejo de errores
+            });
+            //*******************************************//
+            //Fin Modificacion Bitacora ***
+
           this.experienciaService.crearOcupacion(varOcupacion).subscribe( (data)=>{
             Swal.fire(
               {
@@ -88,8 +148,8 @@ export class ExperienciaComponent {
                   }
                 ).then(() => {
                   //this.router.navigateByUrl('hobbies');
-                  //
-                  this.router.navigate(['hobbies'], { queryParams: { id: this.idUsuarioCreado} } );
+                  //this.router.navigate(['hobbies'], { queryParams: { id: this.idUsuarioCreado} } );
+                  this.router.navigate(['hobbies']);
                 });
               }, (err) => {
                 //debugger
@@ -131,6 +191,12 @@ export class ExperienciaComponent {
   hobbiesRoute(){
     this.router.navigate(['hobbies']);
   }
-
+//Inicio nueva Ruta ***
+  //*******************************************//
+  homeRoute(){
+    this.router.navigate(['home']);
+  }
+  //*******************************************//
+  //Fin nueva Ruta ***
 }
 

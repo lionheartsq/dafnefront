@@ -27,18 +27,71 @@ export class BasicosComponent {
   idCiudad: any;
   nombreCiudad: any;
   ordinal:number=0;
-  idUsuarioCreado:any;
+
+  //Inicio variables para validar bitacora ***
+  //*******************************************//
+  idUsuarioCargado:any;
+  idModulo:number=1;
+  nombreSeccion:string="basicos";
+  identificadorSeccion: string="";
+  variableSeccion: string="";
+  //*******************************************//
+  //Fin variables para validar bitacora ***
 
   constructor(private basicosService: BasicosService, public router:Router, private loginService:LoginService, private utilsService:UtilsService) {}
 
   ngOnInit(): void {
     //this.mostrarToken();
-    this.fetchOptions();
+
+    this.idUsuarioCargado=localStorage.getItem('identificador_usuario');
+    console.log("BASICOS IDUSUARIOCARGADO: "+this.idUsuarioCargado);
+
+    this.verAvance(this.idUsuarioCargado,this.idModulo);
   }
 
   mostrarToken(){
     console.log("Token: "+this.loginService.getToken());
   }
+
+  //Inicio funciones nuevas para validar bitacora. ***
+  //*******************************************//
+  verAvance(idUsuario:any, idModulo:any){
+    this.loginService.verAvance(idUsuario, idModulo).subscribe(
+      (data) => {
+        console.log("Seccion: "+JSON.stringify(data));
+
+        if (data.seccion !== null) {
+          this.variableSeccion = String(data.seccion.seccion);
+        } else {
+          this.variableSeccion = this.nombreSeccion; // O cualquier valor predeterminado que desees
+        }
+
+        console.log("VALOR VARIABLESECCION IN: "+this.variableSeccion);
+        this.luegoDeObtenerVariableSeccion(this.variableSeccion);
+      },
+      (err) => {
+        this.luegoDeObtenerVariableSeccion(this.nombreSeccion);
+        console.log("SEC ERR: "+err); // Manejo de errores
+      }
+    );
+  }
+
+  luegoDeObtenerVariableSeccion(variableSeccion:any) {
+    console.log("VALOR VARIABLESECCION OUT: " + variableSeccion);
+    this.identificadorSeccion=variableSeccion;
+    // Coloca aquí cualquier lógica que dependa de this.variableSeccion
+    console.log("Identificador Seccion: "+this.identificadorSeccion);
+    console.log("nombre Seccion: "+this.nombreSeccion);
+
+    if(this.identificadorSeccion===this.nombreSeccion){
+      this.fetchOptions();
+    }else{
+      console.log("VAL RUTA: this.router.navigate(["+this.identificadorSeccion+"])");
+      this.router.navigate([this.variableSeccion]);//validar lo del usuario
+    }
+  }
+  //*******************************************//
+  //Fin funciones nuevas para validar bitacora. ***
 
   fetchOptions() {
       this.utilsService.lecturaCiudades().subscribe(
@@ -61,7 +114,9 @@ export class BasicosComponent {
   }
 
   basicosSave(){
-      const usuario = {nombre:this.nombre, tipodocumento:this.tipoDocumento, documento:this.numeroDocumento, email:this.correo, telefono:this.telefono, direccion:this.direccion, ciudad:this.ciudad, sexo:this.sexo, idRol:this.idRol};
+      //***************** En const usuario añadir id:this.idUsuarioCargado, ************************//
+      const usuario = {id:this.idUsuarioCargado, nombre:this.nombre, tipodocumento:this.tipoDocumento, documento:this.numeroDocumento, email:this.correo, telefono:this.telefono, direccion:this.direccion, ciudad:this.ciudad, sexo:this.sexo, idRol:this.idRol};
+      console.log("USUARIO OBJECT: "+JSON.stringify(usuario));
       this.basicosService.crearUsuario(usuario).subscribe( (data)=>{
       Swal.fire(
         {
@@ -71,12 +126,22 @@ export class BasicosComponent {
           footer: data.message
         }
       ).then(() => {
-        this.idUsuarioCreado=data.idUsuario;
-        localStorage.setItem('identificador_usuario', this.idUsuarioCreado);
-        // Aquí la alerta se ha cerrado
-        //this.router.navigateByUrl('experiencia');
-        //
-        this.router.navigate(['experiencia'], { queryParams: { id: this.idUsuarioCreado} } );
+        //Inicio Modificacion Bitacora ***
+        //*******************************************//
+        //this.idUsuarioCreado=data.idUsuario;
+        //localStorage.setItem('identificador_usuario', this.idUsuarioCargado);
+
+        const bitacora = {avance:1, idSeccion:2, idUsuario:parseInt(this.idUsuarioCargado)};
+        this.loginService.crearBitacora(bitacora).subscribe( (data)=>{
+          console.log("Bitacora registrada");
+          //this.router.navigate(['experiencia'], { queryParams: { id: this.idUsuarioCreado} } );
+          this.router.navigate(['experiencia']);
+        }, (err) => {
+          console.log("PAYLOAD ERROR: "+JSON.stringify(bitacora));
+          console.log(err); // Manejo de errores
+        });
+        //*******************************************//
+        //Fin Modificacion Bitacora ***
       });
     }, (err) => {
       //debugger
@@ -95,5 +160,12 @@ export class BasicosComponent {
     this.router.navigate(['experiencia']);
   }
 
+  //Inicio nueva Ruta ***
+  //*******************************************//
+  homeRoute(){
+    this.router.navigate(['home']);
+  }
+  //*******************************************//
+  //Fin nueva Ruta ***
 }
 

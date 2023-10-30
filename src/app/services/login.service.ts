@@ -16,14 +16,23 @@ import { GlobalConstants } from '../common/global-constants';
   providedIn: 'root'
 })
 export class LoginService {
-
   private urlBase=GlobalConstants.apiURL;
 
   //private urlBase='http://127.0.0.1:8000';
 
+  private endpointEmail='api/auth/usuario/selectemaillogin';
+
   private endpoint= 'api/auth/login';
+
+  private endpointRegister= 'api/auth/register';
+
+  private endpointSeccion='api/auth/bitacora/validaravance';
+
+  private endpointBitacora='api/auth/bitacora/store';
+
   headers = new HttpHeaders().set('Content-Type', 'application/json');
   currentUser = {};
+  idUsuario: any;
 
   constructor(private http: HttpClient, public router: Router){}
 
@@ -33,9 +42,43 @@ export class LoginService {
         .subscribe((res: any) => {
           localStorage.setItem('access_token', res.access_token);
           localStorage.setItem('nombre_usuario', usuario);
+          localStorage.setItem('identificador_usuario', res.id_usuario);
+          localStorage.setItem('rol', res.rol);
+          console.log("Item idUsuario: "+localStorage.getItem('identificador_usuario'));
+          console.log("Item rol: "+localStorage.getItem('rol'));
           //console.log("Token: "+res.access_token);
-          this.router.navigate(['home']);
+          if(res.rol==1){
+            this.router.navigate(['administrador']);
+          }else if(res.rol==3){
+            this.router.navigate(['home']);
+          }
+
         })
+    }
+
+    public crearEmprendedor(user: any): Observable<any>{
+      return this.http.post(`${this.urlBase}/${this.endpointRegister}`, user)
+    }
+
+    public verAvance(idUsuario:any, idModulo:any): Observable<any> {
+      //
+      console.log("Query Ver Avance: "+`${this.urlBase}/${this.endpointSeccion}?idUsuario=${idUsuario}&idModulo=${idModulo}`);
+      return this.http.get(`${this.urlBase}/${this.endpointSeccion}?idUsuario=${idUsuario}&idModulo=${idModulo}`);
+    }
+
+    public crearBitacora(user: any): Observable<any>{
+      return this.http.post(`${this.urlBase}/${this.endpointBitacora}`, user)
+    }
+
+    public lecturaUsuario(email:any): Observable<any> {
+      //console.log("Query: "+`${this.urlBase}/${this.endpointEmail}/${email}`);
+      return this.http.get(`${this.urlBase}/${this.endpointEmail}/${email}`);
+    }
+
+    public fetchOptions(email: any): Observable<any> {
+      return this.lecturaUsuario(email).pipe(
+        map((data) => data.idUsuario)
+      );
     }
 
     getToken() {
@@ -44,6 +87,10 @@ export class LoginService {
 
     getUsuario() {
       return localStorage.getItem('nombre_usuario');
+    }
+
+    getIdUsuario() {
+      return localStorage.getItem('identificador_usuario');
     }
 
     get isLoggedIn(): boolean {
@@ -58,6 +105,7 @@ export class LoginService {
 
     doLogout() {
       let removeToken = localStorage.removeItem('access_token');
+      localStorage.clear();
       if (removeToken == null) {
         this.router.navigate(['auth']);
       }

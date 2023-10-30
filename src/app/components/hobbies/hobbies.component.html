@@ -31,14 +31,12 @@
           <div class="form-group">
             <button type="submit" class="plus-button" (click)="openPopup()">Ingresa tu hobbie personalizado</button>
           </div>
-          <br>
           <form method="post">
             <!-- <button type="submit" (click)="experienciaRoute()">Continuemos</button> -->
             <button class="ideacion-button" *ngIf="checkedCount<6 && checkedCount>0" type="submit" (click)="validateHobbies()">Continuemos</button>
           </form>
-
+            <button class="plus-button" (click)="homeRoute()">Volver al menú</button>
         </div>
-
       </div>
     </div>
 

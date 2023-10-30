@@ -13,22 +13,70 @@ import { CdkDragDrop, moveItemInArray, transferArrayItem } from '@angular/cdk/dr
   styleUrls: ['./valorsuenos.component.css']
 })
 export class ValorsuenosComponent implements OnInit {
-  idUsuarioCreado: any;
   arrayOpciones: any[] = [];
   selectedValues: { [key: string]: number } = {};
+
+  //Inicio variables para validar bitacora ***
+  //*******************************************//
+  idModulo:number=1;
+  nombreSeccion:string="valorsuenos";
+  identificadorSeccion: string="";
+  variableSeccion: string="";
+  idUsuarioCargado: any;
+  //*******************************************//
+  //Fin variables para validar bitacora ***
 
   constructor(public router:Router, private loginService:LoginService, private utilsService:UtilsService, private route: ActivatedRoute, private suenosService: SuenosService) {}
 
 
   ngOnInit(): void {
-    this.route.queryParams.subscribe(params => {
-      this.idUsuarioCreado = params['id'];
-      //console.log(this.idUsuarioCreado);
-      });
+      this.idUsuarioCargado=localStorage.getItem('identificador_usuario');
+      //
+      console.log("Usuario cargado: "+this.idUsuarioCargado);
 
-    // Cargar hobbies propios del usuario
-    this.cargarSuenosPropio(this.idUsuarioCreado);
+      this.verAvance(this.idUsuarioCargado,this.idModulo);
   }
+
+  //Inicio funciones nuevas para validar bitacora. ***
+  //*******************************************//
+  verAvance(idUsuario:any, idModulo:any){
+    this.loginService.verAvance(idUsuario, idModulo).subscribe(
+      (data) => {
+        console.log("Seccion: "+JSON.stringify(data));
+
+        if (data.seccion !== null) {
+          this.variableSeccion = String(data.seccion.seccion);
+        } else {
+          this.variableSeccion = this.nombreSeccion; // O cualquier valor predeterminado que desees
+        }
+
+        console.log("VALOR VARIABLESECCION IN: "+this.variableSeccion);
+        this.luegoDeObtenerVariableSeccion(this.variableSeccion);
+      },
+      (err) => {
+        this.luegoDeObtenerVariableSeccion(this.nombreSeccion);
+        console.log("SEC ERR: "+err); // Manejo de errores
+      }
+    );
+  }
+
+  luegoDeObtenerVariableSeccion(variableSeccion:any) {
+    console.log("VALOR VARIABLESECCION OUT: " + variableSeccion);
+    this.identificadorSeccion=variableSeccion;
+    // Coloca aquí cualquier lógica que dependa de this.variableSeccion
+    console.log("Identificador Seccion: "+this.identificadorSeccion);
+    console.log("nombre Seccion: "+this.nombreSeccion);
+
+    if(this.identificadorSeccion===this.nombreSeccion){
+    // Cargar hobbies propios del usuario
+    this.cargarSuenosPropio(this.idUsuarioCargado);
+    }else{
+      console.log("VAL RUTA: this.router.navigate(["+this.identificadorSeccion+"])");
+      this.router.navigate([this.variableSeccion]);//validar lo del usuario
+    }
+  }
+  //*******************************************//
+  //Fin funciones nuevas para validar bitacora. ***
 
   cargarSuenosPropio(id: any): void {
     this.suenosService.getSuenosPropio(id).subscribe(
@@ -82,9 +130,17 @@ export class ValorsuenosComponent implements OnInit {
       text: 'Valores sueños registrados correctamente',
       footer: 'Sueños guardados'
     }).then(() => {
-      //console.log("Final orden de arrayOpciones:", this.arrayOpciones);
-      // Redireccionar a la página deseada
-      this.router.navigate(['ideas'], { queryParams: { id: this.idUsuarioCreado} } );
+        //Inicio Modificacion Bitacora ***
+        //*******************************************//
+        const bitacora = {avance:1, idSeccion:7, idUsuario:parseInt(this.idUsuarioCargado)};
+        this.loginService.crearBitacora(bitacora).subscribe( (data)=>{
+          console.log("Bitacora registrada");
+          this.router.navigate(['ideas']);
+        }, (err) => {
+          console.log(err); // Manejo de errores
+        });
+        //*******************************************//
+        //Fin Modificacion Bitacora ***
     });
   }
 
@@ -96,8 +152,13 @@ export class ValorsuenosComponent implements OnInit {
       });
     }
 
-
-
+  //Inicio nueva Ruta ***
+  //*******************************************//
+  homeRoute(){
+    this.router.navigate(['home']);
+  }
+  //*******************************************//
+  //Fin nueva Ruta ***
 }
 
 

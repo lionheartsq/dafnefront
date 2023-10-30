@@ -14,7 +14,6 @@ import Swal from 'sweetalert2';
 })
 export class ResumenComponent {
   selectedImage: File | null = null;
-  idUsuarioCreado: any;
   arrayEmpresa: any;
   logo: any;
   idEmpresa: any;
@@ -25,15 +24,65 @@ export class ResumenComponent {
   slogan: any;
   url: string='';
 
-  constructor(public router:Router, private route: ActivatedRoute, private resumenempresaService:ResumenempresaService) {}
+  //Inicio variables para validar bitacora ***
+    //*******************************************//
+    idModulo:number=1;
+    nombreSeccion:string="resumen";
+    identificadorSeccion: string="";
+    variableSeccion: string="";
+    idUsuarioCargado: any;
+    //*******************************************//
+    //Fin variables para validar bitacora ***
+
+  constructor(public router:Router, private route: ActivatedRoute, private loginService:LoginService, private resumenempresaService:ResumenempresaService) {}
 
   ngOnInit(): void {
-    this.route.queryParams.subscribe(params => {
-      this.idUsuarioCreado = params['id'];
-      //console.log(this.idUsuarioCreado);
-      this.cargarDatosEmpresa(this.idUsuarioCreado);
-      });
+      this.idUsuarioCargado=localStorage.getItem('identificador_usuario');
+      //
+      console.log("Usuario cargado: "+this.idUsuarioCargado);
+
+      this.verAvance(this.idUsuarioCargado,this.idModulo);
   }
+
+  //Inicio funciones nuevas para validar bitacora. ***
+  //*******************************************//
+  verAvance(idUsuario:any, idModulo:any){
+    this.loginService.verAvance(idUsuario, idModulo).subscribe(
+      (data) => {
+        console.log("Seccion: "+JSON.stringify(data));
+
+        if (data.seccion !== null) {
+          this.variableSeccion = String(data.seccion.seccion);
+        } else {
+          this.variableSeccion = this.nombreSeccion; // O cualquier valor predeterminado que desees
+        }
+
+        console.log("VALOR VARIABLESECCION IN: "+this.variableSeccion);
+        this.luegoDeObtenerVariableSeccion(this.variableSeccion);
+      },
+      (err) => {
+        this.luegoDeObtenerVariableSeccion(this.nombreSeccion);
+        console.log("SEC ERR: "+err); // Manejo de errores
+      }
+    );
+  }
+
+  luegoDeObtenerVariableSeccion(variableSeccion:any) {
+    console.log("VALOR VARIABLESECCION OUT: " + variableSeccion);
+    this.identificadorSeccion=variableSeccion;
+    // Coloca aquí cualquier lógica que dependa de this.variableSeccion
+    console.log("Identificador Seccion: "+this.identificadorSeccion);
+    console.log("nombre Seccion: "+this.nombreSeccion);
+
+    if(this.identificadorSeccion===this.nombreSeccion){
+      this.cargarDatosEmpresa(this.idUsuarioCargado);
+    }else{
+      console.log("VAL RUTA: this.router.navigate(["+this.identificadorSeccion+"])");
+      this.router.navigate([this.variableSeccion]);//validar lo del usuario
+    }
+  }
+  //*******************************************//
+  //Fin funciones nuevas para validar bitacora. ***
 
   cargarDatosEmpresa(idUsuario:any){
     this.resumenempresaService.getEmpresaPropio(idUsuario).subscribe(
@@ -50,7 +99,7 @@ export class ResumenComponent {
           this.logo=this.arrayEmpresa[dato].logo;
         }
         console.log("Actual idEmpresa: "+this.idEmpresa);
-        console.log("Actual idUsuario: "+this.idUsuarioCreado);
+        console.log("Actual idUsuario: "+this.idUsuarioCargado);
         console.log("Actual nombreIdea: "+this.nombreIdea);
         console.log("Actual nombreEmpresa: "+this.nombreEmpresa);
         console.log("Actual mision: "+this.mision);
@@ -73,7 +122,7 @@ export class ResumenComponent {
   }
 
   uploadImage() {
-    const varNuevaEmpresa = {id:this.idEmpresa, idUsuario:this.idUsuarioCreado, nombreIdea:this.nombreIdea, nombreEmpresa:this.nombreEmpresa, mision:this.mision, vision:this.vision, slogan:this.slogan, logo:this.logo};
+    const varNuevaEmpresa = {id:this.idEmpresa, idUsuario:this.idUsuarioCargado, nombreIdea:this.nombreIdea, nombreEmpresa:this.nombreEmpresa, mision:this.mision, vision:this.vision, slogan:this.slogan, logo:this.logo};
     console.log("Var nuevaEmpresa: "+varNuevaEmpresa);
     this.resumenempresaService.actualizarEmpresa(varNuevaEmpresa).subscribe( (data)=>{
       console.log("Var nuevaEmpresa lanzada: "+varNuevaEmpresa);
@@ -94,7 +143,7 @@ export class ResumenComponent {
           this.url=response['imageUrl'];
           // Realiza las acciones que necesites con la idea seleccionada
           console.log("Actual idEmpresa: "+this.idEmpresa);
-          console.log("Actual idUsuario: "+this.idUsuarioCreado);
+          console.log("Actual idUsuario: "+this.idUsuarioCargado);
           console.log("Actual nombreIdea: "+this.nombreIdea);
           console.log("Actual nombreEmpresa: "+this.nombreEmpresa);
           console.log("Actual mision: "+this.mision);
@@ -103,7 +152,7 @@ export class ResumenComponent {
           console.log("Actual logo: "+this.logo);
           console.log("Actual URL: "+this.url);
 
-          const varNuevaEmpresa = {id:this.idEmpresa, idUsuario:this.idUsuarioCreado, nombreIdea:this.nombreIdea, nombreEmpresa:this.nombreEmpresa, mision:this.mision, vision:this.vision, slogan:this.slogan, logo:this.url};
+          const varNuevaEmpresa = {id:this.idEmpresa, idUsuario:this.idUsuarioCargado, nombreIdea:this.nombreIdea, nombreEmpresa:this.nombreEmpresa, mision:this.mision, vision:this.vision, slogan:this.slogan, logo:this.url};
           console.log("Var nuevaEmpresa: "+varNuevaEmpresa);
           this.resumenempresaService.actualizarEmpresa(varNuevaEmpresa).subscribe( (data)=>{
             Swal.fire(
@@ -114,7 +163,7 @@ export class ResumenComponent {
                 footer: data.message
               }
             ).then(() => {
-              //this.router.navigate(['resumen'], { queryParams: { id: this.idUsuarioCreado} } );
+              //this.router.navigate(['resumen'], { queryParams: { id: this.idUsuarioCargado} } );
               //
               window.location.reload();
             });
@@ -138,7 +187,7 @@ export class ResumenComponent {
   }
 
   uploadSlogan() {
-      const varNuevaEmpresa = {id:this.idEmpresa, idUsuario:this.idUsuarioCreado, nombreIdea:this.nombreIdea, nombreEmpresa:this.nombreEmpresa, mision:this.mision, vision:this.vision, slogan:this.slogan, logo:this.logo};
+      const varNuevaEmpresa = {id:this.idEmpresa, idUsuario:this.idUsuarioCargado, nombreIdea:this.nombreIdea, nombreEmpresa:this.nombreEmpresa, mision:this.mision, vision:this.vision, slogan:this.slogan, logo:this.logo};
       console.log("Var nuevaEmpresa: "+varNuevaEmpresa);
       this.resumenempresaService.actualizarEmpresa(varNuevaEmpresa).subscribe( (data)=>{
         Swal.fire(
@@ -149,7 +198,7 @@ export class ResumenComponent {
             footer: data.message
           }
         ).then(() => {
-          //this.router.navigate(['resumen'], { queryParams: { id: this.idUsuarioCreado} } );
+          //this.router.navigate(['resumen'], { queryParams: { id: this.idUsuarioCargado} } );
           //
           window.location.reload();
         });
@@ -167,7 +216,7 @@ export class ResumenComponent {
   }
 
   uploadNombre() {
-    const varNuevaEmpresa = {id:this.idEmpresa, idUsuario:this.idUsuarioCreado, nombreIdea:this.nombreIdea, nombreEmpresa:this.nombreEmpresa, mision:this.mision, vision:this.vision, slogan:this.slogan, logo:this.logo};
+    const varNuevaEmpresa = {id:this.idEmpresa, idUsuario:this.idUsuarioCargado, nombreIdea:this.nombreIdea, nombreEmpresa:this.nombreEmpresa, mision:this.mision, vision:this.vision, slogan:this.slogan, logo:this.logo};
     console.log("Var nuevaEmpresa: "+varNuevaEmpresa);
     this.resumenempresaService.actualizarEmpresa(varNuevaEmpresa).subscribe( (data)=>{
       Swal.fire(
@@ -178,7 +227,7 @@ export class ResumenComponent {
           footer: data.message
         }
       ).then(() => {
-        //this.router.navigate(['resumen'], { queryParams: { id: this.idUsuarioCreado} } );
+        //this.router.navigate(['resumen'], { queryParams: { id: this.idUsuarioCargado} } );
         //
         window.location.reload();
       });
@@ -196,7 +245,7 @@ export class ResumenComponent {
   }
 
   uploadMision() {
-    const varNuevaEmpresa = {id:this.idEmpresa, idUsuario:this.idUsuarioCreado, nombreIdea:this.nombreIdea, nombreEmpresa:this.nombreEmpresa, mision:this.mision, vision:this.vision, slogan:this.slogan, logo:this.logo};
+    const varNuevaEmpresa = {id:this.idEmpresa, idUsuario:this.idUsuarioCargado, nombreIdea:this.nombreIdea, nombreEmpresa:this.nombreEmpresa, mision:this.mision, vision:this.vision, slogan:this.slogan, logo:this.logo};
     console.log("Var nuevaEmpresa: "+varNuevaEmpresa);
     this.resumenempresaService.actualizarEmpresa(varNuevaEmpresa).subscribe( (data)=>{
       Swal.fire(
@@ -207,7 +256,7 @@ export class ResumenComponent {
           footer: data.message
         }
       ).then(() => {
-        //this.router.navigate(['resumen'], { queryParams: { id: this.idUsuarioCreado} } );
+        //this.router.navigate(['resumen'], { queryParams: { id: this.idUsuarioCargado} } );
         //
         window.location.reload();
       });
@@ -225,7 +274,7 @@ export class ResumenComponent {
   }
 
   uploadVision() {
-    const varNuevaEmpresa = {id:this.idEmpresa, idUsuario:this.idUsuarioCreado, nombreIdea:this.nombreIdea, nombreEmpresa:this.nombreEmpresa, mision:this.mision, vision:this.vision, slogan:this.slogan, logo:this.logo};
+    const varNuevaEmpresa = {id:this.idEmpresa, idUsuario:this.idUsuarioCargado, nombreIdea:this.nombreIdea, nombreEmpresa:this.nombreEmpresa, mision:this.mision, vision:this.vision, slogan:this.slogan, logo:this.logo};
     console.log("Var nuevaEmpresa: "+varNuevaEmpresa);
     this.resumenempresaService.actualizarEmpresa(varNuevaEmpresa).subscribe( (data)=>{
       Swal.fire(
@@ -236,7 +285,7 @@ export class ResumenComponent {
           footer: data.message
         }
       ).then(() => {
-        //this.router.navigate(['resumen'], { queryParams: { id: this.idUsuarioCreado} } );
+        //this.router.navigate(['resumen'], { queryParams: { id: this.idUsuarioCargado} } );
         //
         window.location.reload();
       });
@@ -254,7 +303,23 @@ export class ResumenComponent {
   }
 
   fakeRoute(){
-    this.router.navigate(['resumenideacion'], { queryParams: { id: this.idUsuarioCreado} } );
+    //Inicio Modificacion Bitacora ***
+    //*******************************************//
+    const bitacora = {avance:1, idSeccion:13, idUsuario:parseInt(this.idUsuarioCargado)};
+    this.loginService.crearBitacora(bitacora).subscribe( (data)=>{
+      console.log("Bitacora registrada");
+      this.router.navigate(['resumenideacion']);
+    }, (err) => {
+      console.log(err); // Manejo de errores
+    });
+    //*******************************************//
+    //Fin Modificacion Bitacora ***
   }
-
+  //Inicio nueva Ruta ***
+  //*******************************************//
+  homeRoute(){
+    this.router.navigate(['home']);
+  }
+  //*******************************************//
+  //Fin nueva Ruta ***
 }

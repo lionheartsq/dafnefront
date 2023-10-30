@@ -18,7 +18,6 @@ export class IdeasComponent {
   valorImportancia: string | undefined;
   otros: boolean=false;
   checkedCount: number = 0;
-  idUsuarioCreado:any;
   arrayOpciones:any=[];
   arrayIdeas:any=[];
   idIdeaGeneral: any;
@@ -32,19 +31,68 @@ export class IdeasComponent {
   countIdeas: number=0;
   ideanuevo: any;
 
+  //Inicio variables para validar bitacora ***
+  //*******************************************//
+  idModulo:number=1;
+  nombreSeccion:string="ideas";
+  identificadorSeccion: string="";
+  variableSeccion: string="";
+  idUsuarioCargado: any;
+  //*******************************************//
+  //Fin variables para validar bitacora ***
+
   constructor(public router:Router, private loginService:LoginService, private utilsService:UtilsService, private route: ActivatedRoute, private ideasService:IdeasService, private apiGptService:ApigptService) {
   }
 
   ngOnInit(): void {
-    this.route.queryParams.subscribe(params => {
-      this.idUsuarioCreado = params['id'];
-      //console.log(this.idUsuarioCreado);
-      });
+      this.idUsuarioCargado=localStorage.getItem('identificador_usuario');
+      //
+      console.log("Usuario cargado: "+this.idUsuarioCargado);
 
-    //this.llamarAPI();
-    this.obtenerIdeasGeneral();
-    this.contarIdeasPropio(this.idUsuarioCreado);
+      this.verAvance(this.idUsuarioCargado,this.idModulo);
   }
+
+//Inicio funciones nuevas para validar bitacora. ***
+  //*******************************************//
+  verAvance(idUsuario:any, idModulo:any){
+    this.loginService.verAvance(idUsuario, idModulo).subscribe(
+      (data) => {
+        console.log("Seccion: "+JSON.stringify(data));
+
+        if (data.seccion !== null) {
+          this.variableSeccion = String(data.seccion.seccion);
+        } else {
+          this.variableSeccion = this.nombreSeccion; // O cualquier valor predeterminado que desees
+        }
+
+        console.log("VALOR VARIABLESECCION IN: "+this.variableSeccion);
+        this.luegoDeObtenerVariableSeccion(this.variableSeccion);
+      },
+      (err) => {
+        this.luegoDeObtenerVariableSeccion(this.nombreSeccion);
+        console.log("SEC ERR: "+err); // Manejo de errores
+      }
+    );
+  }
+
+  luegoDeObtenerVariableSeccion(variableSeccion:any) {
+    console.log("VALOR VARIABLESECCION OUT: " + variableSeccion);
+    this.identificadorSeccion=variableSeccion;
+    // Coloca aquí cualquier lógica que dependa de this.variableSeccion
+    console.log("Identificador Seccion: "+this.identificadorSeccion);
+    console.log("nombre Seccion: "+this.nombreSeccion);
+
+    if(this.identificadorSeccion===this.nombreSeccion){
+      //this.llamarAPI();
+      this.obtenerIdeasGeneral();
+      this.contarIdeasPropio(this.idUsuarioCargado);
+    }else{
+      console.log("VAL RUTA: this.router.navigate(["+this.identificadorSeccion+"])");
+      this.router.navigate([this.variableSeccion]);//validar lo del usuario
+    }
+  }
+  //*******************************************//
+  //Fin funciones nuevas para validar bitacora. ***
 
   obtenerIdeasGeneral(){
     this.ideasService.lecturaIdeasGeneral().subscribe(
@@ -78,7 +126,7 @@ export class IdeasComponent {
   }
 
   obtenerIdeasPropios(){
-    this.ideasService.lecturaIdeasPropio(this.idUsuarioCreado).subscribe(
+    this.ideasService.lecturaIdeasPropio(this.idUsuarioCargado).subscribe(
       (data) => {
         //console.log("Data Prop:"+data);
         if(data.ideas.length>0){
@@ -105,7 +153,7 @@ export class IdeasComponent {
   }
 
   ideaSave(ideanuevo:string){
-    const varNuevoIdea = {idUsuario:this.idUsuarioCreado, idea:ideanuevo};
+    const varNuevoIdea = {idUsuario:this.idUsuarioCargado, idea:ideanuevo};
     if(this.countIdeas<4){
       this.ideasService.crearIdeas(varNuevoIdea).subscribe( (data)=>{
         Swal.fire(
@@ -157,7 +205,7 @@ export class IdeasComponent {
       //console.log(elementosSeleccionados);
       for (let dato in elementosSeleccionados){
         this.idIdea=elementosSeleccionados[dato].idIdea;
-        this.idUsuario=this.idUsuarioCreado;
+        this.idUsuario=this.idUsuarioCargado;
         //
         console.log("ID HOBBY LOOP: "+this.idIdea);
         //
@@ -178,7 +226,17 @@ export class IdeasComponent {
           footer: 'Ideas guardadas'
         }
       ).then(() => {
-        this.router.navigate(['criterios'], { queryParams: { id: this.idUsuarioCreado} } );
+        //Inicio Modificacion Bitacora ***
+        //*******************************************//
+        const bitacora = {avance:1, idSeccion:8, idUsuario:parseInt(this.idUsuarioCargado)};
+        this.loginService.crearBitacora(bitacora).subscribe( (data)=>{
+          console.log("Bitacora registrada");
+          this.router.navigate(['criterios']);
+        }, (err) => {
+          console.log(err); // Manejo de errores
+        });
+        //*******************************************//
+        //Fin Modificacion Bitacora ***
       });
     } else{
       console.log("Excede la cantidad de ideas");
@@ -216,7 +274,13 @@ export class IdeasComponent {
       }
     })
   }
-
+//Inicio nueva Ruta ***
+  //*******************************************//
+  homeRoute(){
+    this.router.navigate(['home']);
+  }
+  //*******************************************//
+  //Fin nueva Ruta ***
 }
 
 
