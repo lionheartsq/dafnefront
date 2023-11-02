@@ -36,6 +36,7 @@ export class CriteriosComponent {
   identificadorSeccion: string="";
   variableSeccion: string="";
   idUsuarioCargado: any;
+  valorModeracion: any;
   //*******************************************//
   //Fin variables para validar bitacora ***
 
@@ -96,11 +97,13 @@ export class CriteriosComponent {
     this.criteriosService.lecturaCriteriosGeneral().subscribe(
       (data) => {
         //
-        console.log("Data Gen:"+data);
+        console.log("Data Propio:"+JSON.stringify(data));
+        console.log("Len Data Propio:"+data.criterios.length);
         for (let dato in data.criterios){
           this.idCriterioGeneral=data.criterios[dato].id;
           this.criterioGeneral=data.criterios[dato].criterio;
-          this.arrayOpciones.push({idCriterio:this.idCriterioGeneral, criterio: this.criterioGeneral});
+          this.valorModeracion=data.criterios[dato].moderacion;
+          this.arrayOpciones.push({idCriterio:this.idCriterioGeneral, criterio: this.criterioGeneral, valorModeracion: this.valorModeracion});
         }
         this.obtenerCriteriosPropios();
       },
@@ -131,7 +134,8 @@ export class CriteriosComponent {
           for (let dato in data.criterios){
             this.idCriterioPropio=data.criterios[dato].id;
             this.criterioPropio=data.criterios[dato].criterio;
-            this.arrayOpciones.push({idCriterio:this.idCriterioPropio, criterio:this.criterioPropio});
+            this.valorModeracion=data.criterios[dato].moderacion;
+            this.arrayOpciones.push({idCriterio:this.idCriterioPropio, criterio:this.criterioPropio, valorModeracion: this.valorModeracion});
           }
         }
         for (let dato in this.arrayOpciones){

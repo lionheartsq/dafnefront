@@ -46,7 +46,7 @@ export class CrearusuariosComponent {
 
   emprendedorSave(){
       //***************** En const usuario añadir id:this.idUsuarioCargado, ************************//
-      const usuario = {name:this.nombre, email:this.correo, rol:this.idRol, password:this.password};
+      const usuario = {name:this.nombre, email:this.correo, rol:this.idRol, gestor:this.idUsuarioCargado, password:this.password};
       this.loginService.crearEmprendedor(usuario).subscribe( (data)=>{
       Swal.fire(
         {

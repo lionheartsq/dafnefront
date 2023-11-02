@@ -38,6 +38,7 @@ export class IdeasComponent {
   identificadorSeccion: string="";
   variableSeccion: string="";
   idUsuarioCargado: any;
+  valorModeracion: any;
   //*******************************************//
   //Fin variables para validar bitacora ***
 
@@ -98,11 +99,13 @@ export class IdeasComponent {
     this.ideasService.lecturaIdeasGeneral().subscribe(
       (data) => {
         //
-        console.log("Data Gen:"+data);
+        console.log("Data Propio:"+JSON.stringify(data));
+        console.log("Len Data Propio:"+data.ideas.length);
         for (let dato in data.ideas){
           this.idIdeaGeneral=data.ideas[dato].id;
           this.ideaGeneral=data.ideas[dato].idea;
-          this.arrayOpciones.push({idIdea:this.idIdeaGeneral, idea: this.ideaGeneral});
+          this.valorModeracion=data.ideas[dato].moderacion;
+          this.arrayOpciones.push({idIdea:this.idIdeaGeneral, idea: this.ideaGeneral, valorModeracion: this.valorModeracion});
         }
         this.obtenerIdeasPropios();
       },
@@ -133,7 +136,8 @@ export class IdeasComponent {
           for (let dato in data.ideas){
             this.idIdeaPropio=data.ideas[dato].id;
             this.ideaPropio=data.ideas[dato].idea;
-            this.arrayOpciones.push({idIdea:this.idIdeaPropio, idea:this.ideaPropio});
+            this.valorModeracion=data.ideas[dato].moderacion;
+            this.arrayOpciones.push({idIdea:this.idIdeaPropio, idea:this.ideaPropio, valorModeracion: this.valorModeracion});
           }
         }
         for (let dato in this.arrayOpciones){

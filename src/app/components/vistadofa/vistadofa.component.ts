@@ -92,10 +92,10 @@ export class VistadofaComponent {
           this.totalavance=parseInt(this.avanced.toString(), 10)+parseInt(this.avanceo.toString(), 10)+parseInt(this.avancef.toString(), 10)+parseInt(this.avancea.toString(), 10);
         }
         //console.log("Actual idEmpresa: "+this.idEmpresa);
-        this.debilidadesConsolidado=this.debilidades1+" "+this.debilidades2+" "+this.debilidades3+" "+this.debilidades4;
-        this.oportunidadesConsolidado=this.oportunidades1+" "+this.oportunidades2+" "+this.oportunidades3+" "+this.oportunidades4;
-        this.fortalezasConsolidado=this.fortalezas1+" "+this.fortalezas2+" "+this.fortalezas3+" "+this.fortalezas4;
-        this.amenazasConsolidado=this.amenazas1+" "+this.amenazas2+" "+this.amenazas3+" "+this.amenazas4;
+        this.debilidadesConsolidado="<ul><li>"+this.debilidades1+"</li><li>"+this.debilidades2+"</li><li>"+this.debilidades3+"</li><li>"+this.debilidades4+"</li></ul>";
+        this.oportunidadesConsolidado="<ul><li>"+this.oportunidades1+"</li><li>"+this.oportunidades2+"</li><li>"+this.oportunidades3+"</li><li>"+this.oportunidades4+"</li></ul>";
+        this.fortalezasConsolidado="<ul><li>"+this.fortalezas1+"</li><li>"+this.fortalezas2+"</li><li>"+this.fortalezas3+"</li><li>"+this.fortalezas4+"</li></ul>";
+        this.amenazasConsolidado="<ul><li>"+this.amenazas1+"</li><li>"+this.amenazas2+"</li><li>"+this.amenazas3+"</li><li>"+this.amenazas4+"</li></ul>";
       },
       (err) => {
         console.log(err); // Manejo de errores

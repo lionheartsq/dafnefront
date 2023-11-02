@@ -109,41 +109,28 @@ export class ExperienciaComponent {
       const varOcupacion = {ocupacion:this.ocupacion, lugar:this.lugar, area:this.areaocupacion, idUsuario:this.idUsuarioCargado};
       const varExperiencia = {experiencia:this.experiencia, area:this.areaexperiencia, actividades:this.actividades, idUsuario:this.idUsuarioCargado};
       this.experienciaService.crearEscolaridad(varEscolaridad).subscribe( (data)=>{
-        Swal.fire(
-          {
-            icon: 'success',
-            title: 'Solicitud enviada',
-            text: 'Escolaridad registrada correctamente',
-            footer: data.message
-          }
-        ).then(() => {
-            //Inicio Modificacion Bitacora ***
-            //*******************************************//
-            const bitacora = {avance:1, idSeccion:3, idUsuario:parseInt(this.idUsuarioCargado)};
-            this.loginService.crearBitacora(bitacora).subscribe( (data)=>{
-              console.log("Bitacora registrada");
-              this.router.navigate(['hobbies']);
-            }, (err) => {
-              console.log(err); // Manejo de errores
-            });
-            //*******************************************//
-            //Fin Modificacion Bitacora ***
+          console.log("Escolaridad registrada correctamente");
+
+          //Inicio Modificacion Bitacora ***
+          //*******************************************//
+          const bitacora = {avance:1, idSeccion:3, idUsuario:parseInt(this.idUsuarioCargado)};
+          this.loginService.crearBitacora(bitacora).subscribe( (data)=>{
+            console.log("Bitacora registrada");
+            this.router.navigate(['hobbies']);
+          }, (err) => {
+            console.log(err); // Manejo de errores
+          });
+          //*******************************************//
+          //Fin Modificacion Bitacora ***
 
           this.experienciaService.crearOcupacion(varOcupacion).subscribe( (data)=>{
-            Swal.fire(
-              {
-                icon: 'success',
-                title: 'Solicitud enviada',
-                text: 'Ocupación registrada correctamente',
-                footer: data.message
-              }
-            ).then(() => {
+            console.log("Escolaridad ocupación correctamente");
               this.experienciaService.crearExperiencia(varExperiencia).subscribe( (data)=>{
                 Swal.fire(
                   {
                     icon: 'success',
                     title: 'Solicitud enviada',
-                    text: 'Experiencia registrada correctamente',
+                    text: 'Información registrada correctamente',
                     footer: data.message
                   }
                 ).then(() => {
@@ -162,7 +149,6 @@ export class ExperienciaComponent {
                   }
                 )
               });
-            });
           }, (err) => {
             //debugger
             Swal.fire(
@@ -174,7 +160,6 @@ export class ExperienciaComponent {
               }
             )
           });
-        });
       }, (err) => {
         //debugger
         Swal.fire(

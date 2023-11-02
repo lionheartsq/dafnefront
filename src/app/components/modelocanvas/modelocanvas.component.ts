@@ -20,7 +20,31 @@ export class ModelocanvasComponent {
   }
 
   closeEditor() {
-    this.editingSection = null;
+    let identificador = '';
+
+    if (this.editingSection !== null) {
+    let editedText = this.sectionData[this.editingSection];
+
+    switch (this.editingSection) {
+      case '1. Proposicion de valor':
+        identificador = 'proposicion';
+        break;
+      case '2. Segmento de clientes':
+        identificador = 'segmento';
+        break;
+      // Agrega más casos según tus necesidades
+    }
+
+    if(editedText !== null || editedText !== undefined){
+      console.log(`Identificador: ${identificador}, Contenido editado de ${this.editingSection}: ${editedText}`);
+    }else{
+      editedText="";
+          console.log(`Identificador: ${identificador}, Contenido editado de ${this.editingSection}: ${editedText}`);
+      // Aquí puedes realizar cualquier acción adicional con identificador y editedText
+    }
+    }
+
+    this.editingSection = null; // Cerrar el editor
   }
 
   cancelEditor() {

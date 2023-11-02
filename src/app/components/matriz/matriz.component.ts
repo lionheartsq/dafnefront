@@ -105,79 +105,44 @@ export class MatrizComponent {
     // Realiza las acciones que necesites con la idea seleccionada
     const varNuevaEmpresa = {idUsuario:this.idUsuarioCargado, nombreIdea:this.selectedIdea};
       this.resumenempresaService.crearEmpresa(varNuevaEmpresa).subscribe( (data)=>{
-        Swal.fire(
-          {
-            icon: 'success',
-            title: 'Solicitud enviada',
-            text: 'Nueva empresa registrada correctamente',
-            footer: data.message
-          }
-        ).then(() => {
+        console.log("Empresa creada");
           const varNuevoDofa = {idUsuario:this.idUsuarioCargado}
           this.dofaService.crearDofa(varNuevoDofa).subscribe( (data)=>{
-            Swal.fire(
-              {
-                icon: 'success',
-                title: 'Solicitud enviada',
-                text: 'Nueva matriz dofa registrada correctamente',
-                footer: data.message
-              }
-            ).then(() => {
+              console.log("Matriz DOFA creada");
               const varNuevaEstrategia = {idUsuario:this.idUsuarioCargado}
               this.dofaService.crearEstrategias(varNuevaEstrategia).subscribe( (data)=>{
-                Swal.fire(
-                  {
-                    icon: 'success',
-                    title: 'Solicitud enviada',
-                    text: 'Matriz estrategias registrada correctamente',
-                    footer: data.message
-                  }
-                ).then(() => {
-                  const varNuevoCanvas = {idUsuario:this.idUsuarioCargado}
+
+                const varNuevoCanvas = {idUsuario:this.idUsuarioCargado}
                   this.canvasService.crearCanvas(varNuevoCanvas).subscribe( (data)=>{
-                    Swal.fire(
-                      {
-                        icon: 'success',
-                        title: 'Solicitud enviada',
-                        text: 'Nuevo modelo canvas registrado correctamente',
-                        footer: data.message
-                      }
-                    )
+                    console.log("Modelo canvas creado");
+                    //Inicio Modificacion Bitacora ***
+                    //*******************************************//
+                    const bitacora = {avance:1, idSeccion:12, idUsuario:parseInt(this.idUsuarioCargado)};
+                    this.loginService.crearBitacora(bitacora).subscribe( (data)=>{
+                      console.log("Bitacora registrada");
+                      Swal.fire(
+                        {
+                          icon: 'success',
+                          title: 'Solicitud enviada',
+                          text: 'Nueva empresa registrada correctamente',
+                          footer: data.message
+                        }
+                        ).then(() => {
+                          this.router.navigate(['resumen']);
+                        });
+                    }, (err) => {
+                      console.log(err); // Manejo de errores
+                    });
+                    //*******************************************//
+                    //Fin Modificacion Bitacora ***
                   }, (err) => {
-                    //debugger
-                    Swal.fire(
-                      {
-                        icon: 'error',
-                        title: 'Error al crear',
-                        html: 'Por favor verifique los datos e intente nuevamente',
-                        footer: 'No se ha podido completar el registro'
-                      }
-                    )
+                    console.log(err);
                   });
-                });
+            }, (err) => {
+              console.log(err);
             });
-          }, (err) => {
-            //debugger
-            Swal.fire(
-              {
-                icon: 'error',
-                title: 'Error al crear',
-                html: 'Por favor verifique los datos e intente nuevamente',
-                footer: 'No se ha podido completar el registro'
-              }
-            )
-          });
-          //Inicio Modificacion Bitacora ***
-          //*******************************************//
-          const bitacora = {avance:1, idSeccion:12, idUsuario:parseInt(this.idUsuarioCargado)};
-          this.loginService.crearBitacora(bitacora).subscribe( (data)=>{
-            console.log("Bitacora registrada");
-            this.router.navigate(['resumen']);
-          }, (err) => {
-            console.log(err); // Manejo de errores
-          });
-          //*******************************************//
-          //Fin Modificacion Bitacora ***
+        }, (err) => {
+          console.log(err);
         });
       }, (err) => {
         //debugger
@@ -190,7 +155,6 @@ export class MatrizComponent {
           }
         )
       });
-    });
 }
 
   //Inicio nueva Ruta ***

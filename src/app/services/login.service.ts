@@ -37,11 +37,12 @@ export class LoginService {
   constructor(private http: HttpClient, public router: Router){}
 
     // Sign-in
-    signIn(user:any, usuario:any) {
+    signIn(user:any) {
       return this.http.post<any>(`${this.urlBase}/${this.endpoint}`, user)
         .subscribe((res: any) => {
           localStorage.setItem('access_token', res.access_token);
-          localStorage.setItem('nombre_usuario', usuario);
+          localStorage.setItem('nombre_usuario', res.nombre_usuario);
+          localStorage.setItem('email_usuario', res.email_usuario);
           localStorage.setItem('identificador_usuario', res.id_usuario);
           localStorage.setItem('rol', res.rol);
           console.log("Item idUsuario: "+localStorage.getItem('identificador_usuario'));

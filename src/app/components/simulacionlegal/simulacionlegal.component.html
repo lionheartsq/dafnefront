@@ -15,7 +15,14 @@
   <!--{{this.preguntas}} <br>-->
   <hr *ngIf="this.flag==0"><br *ngIf="this.flag==0">
 
-  <div *ngIf="this.flag==0">No <mat-slide-toggle [(ngModel)]="isChecked"></mat-slide-toggle> Si</div>
+  <div *ngIf="this.flag==0">
+    No
+    <mat-slide-toggle
+    [(ngModel)]="isChecked"
+    class="green-toggle">
+    </mat-slide-toggle>
+    Si
+  </div>
   <br>
   <hr>
 

@@ -36,6 +36,7 @@ export class SuenosComponent {
   identificadorSeccion: string="";
   variableSeccion: string="";
   idUsuarioCargado: any;
+  valorModeracion: any;
   //*******************************************//
   //Fin variables para validar bitacora ***
 
@@ -95,12 +96,14 @@ export class SuenosComponent {
     this.suenosService.lecturaSuenosGeneral().subscribe(
       (data) => {
         //
-        console.log("Data Gen:"+data);
+        console.log("Data Gen:"+JSON.stringify(data));
         for (let dato in data.suenos){
           this.idSuenoGeneral=data.suenos[dato].id;
           this.suenoGeneral=data.suenos[dato].sueno;
-          this.arrayOpciones.push({idSueno:this.idSuenoGeneral, sueno: this.suenoGeneral});
+          this.valorModeracion=data.suenos[dato].moderacion;
+          this.arrayOpciones.push({idSueno:this.idSuenoGeneral, sueno: this.suenoGeneral, valorModeracion: this.valorModeracion});
         }
+        console.log("ArrayAcum Gen:"+JSON.stringify(this.arrayOpciones));
         this.obtenerSuenosPropios();
       },
       (err) => {
@@ -125,12 +128,15 @@ export class SuenosComponent {
   obtenerSuenosPropios(){
     this.suenosService.lecturaSuenosPropio(this.idUsuarioCargado).subscribe(
       (data) => {
-        //console.log("Data Prop:"+data);
+        //
+        console.log("Data Propio:"+JSON.stringify(data));
+        console.log("Len Data Propio:"+data.suenos.length);
         if(data.suenos.length>0){
           for (let dato in data.suenos){
             this.idSuenoPropio=data.suenos[dato].id;
             this.suenoPropio=data.suenos[dato].sueno;
-            this.arrayOpciones.push({idSueno:this.idSuenoPropio, sueno:this.suenoPropio});
+            this.valorModeracion=data.suenos[dato].moderacion;
+            this.arrayOpciones.push({idSueno:this.idSuenoPropio, sueno: this.suenoPropio, valorModeracion: this.valorModeracion});
           }
         }
         for (let dato in this.arrayOpciones){

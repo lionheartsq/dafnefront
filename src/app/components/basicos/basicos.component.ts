@@ -13,10 +13,10 @@ import { UtilsService } from 'src/app/services/utils.service';
   styleUrls: ['./basicos.component.css']
 })
 export class BasicosComponent {
-  nombre: string | undefined;
+  nombre: any;
   tipoDocumento: string| undefined;
   numeroDocumento: string| undefined;
-  correo: string| undefined;
+  correo: any;
   telefono: string| undefined;
   direccion: string| undefined;
   ciudad: string| undefined;
@@ -44,6 +44,8 @@ export class BasicosComponent {
     //this.mostrarToken();
 
     this.idUsuarioCargado=localStorage.getItem('identificador_usuario');
+    this.nombre=localStorage.getItem('nombre_usuario');
+    this.correo=localStorage.getItem('email_usuario');
     console.log("BASICOS IDUSUARIOCARGADO: "+this.idUsuarioCargado);
 
     this.verAvance(this.idUsuarioCargado,this.idModulo);

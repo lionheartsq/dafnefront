@@ -14,10 +14,11 @@ export class AdministradorComponent {
 
   ngOnInit(): void {
     console.log("UsuarioLocal: " + localStorage.getItem('nombre_usuario'));
-    this.setIdLocal();
+    console.log("idUsuarioLocal: " + localStorage.getItem('identificador_usuario'));
+    //this.setIdLocal();
   }
 
-  setIdLocal() {
+/*   setIdLocal() {
     const email = localStorage.getItem('nombre_usuario');
     this.loginService.fetchOptions(email).subscribe(
       (idUsuario) => {
@@ -30,7 +31,7 @@ export class AdministradorComponent {
         console.error(error);
       }
     );
-  }
+  } */
 
   loginFake(){
     this.router.navigate(['home']);

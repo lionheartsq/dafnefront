@@ -19,14 +19,14 @@
 
                 <div class="form-check" #checkboxes *ngFor="let elemento of arrayOpciones">
                   <label>
-                    <input type="checkbox" class="form-check-input" [(ngModel)]="elemento.seleccionado" (change)="onCheckboxChange($event, elemento)" value="{{ elemento.idSueno }}">
+                    <input type="checkbox" class="form-check-input" [(ngModel)]="elemento.seleccionado" (change)="onCheckboxChange($event, elemento)" [value]="elemento.idSueno" [disabled]="elemento.valorModeracion === 0">
                     {{ elemento.sueno }}
                   </label>
                 </div>
                 <div class="form-group">
                   <button class="plus-button" type="submit" (click)="openPopup()">Ingresa tu sueño personalizado</button>
                 </div>
-                <div *ngIf="checkedCount>5" class="form-group">
+                <div *ngIf="checkedCount>5" class="form-group alert alert-danger" role="alert">
                   <p>Ha excedido la cantidad de posibilidades a elegir, por favor elija sólo un máximo de 5</p>
                 </div>
                 <form method="post">

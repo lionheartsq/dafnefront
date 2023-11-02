@@ -14,7 +14,7 @@
       <h2>Selecciona 3 ideas que más se relacionan con tu emprendimiento.</h2>
         <div class="form-check" #checkboxes *ngFor="let elemento of arrayOpciones">
           <label>
-            <input type="checkbox" class="form-check-input" [(ngModel)]="elemento.seleccionado" (change)="onCheckboxChange($event, elemento)" value="{{ elemento.idIdea }}">
+            <input type="checkbox" class="form-check-input" [(ngModel)]="elemento.seleccionado" (change)="onCheckboxChange($event, elemento)" [value]="elemento.idIdea" [disabled]="elemento.valorModeracion === 0">
             {{ elemento.idea }}
           </label>
         </div>

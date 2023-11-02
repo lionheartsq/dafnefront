@@ -36,6 +36,7 @@ export class HobbiesComponent {
   identificadorSeccion: string="";
   variableSeccion: string="";
   idUsuarioCargado: any;
+  valorModeracion: any;
   //*******************************************//
   //Fin variables para validar bitacora ***
 
@@ -48,24 +49,6 @@ export class HobbiesComponent {
       console.log("Usuario cargado: "+this.idUsuarioCargado);
 
       this.verAvance(this.idUsuarioCargado,this.idModulo);
-  }
-
-
-  obtenerHobbiesGeneral(){
-    this.hobbiesService.lecturaHobbiesGeneral().subscribe(
-      (data) => {
-        //console.log("Data Gen:"+data);
-        for (let dato in data.hobbies){
-          this.idHobbieGeneral=data.hobbies[dato].id;
-          this.hobbieGeneral=data.hobbies[dato].hobby;
-          this.arrayOpciones.push({idHobby:this.idHobbieGeneral, hobby: this.hobbieGeneral});
-        }
-        this.obtenerHobbiesPropios();
-      },
-      (err) => {
-        console.log(err); // Manejo de errores
-      }
-    );
   }
 
   //Inicio funciones nuevas para validar bitacora. ***
@@ -109,12 +92,33 @@ export class HobbiesComponent {
   //*******************************************//
   //Fin funciones nuevas para validar bitacora. ***
 
+  obtenerHobbiesGeneral(){
+    this.hobbiesService.lecturaHobbiesGeneral().subscribe(
+      (data) => {
+        //
+        console.log("Data Hobb Gen:"+JSON.stringify(data));
+        for (let dato in data.hobbies){
+          this.idHobbieGeneral=data.hobbies[dato].id;
+          this.hobbieGeneral=data.hobbies[dato].hobby;
+          this.valorModeracion=data.hobbies[dato].moderacion;
+          this.arrayOpciones.push({idHobby:this.idHobbieGeneral, hobby: this.hobbieGeneral, valorModeracion: this.valorModeracion});
+        }
+        console.log("ArrayAcum Gen:"+JSON.stringify(this.arrayOpciones));
+        this.obtenerHobbiesPropios();
+      },
+      (err) => {
+        console.log(err); // Manejo de errores
+      }
+    );
+  }
+
   contarHobbiesPropio(id:any){
     this.hobbiesService.countHobbiesPropio(id).subscribe(
       (data) => {
         //console.log("Data Gen:"+data);
         this.countHobbies=data.message;
-        //console.log("Data Mess:"+this.countHobbies);
+        //
+        console.log("Data ContarHobPr Mess:"+this.countHobbies);
       },
       (err) => {
         console.log(err); // Manejo de errores
@@ -125,17 +129,21 @@ export class HobbiesComponent {
   obtenerHobbiesPropios(){
     this.hobbiesService.lecturaHobbiesPropio(this.idUsuarioCargado).subscribe(
       (data) => {
-        //console.log("Data Prop:"+data);
+        //
+        console.log("Data Propio:"+JSON.stringify(data));
+        console.log("Len Data Propio:"+data.hobbies.length);
         if(data.hobbies.length>0){
           for (let dato in data.hobbies){
             this.idHobbiePropio=data.hobbies[dato].id;
             this.hobbiePropio=data.hobbies[dato].hobby;
-            this.arrayOpciones.push({idHobby:this.idHobbiePropio, hobby:this.hobbiePropio});
+            this.valorModeracion=data.hobbies[dato].moderacion;
+            this.arrayOpciones.push({idHobby:this.idHobbiePropio, hobby: this.hobbiePropio, valorModeracion: this.valorModeracion});
           }
         }
         for (let dato in this.arrayOpciones){
           //console.log("Array Opciones orden: "+dato+ "idHobbie: " + this.arrayOpciones[dato].idHobby+ "hobbie: " + this.arrayOpciones[dato].hobby);
         }
+        console.log("ArrayAcum Gen Post:"+JSON.stringify(this.arrayOpciones));
         //console.log("Array Opciones length: "+this.arrayOpciones.length);
       },
       (err) => {
