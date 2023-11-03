@@ -199,6 +199,10 @@ export class EstrategiasComponent {
     //Fin Modificacion Bitacora ***
   }
 
+  estrategiasRoute(){
+    this.router.navigate(['vistaestrategias'], { queryParams: { id: this.idUsuarioCargado} } );
+  }
+
     //Inicio nueva Ruta ***
   //*******************************************//
   homeRoute(){

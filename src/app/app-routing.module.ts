@@ -37,6 +37,8 @@ import { AdministradorComponent } from './components/administrador/administrador
 import { CrearusuariosComponent } from './components/crearusuarios/crearusuarios.component';
 import { VerlistadoComponent } from './components/verlistado/verlistado.component';
 import { AccionesComponent } from './components/acciones/acciones.component';
+import { VistaestrategiasComponent } from './components/vistaestrategias/vistaestrategias.component';
+import { VistacanvasComponent } from './components/vistacanvas/vistacanvas.component';
 
 const routes: Routes = [
     //{ path: "", component: AppComponent, pathMatch: "full" },
@@ -77,8 +79,9 @@ const routes: Routes = [
     { path: "resumensimulacion", component:ResumensimulacionComponent, pathMatch: "full"},
     { path: "crearusuarios", component:CrearusuariosComponent, pathMatch: "full"},
     { path: "verlistado", component:VerlistadoComponent, pathMatch: "full"},
-    { path: "acciones", component:AccionesComponent, pathMatch: "full"}
-
+    { path: "acciones", component:AccionesComponent, pathMatch: "full"},
+    { path: "vistaestrategias", component:VistaestrategiasComponent, pathMatch: "full"},
+    { path: "vistacanvas", component:VistacanvasComponent, pathMatch: "full"}
 ];
 
 @NgModule({

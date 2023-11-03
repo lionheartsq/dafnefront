@@ -18,9 +18,9 @@ export class CanvasService {
 
   private endpointCanvasGeneral='api/auth/modelo_canvas';
 
-  private endpointCanvasPropio='api/auth/modelo_canvas/selectmodelo_canvas';
+  private endpointCanvasPropio='api/auth/modelo_canvas/selectmodelo_canvaspropio';
 
-  private endpointUpdateCanvas='api/auth/usuario_modelo_canvas/update';
+  private endpointUpdateCanvas='api/auth/modelo_canvas/update';
 
   constructor(private httpClient: HttpClient) { }
 
@@ -38,6 +38,6 @@ export class CanvasService {
 
   public enviarValor(data: any): Observable<any> {
     const url = `${this.urlBase}/${this.endpointUpdateCanvas}`; // Reemplaza con la URL de tu endpoint
-    return this.httpClient.post(url, data);
+    return this.httpClient.put(url, data);
   }
 }

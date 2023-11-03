@@ -80,6 +80,8 @@ import { AdministradorComponent } from './components/administrador/administrador
 import { CrearusuariosComponent } from './components/crearusuarios/crearusuarios.component';
 import { VerlistadoComponent } from './components/verlistado/verlistado.component';
 import { AccionesComponent } from './components/acciones/acciones.component';
+import { VistaestrategiasComponent } from './components/vistaestrategias/vistaestrategias.component';
+import { VistacanvasComponent } from './components/vistacanvas/vistacanvas.component';
 
 const materialModules = [
   MatCardModule,
@@ -148,7 +150,9 @@ const materialModules = [
     AdministradorComponent,
     CrearusuariosComponent,
     VerlistadoComponent,
-    AccionesComponent
+    AccionesComponent,
+    VistaestrategiasComponent,
+    VistacanvasComponent
   ],
   imports: [
     BrowserModule,

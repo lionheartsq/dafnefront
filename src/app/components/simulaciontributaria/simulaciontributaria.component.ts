@@ -171,4 +171,13 @@ export class SimulaciontributariaComponent {
     console.log("Valor actual de this.idUsuario: " + this.idUsuarioCargado);
     console.log("Valor actual de this.idP: " + this.idPreguntas);
   }
+
+   //Inicio nueva Ruta ***
+  //*******************************************//
+  homeRoute(){
+    this.router.navigate(['home']);
+  }
+  //*******************************************//
+  //Fin nueva Ruta ***
+
 }

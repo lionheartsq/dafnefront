@@ -1,0 +1,95 @@
+<div class="container">
+
+  <br>
+  <span><img src="./assets/iconos/bombilla.svg" style="max-width: 40px; max-height: 40px;" alt="Imagen" class="img-fluid"></span>
+  <span><b style="font-size: 1.8rem;">  Ideación</b></span>
+  <hr>
+  <h1>Modelo Canvas</h1>
+  <img src="./assets/imagenes/separador.jpg" style="max-width: 140px; max-height: 20px;" alt="Imagen" class="img-fluid">
+  <br>
+
+  <div class="row">
+    <div class="col-sm-2 section border" (click)="openEditor('7. Aliados y personas claves')">7. Aliados y personas claves
+      <br><br>
+      <p>
+        {{this.aliados}}
+      </p>
+    </div>
+    <div class="col-sm-3 section border">
+      <div class="row">
+        <div class="col-sm-12 section border" (click)="openEditor('5. Actividades claves')">5. Actividades claves
+          <br><br>
+          <p>
+            {{this.actividades}}
+          </p>
+        </div>
+        <div class="col-sm-12 section border" (click)="openEditor('6. Recursos claves')">6. Recursos claves
+          <br><br>
+          <p>
+            {{this.recursos}}
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-sm-2 section border" (click)="openEditor('1. Proposicion de valor')">1. Proposicion de valor
+      <br><br>
+      <p>
+        {{this.proposicion}}
+      </p>
+    </div>
+
+    <div class="col-sm-3 section border">
+      <div class="row">
+        <div class="col-sm-12 section border" (click)="openEditor('3. Relaciones con el cliente')">3. Relaciones con el cliente
+          <br><br>
+          <p>
+            {{this.relaciones}}
+          </p>
+        </div>
+        <div class="col-sm-12 section border" (click)="openEditor('4. Canales')">4. Canales
+          <br><br>
+          <p>
+            {{this.canales}}
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-sm-2 section border" (click)="openEditor('2. Segmento de clientes')">2. Segmento de clientes
+      <br><br>
+      <p>
+        {{this.segmento}}
+      </p>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-sm-6 section border" (click)="openEditor('9. Estructura de costos')">9. Estructura de costos
+      <br><br>
+      <p>
+        {{this.estructura}}
+      </p>
+    </div>
+      <div class="col-sm-6 section border" (click)="openEditor('8. Flujos de ingresos')">8. Flujos de ingresos
+      <br><br>
+      <p>
+        {{this.flujos}}
+      </p>
+      </div>
+  </div>
+  <div class="row">
+    <div class="col-sm-6">
+      <button  class="plus-button" (click)="canvasRoute()">Regresar</button>
+    </div>
+  </div>
+</div>
+
+<div class="editor-overlay" *ngIf="editingSection">
+  <div class="editor">
+    <h2>Editando: {{ editingSection }}</h2>
+    <textarea [(ngModel)]="sectionData[editingSection]" class="form-control"></textarea>
+    <button class="btn btn-primary" (click)="closeEditor()">Guardar</button>
+    <button class="btn btn-secondary" (click)="cancelEditor()">Cancelar</button>
+  </div>
+</div>
+

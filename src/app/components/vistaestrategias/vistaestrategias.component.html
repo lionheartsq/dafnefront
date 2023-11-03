@@ -1,0 +1,64 @@
+<div class="container">
+
+  <br>
+  <span><img src="./assets/iconos/bombilla.svg" style="max-width: 40px; max-height: 40px;" alt="Imagen" class="img-fluid"></span>
+  <span><b style="font-size: 1.8rem;">  Ideación</b></span>
+  <hr>
+  <h1>Matriz Dofa</h1>
+  <img src="./assets/imagenes/separador.jpg" style="max-width: 140px; max-height: 20px;" alt="Imagen" class="img-fluid">
+  <br>
+
+  <div class="row">
+    <div class="col-xs-6 col-md-12">
+      <table class="table bordered-table">
+        <tr>
+          <td>
+            <mat-card class="example-card" style="background-color: #FADBD8;">
+              <mat-card-title><b>Fortalezas vs Oportunidades</b></mat-card-title>
+              <mat-card-content>
+                  <!-- {{this.debilidadesConsolidado}} --> <br>
+                  <div>Estrategia: {{this.estrategiaFO}}</div><br>
+                  <div>Acción: {{this.accionFO}}</div>
+              </mat-card-content>
+            </mat-card>
+          </td>
+          <td>
+            <mat-card class="example-card" style="background-color: #D1F2EB;">
+              <mat-card-title><b>Debilidades vs Oportunidades</b></mat-card-title>
+              <mat-card-content>
+                  <!-- {{this.oportunidadesConsolidado}} --> <br>
+                  <div>Estrategia: {{this.estrategiaDO}}</div><br>
+                  <div>Acción: {{this.accionDO}}</div>
+              </mat-card-content>
+            </mat-card>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <mat-card class="example-card" style="background-color: #D7BDE2;">
+              <mat-card-title><b>Fortalezas vs Amenazas</b></mat-card-title>
+              <mat-card-content>
+                  <!-- {{this.fortalezasConsolidado}} --> <br>
+                  <div>Estrategia: {{this.estrategiaFA}}</div><br>
+                  <div>Acción: {{this.accionFA}}</div>
+              </mat-card-content>
+            </mat-card>
+          </td>
+          <td>
+            <mat-card class="example-card" style="background-color: #FDEBD0;">
+              <mat-card-title><b>Debilidades vs Amenazas</b></mat-card-title>
+              <mat-card-content>
+                  <!-- {{this.amenazasConsolidado}} --> <br>
+                  <div>Estrategia: {{this.estrategiaDA}}</div><br>
+                  <div>Acción: {{this.accionDA}}</div>
+              </mat-card-content>
+            </mat-card>
+          </td>
+        </tr>
+      </table>
+      <button class="plus-button" (click)="matrizRoute()">Regresar</button>
+    </div>
+  </div>
+</div>
+
+

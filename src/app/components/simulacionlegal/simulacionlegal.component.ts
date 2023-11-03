@@ -29,6 +29,7 @@ export class SimulacionlegalComponent {
   arrayPersonas: any;
   idPersonasNext: any;
   paramUsuario: any;
+  tipologia: any;
   constructor(public router:Router, private loginService:LoginService, private utilsService:UtilsService, private route: ActivatedRoute, private simulacionService:SimulacionesService) {}
 
   ngOnInit(): void {
@@ -99,10 +100,12 @@ export class SimulacionlegalComponent {
                   if(this.idUsuarioSiguiente==0){
                     //Si el valor es cero se va por empresa
                     this.flag=1;
+                    this.tipologia="Empresa";
                     console.log("idUsuarioSiguiente: "+this.idUsuarioSiguiente);
                   }else{
                     //Si el valor es uno se va por persona
                     this.flag=2;
+                    this.tipologia="Persona";
                     console.log("idUsuarioSiguiente: "+this.idUsuarioSiguiente);
                   }
                 },
@@ -122,10 +125,12 @@ export class SimulacionlegalComponent {
                   if(this.idUsuarioSiguiente==0){
                     //Si el valor es cero se va por empresa
                     this.flag=1;
+                    this.tipologia="Empresa";
                     console.log("idUsuarioSiguiente: "+this.idUsuarioSiguiente);
                   }else{
                     //Si el valor es uno se va por persona
                     this.flag=2;
+                    this.tipologia="Persona";
                     console.log("idUsuarioSiguiente: "+this.idUsuarioSiguiente);
                   }
                 },
@@ -145,6 +150,24 @@ export class SimulacionlegalComponent {
 
   cargarDatosSimulacion(){
     this.validarFlujo();
+    this.simulacionService.lecturaPregunta(this.idUsuarioCargado,this.idPreguntas).subscribe(
+      (data) => {
+        //
+        this.arrayPreguntas=data.pregunta_simulacion;
+        for (let dato in this.arrayPreguntas){
+          this.idPreguntas=this.arrayPreguntas[dato].id;
+          this.preguntas=this.arrayPreguntas[dato].pregunta;
+        }
+        //
+        console.log("Actual idPregunta: "+this.idPreguntas);
+      },
+      (err) => {
+        console.log(err); // Manejo de errores
+      }
+    );
+  }
+
+  cargarDatosCaracterizacion(){
     this.simulacionService.lecturaPregunta(this.idUsuarioCargado,this.idPreguntas).subscribe(
       (data) => {
         //
@@ -213,4 +236,13 @@ export class SimulacionlegalComponent {
     console.log("Valor actual de this.idUsuario: " + this.idUsuarioCargado);
     console.log("Valor actual de this.idP: " + this.idPreguntas);
   }
+
+ //Inicio nueva Ruta ***
+  //*******************************************//
+  homeRoute(){
+    this.router.navigate(['home']);
+  }
+  //*******************************************//
+  //Fin nueva Ruta ***
+
 }

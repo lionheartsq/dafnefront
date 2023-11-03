@@ -8,18 +8,55 @@
   <img src="./assets/imagenes/separador.jpg" style="max-width: 140px; max-height: 20px;" alt="Imagen" class="img-fluid">
   <br>
   <hr>
-  <div *ngIf="this.flag>0"> Felicidades, terminó el segundo paso, puede continuar</div>
-  <div *ngIf="this.flag==0"> Seleccione con el botón deslizante la respuesta adecuada a cada pregunta y de click en continuar.</div><br>
-  <!-- <div *ngIf="this.flag==0">{{this.idPreguntas}}</div><br> -->
-  <div [innerHTML]="preguntas"></div>
-  <!--{{this.preguntas}} <br>-->
-  <hr *ngIf="this.flag==0"><br *ngIf="this.flag==0">
 
-  <div *ngIf="this.flag==0">No <mat-slide-toggle [(ngModel)]="isChecked"></mat-slide-toggle> Si</div>
+  <div class="row">
+    <div class="col-md-3">
+    </div>
+
+    <div class="col-md-6">
+      <div class="card">
+        <div class="card-body">
+          <div *ngIf="this.flag>0"> Felicidades, terminó el segundo paso, puede continuar</div>
+          <div *ngIf="this.flag==0"> Seleccione con el botón deslizante la respuesta adecuada a cada pregunta y de click en continuar.</div><br>
+          <!-- <div *ngIf="this.flag==0">{{this.idPreguntas}}</div><br> -->
+          <div [innerHTML]="preguntas"></div>
+          <!--{{this.preguntas}} <br>-->
+          <hr *ngIf="this.flag==0"><br *ngIf="this.flag==0">
+
+          <div *ngIf="this.flag==0">
+            <b style="color:red">No </b>
+            <mat-slide-toggle
+            [(ngModel)]="isChecked"
+            class="green-toggle"
+            color="primary">
+            </mat-slide-toggle>
+            <b style="color:green">Si</b>
+          </div>
+        </div>
+      </div>
+      <br>
+
+      <div class="row">
+        <div class="col-md-6">
+          <button class="simulacion-button" (click)="endRouteFinanciera()" *ngIf="this.flag==1">Finalizar</button>
+          <button class="simulacion-button" (click)="saveRoute()" *ngIf="this.flag==0">Continuar</button>
+        </div>
+        <div class="col-md-6">
+          <!--****************************************************************************-->
+          <div>
+            <button class="plussim-button" (click)="homeRoute()">Volver al menú</button>
+          </div>
+          <!--****************************************************************************-->
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-3">
+    </div>
+  </div>
+
   <br>
   <hr>
 
-  <button class="ideacion-button" (click)="endRouteFinanciera()" *ngIf="this.flag==1">Finalizar</button>
-  <button class="plus-button" (click)="saveRoute()" *ngIf="this.flag==0">Continuar</button>
 </div>
 

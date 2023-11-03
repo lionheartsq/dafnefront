@@ -61,8 +61,17 @@
       </td>
     </tr>
   </table>
-  <button  class="ideacion-button" (click)="canvasRoute()" *ngIf="this.totalavance>7">Finalizar</button><br>
-  <!--****************************************************************************-->
-  <button class="plus-button" (click)="homeRoute()">Volver al menú</button>
-  <!--****************************************************************************-->
+  <div class="row">
+    <div class="col-md-4">
+      <button  class="plus-button" (click)="estrategiasRoute()">Ver Estrategias DOFA</button>
+    </div>
+    <div class="col-md-4">
+      <button  class="ideacion-button" (click)="canvasRoute()" *ngIf="this.totalavance>7">Finalizar</button><br>
+    </div>
+    <div class="col-md-4">
+        <!--****************************************************************************-->
+        <button class="plus-button" (click)="homeRoute()">Volver al menú</button>
+        <!--****************************************************************************-->
+    </div>
+  </div>
 </div>
