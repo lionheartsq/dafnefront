@@ -1,11 +1,11 @@
 <div class="container">
 
   <br>
-  <span><img src="./assets/iconos/bombilla.svg" style="max-width: 40px; max-height: 40px;" alt="Imagen" class="img-fluid"></span>
+  <span><img src="./assets/iconos/simulacion.svg" style="max-width: 40px; max-height: 40px;" alt="Imagen" class="img-fluid"></span>
   <span><b style="font-size: 1.8rem;">  Simulación</b></span>
   <hr>
   <h1>Simulación Tributaria Empresa</h1>
-  <img src="./assets/imagenes/separador.jpg" style="max-width: 140px; max-height: 20px;" alt="Imagen" class="img-fluid">
+  <img src="./assets/imagenes/separadorsim.jpg" style="max-width: 140px; max-height: 20px;" alt="Imagen" class="img-fluid">
   <br>
   <hr>
 
@@ -16,32 +16,49 @@
     <div class="col-md-6">
       <div class="card">
         <div class="card-body">
-          <div *ngIf="this.flag>0"> Felicidades, terminó el segundo paso, puede continuar</div>
-          <div *ngIf="this.flag==0"> Seleccione con el botón deslizante la respuesta adecuada a cada pregunta y de click en continuar.</div><br>
+          <div *ngIf="this.flag>0">
+            Felicidades, terminó el segundo paso, puede continuar la simulación.<br><br><hr>
+            <h2>Resumen simulación tributaria empresa</h2><hr>
+              <ul *ngFor="let item of arrayResumen">
+                <li [innerHTML]="item.cadena"></li>
+              </ul>
+              <div class="form-group alert alert-warning" role="alert">
+                <p>El resumen muestra tu los requisitos tributarios que debes cumplir; si te sientes cómodo con la simulación por favor da click en el botón continuar; si deseas reiniciar la simulación desde el inicio e ingresar datos nuevos, por favor da click en el botón reiniciar todo; de igual manera puedes reiniciar sólo este módulo dando click en reiniciar módulo.</p>
+              </div>
+          </div>
+          <div *ngIf="this.flag==0"> Seleccione la respuesta adecuada a cada pregunta y de click en continuar.</div><br>
           <!-- <div *ngIf="this.flag==0">{{this.idPreguntas}}</div><br> -->
           <div [innerHTML]="preguntas"></div>
           <!--{{this.preguntas}} <br>-->
           <hr *ngIf="this.flag==0"><br *ngIf="this.flag==0">
 
-          <div *ngIf="this.flag==0">
-            <b style="color:red">No </b>
-            <mat-slide-toggle
-            [(ngModel)]="isChecked"
-            class="green-toggle"
-            color="primary">
-            </mat-slide-toggle>
-            <b style="color:green">Si</b>
+          <div *ngIf="this.flag==0" class="row">
+            <div class="col-md-3">
+              <b style="color:red">No </b>
+              <input type="radio" [(ngModel)]="isChecked" value="No">
+            </div>
+            <div class="col-md-3">
+              <b style="color:green">Sí </b>
+              <input type="radio" [(ngModel)]="isChecked" value="Sí">
+            </div>
           </div>
+
         </div>
       </div>
     <br>
 
     <div class="row">
-      <div class="col-md-6">
-        <button class="simulacion-button" (click)="endRouteFinanciera()" *ngIf="this.flag==1">Finalizar</button>
-        <button class="simulacion-button" (click)="saveRoute()" *ngIf="this.flag==0">Continuar</button>
+      <div class="col-md-4">
+        <button class="simulacion-button" (click)="endRouteFinanciera()" *ngIf="this.flag==1">Guardar y Continuar</button>
+        <button class="simulacion-button" (click)="saveRoute()" *ngIf="this.flag==0" [disabled]="buttonDisabled" [ngClass]="{'disabled-button': buttonDisabled}">Guardar</button>
       </div>
-      <div class="col-md-6">
+
+      <div class="col-md-4">
+        <button class="ressim-button" (click)="reiniciarModulo()" *ngIf="this.flag>0">Reiniciar Módulo</button>
+        <button class="ressim-button" (click)="reiniciarTodo()" *ngIf="this.flag>0">Reiniciar Todo</button>
+      </div>
+
+      <div class="col-md-4">
         <!--****************************************************************************-->
         <div>
           <button class="plussim-button" (click)="homeRoute()">Volver al menú</button>

@@ -15,38 +15,89 @@ import { SimulacionesService } from 'src/app/services/simulaciones.service';
   styleUrls: ['./simulacionlegal.component.css']
 })
 export class SimulacionlegalComponent {
-  idUsuarioCreado: any=0;
-  idUsuarioCargado: any;
   arrayPreguntas: any;
   idPreguntas: number=0;
   preguntas: any;
   valor: number=1;
   arraySiguientes: any;
   idPreguntasNext: any;
-  isChecked = true;
+  isChecked: string="Sí";
   flag: number=0;
   idUsuarioSiguiente: any;
   arrayPersonas: any;
   idPersonasNext: any;
   paramUsuario: any;
   tipologia: any;
+
+  //Inicio variables para validar bitacora ***
+  //*******************************************//
+  idModulo:number=2;
+  nombreSeccion:string="simulacionlegal";
+  identificadorSeccion: string="";
+  variableSeccion: string="";
+  idUsuarioCargado: any;
+  arrayResumen: any []=[];
+  arrayResumenLegal: any;
+  valorArray: any;
+  buttonDisabled: boolean=true;
+  //*******************************************//
+  //Fin variables para validar bitacora ***
   constructor(public router:Router, private loginService:LoginService, private utilsService:UtilsService, private route: ActivatedRoute, private simulacionService:SimulacionesService) {}
 
   ngOnInit(): void {
-    this.route.queryParams.subscribe(params => {
-      this.idUsuarioCreado = params['id'];
       this.idUsuarioCargado=localStorage.getItem('identificador_usuario');
-      //
-      console.log("Usuario creado: "+this.idUsuarioCreado);
       //
       console.log("Usuario cargado: "+this.idUsuarioCargado);
 
-      this.cargarDatosSimulacion();
-      });
+      // Espera 3 segundos antes de mostrar el botón
+      setTimeout(() => {
+        this.buttonDisabled = false;
+      }, 1500); // 1500 milisegundos = 1.5 segundos
+
+      this.verAvance(this.idUsuarioCargado,this.idModulo);
   }
 
+  //Inicio funciones nuevas para validar bitacora. ***
+  //*******************************************//
+  verAvance(idUsuario:any, idModulo:any){
+    this.loginService.verAvance(idUsuario, idModulo).subscribe(
+      (data) => {
+        console.log("Seccion: "+JSON.stringify(data));
+
+        if (data.seccion !== null) {
+          this.variableSeccion = String(data.seccion.seccion);
+        } else {
+          this.variableSeccion = this.nombreSeccion; // O cualquier valor predeterminado que desees
+        }
+
+        console.log("VALOR VARIABLESECCION IN: "+this.variableSeccion);
+        this.luegoDeObtenerVariableSeccion(this.variableSeccion);
+      },
+      (err) => {
+        this.luegoDeObtenerVariableSeccion(this.nombreSeccion);
+        console.log("SEC ERR: "+err); // Manejo de errores
+      }
+    );
+  }
+
+  luegoDeObtenerVariableSeccion(variableSeccion:any) {
+    console.log("VALOR VARIABLESECCION OUT: " + variableSeccion);
+    this.identificadorSeccion=variableSeccion;
+    // Coloca aquí cualquier lógica que dependa de this.variableSeccion
+    console.log("Identificador Seccion: "+this.identificadorSeccion);
+    console.log("nombre Seccion: "+this.nombreSeccion);
+
+    if(this.identificadorSeccion===this.nombreSeccion){
+      this.cargarDatosSimulacion();
+    }else{
+      console.log("VAL RUTA: this.router.navigate(["+this.identificadorSeccion+"])");
+      this.router.navigate([this.variableSeccion]);//validar lo del usuario
+    }
+  }
+  //*******************************************//
+  //Fin funciones nuevas para validar bitacora. ***
+
   validarFlujo(){
-    if(this.idUsuarioCreado==0 || this.idUsuarioCreado==="" || this.idUsuarioCreado===undefined){
       this.simulacionService.validarPregunta(this.idUsuarioCargado).subscribe(
         (data) => {
           //
@@ -58,19 +109,6 @@ export class SimulacionlegalComponent {
           console.log(err); // Manejo de errores
         }
       );
-    }else{
-      this.simulacionService.validarPregunta(this.idUsuarioCreado).subscribe(
-        (data) => {
-          //
-          this.actualizarDatosSimulacion(data);
-          //
-          console.log("Proceso IF, usuario creado: "+this.idUsuarioCreado);
-        },
-        (err) => {
-          console.log(err); // Manejo de errores
-        }
-      );
-    }
   }
 
   actualizarDatosSimulacion(data: any) {
@@ -87,8 +125,6 @@ export class SimulacionlegalComponent {
             this.idPreguntasNext=this.arraySiguientes[dato].message;
           }
           console.log("Siguiente pregunta CATCH: "+this.idPreguntasNext);
-          if(this.idPreguntasNext===undefined){
-            if(this.idUsuarioCreado==0 || this.idUsuarioCreado==="" || this.idUsuarioCreado===undefined){
               console.log("ENTRA POR USUARIO CARGADO");
               this.paramUsuario=this.idUsuarioCargado;
               this.simulacionService.validatePersona(this.idUsuarioCargado).subscribe(
@@ -101,11 +137,13 @@ export class SimulacionlegalComponent {
                     //Si el valor es cero se va por empresa
                     this.flag=1;
                     this.tipologia="Empresa";
+                    this.cargarResumenLegal();
                     console.log("idUsuarioSiguiente: "+this.idUsuarioSiguiente);
                   }else{
                     //Si el valor es uno se va por persona
                     this.flag=2;
                     this.tipologia="Persona";
+                    this.cargarResumenLegal();
                     console.log("idUsuarioSiguiente: "+this.idUsuarioSiguiente);
                   }
                 },
@@ -113,34 +151,7 @@ export class SimulacionlegalComponent {
                   console.log(err); // Manejo de errores
                 }
               );
-            }else{
-              console.log("ENTRA POR USUARIO CREADO");
-              this.paramUsuario=this.idUsuarioCreado;
-              this.simulacionService.validatePersona(this.idUsuarioCreado).subscribe(
-                (data) => {
-                  //
-                  console.log("DATA PERSONA: "+JSON.stringify(data));
-                  this.idUsuarioSiguiente = data.cant_enunciado;
-
-                  if(this.idUsuarioSiguiente==0){
-                    //Si el valor es cero se va por empresa
-                    this.flag=1;
-                    this.tipologia="Empresa";
-                    console.log("idUsuarioSiguiente: "+this.idUsuarioSiguiente);
-                  }else{
-                    //Si el valor es uno se va por persona
-                    this.flag=2;
-                    this.tipologia="Persona";
-                    console.log("idUsuarioSiguiente: "+this.idUsuarioSiguiente);
-                  }
-                },
-                (err) => {
-                  console.log(err); // Manejo de errores
-                }
-              );
-            }
-          }
-        },
+          },
         (err) => {
           console.log(err); // Manejo de errores
         }
@@ -207,24 +218,89 @@ export class SimulacionlegalComponent {
     );
   }
 
+  cargarResumenLegal(){
+    this.simulacionService.lecturaResumenLegal(this.idUsuarioCargado).subscribe(
+      (data) => {
+        //
+        this.arrayResumenLegal=data.avances_legal;
+        console.log("ARRAY RESUMEN LEGAL: "+JSON.stringify(this.arrayResumenLegal));
+        for (let dato in this.arrayResumenLegal){
+          console.log("DATO: "+this.arrayResumenLegal[dato].cadena);
+          this.arrayResumen.push({cadena:this.arrayResumenLegal[dato].cadena});
+        }
+        console.log("ARRAY RESUMEN: "+JSON.stringify(this.arrayResumen));
+      },
+      (err) => {
+        console.log(err); // Manejo de errores
+      }
+    );
+  }
+
+  reiniciarModulo(){
+    this.simulacionService.resetLegal(this.idUsuarioCargado).subscribe(
+      (data) => {
+        //
+        console.log("Reset Legal: "+data.reset_legal);
+        this.recargarPagina();
+      },
+      (err) => {
+        console.log(err); // Manejo de errores
+      }
+    );
+  }
+
+  reiniciarTodo(){
+    this.simulacionService.resetLegal(this.idUsuarioCargado).subscribe(
+      (data) => {
+        //
+        console.log("Reset Legal: "+data.reset_legal);
+        this.recargarPagina();
+      },
+      (err) => {
+        console.log(err); // Manejo de errores
+      }
+    );
+  }
+
   recargarPagina() {
     window.location.reload();
   }
 
-  validarCheck(){
-    if(this.isChecked){
-      this.valor=1;
-    }else{
-      this.valor=2;
+
+  validarCheck() {
+    if (this.isChecked === 'Sí') {
+      this.valor = 1;
+    } else {
+      this.valor = 2;
     }
   }
 
   endRouteEmpresa(){
-    this.router.navigate(['simulaciontributaria'], { queryParams: { id: this.paramUsuario} } );
+    //Inicio Modificacion Bitacora ***
+    //*******************************************//
+    const bitacora = {avance:1, idSeccion:19, idUsuario:parseInt(this.idUsuarioCargado)};
+    this.loginService.crearBitacora(bitacora).subscribe( (data)=>{
+      console.log("Bitacora registrada");
+      this.router.navigate(['simulaciontributaria']);
+    }, (err) => {
+      console.log(err); // Manejo de errores
+    });
+    //*******************************************//
+    //Fin Modificacion Bitacora ***
   }
 
   endRoutePersona(){
-    this.router.navigate(['simulaciontributariapersona'], { queryParams: { id: this.paramUsuario} } );
+    //Inicio Modificacion Bitacora ***
+    //*******************************************//
+    const bitacora = {avance:1, idSeccion:20, idUsuario:parseInt(this.idUsuarioCargado)};
+    this.loginService.crearBitacora(bitacora).subscribe( (data)=>{
+      console.log("Bitacora registrada");
+      this.router.navigate(['simulaciontributariapersona']);
+    }, (err) => {
+      console.log(err); // Manejo de errores
+    });
+    //*******************************************//
+    //Fin Modificacion Bitacora ***
   }
 
   saveRoute(){

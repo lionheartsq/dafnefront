@@ -16,38 +16,50 @@
     <div class="col-md-6">
       <div class="card">
         <div class="card-body">
-          <div *ngIf="this.flag>0"> Felicidades, terminó el primer paso, puede continuar la simulación como {{this.tipologia}}</div>
-        <!--
-          <div *ngIf="this.flag>0">
 
+          <div *ngIf="this.flag>0">
+            Felicidades, terminó el primer paso, puede continuar la simulación como {{this.tipologia}} <br><br><hr>
+            <h2>Resumen simulación</h2><hr>
+              <ul *ngFor="let item of arrayResumen">
+                <li [innerHTML]="item.cadena"></li>
+              </ul>
+              <div class="form-group alert alert-warning" role="alert">
+                <p>El resumen muestra tu caracterización y los requisitos legales que debes cumplir; si te sientes cómodo con la simulación por favor da click en el botón guardar y continuar; si deseas reiniciar la simulación e ingresar datos nuevos,
+                  por favor da click en el botón reiniciar módulo.</p>
+              </div>
           </div>
-        -->
-          <div *ngIf="this.flag==0"> Seleccione con el botón deslizante la respuesta adecuada a cada pregunta y de click en continuar.</div><br>
-          <!-- <div *ngIf="this.flag==0">{{this.idPreguntas}}</div><br> -->
+
+          <div *ngIf="this.flag==0"> Seleccione la respuesta adecuada a cada pregunta y de click en continuar.</div><br>
           <div [innerHTML]="preguntas"></div>
-          <!--{{this.preguntas}} <br>-->
           <hr *ngIf="this.flag==0"><br *ngIf="this.flag==0">
 
-          <div *ngIf="this.flag==0">
-            <b style="color:red">No </b>
-            <mat-slide-toggle
-            [(ngModel)]="isChecked"
-            class="green-toggle"
-            color="primary">
-            </mat-slide-toggle>
-            <b style="color:green">Si</b>
+          <div *ngIf="this.flag==0" class="row">
+            <div class="col-md-3">
+              <b style="color:red">No </b>
+              <input type="radio" [(ngModel)]="isChecked" value="No">
+            </div>
+            <div class="col-md-3">
+              <b style="color:green">Sí </b>
+              <input type="radio" [(ngModel)]="isChecked" value="Sí">
+            </div>
           </div>
+
         </div>
       </div>
       <br>
 
       <div class="row">
-        <div class="col-md-6">
-          <button class="simulacion-button" (click)="endRouteEmpresa()" *ngIf="this.flag==1">Finalizar</button>
-          <button class="simulacion-button" (click)="endRoutePersona()" *ngIf="this.flag==2">Finalizar</button>
-          <button class="simulacion-button" (click)="saveRoute()" *ngIf="this.flag==0">Continuar</button>
+        <div class="col-md-4">
+          <button class="simulacion-button" (click)="endRouteEmpresa()" *ngIf="this.flag==1">Guardar y Continuar</button>
+          <button class="simulacion-button" (click)="endRoutePersona()" *ngIf="this.flag==2">Guardar y Continuar</button>
+          <button class="simulacion-button" (click)="saveRoute()" *ngIf="this.flag==0" [disabled]="buttonDisabled" [ngClass]="{'disabled-button': buttonDisabled}">Guardar</button>
         </div>
-        <div class="col-md-6">
+
+        <div class="col-md-4">
+          <button class="ressim-button" (click)="reiniciarModulo()" *ngIf="this.flag>0">Reiniciar Módulo</button>
+        </div>
+
+        <div class="col-md-4">
           <!--****************************************************************************-->
           <div>
             <button class="plussim-button" (click)="homeRoute()">Volver al menú</button>

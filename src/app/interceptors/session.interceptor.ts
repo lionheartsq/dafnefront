@@ -16,7 +16,7 @@ export class SessionInterceptor implements HttpInterceptor {
         if (err.status === 401) {
             // auto logout if 401 response returned from api
             this.authenticationService.doLogout();
-            Swal.fire('Sesión expirada, por favor ingrese nuevamente')
+            Swal.fire('No pudo autenticarse, por favor ingrese nuevamente')
             this.router.navigate(['login']);
         }
         //        const error = "Sesión expirada, por favor ingrese nuevamente";

@@ -11,6 +11,7 @@ import { catchError, map } from 'rxjs/operators';
 import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { GlobalConstants } from '../common/global-constants';
+import Swal from 'sweetalert2';
 
 @Injectable({
   providedIn: 'root'
@@ -53,7 +54,6 @@ export class LoginService {
           }else if(res.rol==3){
             this.router.navigate(['home']);
           }
-
         })
     }
 

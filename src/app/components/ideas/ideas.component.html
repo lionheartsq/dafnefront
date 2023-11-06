@@ -25,7 +25,7 @@
       <div class="form-group">
         <button class="plus-button" type="submit" (click)="openPopup()">Ingresa tu idea personalizada</button>
       </div>
-      <div *ngIf="checkedCount>3" class="form-group">
+      <div *ngIf="checkedCount>3" class="form-group alert alert-danger" role="alert">
         <p>Ha excedido la cantidad de posibilidades a elegir, por favor elija sólo un máximo de 3</p>
       </div>
       <form method="post">

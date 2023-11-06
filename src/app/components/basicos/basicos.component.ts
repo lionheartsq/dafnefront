@@ -135,8 +135,28 @@ export class BasicosComponent {
 
         const bitacora = {avance:1, idSeccion:2, idUsuario:parseInt(this.idUsuarioCargado)};
         this.loginService.crearBitacora(bitacora).subscribe( (data)=>{
+
           console.log("Bitacora registrada");
-          //this.router.navigate(['experiencia'], { queryParams: { id: this.idUsuarioCreado} } );
+
+            const bitacora2 = {avance:1, idSeccion:18, idUsuario:parseInt(this.idUsuarioCargado)};
+            this.loginService.crearBitacora(bitacora2).subscribe( (data)=>{
+
+              console.log("Bitacora2 registrada");
+
+                const bitacora3 = {avance:1, idSeccion:23, idUsuario:parseInt(this.idUsuarioCargado)};
+                this.loginService.crearBitacora(bitacora3).subscribe( (data)=>{
+
+                  console.log("Bitacora2 registrada");
+                }, (err) => {
+                  console.log("PAYLOAD ERROR: "+JSON.stringify(bitacora2));
+                  console.log(err); // Manejo de errores
+                });
+
+            }, (err) => {
+              console.log("PAYLOAD ERROR: "+JSON.stringify(bitacora2));
+              console.log(err); // Manejo de errores
+            });
+
           this.router.navigate(['experiencia']);
         }, (err) => {
           console.log("PAYLOAD ERROR: "+JSON.stringify(bitacora));
