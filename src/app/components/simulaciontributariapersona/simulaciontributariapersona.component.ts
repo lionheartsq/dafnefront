@@ -28,6 +28,8 @@ export class SimulaciontributariapersonaComponent {
   idPersonasNext: any;
   paramUsuario: any;
 
+  private isRequestInProgress: boolean = false;
+
   //Inicio variables para validar bitacora ***
   //*******************************************//
   idModulo:number=2;
@@ -51,7 +53,7 @@ export class SimulaciontributariapersonaComponent {
       // Espera 3 segundos antes de mostrar el botón
       setTimeout(() => {
         this.buttonDisabled = false;
-      }, 1500); // 1500 milisegundos = 1.5 segundos
+      }, 3000); // 3000 milisegundos = 3 segundos
 
       this.verAvance(this.idUsuarioCargado,this.idModulo);
   }
@@ -271,8 +273,17 @@ export class SimulaciontributariapersonaComponent {
   }
 
   saveRoute(){
-    //this.router.navigate(['simulacionlegal'], { queryParams: { id: this.idUsuarioCreado} } );
-    this.cargarSiguiente();
+    if (this.isRequestInProgress) {
+      return;
+    }
+
+    this.isRequestInProgress = true;
+
+    setTimeout(() => {
+      this.cargarSiguiente();
+
+      this.isRequestInProgress = false;
+    }, 1000);
 
     // Muestra el valor actual de this.valor en la consola
     console.log("Valor actual de this.valor: " + this.valor);

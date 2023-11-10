@@ -10,10 +10,10 @@
   <hr>
 
   <div class="row">
-    <div class="col-md-3">
+    <div class="col-md-2">
     </div>
 
-    <div class="col-md-6">
+    <div class="col-md-5">
       <div class="card">
         <div class="card-body">
           <div *ngIf="this.flag>0">
@@ -26,7 +26,7 @@
                 <p>El resumen muestra tu los requisitos tributarios que debes cumplir; si te sientes cómodo con la simulación por favor da click en el botón continuar; si deseas reiniciar la simulación desde el inicio e ingresar datos nuevos, por favor da click en el botón reiniciar todo; de igual manera puedes reiniciar sólo este módulo dando click en reiniciar módulo.</p>
               </div>
           </div>
-          <div *ngIf="this.flag==0"> Seleccione la respuesta adecuada a cada pregunta y de click en continuar.</div><br>
+          <div *ngIf="this.flag==0" class="form-group alert alert-info" role="alert"> Seleccione la respuesta adecuada a cada pregunta y pulse el botón guardar.</div><br>
           <!-- <div *ngIf="this.flag==0">{{this.idPreguntas}}</div><br> -->
           <div [innerHTML]="preguntas"></div>
           <!--{{this.preguntas}} <br>-->
@@ -69,8 +69,12 @@
   </div>
 
     <div class="col-md-3">
+      <img src="./assets/imagenes/simulacion-tributaria-empresa.jpg" class="img-fluid" id="img-hobbies" alt="Imagen" style="max-height: 100%; max-width: 100%;">
     </div>
+
+    <div class="col-md-2">
     </div>
+  </div>
 
   <br>
   <hr>
