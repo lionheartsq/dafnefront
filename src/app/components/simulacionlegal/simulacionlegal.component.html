@@ -4,7 +4,7 @@
   <span><img src="./assets/iconos/simulacion.svg" style="max-width: 40px; max-height: 40px;" alt="Imagen" class="img-fluid"></span>
   <span><b style="font-size: 1.8rem;">  Simulación</b></span>
   <hr>
-  <img src="./assets/imagenes/bannerlegal.png" style="max-width: 100%; height: auto;" alt="Imagen" class="img-fluid">
+  <img src="./assets/imagenes/bannerlegal.png" style="width: 100%; height: auto;" alt="Imagen" class="img-fluid">
   <br>
   <hr>
 
@@ -15,6 +15,13 @@
     <div class="col-md-5">
       <div class="card">
         <div class="card-body">
+
+          <div *ngIf="!this.verPregunta">
+            Por favor digita tus datos personales en el módulo de ideación<br><hr>
+              <div class="form-group alert alert-danger" role="alert">
+                <p>Para poder hacer uso de la simulación, debes llenar los datos correspondientes al primer paso del módulo de ideación, sección "Conociendo al emprendedor".</p>
+              </div>
+          </div>
 
           <div *ngIf="this.flag>0">
             Felicidades, terminó el primer paso, puede continuar la simulación como {{this.tipologia}} <br><br><hr>
@@ -28,11 +35,11 @@
               </div>
           </div>
 
-          <div *ngIf="this.flag==0" class="form-group alert alert-info" role="alert"> Seleccione la respuesta adecuada a cada pregunta y pulse el botón guardar.</div><br>
+          <div *ngIf="this.flag==0 && this.verPregunta" class="form-group alert alert-info" role="alert"> Seleccione la respuesta adecuada a cada pregunta y pulse el botón guardar.</div><br>
           <div [innerHTML]="preguntas"></div>
           <hr *ngIf="this.flag==0"><br *ngIf="this.flag==0">
 
-          <div *ngIf="this.flag==0" class="row">
+          <div *ngIf="this.flag==0 && this.verPregunta" class="row">
             <div class="col-md-3">
               <b style="color:red">No </b>
               <input type="radio" [(ngModel)]="isChecked" value="No">

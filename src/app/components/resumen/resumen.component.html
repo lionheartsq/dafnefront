@@ -60,7 +60,7 @@
 
     <div class="col-md-6">
       <form method="post">
-        <button class="ideacion-button" type="submit" (click)="fakeRoute()">Continuemos</button>
+        <button *ngIf="totalVal>5" class="ideacion-button" type="submit" (click)="fakeRoute()">Continuemos</button>
       </form>
       <!--****************************************************************************-->
         <button class="plus-button" (click)="homeRoute()">Volver al menú</button>

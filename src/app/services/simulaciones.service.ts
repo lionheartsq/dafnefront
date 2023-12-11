@@ -14,6 +14,12 @@ export class SimulacionesService {
 
   //private urlBase='http://127.0.0.1:8000';
 
+  private endpointCrearConsolidadoEmpresa='api/auth/consolidado_simulacion_financiera/store';
+
+  private endpointUpdateConsolidadoEmpresa='api/auth/consolidado_simulacion_financiera/update';
+
+  private endpointConsolidadoEmpresa='api/auth/consolidado_simulacion_financiera/select_propio';
+
   private endpointUpdateBitacora='api/auth/bitacora/updatereg';
 
   private endpointFlujo='api/auth/preguntas_legal/next';
@@ -47,6 +53,8 @@ export class SimulacionesService {
   private endpointResetTributarioPersona='api/auth/avances_tributario_persona/resettributariopersona';
 
   private endpointResetTributarioEmpresa='api/auth/avances_tributario/resettributarioempresa';
+
+  private endpointResetFinanciera='api/auth/avances_tributario_persona/resettributariopersona';
 
   constructor(private httpClient: HttpClient) { }
 
@@ -115,7 +123,24 @@ export class SimulacionesService {
     return this.httpClient.get(`${this.urlBase}/${this.endpointResetTributarioPersona}/${idUsuario}`);
   }
 
+  public resetFinanciera(idUsuario:any): Observable<any> {
+    return this.httpClient.get(`${this.urlBase}/${this.endpointResetFinanciera}/${idUsuario}`);
+  }
+
   public updateBitacora(data: any): Observable<any>{
     return this.httpClient.put(`${this.urlBase}/${this.endpointUpdateBitacora}`, data);
   }
+
+  public crearConsolidadoEmpresa(data: any): Observable<any>{
+    return this.httpClient.post(`${this.urlBase}/${this.endpointCrearConsolidadoEmpresa}`, data);
+  }
+
+  public updateConsolidadoEmpresa(data: any): Observable<any>{
+    return this.httpClient.put(`${this.urlBase}/${this.endpointUpdateConsolidadoEmpresa}`, data);
+  }
+
+  public lecturaConsolidadoEmpresa(idUsuario:any): Observable<any> {
+    return this.httpClient.get(`${this.urlBase}/${this.endpointConsolidadoEmpresa}/${idUsuario}`);
+  }
+
 }

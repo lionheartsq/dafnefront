@@ -1,0 +1,59 @@
+<div class="container">
+
+  <br>
+  <span><img src="./assets/iconos/simulacion.svg" style="max-width: 40px; max-height: 40px;" alt="Imagen" class="img-fluid"></span>
+  <span><b style="font-size: 1.8rem;">  Simulación financiera</b></span>
+  <hr>
+  <h1>Creación de ingresos adicionales:</h1>
+  <img src="./assets/imagenes/separadorsim.jpg" style="max-width: 140px; max-height: 20px;" alt="Imagen" class="img-fluid">
+  <br>
+
+  <div class="row">
+    <div class="col-md-6">
+      <h2>Concepto:</h2>
+    </div>
+    <div class="col-md-6">
+        <input type="text" class="form-control" placeholder="Digite aquí" [(ngModel)]="concepto" name="concepto" required>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-6">
+      <h2>Valor:</h2>
+    </div>
+    <div class="col-md-6">
+        <input type="text" class="form-control" placeholder="Digite aquí" [(ngModel)]="valor" name="valor" required>
+    </div>
+  </div>
+
+  <hr>
+
+  <div class="row">
+    <div class="col-md-6">
+      <button class="ideacion-button" (click)="guardarRoute()">Guardar</button>
+    </div>
+    <div class="col-md-6">
+      <button class="plus-button" (click)="regresarRoute()">Regresar</button>
+    </div>
+  </div>
+
+  <hr>
+
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>Concepto</th>
+        <th>Valor</th>
+      </tr>
+    </thead>
+    <tr *ngFor="let option of options">
+      <td>
+        {{ option.concepto }}
+      </td>
+      <td>
+        {{ option.valor }}
+      </td>
+    </tr>
+  </table>
+
+</div>

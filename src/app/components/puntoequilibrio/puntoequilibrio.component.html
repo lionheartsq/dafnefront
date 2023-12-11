@@ -1,0 +1,63 @@
+<div class="container">
+
+  <br>
+  <span><img src="./assets/iconos/simulacion.svg" style="max-width: 40px; max-height: 40px;" alt="Imagen" class="img-fluid"></span>
+  <span><b style="font-size: 1.8rem;">  Simulación financiera</b></span>
+  <hr>
+  <h1>Creación de punto equilibrio:</h1>
+  <img src="./assets/imagenes/separadorsim.jpg" style="max-width: 140px; max-height: 20px;" alt="Imagen" class="img-fluid">
+  <br>
+
+  <div class="row">
+    <div class="col-md-6">
+      <h2>Costos Gastos:</h2>
+    </div>
+    <div class="col-md-6">
+        <input type="text" class="form-control" placeholder="Digite aquí" [(ngModel)]="costosGastos" name="costosgastos" required>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-6">
+      <h2>Precio Venta Sin Iva:</h2>
+    </div>
+    <div class="col-md-6">
+        <input type="text" class="form-control" placeholder="Digite aquí" [(ngModel)]="precioVentaSinIva" name="precioVentaSinIva" required>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-6">
+      <h2>Productos Insumos:</h2>
+    </div>
+    <div class="col-md-6">
+        <input type="text" class="form-control" placeholder="Digite aquí" [(ngModel)]="productosInsumos" name="productosInsumos" required>
+    </div>
+  </div>
+
+  <hr>
+
+  <div class="row">
+    <div class="col-md-6">
+      <button class="ideacion-button" (click)="guardarRoute()">Guardar</button>
+    </div>
+    <div class="col-md-6">
+      <button class="plus-button" (click)="regresarRoute()">Regresar</button>
+    </div>
+  </div>
+
+  <hr>
+
+  <div class="row" *ngFor="let option of options">
+    <div class="col-md-6">
+      {{ option.costosGastos }}
+    </div>
+    <div class="col-md-6">
+      {{ option.precioVentaSinIva }}
+    </div>
+    <div class="col-md-6">
+      {{ option.productosInsumos }}
+    </div>
+  </div>
+
+</div>

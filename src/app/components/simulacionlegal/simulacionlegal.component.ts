@@ -29,6 +29,10 @@ export class SimulacionlegalComponent {
   paramUsuario: any;
   tipologia: any;
 
+  buttonDisabled: boolean=true;
+  idUsuarioEmprendedor: any;
+  verPregunta: boolean=true;
+
   private isRequestInProgress: boolean = false;
 
   //Inicio variables para validar bitacora ***
@@ -41,22 +45,28 @@ export class SimulacionlegalComponent {
   arrayResumen: any []=[];
   arrayResumenLegal: any;
   valorArray: any;
-  buttonDisabled: boolean=true;
   //*******************************************//
   //Fin variables para validar bitacora ***
   constructor(public router:Router, private loginService:LoginService, private utilsService:UtilsService, private route: ActivatedRoute, private simulacionService:SimulacionesService) {}
 
   ngOnInit(): void {
       this.idUsuarioCargado=localStorage.getItem('identificador_usuario');
+      this.idUsuarioEmprendedor=localStorage.getItem('identificador_emprendedor');
       //
       console.log("Usuario cargado: "+this.idUsuarioCargado);
+      console.log("Usuario emprendedor: "+this.idUsuarioEmprendedor);
 
-      // Espera 3 segundos antes de mostrar el botón
-      setTimeout(() => {
-        this.buttonDisabled = false;
-      }, 3000); // 3000 milisegundos = 3 segundos
+      if(this.idUsuarioEmprendedor===null){
+        this.verPregunta=false;
+      }
+      else{
+        // Espera 3 segundos antes de mostrar el botón
+        setTimeout(() => {
+          this.buttonDisabled = false;
+        }, 3000); // 3000 milisegundos = 3 segundos
 
-      this.verAvance(this.idUsuarioCargado,this.idModulo);
+        this.verAvance(this.idUsuarioCargado,this.idModulo);
+      }
   }
 
   //Inicio funciones nuevas para validar bitacora. ***

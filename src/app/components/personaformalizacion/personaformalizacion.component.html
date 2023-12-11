@@ -1,0 +1,646 @@
+<div class="container">
+
+  <br>
+  <span><img src="./assets/iconos/simulacion.svg" style="max-width: 40px; max-height: 40px;" alt="Imagen" class="img-fluid"></span>
+  <span><b style="font-size: 1.8rem;">  Formalización Persona Natural</b></span>
+  <hr>
+  <img src="./assets/imagenes/separador.jpg" style="width: 100%; height: auto;" alt="Imagen" class="img-fluid">
+  <br>
+  <hr>
+
+  <img src="./assets/imagenes/barra1.png" style="width: 100%; height: auto;" alt="Imagen" class="img-fluid" *ngIf="this.pasosAvance==0">
+  <img src="./assets/imagenes/barra2.png" style="width: 100%; height: auto;" alt="Imagen" class="img-fluid" *ngIf="this.pasosAvance==1">
+  <img src="./assets/imagenes/barra3.png" style="width: 100%; height: auto;" alt="Imagen" class="img-fluid" *ngIf="this.pasosAvance==2">
+  <img src="./assets/imagenes/barra4.png" style="width: 100%; height: auto;" alt="Imagen" class="img-fluid" *ngIf="this.pasosAvance==3">
+  <img src="./assets/imagenes/barra5.png" style="width: 100%; height: auto;" alt="Imagen" class="img-fluid" *ngIf="this.pasosAvance==4">
+  <img src="./assets/imagenes/barra6.png" style="width: 100%; height: auto;" alt="Imagen" class="img-fluid" *ngIf="this.pasosAvance==5">
+  <img src="./assets/imagenes/barra7.png" style="width: 100%; height: auto;" alt="Imagen" class="img-fluid" *ngIf="this.pasosAvance==6">
+  <img src="./assets/imagenes/barra8.png" style="width: 100%; height: auto;" alt="Imagen" class="img-fluid" *ngIf="this.pasosAvance==7">
+  <img src="./assets/imagenes/barra9.png" style="width: 100%; height: auto;" alt="Imagen" class="img-fluid" *ngIf="this.pasosAvance==8">
+  <img src="./assets/imagenes/barra10.png" style="width: 100%; height: auto;" alt="Imagen" class="img-fluid" *ngIf="this.pasosAvance==9">
+  <img src="./assets/imagenes/barra11.png" style="width: 100%; height: auto;" alt="Imagen" class="img-fluid" *ngIf="this.pasosAvance==10">
+  <img src="./assets/imagenes/barra12.png" style="width: 100%; height: auto;" alt="Imagen" class="img-fluid" *ngIf="this.pasosAvance==11">
+  <img src="./assets/imagenes/barra13.png" style="width: 100%; height: auto;" alt="Imagen" class="img-fluid" *ngIf="this.pasosAvance==12">
+
+  <hr>
+
+  <div class="row">
+    <div class="col-md-1">
+    </div>
+
+    <div class="col-md-7">
+      <div class="card">
+        <div class="card-body">
+          <div>
+
+            <h2>Seguimiento proceso Formalización Persona Natural</h2><hr>
+            <div class="form-group alert alert-info" role="alert"> Seleccione la respuesta adecuada a cada pregunta y pulse el botón guardar.</div>
+
+            <div *ngIf="this.pasosAvance==0">
+
+              <hr><h2>¿Verificó si el nombre de su establecimiento está disponible?</h2>
+              <div class="row">
+                <div class="col-md-3">
+                  <b style="color:green">Sí </b>
+                  <input type="radio" name="isVerificadoNombre" [(ngModel)]="isVerificadoNombre" value="1">
+                </div>
+                <div class="col-md-3">
+                  <b style="color: red;">No </b>
+                  <input type="radio" name="isVerificadoNombre" [(ngModel)]="isVerificadoNombre" value="0">
+                </div>
+              </div>
+
+              <hr><h2>¿El nombre está disponible?</h2>
+              <div class="row">
+                <div class="col-md-3">
+                  <b style="color:green">Sí </b>
+                  <input type="radio" name="isVerificadoNombre" [(ngModel)]="isVerificadoNombre" value="1">
+                </div>
+                <div class="col-md-3">
+                  <b style="color: red;">No </b>
+                  <input type="radio" name="isVerificadoNombre" [(ngModel)]="isVerificadoNombre" value="0">
+                </div>
+              </div>
+
+              <hr><h2>Enlace para consulta homonimia</h2>
+              <div class="row">
+                <div class="col-md-12">
+                  <a href="https://www.rues.org.co/RM" target="_NEW">Enlace para consulta homonimia</a>
+                </div>
+              </div>
+
+              <hr><h2>Agregue el nombre</h2>
+              <div class="row">
+                <div class="col-md-3">
+                  <b>Nombre : </b>
+                </div>
+                <div class="col-md-3">
+                  <input type="text" [(ngModel)]="nombreEmpresa">
+                </div>
+              </div>
+
+              <hr><h2>Genere un nuevo nombre</h2>
+              <div class="row">
+                <div class="col-md-3">
+                  <b>Nombre : </b>
+                </div>
+                <div class="col-md-3">
+                  <input type="text" [(ngModel)]="nombreEmpresa">
+                </div>
+              </div>
+
+            </div>
+
+            <div *ngIf="this.pasosAvance==1">
+
+              <hr><h2>Qué es una marca</h2>
+              <div class="row">
+                <div class="col-md-12">
+                  <a href="https://www.sic.gov.co/marcas/antes-de-solicitar#:~:text=La%20marca%20permite%20que%20los,aquellos%20que%20no%20logran%20identificar." target="_NEW">Qué es una marca</a>
+                </div>
+              </div>
+
+              <hr><h2>¿Tiene una marca?</h2>
+              <div class="row">
+                <div class="col-md-3">
+                  <b style="color:green">Sí </b>
+                  <input type="radio" name="isVerificadoNombre" [(ngModel)]="isVerificadoNombre" value="1">
+                </div>
+                <div class="col-md-3">
+                  <b style="color: red;">No </b>
+                  <input type="radio" name="isVerificadoNombre" [(ngModel)]="isVerificadoNombre" value="0">
+                </div>
+              </div>
+
+              <hr><h2>¿Ya consultó los antecedentes marcarios de su marca?</h2>
+              <div class="row">
+                <div class="col-md-3">
+                  <b style="color:green">Sí </b>
+                  <input type="radio" name="isVerificadoNombre" [(ngModel)]="isVerificadoNombre" value="1">
+                </div>
+                <div class="col-md-3">
+                  <b style="color: red;">No </b>
+                  <input type="radio" name="isVerificadoNombre" [(ngModel)]="isVerificadoNombre" value="0">
+                </div>
+              </div>
+
+              <hr><h2>Video de apoyo consulta de antecedentes marcarios</h2>
+              <div class="row">
+                <div class="col-md-12">
+                  <a href="https://www.youtube.com/watch?v=XIDeYCBQJdk" target="_NEW">Video de apoyo consulta de antecedentes marcarios</a>
+                </div>
+              </div>
+
+              <hr><h2>Enlace de consulta antecedentes marcarios</h2>
+              <div class="row">
+                <div class="col-md-12">
+                  <a href="https://sipi.sic.gov.co/sipi/Extra/Default.aspx?sid=638374116246775962"
+                  target="_NEW">Enlace de consulta antecedentes marcarios</a>
+                </div>
+              </div>
+
+              <hr><h2>¿La marca está disponible?</h2>
+              <div class="row">
+                <div class="col-md-3">
+                  <b style="color:green">Sí </b>
+                  <input type="radio" name="isVerificadoNombre" [(ngModel)]="isVerificadoNombre" value="1">
+                </div>
+                <div class="col-md-3">
+                  <b style="color: red;">No </b>
+                  <input type="radio" name="isVerificadoNombre" [(ngModel)]="isVerificadoNombre" value="0">
+                </div>
+              </div>
+
+              <hr><h2>Genere una nueva marca</h2>
+              <div class="row">
+                <div class="col-md-3">
+                  <b>Nombre : </b>
+                </div>
+                <div class="col-md-3">
+                  <input type="text" [(ngModel)]="nombreEmpresa">
+                </div>
+              </div>
+
+              <hr><h2>¿Desea proteger su marca?</h2>
+              <div class="row">
+                <div class="col-md-3">
+                  <b style="color:green">Sí </b>
+                  <input type="radio" name="isVerificadoNombre" [(ngModel)]="isVerificadoNombre" value="1">
+                </div>
+                <div class="col-md-3">
+                  <b style="color: red;">No </b>
+                  <input type="radio" name="isVerificadoNombre" [(ngModel)]="isVerificadoNombre" value="0">
+                </div>
+              </div>
+
+              <hr><h2>Paso a paso para el registro de una marca</h2>
+              <div class="row">
+                <div class="col-md-12">
+                  <a href="https://www.sic.gov.co/tema/propiedad-Industrial/pasos-para-solicitar-el-registro-de-una-marca"
+                  target="_NEW">Paso a paso para el registro de una marca</a>
+                </div>
+              </div>
+
+            </div>
+
+            <div *ngIf="this.pasosAvance==2">
+
+              <hr><h2>¿El usuario ya diligenció el módulo de simulación?</h2>
+              <div class="row">
+                <div class="col-md-3">
+                  <b style="color:green">Sí </b>
+                  <input type="radio" name="isVerificadoNombre" [(ngModel)]="isVerificadoNombre" value="1">
+                </div>
+                <div class="col-md-3">
+                  <b style="color: red;">No </b>
+                  <input type="radio" name="isVerificadoNombre" [(ngModel)]="isVerificadoNombre" value="0">
+                </div>
+              </div>
+
+              <hr><h2>¿Sabe usted el código CIIU de la actividad económica principal de su negocio?</h2>
+              <div class="row">
+                <div class="col-md-3">
+                  <b style="color:green">Sí </b>
+                  <input type="radio" name="isVerificadoNombre" [(ngModel)]="isVerificadoNombre" value="1">
+                </div>
+                <div class="col-md-3">
+                  <b style="color: red;">No </b>
+                  <input type="radio" name="isVerificadoNombre" [(ngModel)]="isVerificadoNombre" value="0">
+                </div>
+              </div>
+
+              <hr><h2>Enlace consulta de códigos CIIU</h2>
+              <div class="row">
+                <div class="col-md-12">
+                  <a href="https://www.vue.gov.co/servicios-a-la-ciudadania/tramites-y-consultas/consulta-de-actividad-economica-ciiu?c=68001" target="_NEW">Enlace consulta de códigos CIIU</a>
+                </div>
+              </div>
+
+            </div>
+
+            <div *ngIf="this.pasosAvance==3">
+
+              <hr><h2>¿Ha verificado si la actividad económica que planea llevar a cabo en el municipio donde se encuentra su
+                establecimiento cumple con las regulaciones de uso de suelo?</h2>
+              <div class="row">
+                <div class="col-md-3">
+                  <b style="color:green">Sí </b>
+                  <input type="radio" name="isVerificadoNombre" [(ngModel)]="isVerificadoNombre" value="1">
+                </div>
+                <div class="col-md-3">
+                  <b style="color: red;">No </b>
+                  <input type="radio" name="isVerificadoNombre" [(ngModel)]="isVerificadoNombre" value="0">
+                </div>
+              </div>
+
+              <hr><h2>Consulta uso de suelo</h2>
+              <div class="row">
+                <div class="col-md-12">
+                  <a href="https://matricula.sintramites.com/Consultas/UsoSuelo" target="_NEW">Consulta uso de suelo</a>
+                </div>
+              </div>
+
+              <hr><h2>¿Se puede llevar acabo la actividad económica principal de su establecimiento en dicho sitio?</h2>
+              <div class="row">
+                <div class="col-md-3">
+                  <b style="color:green">Sí </b>
+                  <input type="radio" name="isVerificadoNombre" [(ngModel)]="isVerificadoNombre" value="1">
+                </div>
+                <div class="col-md-3">
+                  <b style="color: red;">No </b>
+                  <input type="radio" name="isVerificadoNombre" [(ngModel)]="isVerificadoNombre" value="0">
+                </div>
+              </div>
+
+              <hr><h2>Relacione una nueva dirección</h2>
+              <div class="row">
+                <div class="col-md-3">
+                  <b>Nombre : </b>
+                </div>
+                <div class="col-md-3">
+                  <input type="text" [(ngModel)]="nombreEmpresa">
+                </div>
+              </div>
+
+              <hr><h2>Adjunte la dirección del establecimiento</h2>
+              <div class="row">
+                <div class="col-md-3">
+                  <b>Nombre : </b>
+                </div>
+                <div class="col-md-3">
+                  <input type="text" [(ngModel)]="nombreEmpresa">
+                </div>
+              </div>
+
+            </div>
+
+            <div *ngIf="this.pasosAvance==4">
+
+              <hr><h2>¿Ha tramitado ya el concepto de uso de suelo en la  oficina de planeación o en la curaduría del
+                municipio donde tiene previsto establecer su negocio?</h2>
+              <div class="row">
+                <div class="col-md-3">
+                  <b style="color:green">Sí </b>
+                  <input type="radio" name="isVerificadoNombre" [(ngModel)]="isVerificadoNombre" value="1">
+                </div>
+                <div class="col-md-3">
+                  <b style="color: red;">No </b>
+                  <input type="radio" name="isVerificadoNombre" [(ngModel)]="isVerificadoNombre" value="0">
+                </div>
+              </div>
+
+            </div>
+
+            <div *ngIf="this.pasosAvance==5">
+
+              <hr><h2>¿Sabe si tiene RUT?</h2>
+              <div class="row">
+                <div class="col-md-3">
+                  <b style="color:green">Sí </b>
+                  <input type="radio" name="isVerificadoNombre" [(ngModel)]="isVerificadoNombre" value="1">
+                </div>
+                <div class="col-md-3">
+                  <b style="color: red;">No </b>
+                  <input type="radio" name="isVerificadoNombre" [(ngModel)]="isVerificadoNombre" value="0">
+                </div>
+              </div>
+
+              <hr><h2>Consulte el estado de su RUT</h2>
+              <div class="row">
+                <div class="col-md-12">
+                  <a href="https://muisca.dian.gov.co/WebRutMuisca/DefConsultaEstadoRUT.faces" target="_NEW">Consulte el estado de su RUT</a>
+                </div>
+              </div>
+
+              <hr><h2>¿Tiene actualizado el RUT con las responsabilidades tributarias que tendrá lugar en su negocio?</h2>
+              <div class="row">
+                <div class="col-md-3">
+                  <b style="color:green">Sí </b>
+                  <input type="radio" name="isVerificadoNombre" [(ngModel)]="isVerificadoNombre" value="1">
+                </div>
+                <div class="col-md-3">
+                  <b style="color: red;">No </b>
+                  <input type="radio" name="isVerificadoNombre" [(ngModel)]="isVerificadoNombre" value="0">
+                </div>
+              </div>
+
+              <hr><h2>Video de apoyo de cómo descargar el RUT</h2>
+              <div class="row">
+                <div class="col-md-12">
+                  <a href="https://www.youtube.com/watch?v=NDdKK31Oahk" target="_NEW">Video de apoyo de cómo descargar el RUT</a>
+                </div>
+              </div>
+
+              <hr><h2>Video de apoyo de cómo crear el RUT</h2>
+              <div class="row">
+                <div class="col-md-12">
+                  <a href="https://www.youtube.com/watch?v=kxe97irI7Wk" target="_NEW">Video de apoyo de cómo crear el RUT</a>
+                </div>
+              </div>
+
+              <hr><h2>Enlace para crear RUT virtual</h2>
+              <div class="row">
+                <div class="col-md-12">
+                  <a href="https://muisca.dian.gov.co/WebRutVirtualInscripcion/#/proceso-guiado/inicio"
+                  target="_NEW">Enlace para crear RUT virtual</a>
+                </div>
+              </div>
+
+              <hr><h2>Video de apoyo de cómo ingresar al portal DIAN si no recuerda usuario y contraseña</h2>
+              <div class="row">
+                <div class="col-md-12">
+                  <a href="https://www.youtube.com/watch?v=nM0VLHuHLBc" target="_NEW">Video de apoyo de cómo ingresar al portal DIAN si no recuerda usuario y contraseña</a>
+                </div>
+              </div>
+
+              <hr><h2>Video de apoyo de cómo actualizar el RUT</h2>
+              <div class="row">
+                <div class="col-md-12">
+                  <a href="https://www.youtube.com/watch?v=c_EkKtza6Q0"  target="_NEW">Video de apoyo de cómo actualizar el RUT</a>
+                </div>
+              </div>
+
+            </div>
+
+            <div *ngIf="this.pasosAvance==6">
+
+              <hr><h2>¿El trámite del registro unico empresarial y social RUES va a expedirlo de manera presencial?</h2>
+              <div class="row">
+                <div class="col-md-3">
+                  <b style="color:green">Sí </b>
+                  <input type="radio" name="isVerificadoNombre" [(ngModel)]="isVerificadoNombre" value="1">
+                </div>
+                <div class="col-md-3">
+                  <b style="color: red;">No </b>
+                  <input type="radio" name="isVerificadoNombre" [(ngModel)]="isVerificadoNombre" value="0">
+                </div>
+              </div>
+
+              <hr><h2>Video de apoyo para la radicación del RUES de manera virtual</h2>
+              <div class="row">
+                <div class="col-md-12">
+                  <a href="https://www.youtube.com/watch?v=HqM8kBln60Q" target="_NEW">Video de apoyo para la radicación del RUES de manera virtual</a>
+                </div>
+              </div>
+
+              <hr><h2>Enlace para registrarse en la VUE y radicar el RUES de manera virtual</h2>
+              <div class="row">
+                <div class="col-md-12">
+                  <a href="https://matricula.sintramites.com/VUE/Landing" target="_NEW">Enlace para registrarse en la VUE y radicar el RUES de manera virtual</a>
+                </div>
+              </div>
+
+            </div>
+
+            <div *ngIf="this.pasosAvance==7">
+
+              <hr><h2>¿El usuario ya diligenció el módulo de simulación?</h2>
+              <div class="row">
+                <div class="col-md-3">
+                  <b style="color:green">Sí </b>
+                  <input type="radio" name="isVerificadoNombre" [(ngModel)]="isVerificadoNombre" value="1">
+                </div>
+                <div class="col-md-3">
+                  <b style="color: red;">No </b>
+                  <input type="radio" name="isVerificadoNombre" [(ngModel)]="isVerificadoNombre" value="0">
+                </div>
+              </div>
+
+              <hr><h2>¿Va a contar con algún medio de proyección sonora o audiovisual en el negocio?</h2>
+              <div class="row">
+                <div class="col-md-3">
+                  <b style="color:green">Sí </b>
+                  <input type="radio" name="isVerificadoNombre" [(ngModel)]="isVerificadoNombre" value="1">
+                </div>
+                <div class="col-md-3">
+                  <b style="color: red;">No </b>
+                  <input type="radio" name="isVerificadoNombre" [(ngModel)]="isVerificadoNombre" value="0">
+                </div>
+              </div>
+
+              <hr><h2>¿El usuario va a contar con algún medio de proyección sonora o audiovisual en el negocio?</h2>
+              <div class="row">
+                <div class="col-md-3">
+                  <b style="color:green">Sí </b>
+                  <input type="radio" name="isVerificadoNombre" [(ngModel)]="isVerificadoNombre" value="1">
+                </div>
+                <div class="col-md-3">
+                  <b style="color: red;">No </b>
+                  <input type="radio" name="isVerificadoNombre" [(ngModel)]="isVerificadoNombre" value="0">
+                </div>
+              </div>
+
+            </div>
+
+            <div *ngIf="this.pasosAvance==8">
+
+              <hr><h2>¿De acuerdo a lo anterior, su establecimiento de comercio cuenta ya con el certificado Bomberil?</h2>
+              <div class="row">
+                <div class="col-md-3">
+                  <b style="color:green">Sí </b>
+                  <input type="radio" name="isVerificadoNombre" [(ngModel)]="isVerificadoNombre" value="1">
+                </div>
+                <div class="col-md-3">
+                  <b style="color: red;">No </b>
+                  <input type="radio" name="isVerificadoNombre" [(ngModel)]="isVerificadoNombre" value="0">
+                </div>
+              </div>
+
+            </div>
+
+            <div *ngIf="this.pasosAvance==9">
+
+              <hr><h2>¿Ya ha completado el proceso de inscripción en la Oficina de Industria y Comercio del municipio donde planea operar
+                su negocio?</h2>
+              <div class="row">
+                <div class="col-md-3">
+                  <b style="color:green">Sí </b>
+                  <input type="radio" name="isVerificadoNombre" [(ngModel)]="isVerificadoNombre" value="1">
+                </div>
+                <div class="col-md-3">
+                  <b style="color: red;">No </b>
+                  <input type="radio" name="isVerificadoNombre" [(ngModel)]="isVerificadoNombre" value="0">
+                </div>
+              </div>
+
+              <hr><h2>Relacione su número de placa comercial</h2>
+              <div class="row">
+                <div class="col-md-3">
+                  <b>Nombre : </b>
+                </div>
+                <div class="col-md-3">
+                  <input type="text" [(ngModel)]="nombreEmpresa">
+                </div>
+              </div>
+
+            </div>
+
+            <div *ngIf="this.pasosAvance==10">
+
+              <hr><h2>¿Qué es el Frente de Seguridad Empresarial de la Policía Nacional?</h2>
+              <div class="row">
+                <div class="col-md-12">
+                  <a href="https://www.policia.gov.co/fse" target="_NEW">¿Qué es el Frente de Seguridad Empresarial de la Policía Nacional?</a>
+                </div>
+              </div>
+
+              <hr><h2>¿ Desea inscribirse en el programa del Frente de Seguridad Empresarial de la Policía Nacional ?</h2>
+              <div class="row">
+                <div class="col-md-3">
+                  <b style="color:green">Sí </b>
+                  <input type="radio" name="isVerificadoNombre" [(ngModel)]="isVerificadoNombre" value="1">
+                </div>
+                <div class="col-md-3">
+                  <b style="color: red;">No </b>
+                  <input type="radio" name="isVerificadoNombre" [(ngModel)]="isVerificadoNombre" value="0">
+                </div>
+              </div>
+
+              <hr><h2>Consulta de requisitos y formularios</h2>
+              <div class="row">
+                <div class="col-md-12">
+                  <a href="https://www.policia.gov.co/fse/vinculacion" target="_NEW">Consulta de requisitos y formularios</a>
+                </div>
+              </div>
+
+            </div>
+
+            <div *ngIf="this.pasosAvance==11">
+
+              <hr><h2>¿El usuario ya diligenció el módulo de simulación?</h2>
+              <div class="row">
+                <div class="col-md-3">
+                  <b style="color:green">Sí </b>
+                  <input type="radio" name="isVerificadoNombre" [(ngModel)]="isVerificadoNombre" value="1">
+                </div>
+                <div class="col-md-3">
+                  <b style="color: red;">No </b>
+                  <input type="radio" name="isVerificadoNombre" [(ngModel)]="isVerificadoNombre" value="0">
+                </div>
+              </div>
+
+              <hr><h2>¿Va a contratar a una o más personas por nómina fija?</h2>
+              <div class="row">
+                <div class="col-md-3">
+                  <b style="color:green">Sí </b>
+                  <input type="radio" name="isVerificadoNombre" [(ngModel)]="isVerificadoNombre" value="1">
+                </div>
+                <div class="col-md-3">
+                  <b style="color: red;">No </b>
+                  <input type="radio" name="isVerificadoNombre" [(ngModel)]="isVerificadoNombre" value="0">
+                </div>
+              </div>
+
+              <hr><h2>¿Es usted exonerado de realizar los aportes Salud, SENA e ICBF de acuerdo a lo establecido en el
+                artículo 114-1 del Estatuto Tributario Nacional?</h2>
+              <div class="row">
+                <div class="col-md-3">
+                  <b style="color:green">Sí </b>
+                  <input type="radio" name="isVerificadoNombre" [(ngModel)]="isVerificadoNombre" value="1">
+                </div>
+                <div class="col-md-3">
+                  <b style="color: red;">No </b>
+                  <input type="radio" name="isVerificadoNombre" [(ngModel)]="isVerificadoNombre" value="0">
+                </div>
+              </div>
+
+              <hr><h2>¿El usuario va a contratar a una o más personas por nómina fija?</h2>
+              <div class="row">
+                <div class="col-md-3">
+                  <b style="color:green">Sí </b>
+                  <input type="radio" name="isVerificadoNombre" [(ngModel)]="isVerificadoNombre" value="1">
+                </div>
+                <div class="col-md-3">
+                  <b style="color: red;">No </b>
+                  <input type="radio" name="isVerificadoNombre" [(ngModel)]="isVerificadoNombre" value="0">
+                </div>
+              </div>
+
+              <hr><h2>¿Ha realizado ya las afiliaciones de su trabajador o trabajadores?. Recuerde que en caso de los menores de edad,
+                debe contar con la autorización de sus padres y los respectivos permisos del ministerio de trabajo.</h2>
+              <div class="row">
+                <div class="col-md-3">
+                  <b style="color:green">Sí </b>
+                  <input type="radio" name="isVerificadoNombre" [(ngModel)]="isVerificadoNombre" value="1">
+                </div>
+                <div class="col-md-3">
+                  <b style="color: red;">No </b>
+                  <input type="radio" name="isVerificadoNombre" [(ngModel)]="isVerificadoNombre" value="0">
+                </div>
+              </div>
+
+            </div>
+
+            <div *ngIf="this.pasosAvance==12">
+              {{ this.pasosAvance }}
+            </div>
+
+          </div>
+
+        </div>
+      </div>
+      <br>
+
+      <div class="row">
+        <div class="col-md-4">
+          <button class="simulacion-button" (click)="endRouteFormalizacion()" *ngIf="this.pasosAvance==99">Finalizar</button>
+          <button class="simulacion-button" (click)="guardarUno()" *ngIf="this.pasosAvance==0">Continuemos</button>
+          <button class="simulacion-button" (click)="guardarDos()" *ngIf="this.pasosAvance==1">Continuemos</button>
+          <button class="simulacion-button" (click)="guardarTres()" *ngIf="this.pasosAvance==2">Continuemos</button>
+          <button class="simulacion-button" (click)="guardarCuatro()" *ngIf="this.pasosAvance==3">Continuemos</button>
+          <button class="simulacion-button" (click)="guardarCinco()" *ngIf="this.pasosAvance==4">Continuemos</button>
+          <button class="simulacion-button" (click)="guardarSeis()" *ngIf="this.pasosAvance==5">Continuemos</button>
+          <button class="simulacion-button" (click)="guardarSiete()" *ngIf="this.pasosAvance==6">Continuemos</button>
+          <button class="simulacion-button" (click)="guardarOcho()" *ngIf="this.pasosAvance==7">Continuemos</button>
+          <button class="simulacion-button" (click)="guardarNueve()" *ngIf="this.pasosAvance==8">Continuemos</button>
+          <button class="simulacion-button" (click)="guardarDiez()" *ngIf="this.pasosAvance==9">Continuemos</button>
+          <button class="simulacion-button" (click)="guardarOnce()" *ngIf="this.pasosAvance==10">Continuemos</button>
+          <button class="simulacion-button" (click)="guardarDoce()" *ngIf="this.pasosAvance==11">Continuemos</button>
+          <button class="simulacion-button" (click)="guardarTrece()" *ngIf="this.pasosAvance==12">Continuemos</button>
+        </div>
+
+        <div class="col-md-4">
+          <button class="ressim-button" (click)="reiniciarModulo()" *ngIf="this.pasosAvance>0">Reiniciar Módulo</button>
+          <button class="ressim-button" (click)="reiniciarTodo()" *ngIf="this.pasosAvance>0">Reiniciar Todo</button>
+        </div>
+
+        <div class="col-md-4">
+          <!--****************************************************************************-->
+          <div>
+            <button class="plussim-button" (click)="homeRoute()">Volver al menú</button>
+          </div>
+          <!--****************************************************************************-->
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-3">
+      <img src="./assets/imagenes/listar-small.png" class="img-fluid" id="img-hobbies" alt="Imagen" style="max-height: 100%; max-width: 100%;">
+    </div>
+
+    <div class="col-md-1">
+    </div>
+  </div>
+
+  <br>
+  <hr>
+
+  <img src="./assets/imagenes/barra1.png" style="width: 100%; height: auto;" alt="Imagen" class="img-fluid" *ngIf="this.pasosAvance==0">
+  <img src="./assets/imagenes/barra2.png" style="width: 100%; height: auto;" alt="Imagen" class="img-fluid" *ngIf="this.pasosAvance==1">
+  <img src="./assets/imagenes/barra3.png" style="width: 100%; height: auto;" alt="Imagen" class="img-fluid" *ngIf="this.pasosAvance==2">
+  <img src="./assets/imagenes/barra4.png" style="width: 100%; height: auto;" alt="Imagen" class="img-fluid" *ngIf="this.pasosAvance==3">
+  <img src="./assets/imagenes/barra5.png" style="width: 100%; height: auto;" alt="Imagen" class="img-fluid" *ngIf="this.pasosAvance==4">
+  <img src="./assets/imagenes/barra6.png" style="width: 100%; height: auto;" alt="Imagen" class="img-fluid" *ngIf="this.pasosAvance==5">
+  <img src="./assets/imagenes/barra7.png" style="width: 100%; height: auto;" alt="Imagen" class="img-fluid" *ngIf="this.pasosAvance==6">
+  <img src="./assets/imagenes/barra8.png" style="width: 100%; height: auto;" alt="Imagen" class="img-fluid" *ngIf="this.pasosAvance==7">
+  <img src="./assets/imagenes/barra9.png" style="width: 100%; height: auto;" alt="Imagen" class="img-fluid" *ngIf="this.pasosAvance==8">
+  <img src="./assets/imagenes/barra10.png" style="width: 100%; height: auto;" alt="Imagen" class="img-fluid" *ngIf="this.pasosAvance==9">
+  <img src="./assets/imagenes/barra11.png" style="width: 100%; height: auto;" alt="Imagen" class="img-fluid" *ngIf="this.pasosAvance==10">
+  <img src="./assets/imagenes/barra12.png" style="width: 100%; height: auto;" alt="Imagen" class="img-fluid" *ngIf="this.pasosAvance==11">
+  <img src="./assets/imagenes/barra13.png" style="width: 100%; height: auto;" alt="Imagen" class="img-fluid" *ngIf="this.pasosAvance==12">
+
+  <br>
+  <hr>
+
+</div>
+

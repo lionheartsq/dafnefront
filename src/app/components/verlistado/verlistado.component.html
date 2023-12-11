@@ -1,1 +1,57 @@
-<p>verlistado works!</p>
+<div class="container">
+
+  <div class="row">
+    <div class="col-md-2">
+    </div>
+
+    <div class="col-md-5">
+      <div class="card">
+        <div class="card-body">
+          <div>
+            <h2>Datos emprendedores</h2><hr>
+            <!-- Implementar datatable -->
+            <table class="table table-striped">
+              <thead>
+                <th>
+                  <b>Id Emprendedor</b>
+                </th>
+                <th>
+                  <b>Nombre Emprendedor</b>
+                </th>
+                <th>
+                  <b>Email Emprendedor</b>
+                </th>
+              </thead>
+              <tr *ngFor="let elemento of arrayEmprendedores">
+                <td>
+                  {{ elemento.id }}
+                </td>
+                <td>
+                  {{ elemento.name }}
+                </td>
+                <td>
+                  {{ elemento.email }}
+                </td>
+                <td>
+                  <!-- Poner un href o una funcion basad@ en el id para que me muestre el detalle asociado al emprendedor -->
+                </td>
+              </tr>
+            </table>
+          </div>
+
+
+        </div>
+      </div>
+      <br>
+
+    </div>
+
+    <div class="col-md-2">
+    </div>
+  </div>
+
+  <br>
+  <hr>
+
+</div>
+

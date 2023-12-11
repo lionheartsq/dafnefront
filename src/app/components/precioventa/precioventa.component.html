@@ -1,0 +1,82 @@
+<div class="container">
+
+  <br>
+  <span><img src="./assets/iconos/simulacion.svg" style="max-width: 40px; max-height: 40px;" alt="Imagen" class="img-fluid"></span>
+  <span><b style="font-size: 1.8rem;">  Simulación financiera</b></span>
+  <hr>
+  <h1>Creación de precio venta:</h1>
+  <img src="./assets/imagenes/separadorsim.jpg" style="max-width: 140px; max-height: 20px;" alt="Imagen" class="img-fluid">
+  <br>
+
+  <div class="row">
+    <div class="col-md-6">
+      <h2>Costo:</h2>
+    </div>
+    <div class="col-md-6">
+        <input type="number" step="0.01" class="form-control" placeholder="Digite aquí" [(ngModel)]="costo" name="costo" required>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-6">
+      <h2>Margen:</h2>
+    </div>
+    <div class="col-md-6">
+        <input type="number" step="0.01" class="form-control" placeholder="Digite aquí" [(ngModel)]="margen" name="margen" required>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-6">
+      <h2>Impuesto:</h2>
+    </div>
+    <div class="col-md-6">
+      <select id="idImpuesto" class="form-control" [(ngModel)]="valorimpuesto">
+        <option *ngFor="let option of optionsImpuestos" [value]="option.porcentaje">{{ option.impuesto }}</option>
+      </select>
+    </div>
+  </div>
+
+  <hr>
+
+  <div class="row">
+    <div class="col-md-6">
+      <button class="ideacion-button" (click)="guardarRoute()">Guardar</button>
+    </div>
+    <div class="col-md-6">
+      <button class="plus-button" (click)="regresarRoute()">Regresar</button>
+    </div>
+  </div>
+
+  <hr>
+
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>Costo</th>
+        <th>Margen</th>
+        <th>Precio antes impuesto</th>
+        <th>Impuesto</th>
+        <th>Precio después impuesto</th>
+      </tr>
+    </thead>
+    <tr *ngFor="let option of options">
+      <td>
+        {{ option.costo }}
+      </td>
+      <td>
+        {{ option.margen }}
+      </td>
+      <td>
+        {{ option.venta }}
+      </td>
+      <td>
+        {{ option.impuesto }}
+      </td>
+      <td>
+        {{ option.valorimpuesto }}
+      </td>
+    </tr>
+  </table>
+
+</div>

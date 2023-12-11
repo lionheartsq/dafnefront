@@ -1,0 +1,68 @@
+<div class="container">
+
+  <br>
+  <span><img src="./assets/iconos/simulacion.svg" style="max-width: 40px; max-height: 40px;" alt="Imagen" class="img-fluid"></span>
+  <span><b style="font-size: 1.8rem;">  Formalización</b></span>
+  <hr>
+  <img src="./assets/imagenes/separador.jpg" style="width: 100%; height: auto;" alt="Imagen" class="img-fluid">
+  <br>
+  <hr>
+
+  <div class="row">
+    <div class="col-md-1">
+    </div>
+
+    <div class="col-md-7">
+      <div class="card">
+        <div class="card-body">
+          <div>
+
+            <div *ngIf="!this.verPregunta">
+              Por favor digita tus datos personales en el módulo de ideación<br><hr>
+                <div class="form-group alert alert-danger" role="alert">
+                  <p>Para poder hacer uso de la formalización, debes llenar los datos correspondientes al primer paso del módulo de ideación, sección "Conociendo al emprendedor".</p>
+                </div>
+            </div>
+
+            <h2 *ngIf="this.verPregunta">Seguimiento proceso Formalización</h2><hr>
+            <div class="form-group alert alert-info" role="alert" *ngIf="this.verPregunta"> Según los datos suministrados se sugiere formalizarse como {{ personaNaturalFlag }}. Pulse el botón que considere adecuado.</div>
+
+            <div class="row">
+
+              <div class="col-md-4" *ngIf="this.verPregunta">
+                <button class="ressim-button" (click)="formalizacionPersona()">Formalizar como Persona Natural</button>
+              </div>
+
+              <div class="col-md-4" *ngIf="this.verPregunta">
+                <button class="ressim-button" (click)="formalizacionEmpresa()">Formalizar como Empresa</button>
+              </div>
+
+              <div class="col-md-4">
+                <!--****************************************************************************-->
+                <div>
+                  <button class="plussim-button" (click)="homeRoute()">Volver al menú</button>
+                </div>
+                <!--****************************************************************************-->
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+    </div>
+      <br>
+
+    <div class="col-md-3">
+      <img src="./assets/imagenes/listar-small.png" class="img-fluid" id="img-hobbies" alt="Imagen" style="max-height: 100%; max-width: 100%;">
+    </div>
+
+    <div class="col-md-1">
+    </div>
+  </div>
+
+  <br>
+  <hr>
+
+</div>

@@ -1,0 +1,123 @@
+<div class="container">
+
+  <br>
+  <span><img src="./assets/iconos/simulacion.svg" style="max-width: 40px; max-height: 40px;" alt="Imagen" class="img-fluid"></span>
+  <span><b style="font-size: 1.8rem;">  Simulación financiera</b></span>
+  <hr>
+  <h1>Creación de proyeccion mensual:</h1>
+  <img src="./assets/imagenes/separadorsim.jpg" style="max-width: 140px; max-height: 20px;" alt="Imagen" class="img-fluid">
+  <br>
+
+  <div class="row">
+    <div class="col-md-6">
+      <h2>Ingresos Actividades Ordinarias:</h2>
+    </div>
+    <div class="col-md-6">
+        <input type="text" class="form-control" placeholder="Digite aquí" [(ngModel)]="ingresosActividadesOrdinarias" name="ingresosActividadesOrdinarias" required>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-6">
+      <h2>Costo Ventas:</h2>
+    </div>
+    <div class="col-md-6">
+        <input type="text" class="form-control" placeholder="Digite aquí" [(ngModel)]="costoVentas" name="costoVentas" required>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-6">
+      <h2>Utilidad Bruta:</h2>
+    </div>
+    <div class="col-md-6">
+        <input type="text" class="form-control" placeholder="Digite aquí" [(ngModel)]="utilidadBruta" name="utilidadBruta" required>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-6">
+      <h2>Gastos Operacionales:</h2>
+    </div>
+    <div class="col-md-6">
+        <input type="text" class="form-control" placeholder="Digite aquí" [(ngModel)]="gastosOperacionales" name="gastosOperacionales" required>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-6">
+      <h2>Utilidad Operacional:</h2>
+    </div>
+    <div class="col-md-6">
+        <input type="text" class="form-control" placeholder="Digite aquí" [(ngModel)]="utilidadOperacional" name="utilidadOperacional" required>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-6">
+      <h2>Otros Ingresos:</h2>
+    </div>
+    <div class="col-md-6">
+        <input type="text" class="form-control" placeholder="Digite aquí" [(ngModel)]="otrosIngresos" name="otrosIngresos" required>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-6">
+      <h2>Otros Egresos:</h2>
+    </div>
+    <div class="col-md-6">
+        <input type="text" class="form-control" placeholder="Digite aquí" [(ngModel)]="otrosEgresos" name="otrosEgresos" required>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-6">
+      <h2>Utilidad Antes Impuesto:</h2>
+    </div>
+    <div class="col-md-6">
+        <input type="text" class="form-control" placeholder="Digite aquí" [(ngModel)]="utilidadAntesImpuesto" name="utilidadAntesImpuesto" required>
+    </div>
+  </div>
+
+  <hr>
+
+  <div class="row">
+    <div class="col-md-6">
+      <button class="ideacion-button" (click)="guardarRoute()">Guardar</button>
+    </div>
+    <div class="col-md-6">
+      <button class="plus-button" (click)="regresarRoute()">Regresar</button>
+    </div>
+  </div>
+
+  <hr>
+
+  <div class="row" *ngFor="let option of options">
+    <div class="col-md-6">
+      {{ option.ingresosActividadesOrdinarias }}
+    </div>
+    <div class="col-md-6">
+      {{ option.costoVentas }}
+    </div>
+    <div class="col-md-6">
+      {{ option.utilidadBruta }}
+    </div>
+    <div class="col-md-6">
+      {{ option.gastosOperacionales }}
+    </div>
+    <div class="col-md-6">
+      {{ option.utilidadOperacional }}
+    </div>
+    <div class="col-md-6">
+      {{ option.otrosIngresos }}
+    </div>
+    <div class="col-md-6">
+      {{ option.otrosEgresos }}
+    </div>
+    <div class="col-md-6">
+      {{ option.utilidadAntesImpuesto }}
+    </div>
+  </div>
+
+</div>

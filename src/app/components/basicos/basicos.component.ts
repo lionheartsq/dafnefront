@@ -120,6 +120,7 @@ export class BasicosComponent {
       const usuario = {id:this.idUsuarioCargado, nombre:this.nombre, tipodocumento:this.tipoDocumento, documento:this.numeroDocumento, email:this.correo, telefono:this.telefono, direccion:this.direccion, ciudad:this.ciudad, sexo:this.sexo, idRol:this.idRol};
       console.log("USUARIO OBJECT: "+JSON.stringify(usuario));
       this.basicosService.crearUsuario(usuario).subscribe( (data)=>{
+      localStorage.setItem('identificador_emprendedor', this.idUsuarioCargado);
       Swal.fire(
         {
           icon: 'success',
@@ -146,9 +147,9 @@ export class BasicosComponent {
                 const bitacora3 = {avance:1, idSeccion:23, idUsuario:parseInt(this.idUsuarioCargado)};
                 this.loginService.crearBitacora(bitacora3).subscribe( (data)=>{
 
-                  console.log("Bitacora2 registrada");
+                  console.log("Bitacora3 registrada");
                 }, (err) => {
-                  console.log("PAYLOAD ERROR: "+JSON.stringify(bitacora2));
+                  console.log("PAYLOAD ERROR: "+JSON.stringify(bitacora3));
                   console.log(err); // Manejo de errores
                 });
 

@@ -1,1 +1,359 @@
-<p>resumensimulacion works!</p>
+<div class="container">
+
+  <br>
+  <span><img src="./assets/iconos/simulacion.svg" style="max-width: 40px; max-height: 40px;" alt="Imagen" class="img-fluid"></span>
+  <span><b style="font-size: 1.8rem;">  Simulación</b></span>
+  <hr>
+  <img src="./assets/imagenes/bannerfinanciera.png" style="width: 100%; height: auto;" alt="Imagen" class="img-fluid">
+  <br>
+  <hr>
+
+  <div class="row">
+<!--     <div class="col-md-1">
+    </div> -->
+
+    <div class="col-md-9">
+      <div class="card">
+        <div class="card-body">
+          <div>
+
+            <h2>Datos consolidados</h2><hr>
+            <div class="form-group alert alert-info" role="alert"> El siguiente es el resúmen de su simulación financiera.</div>
+
+            <div>
+                <hr>
+                <table class="table table-striped">
+                  <thead>
+                    <tr style="background-color: green; color: white; text-align: center;">
+                      <th><h2>Estado de Resultados (apróximado)</h2></th>
+                      <th></th>
+                      <th><h2>Análisis vertical</h2></th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr *ngFor="let valorResultado of arrayValoresResultados">
+                      <td>{{ valorResultado.detalle }}</td>
+                      <td style="text-align: right;">$ {{ valorResultado.valor | number : '1.0-2' }}</td>
+                      <td style="text-align: right;">{{ valorResultado.porcentaje | number : '1.0-2' }} %</td>
+                    </tr>
+                  </tbody>
+                </table>
+
+                <hr>
+                <hr>
+
+                <table class="table table-striped">
+                  <thead>
+                    <tr style="background-color: yellow; text-align: center;">
+                      <th><h2>Sugerido</h2></th>
+                      <th></th>
+                      <th></th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>Producto o servicio</td>
+                      <td style="text-align: right;">{{ this.nombreProducto }}</td>
+                      <td style="text-align: right;">{{ this.descripcionProducto }}</td>
+                    </tr>
+                    <tr>
+                      <td>Capacidad de producción</td>
+                      <td style="text-align: right;">{{ this.cantidadProducto }}</td>
+                      <td style="text-align: right;">(cantidad mensual)</td>
+                    </tr>
+                    <tr>
+                      <td>Costos totales mensuales del producto o servicio</td>
+                      <td style="text-align: right;">$ {{ this.valorBaseCostos | number : '1.0-2' }}</td>
+                      <td style="text-align: right;"></td>
+                    </tr>
+                    <tr>
+                      <td>Costos unitarios por producto o servicio</td>
+                      <td style="text-align: right;">$ {{ this.globalBaseCostos | number : '1.0-2' }}</td>
+                      <td style="text-align: right;"></td>
+                    </tr>
+                    <tr>
+                      <td>Gastos totales mensuales </td>
+                      <td style="text-align: right;">$ {{ this.valorBaseGastos | number : '1.0-2' }}</td>
+                      <td style="text-align: right;"></td>
+                    </tr>
+                    <tr>
+                      <td>Precio de venta antes de impuestos</td>
+                      <td style="text-align: right;">$ {{ this.precioVenta | number : '1.0-2' }}</td>
+                      <td style="text-align: right;">Margen de ganancia del {{ this.margenGanancia }} %</td>
+                    </tr>
+                    <tr>
+                      <td>Precio de venta después de impuestos</td>
+                      <td style="text-align: right;">$ {{ this.precioIva | number : '1.0-2' }}</td>
+                      <td style="text-align: right;"></td>
+                    </tr>
+                    <tr>
+                      <td>Punto de equilibrio</td>
+                      <td style="text-align: right;">{{ this.puntoEquilibrio }}</td>
+                      <td style="text-align: right;">Unidad(es) de producto mensual(es)</td>
+                    </tr>
+                    <tr>
+                      <td>Ganancia antes de impuestos</td>
+                      <td style="text-align: right;">$ {{ this.arrayValoresResultados[7].valor | number : '1.0-2' }}</td>
+                      <td style="text-align: right;">Representa el {{ this.arrayValoresResultados[7].porcentaje | number : '1.0-2' }} % de los ingresos mensuales</td>
+                    </tr>
+                  </tbody>
+                </table>
+
+                <hr>
+                <hr>
+
+                <div style="text-align: center;">
+                  <h2><b>Hoja de costos</b></h2>
+                  <h2><b>Empresa: {{ this.nombreEmpresa }}</b></h2>
+                  <h2><b>Servicio: {{ this.nombreProducto }}</b></h2>
+                </div>
+
+                <div class="row">
+
+                  <div class="col-md-4">
+                    <table class="table table-striped">
+                      <thead>
+                        <tr style="background-color: green; color: white; text-align: center;">
+                          <th>PRODUCTOS, MATERIA PRIMA E INSUMOS</th>
+                        </tr>
+                      </thead>
+                    </table>
+                    <table class="table table-striped">
+                      <thead>
+                        <tr style="background-color: green; color: white; text-align: center;">
+                          <th><h2>Detalle</h2></th>
+                          <th><h2>Monto</h2></th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr *ngFor="let valorMateria of arrayValoresCostos">
+                          <td *ngIf="valorMateria.producto>0">{{ valorMateria.detalle }}</td>
+                          <td *ngIf="valorMateria.producto>0" style="text-align: right;">$ {{ valorMateria.monto | number : '1.0-2' }}</td>
+                        </tr>
+                      </tbody>
+                    </table>
+                    <table class="table table-striped">
+                      <thead>
+                        <tr style="background-color: green; color: white; text-align: center;">
+                          <th>POR SERVICIO</th>
+                          <th>$ {{ this.totalMat | number : '1.0-2' }}</th>
+                        </tr>
+                      </thead>
+                    </table>
+                  </div>
+
+                  <div class="col-md-4">
+                    <table class="table table-striped">
+                      <thead>
+                        <tr style="background-color: green; color: white; text-align: center;">
+                          <th>TALENTO HUMANO</th>
+                        </tr>
+                      </thead>
+                    </table>
+                    <table class="table table-striped">
+                      <thead>
+                        <tr style="background-color: green; color: white; text-align: center;">
+                          <th><h2>Detalle</h2></th>
+                          <th><h2>Monto</h2></th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr *ngFor="let valorTalento of arrayValoresCostos">
+                          <td *ngIf="valorTalento.talento>0">{{ valorTalento.detalle }}</td>
+                          <td *ngIf="valorTalento.talento>0" style="text-align: right;">$ {{ valorTalento.monto | number : '1.0-2' }}</td>
+                        </tr>
+                      </tbody>
+                    </table>
+                    <table class="table table-striped">
+                      <thead>
+                        <tr style="background-color: green; color: white; text-align: center;">
+                          <th>POR SERVICIO</th>
+                          <th>$ {{ this.totalTal | number : '1.0-2' }}</th>
+                        </tr>
+                      </thead>
+                    </table>
+                  </div>
+
+                  <div class="col-md-4">
+                    <table class="table table-striped">
+                      <thead>
+                        <tr style="background-color: green; color: white; text-align: center;">
+                          <th>COSTOS INDIRECTOS</th>
+                        </tr>
+                      </thead>
+                    </table>
+                    <table class="table table-striped">
+                      <thead>
+                        <tr style="background-color: green; color: white; text-align: center;">
+                          <th><h2>Detalle</h2></th>
+                          <th><h2>Monto</h2></th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr *ngFor="let valorCif of arrayValoresCostos">
+                          <td *ngIf="valorCif.cif>0">{{ valorCif.detalle }}</td>
+                          <td *ngIf="valorCif.cif>0" style="text-align: right;">$ {{ valorCif.monto | number : '1.0-2' }}</td>
+                        </tr>
+                      </tbody>
+                    </table>
+                    <table class="table table-striped">
+                      <thead>
+                        <tr style="background-color: green; color: white; text-align: center;">
+                          <th>POR SERVICIO</th>
+                          <th>$ {{ this.totalCi | number : '1.0-2' }}</th>
+                        </tr>
+                      </thead>
+                    </table>
+                  </div>
+
+                </div>
+
+                <div class="row">
+                  <div class="col-md-12">
+                    <table class="table table-striped">
+                      <tr><b>SUBTOTALES</b></tr>
+                    </table>
+                    <table class="table table-striped">
+                      <tr>
+                        <td style="background-color: green; color: white; text-align: center;">PRODUCTOS, MATERIA PRIMA E INSUMOS</td>
+                        <td style="text-align: right;">$ {{ this.totalMatMes | number : '1.0-2' }}</td>
+                      </tr>
+                      <tr>
+                        <td style="background-color: green; color: white; text-align: center;">TALENTO HUMANO</td>
+                        <td style="text-align: right;">$ {{ this.totalTalMes | number : '1.0-2' }}</td>
+                      </tr>
+                      <tr>
+                        <td style="background-color: green; color: white; text-align: center;">COSTOS INDIRECTOS</td>
+                        <td style="text-align: right;">$ {{ this.totalCiMes | number : '1.0-2' }}</td>
+                      </tr>
+                      <tr>
+                        <td style="text-align: center;"><b>COSTOS TOTALES MENSUALES</b></td>
+                        <td style="text-align: right;">$ {{ this.consolidadoCostosMes | number : '1.0-2' }}</td>
+                      </tr>
+                      <tr>
+                        <td style="text-align: center;"><b>COSTO POR SERVICIO</b></td>
+                        <td style="text-align: right;">$ {{ this.consolidadoCostosUnidad | number : '1.0-2' }}</td>
+                      </tr>
+                    </table>
+                  </div>
+                </div>
+
+                <hr>
+                <hr>
+
+                <div style="text-align: center;">
+                  <h2><b>Hoja de gastos</b></h2>
+                  <h2><b>Servicio: {{ this.nombreProducto }}</b></h2>
+                </div>
+
+                <div class="row">
+
+                  <div class="col-md-6">
+                    <table class="table table-striped">
+                      <thead>
+                        <tr style="background-color: green; color: white; text-align: center;">
+                          <th>GASTOS DE INTERESES FINANCIEROS</th>
+                        </tr>
+                      </thead>
+                    </table>
+                    <table class="table table-striped">
+                      <thead>
+                        <tr style="background-color: green; color: white; text-align: center;">
+                          <th><h2>Detalle</h2></th>
+                          <th><h2>Monto</h2></th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr *ngFor="let valorInteres of arrayValoresGastos">
+                          <td *ngIf="valorInteres.financieros>0">{{ valorInteres.detalle }}</td>
+                          <td *ngIf="valorInteres.financieros>0" style="text-align: right;">$ {{ valorInteres.monto | number : '1.0-2' }}</td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+
+                  <div class="col-md-6">
+                    <table class="table table-striped">
+                      <thead>
+                        <tr style="background-color: green; color: white; text-align: center;">
+                          <th>GASTOS ADICIONALES</th>
+                        </tr>
+                      </thead>
+                    </table>
+                    <table class="table table-striped">
+                      <thead>
+                        <tr style="background-color: green; color: white; text-align: center;">
+                          <th><h2>Detalle</h2></th>
+                          <th><h2>Monto</h2></th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr *ngFor="let valorAdicionales of arrayValoresGastos">
+                          <td *ngIf="valorAdicionales.adicionales>0">{{ valorAdicionales.detalle }}</td>
+                          <td *ngIf="valorAdicionales.adicionales>0" style="text-align: right;">$ {{ valorAdicionales.monto | number : '1.0-2' }}</td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+
+                </div>
+
+                <div class="row">
+                  <div class="col-md-12">
+                    <table class="table table-striped">
+                      <tr><b>SUBTOTALES</b></tr>
+                    </table>
+                    <table class="table table-striped">
+                      <tr>
+                        <td style="background-color: green; color: white; text-align: center;">GASTOS DE INTERESES FINANCIEROS</td>
+                        <td style="text-align: right;">$ {{ this.totalPrestMes | number : '1.0-2' }}</td>
+                      </tr>
+                      <tr>
+                        <td style="background-color: green; color: white; text-align: center;">GASTOS ADICIONALES</td>
+                        <td style="text-align: right;">$ {{ this.totalGastMes | number : '1.0-2' }}</td>
+                      </tr>
+                      <tr>
+                        <td style="text-align: center;"><b>GASTOS TOTALES MENSUALES</b></td>
+                        <td style="text-align: right;">$ {{ this.consolidadoGastosUnidad | number : '1.0-2' }}</td>
+                      </tr>
+                    </table>
+                  </div>
+                </div>
+
+            </div>
+
+          </div>
+
+        </div>
+      </div>
+      <br>
+
+      <div class="row">
+        <div class="col-md-4">
+          <button class="ressim-button" (click)="reiniciarModulo()">Reiniciar Módulo</button>
+        </div>
+
+        <div class="col-md-4">
+          <button class="ressim-button" (click)="reiniciarTodo()">Reiniciar Todo</button>
+        </div>
+
+        <div class="col-md-4">
+          <!--****************************************************************************-->
+            <button class="plussim-button" (click)="homeRoute()">Volver al menú</button>
+          <!--****************************************************************************-->
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-3">
+      <img src="./assets/imagenes/simulacion-financiera.jpg" class="img-fluid" id="img-hobbies" alt="Imagen" style="max-height: 100%; max-width: 100%;">
+    </div>
+
+<!--     <div class="col-md-1">
+    </div> -->
+  </div>
+
+  <br>
+  <hr>
+
+</div>

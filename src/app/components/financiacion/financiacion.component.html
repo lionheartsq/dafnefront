@@ -1,0 +1,117 @@
+<div class="container">
+
+  <br>
+  <span><img src="./assets/iconos/simulacion.svg" style="max-width: 40px; max-height: 40px;" alt="Imagen" class="img-fluid"></span>
+  <span><b style="font-size: 1.8rem;">  Simulación financiera</b></span>
+  <hr>
+  <h1>Creación de financiación:</h1>
+  <img src="./assets/imagenes/separadorsim.jpg" style="max-width: 140px; max-height: 20px;" alt="Imagen" class="img-fluid">
+  <br>
+
+  <div class="row">
+    <div class="col-md-6">
+      <h2>Valor:</h2>
+    </div>
+    <div class="col-md-6">
+        <input type="text" class="form-control" placeholder="Digite aquí" [(ngModel)]="valor" name="valor" required>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-6">
+      <h2>Tipo de tasa:</h2>
+    </div>
+    <div class="col-md-3">
+      <b>Anual </b>
+      <input type="radio" [(ngModel)]="anual" value="1">
+    </div>
+    <div class="col-md-3">
+      <b>Mensual </b>
+      <input type="radio" [(ngModel)]="anual" value="0">
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-6">
+      <h2>Tasa %:</h2>
+    </div>
+    <div class="col-md-6">
+        <input type="number" step="0.01" class="form-control" placeholder="Digite aquí" [(ngModel)]="tasa" name="tasa" required>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-6">
+      <h2>Cuotas:</h2>
+    </div>
+    <div class="col-md-6">
+        <input type="number" class="form-control" placeholder="Digite aquí" [(ngModel)]="cantidadPeriodos" name="cantidadPeriodos" required>
+    </div>
+  </div>
+
+  <hr>
+
+  <div class="row">
+    <div class="col-md-6">
+      <button class="ideacion-button" (click)="guardarRoute()">Guardar</button>
+    </div>
+    <div class="col-md-6">
+      <button class="plus-button" (click)="regresarRoute()">Regresar</button>
+    </div>
+  </div>
+
+  <hr>
+    <table class="table table-striped" *ngIf="options">
+      <thead>
+        <tr>
+          <th>Valor préstamo</th>
+          <th>Tasa mensual</th>
+          <th>Periodos</th>
+          <th>Cuota</th>
+        </tr>
+      </thead>
+      <tr>
+        <td>{{options[0].valor}}</td>
+        <td>{{options[0].tasaMensual}}</td>
+        <td>{{options[0].cantidadPeriodos}}</td>
+        <td>{{options[0].cuota}}</td>
+      </tr>
+    </table>
+  <hr>
+
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>Periodo</th>
+        <th>Capital inicial</th>
+        <th>Cuota</th>
+        <th>Interés</th>
+        <th>Amortización</th>
+        <th>Saldo</th>
+      </tr>
+    </thead>
+    <tr *ngFor="let option of options">
+      <td>
+        {{ option.periodo }}
+      </td>
+      <td>
+        {{ option.capitalInicial }}
+      </td>
+      <td>
+        {{ option.cuota }}
+      </td>
+      <td>
+        {{ option.interes }}
+      </td>
+      <td>
+        {{ option.amortizacion }}
+      </td>
+      <td>
+        {{ option.saldo }}
+      </td>
+    </tr>
+  </table>
+
+</div>
+
+

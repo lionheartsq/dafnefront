@@ -17,14 +17,21 @@ export class ResumenComponent {
   arrayEmpresa: any;
   logo: any;
   idEmpresa: any;
-  nombreIdea: any;
-  nombreEmpresa: any;
-  mision: any;
-  vision: any;
-  slogan: any;
+  nombreIdea: string="";
+  nombreEmpresa: string="";
+  mision: string="";
+  vision: string="";
+  slogan: string="";
   url: string='';
+  valIdea: number=0;
+  valNombre: number=0;
+  valMision: number=0;
+  valVision: number=0;
+  valSlogan: number=0;
+  valLogo: number=0;
+  totalVal: number=0;
 
-  //Inicio variables para validar bitacora ***
+    //Inicio variables para validar bitacora ***
     //*******************************************//
     idModulo:number=1;
     nombreSeccion:string="resumen";
@@ -98,6 +105,13 @@ export class ResumenComponent {
           this.slogan=this.arrayEmpresa[dato].slogan;
           this.logo=this.arrayEmpresa[dato].logo;
         }
+
+        if(this.nombreIdea != ""){this.valIdea=1}
+        if(this.nombreEmpresa != ""){this.valNombre=1}
+        if(this.mision != ""){this.valMision=1}
+        if(this.vision != ""){this.valVision=1}
+        if(this.slogan != ""){this.valSlogan=1}
+
         console.log("Actual idEmpresa: "+this.idEmpresa);
         console.log("Actual idUsuario: "+this.idUsuarioCargado);
         console.log("Actual nombreIdea: "+this.nombreIdea);
@@ -106,10 +120,15 @@ export class ResumenComponent {
         console.log("Actual vision: "+this.vision);
         console.log("Actual slogan: "+this.slogan);
         console.log("Actual logo: "+this.logo);
+
         if(this.logo === null){
           this.logo="./assets/nologo.png";
+        }else{
+          this.valLogo=1;
         }
         console.log("Real logo: "+this.logo);
+
+        this.totalVal=this.valIdea+this.valNombre+this.valMision+this.valVision+this.valSlogan+this.valLogo;
       },
       (err) => {
         console.log(err); // Manejo de errores
@@ -219,6 +238,7 @@ export class ResumenComponent {
     const varNuevaEmpresa = {id:this.idEmpresa, idUsuario:this.idUsuarioCargado, nombreIdea:this.nombreIdea, nombreEmpresa:this.nombreEmpresa, mision:this.mision, vision:this.vision, slogan:this.slogan, logo:this.logo};
     console.log("Var nuevaEmpresa: "+varNuevaEmpresa);
     this.resumenempresaService.actualizarEmpresa(varNuevaEmpresa).subscribe( (data)=>{
+      localStorage.setItem('nombre_empresa', this.nombreEmpresa);
       Swal.fire(
         {
           icon: 'success',

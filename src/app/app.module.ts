@@ -82,6 +82,20 @@ import { VerlistadoComponent } from './components/verlistado/verlistado.componen
 import { AccionesComponent } from './components/acciones/acciones.component';
 import { VistaestrategiasComponent } from './components/vistaestrategias/vistaestrategias.component';
 import { VistacanvasComponent } from './components/vistacanvas/vistacanvas.component';
+import { PerfilesComponent } from './components/perfiles/perfiles.component';
+import { CifComponent } from './components/cif/cif.component';
+import { MaquinariaComponent } from './components/maquinaria/maquinaria.component';
+import { EmpleadosComponent } from './components/empleados/empleados.component';
+import { FinanciacionComponent } from './components/financiacion/financiacion.component';
+import { GastosComponent } from './components/gastos/gastos.component';
+import { PrecioventaComponent } from './components/precioventa/precioventa.component';
+import { IngresosadicionalesComponent } from './components/ingresosadicionales/ingresosadicionales.component';
+import { GastosadicionalesComponent } from './components/gastosadicionales/gastosadicionales.component';
+import { PuntoequilibrioComponent } from './components/puntoequilibrio/puntoequilibrio.component';
+import { ProyeccionmensualComponent } from './components/proyeccionmensual/proyeccionmensual.component';
+import { BasicoformalizacionComponent } from './components/basicoformalizacion/basicoformalizacion.component';
+import { EmpresaformalizacionComponent } from './components/empresaformalizacion/empresaformalizacion.component';
+import { PersonaformalizacionComponent } from './components/personaformalizacion/personaformalizacion.component';
 
 const materialModules = [
   MatCardModule,
@@ -152,7 +166,21 @@ const materialModules = [
     VerlistadoComponent,
     AccionesComponent,
     VistaestrategiasComponent,
-    VistacanvasComponent
+    VistacanvasComponent,
+    PerfilesComponent,
+    CifComponent,
+    MaquinariaComponent,
+    EmpleadosComponent,
+    FinanciacionComponent,
+    GastosComponent,
+    PrecioventaComponent,
+    IngresosadicionalesComponent,
+    GastosadicionalesComponent,
+    PuntoequilibrioComponent,
+    ProyeccionmensualComponent,
+    BasicoformalizacionComponent,
+    EmpresaformalizacionComponent,
+    PersonaformalizacionComponent
   ],
   imports: [
     BrowserModule,

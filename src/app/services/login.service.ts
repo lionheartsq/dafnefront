@@ -21,7 +21,11 @@ export class LoginService {
 
   //private urlBase='http://127.0.0.1:8000';
 
+  private endpointGlobales='api/auth/variables_globales';
+
   private endpointEmail='api/auth/usuario/selectemaillogin';
+
+  private endpointCount='api/auth/countUsuario';
 
   private endpoint= 'api/auth/login';
 
@@ -34,6 +38,12 @@ export class LoginService {
   headers = new HttpHeaders().set('Content-Type', 'application/json');
   currentUser = {};
   idUsuario: any;
+  globales: any;
+  auxilio: any;
+  uvt: any;
+  minimo: any;
+  idUsuarioEmprendedor: any;
+  conteo: any;
 
   constructor(private http: HttpClient, public router: Router){}
 
@@ -48,6 +58,29 @@ export class LoginService {
           localStorage.setItem('rol', res.rol);
           console.log("Item idUsuario: "+localStorage.getItem('identificador_usuario'));
           console.log("Item rol: "+localStorage.getItem('rol'));
+
+          this.verCantidad(res.id_usuario).subscribe(
+            (data) => {
+              console.log("TIPO DATA: " + typeof (data));
+              console.log("DATA: " + JSON.stringify(data));
+
+              // Verifica si existe la propiedad 'users' y asigna su valor a this.idUsuarioEmprendedor
+              if (data && data.users !== undefined) {
+                this.conteo = data.users;
+                if(this.conteo>0){
+                  this.idUsuarioEmprendedor=localStorage.getItem('identificador_usuario');
+                  localStorage.setItem('identificador_emprendedor', this.idUsuarioEmprendedor);
+                }
+                console.log("Item iEmprendedor: " + localStorage.getItem('identificador_emprendedor'));
+              } else {
+                console.log("La propiedad 'users' no existe en la respuesta.");
+              }
+            },
+            (err) => {
+              console.log(err);
+            }
+          );
+
           //console.log("Token: "+res.access_token);
           if(res.rol==1){
             this.router.navigate(['administrador']);
@@ -65,6 +98,11 @@ export class LoginService {
       //
       console.log("Query Ver Avance: "+`${this.urlBase}/${this.endpointSeccion}?idUsuario=${idUsuario}&idModulo=${idModulo}`);
       return this.http.get(`${this.urlBase}/${this.endpointSeccion}?idUsuario=${idUsuario}&idModulo=${idModulo}`);
+    }
+
+    public verCantidad(idUsuario:any): Observable<any> {
+      console.log("Query Ver Cantidad: "+`${this.urlBase}/${this.endpointCount}/${idUsuario}`);
+      return this.http.get(`${this.urlBase}/${this.endpointCount}/${idUsuario}`);
     }
 
     public crearBitacora(user: any): Observable<any>{
@@ -123,5 +161,9 @@ export class LoginService {
         msg = `Error Code: ${error.status}\nMessage: ${error.message}`;
       }
       return throwError(msg);
+    }
+
+    public lecturaGlobales(): Observable<any> {
+      return this.http.get(`${this.urlBase}/${this.endpointGlobales}`);
     }
 }

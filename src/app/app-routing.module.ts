@@ -39,6 +39,20 @@ import { VerlistadoComponent } from './components/verlistado/verlistado.componen
 import { AccionesComponent } from './components/acciones/acciones.component';
 import { VistaestrategiasComponent } from './components/vistaestrategias/vistaestrategias.component';
 import { VistacanvasComponent } from './components/vistacanvas/vistacanvas.component';
+import { PerfilesComponent } from './components/perfiles/perfiles.component';
+import { CifComponent } from './components/cif/cif.component';
+import { MaquinariaComponent } from './components/maquinaria/maquinaria.component';
+import { EmpleadosComponent } from './components/empleados/empleados.component';
+import { FinanciacionComponent } from './components/financiacion/financiacion.component';
+import { GastosComponent } from './components/gastos/gastos.component';
+import { PrecioventaComponent } from './components/precioventa/precioventa.component';
+import { IngresosadicionalesComponent } from './components/ingresosadicionales/ingresosadicionales.component';
+import { GastosadicionalesComponent } from './components/gastosadicionales/gastosadicionales.component';
+import { PuntoequilibrioComponent } from './components/puntoequilibrio/puntoequilibrio.component';
+import { ProyeccionmensualComponent } from './components/proyeccionmensual/proyeccionmensual.component';
+import { BasicoformalizacionComponent } from './components/basicoformalizacion/basicoformalizacion.component';
+import { EmpresaformalizacionComponent } from './components/empresaformalizacion/empresaformalizacion.component';
+import { PersonaformalizacionComponent } from './components/personaformalizacion/personaformalizacion.component';
 
 const routes: Routes = [
     //{ path: "", component: AppComponent, pathMatch: "full" },
@@ -81,7 +95,21 @@ const routes: Routes = [
     { path: "verlistado", component:VerlistadoComponent, pathMatch: "full"},
     { path: "acciones", component:AccionesComponent, pathMatch: "full"},
     { path: "vistaestrategias", component:VistaestrategiasComponent, pathMatch: "full"},
-    { path: "vistacanvas", component:VistacanvasComponent, pathMatch: "full"}
+    { path: "vistacanvas", component:VistacanvasComponent, pathMatch: "full"},
+    { path: "perfiles", component:PerfilesComponent, pathMatch: "full"},
+    { path: "cif", component:CifComponent, pathMatch: "full"},
+    { path: "maquinaria", component:MaquinariaComponent, pathMatch: "full"},
+    { path: "empleados", component:EmpleadosComponent, pathMatch: "full"},
+    { path: "financiacion", component:FinanciacionComponent, pathMatch: "full"},
+    { path: "gastos", component:GastosComponent, pathMatch: "full"},
+    { path: "precioventa", component:PrecioventaComponent, pathMatch: "full"},
+    { path: "ingresosadicionales", component:IngresosadicionalesComponent, pathMatch: "full"},
+    { path: "gastosadicionales", component:GastosadicionalesComponent, pathMatch: "full"},
+    { path: "puntoequilibrio", component:PuntoequilibrioComponent, pathMatch: "full"},
+    { path: "proyeccionmensual", component:ProyeccionmensualComponent, pathMatch: "full"},
+    { path: "basicoformalizacion", component:BasicoformalizacionComponent, pathMatch: "full"},
+    { path: "empresaformalizacion", component:EmpresaformalizacionComponent, pathMatch: "full"},
+    { path: "personaformalizacion", component:PersonaformalizacionComponent, pathMatch: "full"}
 ];
 
 @NgModule({

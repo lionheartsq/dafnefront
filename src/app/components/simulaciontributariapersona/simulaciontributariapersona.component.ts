@@ -263,8 +263,23 @@ export class SimulaciontributariapersonaComponent {
     //*******************************************//
     const bitacora = {avance:1, idSeccion:21, idUsuario:parseInt(this.idUsuarioCargado)};
     this.loginService.crearBitacora(bitacora).subscribe( (data)=>{
+      localStorage.setItem('flag_empresa','0');
+      localStorage.setItem('flag_persona','1');
       console.log("Bitacora registrada");
-      this.router.navigate(['simulacionfinanciera']);
+
+      //si producto es 1 -> producto, si es 0 -> servicio -- default(0)
+      //si personaNatural es 1 -> personaNatural, si es 0 -> empresa -- default(0)
+      const empresaVar = {producto:0, nombreProducto:"", descripcionProducto:"", nombreEmpresa:"", cantidadProducto:0, costoMateriales:0, costoCompra:0, personaNatural:0, codigoCiiu:"", nivelRiesgo:1, costosIndirectos:0, talentoHumano:0,
+      valorPrestamo:0, valorGastos:0, margenGanancia:0, precioVenta:0, precioIva:0, puntoEquilibrio:0, ingresosAdicionales:0, ingresosOrdinarios:0, costoVentas:0, utilidadBruta:0, gastosOperacionales:0, utilidadOperacional:0,
+      egresosAdicionales:0, utilidadPreImpuesto:0, idUsuario:parseInt(this.idUsuarioCargado)};
+
+      this.simulacionService.crearConsolidadoEmpresa(empresaVar).subscribe( (data)=>{
+        console.log("Consolidado empresa actualizado");
+        this.router.navigate(['simulacionfinanciera']);
+      }, (err) => {
+        console.log(err); // Manejo de errores
+      });
+
     }, (err) => {
       console.log(err); // Manejo de errores
     });
