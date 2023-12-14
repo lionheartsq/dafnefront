@@ -24,8 +24,33 @@ export class PersonaformalizacionComponent {
   paramUsuario: any;
   tipoProducto: any;
   valor: any;
-  isVerificadoNombre: any;
   nombreEmpresa: any;
+  isVerificadoNombre: any;
+  isVerificadoValidar: string= '1';
+  isVerificadoDisponible: string= '1';
+  isVerificadoMarca: string= '1';
+  isVerificadoAntecedentes: string= '1';
+  isVerificadoMarcaDisponible: string= '1';
+  isVerificadoMarcaProteger: string= '1';
+  isVerificadoMSimulacion: string= '1';
+  isVerificadoEconomica: string= '1';
+  isVerificadoAEconomica: string= '1';
+  isVerificadoAEPrincipal: string= '1';
+  isVerificadoCSuelo: string= '1';
+  isVerificadoSabeRut: string= '1';
+  isVerificadoARut: string= '1';
+  isVerificadoERues: string= '1';
+  isVerificadoMoSimula: string= '1';
+  isVerificadoProyeccion: string= '1';
+  isVerificadoProyeccionS: string= '1';
+  isVerificadoCerBomberil: string= '1';
+  isVerificadoProceso: string= '1';
+  isVerificadoPrograma: string= '1';
+  isVerificadoModSimula: string= '1';
+  isVerificadoPersonas: string= '1';
+  isVerificadoExonerado: string= '1';
+  isVerificadoCPersonas: string= '1';
+  isVerificadoAfiliaciones: string= '1';
 
   private isRequestInProgress: boolean = false;
 
@@ -144,6 +169,72 @@ export class PersonaformalizacionComponent {
 
   reiniciarTodo(){
 
+  }
+
+  // Toma el valor del campo file
+  onFileSelected(event: any, fieldName: string) {
+    const file: File | null = event.target.files && event.target.files.length > 0 ? event.target.files[0] : null;
+
+    if (file) {
+      this.readAndEncodeFile(file)
+        .then((base64String: string) => {
+          console.log(`Archivo ${fieldName} convertido a Base64:`, base64String);
+
+          // Puedes enviar la cadena Base64 al servidor o realizar otras operaciones
+          this.sendBase64ToServer(fieldName, base64String);
+        })
+        .catch((error) => {
+          console.error(`Error al convertir archivo ${fieldName} a Base64:`, error);
+          // Maneja errores aquí
+        });
+    }
+  }
+
+  readAndEncodeFile(file: File): Promise<string> {
+    return new Promise<string>((resolve, reject) => {
+      const reader = new FileReader();
+
+      reader.onloadend = () => {
+        const base64String = reader.result as string;
+        resolve(base64String);
+      };
+
+      reader.readAsDataURL(file);
+    });
+  }
+
+  sendBase64ToServer(fieldName: string, base64String: string) {
+    // Implementa la lógica para enviar la cadena Base64 al servidor con el nombre del campo
+    // Puedes usar HttpClient y tu lógica de servidor aquí
+    switch (fieldName) {
+      case "marca":
+        this.marca=base64String;
+        console.log("marca: "+this.marca);
+        break;
+      case "usoDeSuelo":
+        this.usoDeSuelo=base64String;
+        console.log("usoDeSuelo: "+this.usoDeSuelo);
+        break;
+      case "rut":
+        this.rut=base64String;
+        console.log("rut: "+this.rut);
+        break;
+      case "rues":
+        this.rues=base64String;
+        console.log("rues: "+this.rues);
+        break;
+      case "sayco":
+        this.sayco=base64String;
+        console.log("sayco: "+this.sayco);
+        break;
+      case "bomberil":
+        this.bomberil=base64String;
+        console.log("bomberil: "+this.bomberil);
+        break;
+      default:
+        console.log("No existe case");
+        break;
+    }
   }
 
   updateFormalizacion(){

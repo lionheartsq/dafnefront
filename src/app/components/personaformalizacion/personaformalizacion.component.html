@@ -43,34 +43,38 @@
                 <hr><h2>¿Verificó si el nombre de su establecimiento está disponible?</h2>
                 <div class="col-md-3">
                   <b style="color:green">Sí </b>
-                  <input type="radio" name="isVerificadoNombre" [(ngModel)]="isVerificadoNombre" value="1">
+                  <input type="radio" name="isVerificadoValidar" [(ngModel)]="isVerificadoValidar" value="1">
                 </div>
                 <div class="col-md-3">
                   <b style="color: red;">No </b>
-                  <input type="radio" name="isVerificadoNombre" [(ngModel)]="isVerificadoNombre" value="0">
+                  <input type="radio" name="isVerificadoValidar" [(ngModel)]="isVerificadoValidar" value="0">
                 </div>
               </div><br>
 
-              <div class="row">
+              <div class="row" *ngIf="isVerificadoValidar==='1'">
                 <hr><h2>¿El nombre está disponible?</h2>
                 <div class="col-md-3">
                   <b style="color:green">Sí </b>
-                  <input type="radio" name="isVerificadoNombre" [(ngModel)]="isVerificadoNombre" value="1">
+                  <input type="radio" name="isVerificadoDisponible" [(ngModel)]="isVerificadoDisponible" value="1">
                 </div>
                 <div class="col-md-3">
                   <b style="color: red;">No </b>
-                  <input type="radio" name="isVerificadoNombre" [(ngModel)]="isVerificadoNombre" value="0">
+                  <input type="radio" name="isVerificadoDisponible" [(ngModel)]="isVerificadoDisponible" value="0">
                 </div>
               </div><br>
 
-              <div class="row">
-                <hr><h2>Enlace para consulta homonimia</h2>
+              <div class="row" *ngIf="isVerificadoValidar==='0' || isVerificadoDisponible==='0'">
+                <hr><p>Genere un nuevo nombre</p>
+              </div><br>
+
+              <div class="row" *ngIf="isVerificadoValidar==='0' || isVerificadoDisponible==='0'">
+                <hr>
                 <div class="col-md-12">
                   <a href="https://www.rues.org.co/RM" target="_NEW">Enlace para consulta homonimia</a>
                 </div>
               </div><br>
 
-              <div class="row">
+              <div class="row" *ngIf="isVerificadoDisponible==='1'">
                 <hr><h2>Agregue el nombre</h2>
                 <div class="col-md-3">
                   <b>Nombre : </b>
@@ -80,22 +84,12 @@
                 </div>
               </div><br>
 
-              <div class="row">
-                <hr><h2>Genere un nuevo nombre</h2>
-                <div class="col-md-3">
-                  <b>Nombre : </b>
-                </div>
-                <div class="col-md-3">
-                  <input type="text" [(ngModel)]="nombreEmpresa">
-                </div>
-              </div><br>
-
             </div>
 
             <div *ngIf="this.pasosAvance==1">
 
               <div class="row">
-                <hr><h2>Qué es una marca</h2>
+                <hr>
                 <div class="col-md-12">
                   <a href="https://www.sic.gov.co/marcas/antes-de-solicitar#:~:text=La%20marca%20permite%20que%20los,aquellos%20que%20no%20logran%20identificar." target="_NEW">Qué es una marca</a>
                 </div>
@@ -105,35 +99,35 @@
                 <hr><h2>¿Tiene una marca?</h2>
                 <div class="col-md-3">
                   <b style="color:green">Sí </b>
-                  <input type="radio" name="isVerificadoNombre" [(ngModel)]="isVerificadoNombre" value="1">
+                  <input type="radio" name="isVerificadoMarca" [(ngModel)]="isVerificadoMarca" value="1">
                 </div>
                 <div class="col-md-3">
                   <b style="color: red;">No </b>
-                  <input type="radio" name="isVerificadoNombre" [(ngModel)]="isVerificadoNombre" value="0">
+                  <input type="radio" name="isVerificadoMarca" [(ngModel)]="isVerificadoMarca" value="0">
                 </div>
               </div><br>
 
-              <div class="row">
+              <div class="row" *ngIf="isVerificadoMarca==='1'">
                 <hr><h2>¿Ya consultó los antecedentes marcarios de su marca?</h2>
                 <div class="col-md-3">
                   <b style="color:green">Sí </b>
-                  <input type="radio" name="isVerificadoNombre" [(ngModel)]="isVerificadoNombre" value="1">
+                  <input type="radio" name="isVerificadoAntecedentes" [(ngModel)]="isVerificadoAntecedentes" value="1">
                 </div>
                 <div class="col-md-3">
                   <b style="color: red;">No </b>
-                  <input type="radio" name="isVerificadoNombre" [(ngModel)]="isVerificadoNombre" value="0">
+                  <input type="radio" name="isVerificadoAntecedentes" [(ngModel)]="isVerificadoAntecedentes" value="0">
                 </div>
               </div><br>
 
-              <div class="row">
-                <hr><h2>Video de apoyo consulta de antecedentes marcarios</h2>
+              <div class="row" *ngIf="isVerificadoAntecedentes==='0'">
+                <hr>
                 <div class="col-md-12">
                   <a href="https://www.youtube.com/watch?v=XIDeYCBQJdk" target="_NEW">Video de apoyo consulta de antecedentes marcarios</a>
                 </div>
               </div><br>
 
-              <div class="row">
-                <hr><h2>Enlace de consulta antecedentes marcarios</h2>
+              <div class="row" *ngIf="isVerificadoAntecedentes==='0'">
+                <hr>
                 <div class="col-md-12">
                   <a href="https://sipi.sic.gov.co/sipi/Extra/Default.aspx?sid=638374116246775962"
                   target="_NEW">Enlace de consulta antecedentes marcarios</a>
@@ -144,38 +138,39 @@
                 <hr><h2>¿La marca está disponible?</h2>
                 <div class="col-md-3">
                   <b style="color:green">Sí </b>
-                  <input type="radio" name="isVerificadoNombre" [(ngModel)]="isVerificadoNombre" value="1">
+                  <input type="radio" name="isVerificadoMarcaDisponible" [(ngModel)]="isVerificadoMarcaDisponible" value="1">
                 </div>
                 <div class="col-md-3">
                   <b style="color: red;">No </b>
-                  <input type="radio" name="isVerificadoNombre" [(ngModel)]="isVerificadoNombre" value="0">
+                  <input type="radio" name="isVerificadoMarcaDisponible" [(ngModel)]="isVerificadoMarcaDisponible" value="0">
                 </div>
               </div><br>
 
-              <div class="row">
-                <hr><h2>Genere una nueva marca</h2>
-                <div class="col-md-3">
-                  <b>Nombre : </b>
-                </div>
-                <div class="col-md-3">
-                  <input type="text" [(ngModel)]="marca">
+              <div class="row" *ngIf="isVerificadoMarcaDisponible==='0'">
+                <hr><p>Genere una nueva marca</p>
+              </div><br>
+
+              <div class="row" *ngIf="isVerificadoMarcaDisponible==='1'">
+                <hr><h2>Adjunte la marca en formato imagen o PDF</h2>
+                <div class="col-md-6">
+                  <input type="file" (change)="onFileSelected($event, 'marca')" />
                 </div>
               </div><br>
 
-              <div class="row">
+              <div class="row" *ngIf="isVerificadoMarcaDisponible==='1'">
                 <hr><h2>¿Desea proteger su marca?</h2>
                 <div class="col-md-3">
                   <b style="color:green">Sí </b>
-                  <input type="radio" name="isVerificadoNombre" [(ngModel)]="isVerificadoNombre" value="1">
+                  <input type="radio" name="isVerificadoMarcaProteger" [(ngModel)]="isVerificadoMarcaProteger" value="1">
                 </div>
                 <div class="col-md-3">
                   <b style="color: red;">No </b>
-                  <input type="radio" name="isVerificadoNombre" [(ngModel)]="isVerificadoNombre" value="0">
+                  <input type="radio" name="isVerificadoMarcaProteger" [(ngModel)]="isVerificadoMarcaProteger" value="0">
                 </div>
               </div><br>
 
-              <div class="row">
-                <hr><h2>Paso a paso para el registro de una marca</h2>
+              <div class="row" *ngIf="isVerificadoMarcaProteger==='1'">
+                <hr>
                 <div class="col-md-12">
                   <a href="https://www.sic.gov.co/tema/propiedad-Industrial/pasos-para-solicitar-el-registro-de-una-marca"
                   target="_NEW">Paso a paso para el registro de una marca</a>
@@ -190,28 +185,28 @@
                 <hr><h2>¿El usuario ya diligenció el módulo de simulación?</h2>
                 <div class="col-md-3">
                   <b style="color:green">Sí </b>
-                  <input type="radio" name="isVerificadoNombre" [(ngModel)]="isVerificadoNombre" value="1">
+                  <input type="radio" name="isVerificadoMSimulacion" [(ngModel)]="isVerificadoMSimulacion" value="1">
                 </div>
                 <div class="col-md-3">
                   <b style="color: red;">No </b>
-                  <input type="radio" name="isVerificadoNombre" [(ngModel)]="isVerificadoNombre" value="0">
+                  <input type="radio" name="isVerificadoMSimulacion" [(ngModel)]="isVerificadoMSimulacion" value="0">
                 </div>
               </div><br>
 
-              <div class="row">
+              <div class="row" *ngIf="isVerificadoMSimulacion==='0'">
                 <hr><h2>¿Sabe usted el código CIIU de la actividad económica principal de su negocio?</h2>
                 <div class="col-md-3">
                   <b style="color:green">Sí </b>
-                  <input type="radio" name="isVerificadoNombre" [(ngModel)]="codigoCiiu" value="1">
+                  <input type="radio" name="isVerificadoEconomica" [(ngModel)]="isVerificadoEconomica" value="1">
                 </div>
                 <div class="col-md-3">
                   <b style="color: red;">No </b>
-                  <input type="radio" name="isVerificadoNombre" [(ngModel)]="codigoCiiu" value="0">
+                  <input type="radio" name="isVerificadoEconomica" [(ngModel)]="isVerificadoEconomica" value="0">
                 </div>
               </div><br>
 
-              <div class="row">
-                <hr><h2>Enlace consulta de códigos CIIU</h2>
+              <div class="row" *ngIf="isVerificadoEconomica==='0'">
+                <hr>
                 <div class="col-md-12">
                   <a href="https://www.vue.gov.co/servicios-a-la-ciudadania/tramites-y-consultas/consulta-de-actividad-economica-ciiu?c=68001" target="_NEW">Enlace consulta de códigos CIIU</a>
                 </div>
@@ -226,47 +221,47 @@
                   establecimiento cumple con las regulaciones de uso de suelo?</h2>
                 <div class="col-md-3">
                   <b style="color:green">Sí </b>
-                  <input type="radio" name="isVerificadoNombre" [(ngModel)]="isVerificadoNombre" value="1">
+                  <input type="radio" name="isVerificadoAEconomica" [(ngModel)]="isVerificadoAEconomica" value="1">
                 </div>
                 <div class="col-md-3">
                   <b style="color: red;">No </b>
-                  <input type="radio" name="isVerificadoNombre" [(ngModel)]="isVerificadoNombre" value="0">
+                  <input type="radio" name="isVerificadoAEconomica" [(ngModel)]="isVerificadoAEconomica" value="0">
                 </div>
               </div><br>
 
-              <div class="row">
-                <hr><h2>Consulta uso de suelo</h2>
+              <div class="row" *ngIf="isVerificadoAEconomica==='0'">
+                <hr>
                 <div class="col-md-12">
                   <a href="https://matricula.sintramites.com/Consultas/UsoSuelo" target="_NEW">Consulta uso de suelo</a>
                 </div>
               </div><br>
 
-              <div class="row">
+              <div class="row" *ngIf="isVerificadoAEconomica==='1'">
                 <hr><h2>¿Se puede llevar acabo la actividad económica principal de su establecimiento en dicho sitio?</h2>
                 <div class="col-md-3">
                   <b style="color:green">Sí </b>
-                  <input type="radio" name="isVerificadoNombre" [(ngModel)]="isVerificadoNombre" value="1">
+                  <input type="radio" name="isVerificadoAEPrincipal" [(ngModel)]="isVerificadoAEPrincipal" value="1">
                 </div>
                 <div class="col-md-3">
                   <b style="color: red;">No </b>
-                  <input type="radio" name="isVerificadoNombre" [(ngModel)]="isVerificadoNombre" value="0">
+                  <input type="radio" name="isVerificadoAEPrincipal" [(ngModel)]="isVerificadoAEPrincipal" value="0">
                 </div>
               </div><br>
 
-              <div class="row">
+              <div class="row" *ngIf="isVerificadoAEPrincipal==='0'">
                 <hr><h2>Relacione una nueva dirección</h2>
                 <div class="col-md-3">
-                  <b>Nombre : </b>
+                  <b>Direccion : </b>
                 </div>
                 <div class="col-md-3">
-                  <input type="text" [(ngModel)]="usoDeSuelo">
+                  <input type="text" [(ngModel)]="direccion">
                 </div>
               </div><br>
 
-              <div class="row">
+              <div class="row" *ngIf="isVerificadoAEPrincipal==='1'">
                 <hr><h2>Adjunte la dirección del establecimiento</h2>
                 <div class="col-md-3">
-                  <b>Nombre : </b>
+                  <b>Direccion : </b>
                 </div>
                 <div class="col-md-3">
                   <input type="text" [(ngModel)]="direccion">
@@ -282,11 +277,23 @@
                   municipio donde tiene previsto establecer su negocio?</h2>
                 <div class="col-md-3">
                   <b style="color:green">Sí </b>
-                  <input type="radio" name="isVerificadoNombre" [(ngModel)]="isVerificadoNombre" value="1">
+                  <input type="radio" name="isVerificadoCSuelo" [(ngModel)]="isVerificadoCSuelo" value="1">
                 </div>
                 <div class="col-md-3">
                   <b style="color: red;">No </b>
-                  <input type="radio" name="isVerificadoNombre" [(ngModel)]="isVerificadoNombre" value="0">
+                  <input type="radio" name="isVerificadoCSuelo" [(ngModel)]="isVerificadoCSuelo" value="0">
+                </div>
+              </div><br>
+
+              <div class="row" *ngIf="isVerificadoCSuelo==='0'">
+                <hr><p>Comuníquese con la curaduría o con la oficina de planeación de la alcaldia donde funcionará su negocio
+                  para realizar la solicitud del concepto de uso de suelo</p>
+              </div><br>
+
+              <div class="row" *ngIf="isVerificadoCSuelo==='1'">
+                <hr><h2>Adjunte el concepto de uso de suelo de la respectiva entidad estata en formato imagen o PDF</h2>
+                <div class="col-md-6">
+                  <input type="file" (change)="onFileSelected($event, 'usoDeSuelo')" />
                 </div>
               </div><br>
 
@@ -295,67 +302,79 @@
             <div *ngIf="this.pasosAvance==5">
 
               <div class="row">
-                <hr><h2>¿Sabe si tiene RUT?</h2>
-                <div class="col-md-3">
-                  <b style="color:green">Sí </b>
-                  <input type="radio" name="isVerificadoNombre" [(ngModel)]="isVerificadoNombre" value="1">
-                </div>
-                <div class="col-md-3">
-                  <b style="color: red;">No </b>
-                  <input type="radio" name="isVerificadoNombre" [(ngModel)]="isVerificadoNombre" value="0">
-                </div>
+                <hr><p>Recordatorio: Para este paso debe tener conocimiento de sus obligaciones tributarias. Para mayor orientación comuníquese
+                  Dirección de Impuestos y Aduanas Nacionales DIAN.</p>
               </div><br>
 
               <div class="row">
+                <hr><h2>¿Sabe si tiene RUT?</h2>
+                <div class="col-md-3">
+                  <b style="color:green">Sí </b>
+                  <input type="radio" name="isVerificadoSabeRut" [(ngModel)]="isVerificadoSabeRut" value="1">
+                </div>
+                <div class="col-md-3">
+                  <b style="color: red;">No </b>
+                  <input type="radio" name="isVerificadoSabeRut" [(ngModel)]="isVerificadoSabeRut" value="0">
+                </div>
+              </div><br>
+
+              <div class="row" *ngIf="isVerificadoSabeRut==='0'">
                 <hr><h2>Consulte el estado de su RUT</h2>
                 <div class="col-md-12">
                   <a href="https://muisca.dian.gov.co/WebRutMuisca/DefConsultaEstadoRUT.faces" target="_NEW">Consulte el estado de su RUT</a>
                 </div>
               </div><br>
 
-              <div class="row">
+              <div class="row" *ngIf="isVerificadoSabeRut==='1'">
                 <hr><h2>¿Tiene actualizado el RUT con las responsabilidades tributarias que tendrá lugar en su negocio?</h2>
                 <div class="col-md-3">
                   <b style="color:green">Sí </b>
-                  <input type="radio" name="isVerificadoNombre" [(ngModel)]="rut" value="1">
+                  <input type="radio" name="isVerificadoARut" [(ngModel)]="isVerificadoARut" value="1">
                 </div>
                 <div class="col-md-3">
                   <b style="color: red;">No </b>
-                  <input type="radio" name="isVerificadoNombre" [(ngModel)]="rut" value="0">
+                  <input type="radio" name="isVerificadoARut" [(ngModel)]="isVerificadoARut" value="0">
                 </div>
               </div><br>
 
-              <div class="row">
-                <hr><h2>Video de apoyo de cómo descargar el RUT</h2>
+              <div class="row" *ngIf="isVerificadoARut==='1'">
+                <hr>
                 <div class="col-md-12">
                   <a href="https://www.youtube.com/watch?v=NDdKK31Oahk" target="_NEW">Video de apoyo de cómo descargar el RUT</a>
                 </div>
               </div><br>
 
-              <div class="row">
-                <hr><h2>Video de apoyo de cómo crear el RUT</h2>
+              <div class="row" *ngIf="isVerificadoARut==='1'">
+                <hr><h2>Anexe su RUT en formato PDF</h2>
+                <div class="col-md-6">
+                  <input type="file" (change)="onFileSelected($event, 'rut')" />
+                </div>
+              </div><br>
+
+              <div class="row" *ngIf="isVerificadoARut==='0'">
+                <hr>
                 <div class="col-md-12">
                   <a href="https://www.youtube.com/watch?v=kxe97irI7Wk" target="_NEW">Video de apoyo de cómo crear el RUT</a>
                 </div>
               </div><br>
 
-              <div class="row">
-                <hr><h2>Enlace para crear RUT virtual</h2>
+              <div class="row" *ngIf="isVerificadoARut==='0'">
+                <hr>
                 <div class="col-md-12">
                   <a href="https://muisca.dian.gov.co/WebRutVirtualInscripcion/#/proceso-guiado/inicio"
                   target="_NEW">Enlace para crear RUT virtual</a>
                 </div>
               </div><br>
 
-              <div class="row">
-                <hr><h2>Video de apoyo de cómo ingresar al portal DIAN si no recuerda usuario y contraseña</h2>
+              <div class="row" *ngIf="isVerificadoARut==='0'">
+                <hr>
                 <div class="col-md-12">
                   <a href="https://www.youtube.com/watch?v=nM0VLHuHLBc" target="_NEW">Video de apoyo de cómo ingresar al portal DIAN si no recuerda usuario y contraseña</a>
                 </div>
               </div><br>
 
-              <div class="row">
-                <hr><h2>Video de apoyo de cómo actualizar el RUT</h2>
+              <div class="row" *ngIf="isVerificadoARut==='0'">
+                <hr>
                 <div class="col-md-12">
                   <a href="https://www.youtube.com/watch?v=c_EkKtza6Q0"  target="_NEW">Video de apoyo de cómo actualizar el RUT</a>
                 </div>
@@ -369,26 +388,41 @@
                 <hr><h2>¿El trámite del registro unico empresarial y social RUES va a expedirlo de manera presencial?</h2>
                 <div class="col-md-3">
                   <b style="color:green">Sí </b>
-                  <input type="radio" name="isVerificadoNombre" [(ngModel)]="rues" value="1">
+                  <input type="radio" name="isVerificadoERues" [(ngModel)]="isVerificadoERues" value="1">
                 </div>
                 <div class="col-md-3">
                   <b style="color: red;">No </b>
-                  <input type="radio" name="isVerificadoNombre" [(ngModel)]="rues" value="0">
+                  <input type="radio" name="isVerificadoERues" [(ngModel)]="isVerificadoERues" value="0">
                 </div>
               </div><br>
 
-              <div class="row">
-                <hr><h2>Video de apoyo para la radicación del RUES de manera virtual</h2>
+              <div class="row" *ngIf="isVerificadoERues==='1'">
+                <hr><p>Dirijase a la sede más cercana de la cámara de comercio de Bucaramanga</p>
+              </div><br>
+
+              <div class="row" *ngIf="isVerificadoERues==='0'">
+                <hr>
                 <div class="col-md-12">
                   <a href="https://www.youtube.com/watch?v=HqM8kBln60Q" target="_NEW">Video de apoyo para la radicación del RUES de manera virtual</a>
                 </div>
               </div><br>
 
-              <div class="row">
-                <hr><h2>Enlace para registrarse en la VUE y radicar el RUES de manera virtual</h2>
+              <div class="row" *ngIf="isVerificadoERues==='0'">
+                <hr>
                 <div class="col-md-12">
                   <a href="https://matricula.sintramites.com/VUE/Landing" target="_NEW">Enlace para registrarse en la VUE y radicar el RUES de manera virtual</a>
                 </div>
+              </div><br>
+
+              <div class="row">
+                <hr><h2>Anexe su RUES en formato imagen o PDF</h2>
+                <div class="col-md-6">
+                  <input type="file" (change)="onFileSelected($event, 'rues')" />
+                </div>
+              </div><br>
+
+              <div class="row">
+                <hr><p>Recuerde que si está obligado a pagar matricula mercantil debe hacerlo antes de continuar con el siguiente paso</p>
               </div><br>
 
             </div>
@@ -399,36 +433,48 @@
                 <hr><h2>¿El usuario ya diligenció el módulo de simulación?</h2>
                 <div class="col-md-3">
                   <b style="color:green">Sí </b>
-                  <input type="radio" name="isVerificadoNombre" [(ngModel)]="isVerificadoNombre" value="1">
+                  <input type="radio" name="isVerificadoMoSimula" [(ngModel)]="isVerificadoMoSimula" value="1">
                 </div>
                 <div class="col-md-3">
                   <b style="color: red;">No </b>
-                  <input type="radio" name="isVerificadoNombre" [(ngModel)]="isVerificadoNombre" value="0">
+                  <input type="radio" name="isVerificadoMoSimula" [(ngModel)]="isVerificadoMoSimula" value="0">
                 </div>
               </div><br>
 
-              <div class="row">
+              <div class="row" *ngIf="isVerificadoMoSimula==='0'">
                 <hr><h2>¿Va a contar con algún medio de proyección sonora o audiovisual en el negocio?</h2>
                 <div class="col-md-3">
                   <b style="color:green">Sí </b>
-                  <input type="radio" name="isVerificadoNombre" [(ngModel)]="sayco" value="1">
+                  <input type="radio" name="isVerificadoProyeccion" [(ngModel)]="isVerificadoProyeccion" value="1">
                 </div>
                 <div class="col-md-3">
                   <b style="color: red;">No </b>
-                  <input type="radio" name="isVerificadoNombre" [(ngModel)]="sayco" value="0">
+                  <input type="radio" name="isVerificadoProyeccion" [(ngModel)]="isVerificadoProyeccion" value="0">
                 </div>
               </div><br>
 
-              <div class="row">
+              <div class="row" *ngIf="isVerificadoMoSimula==='1'">
                 <hr><h2>¿El usuario va a contar con algún medio de proyección sonora o audiovisual en el negocio?</h2>
                 <div class="col-md-3">
                   <b style="color:green">Sí </b>
-                  <input type="radio" name="isVerificadoNombre" [(ngModel)]="isVerificadoNombre" value="1">
+                  <input type="radio" name="isVerificadoProyeccionS" [(ngModel)]="isVerificadoProyeccionS" value="1">
                 </div>
                 <div class="col-md-3">
                   <b style="color: red;">No </b>
-                  <input type="radio" name="isVerificadoNombre" [(ngModel)]="isVerificadoNombre" value="0">
+                  <input type="radio" name="isVerificadoProyeccionS" [(ngModel)]="isVerificadoProyeccionS" value="0">
                 </div>
+
+                <div class="row" *ngIf="isVerificadoProyeccion==='1' || isVerificadoProyeccionS==='1'">
+                  <hr><p>Realice el trámite para la expedición del certificado de Sayco y Acinpro</p>
+                </div><br>
+
+                <div class="row" *ngIf="isVerificadoProyeccion==='1' || isVerificadoProyeccionS==='1'">
+                  <hr><h2>Anexe el certificado de Sayco y Acinpro en formato imagen o PDF</h2>
+                  <div class="col-md-6">
+                    <input type="file" (change)="onFileSelected($event, 'sayco')" />
+                  </div>
+                </div><br>
+
               </div><br>
 
             </div>
@@ -436,14 +482,33 @@
             <div *ngIf="this.pasosAvance==8">
 
               <div class="row">
+                <hr><p>Ley 1572 de 2012: Artículo 42. Inspecciones y certificados de seguridad:  Los cuerpos de bomberos son los órganos competentes para la realización de las
+                  labores de inspecciones y revisiones técnicas en prevención de incendios y seguridad humana en edificaciones públicas, privadas y particularmente en los
+                  establecimientos públicos de comercio e industriales, e informarán a la entidad competente el cumplimiento de las normas de seguridad en general. De igual
+                  manera, para la realización de eventos masivos y/o pirotécnicos, harán cumplir toda la normatividad vigente en cuanto a la gestión integral del riesgo contra
+                  incendio y calamidades conexas.</p>
+              </div><br>
+
+              <div class="row">
                 <hr><h2>¿De acuerdo a lo anterior, su establecimiento de comercio cuenta ya con el certificado Bomberil?</h2>
                 <div class="col-md-3">
                   <b style="color:green">Sí </b>
-                  <input type="radio" name="isVerificadoNombre" [(ngModel)]="bomberil" value="1">
+                  <input type="radio" name="isVerificadoCerBomberil" [(ngModel)]="isVerificadoCerBomberil" value="1">
                 </div>
                 <div class="col-md-3">
                   <b style="color: red;">No </b>
-                  <input type="radio" name="isVerificadoNombre" [(ngModel)]="bomberil" value="0">
+                  <input type="radio" name="isVerificadoCerBomberil" [(ngModel)]="isVerificadoCerBomberil" value="0">
+                </div>
+              </div><br>
+
+              <div class="row" *ngIf="isVerificadoCerBomberil==='0'">
+                <hr><p>Dirijase a la entidad de bomberos del municipio donde funcionara su negocio para realizar su inscripción</p>
+              </div><br>
+
+              <div class="row">
+                <hr><h2>Anexe el certificado del concepto bomberil en formato imagen o PDF</h2>
+                <div class="col-md-6">
+                  <input type="file" (change)="onFileSelected($event, 'bomberil')" />
                 </div>
               </div><br>
 
@@ -456,18 +521,22 @@
                   su negocio?</h2>
                 <div class="col-md-3">
                   <b style="color:green">Sí </b>
-                  <input type="radio" name="isVerificadoNombre" [(ngModel)]="isVerificadoNombre" value="1">
+                  <input type="radio" name="isVerificadoProceso" [(ngModel)]="isVerificadoProceso" value="1">
                 </div>
                 <div class="col-md-3">
                   <b style="color: red;">No </b>
-                  <input type="radio" name="isVerificadoNombre" [(ngModel)]="isVerificadoNombre" value="0">
+                  <input type="radio" name="isVerificadoProceso" [(ngModel)]="isVerificadoProceso" value="0">
                 </div>
+              </div><br>
+
+              <div class="row" *ngIf="isVerificadoProceso==='0'">
+                <hr><p>Dirijase a la oficina de industria y comercio de donde funcionara su negocio para realizar su inscripción</p>
               </div><br>
 
               <div class="row">
                 <hr><h2>Relacione su número de placa comercial</h2>
                 <div class="col-md-3">
-                  <b>Nombre : </b>
+                  <b>Número : </b>
                 </div>
                 <div class="col-md-3">
                   <input type="text" [(ngModel)]="placa">
@@ -479,7 +548,7 @@
             <div *ngIf="this.pasosAvance==10">
 
               <div class="row">
-                <hr><h2>¿Qué es el Frente de Seguridad Empresarial de la Policía Nacional?</h2>
+                <hr>
                 <div class="col-md-12">
                   <a href="https://www.policia.gov.co/fse" target="_NEW">¿Qué es el Frente de Seguridad Empresarial de la Policía Nacional?</a>
                 </div>
@@ -489,16 +558,16 @@
                 <hr><h2>¿ Desea inscribirse en el programa del Frente de Seguridad Empresarial de la Policía Nacional ?</h2>
                 <div class="col-md-3">
                   <b style="color:green">Sí </b>
-                  <input type="radio" name="isVerificadoNombre" [(ngModel)]="seguridad" value="1">
+                  <input type="radio" name="isVerificadoPrograma" [(ngModel)]="isVerificadoPrograma" value="1">
                 </div>
                 <div class="col-md-3">
                   <b style="color: red;">No </b>
-                  <input type="radio" name="isVerificadoNombre" [(ngModel)]="seguridad" value="0">
+                  <input type="radio" name="isVerificadoPrograma" [(ngModel)]="isVerificadoPrograma" value="0">
                 </div>
               </div><br>
 
-              <div class="row">
-                <hr><h2>Consulta de requisitos y formularios</h2>
+              <div class="row" *ngIf="isVerificadoPrograma==='1'">
+                <hr>
                 <div class="col-md-12">
                   <a href="https://www.policia.gov.co/fse/vinculacion" target="_NEW">Consulta de requisitos y formularios</a>
                 </div>
@@ -512,67 +581,94 @@
                 <hr><h2>¿El usuario ya diligenció el módulo de simulación?</h2>
                 <div class="col-md-3">
                   <b style="color:green">Sí </b>
-                  <input type="radio" name="isVerificadoNombre" [(ngModel)]="isVerificadoNombre" value="1">
+                  <input type="radio" name="isVerificadoModSimula" [(ngModel)]="isVerificadoModSimula" value="1">
                 </div>
                 <div class="col-md-3">
                   <b style="color: red;">No </b>
-                  <input type="radio" name="isVerificadoNombre" [(ngModel)]="isVerificadoNombre" value="0">
+                  <input type="radio" name="isVerificadoModSimula" [(ngModel)]="isVerificadoModSimula" value="0">
                 </div>
               </div><br>
 
-              <div class="row">
+              <div class="row" *ngIf="isVerificadoModSimula==='0'">
                 <hr><h2>¿Va a contratar a una o más personas por nómina fija?</h2>
                 <div class="col-md-3">
                   <b style="color:green">Sí </b>
-                  <input type="radio" name="isVerificadoNombre" [(ngModel)]="isVerificadoNombre" value="1">
+                  <input type="radio" name="isVerificadoPersonas" [(ngModel)]="isVerificadoPersonas" value="1">
                 </div>
                 <div class="col-md-3">
                   <b style="color: red;">No </b>
-                  <input type="radio" name="isVerificadoNombre" [(ngModel)]="isVerificadoNombre" value="0">
+                  <input type="radio" name="isVerificadoPersonas" [(ngModel)]="isVerificadoPersonas" value="0">
                 </div>
               </div><br>
 
-              <div class="row">
+              <div class="row" *ngIf="isVerificadoModSimula==='1'">
+                <hr><h2>¿El usuario va a contratar a una o más personas por nómina fija?</h2>
+                <div class="col-md-3">
+                  <b style="color:green">Sí </b>
+                  <input type="radio" name="isVerificadoCPersonas" [(ngModel)]="isVerificadoCPersonas" value="1">
+                </div>
+                <div class="col-md-3">
+                  <b style="color: red;">No </b>
+                  <input type="radio" name="isVerificadoCPersonas" [(ngModel)]="isVerificadoCPersonas" value="0">
+                </div>
+              </div><br>
+
+              <div class="row" *ngIf="isVerificadoPersonas==='1'">
+                <hr><p>Seguridad social: Debe realizar las afiliaciones en las diferentes entidades salud y pensión y ARL</p>
+              </div><br>
+
+              <div class="row" *ngIf="isVerificadoPersonas==='1'">
                 <hr><h2>¿Es usted exonerado de realizar los aportes Salud, SENA e ICBF de acuerdo a lo establecido en el
                   artículo 114-1 del Estatuto Tributario Nacional?</h2>
                 <div class="col-md-3">
                   <b style="color:green">Sí </b>
-                  <input type="radio" name="isVerificadoNombre" [(ngModel)]="isVerificadoNombre" value="1">
+                  <input type="radio" name="isVerificadoExonerado" [(ngModel)]="isVerificadoExonerado" value="1">
                 </div>
                 <div class="col-md-3">
                   <b style="color: red;">No </b>
-                  <input type="radio" name="isVerificadoNombre" [(ngModel)]="isVerificadoNombre" value="0">
+                  <input type="radio" name="isVerificadoExonerado" [(ngModel)]="isVerificadoExonerado" value="0">
                 </div>
               </div><br>
 
-              <div class="row">
-                <hr><h2>¿El usuario va a contratar a una o más personas por nómina fija?</h2>
-                <div class="col-md-3">
-                  <b style="color:green">Sí </b>
-                  <input type="radio" name="isVerificadoNombre" [(ngModel)]="isVerificadoNombre" value="1">
-                </div>
-                <div class="col-md-3">
-                  <b style="color: red;">No </b>
-                  <input type="radio" name="isVerificadoNombre" [(ngModel)]="isVerificadoNombre" value="0">
-                </div>
+              <div class="row" *ngIf="isVerificadoExonerado==='1'">
+                <hr><p>Aportes parafiscales: Debe realizar la afiliación de los trabajadores la caja de compensación.</p>
               </div><br>
 
-              <div class="row">
+              <div class="row" *ngIf="isVerificadoExonerado==='0'">
+                <hr><p>Aportes parafiscales: Debe realizar los aportes parafiscales SENA, ICBF y Caja de compensación 4%</p>
+              </div><br>
+
+              <div class="row" *ngIf="isVerificadoCPersonas==='1'">
+                <hr><p>Recuerde tener en cuenta lo sugerido en el módulo de simulación administrativa y financiera en el ámbito laboral</p>
+              </div><br>
+
+              <div class="row" *ngIf="isVerificadoExonerado==='1' || isVerificadoExonerado==='0' || isVerificadoCPersonas==='1'">
                 <hr><h2>¿Ha realizado ya las afiliaciones de su trabajador o trabajadores?. Recuerde que en caso de los menores de edad,
                   debe contar con la autorización de sus padres y los respectivos permisos del ministerio de trabajo.</h2>
                 <div class="col-md-3">
                   <b style="color:green">Sí </b>
-                  <input type="radio" name="isVerificadoNombre" [(ngModel)]="afiliacion" value="1">
+                  <input type="radio" name="isVerificadoAfiliaciones" [(ngModel)]="isVerificadoAfiliaciones" value="1">
                 </div>
                 <div class="col-md-3">
                   <b style="color: red;">No </b>
-                  <input type="radio" name="isVerificadoNombre" [(ngModel)]="afiliacion" value="0">
+                  <input type="radio" name="isVerificadoAfiliaciones" [(ngModel)]="isVerificadoAfiliaciones" value="0">
                 </div>
+              </div><br>
+
+              <div class="row" *ngIf="isVerificadoAfiliaciones==='0'">
+                <hr><p>Recuerde que el hecho de contratar a un trabajador y no hacer las respectivas afiliaciones al sistema de seguridad social y parafiscales puede acarrearle
+                  diferentes multas y sanciones en el ámbito económico y operacional.</p>
               </div><br>
 
             </div>
 
             <div *ngIf="this.pasosAvance==12">
+
+              <div class="row">
+                <hr><p>Estimado emprendedor ¡felicidades!, hasta este punto ya te encuentras formalizado ante las principales entidades, no obstante, debes revisar y diligenciar los
+                  demás requisitos que debes cumplir de acuerdo a tu actividad o actividades económicas tales como: permisos sanitarios, licencias de funcionamiento, entre otros.</p>
+              </div><br>
+
               {{ this.pasosAvance }}
             </div>
 
