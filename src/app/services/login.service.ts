@@ -35,6 +35,10 @@ export class LoginService {
 
   private endpointBitacora='api/auth/bitacora/store';
 
+  private endpointCrearEmpresaFormalizacion='api/auth/formalizacion_empresa/store';
+
+  private endpointCrearPersonaFormalizacion='api/auth/formalizacion_persona/store';
+
   headers = new HttpHeaders().set('Content-Type', 'application/json');
   currentUser = {};
   idUsuario: any;
@@ -107,6 +111,14 @@ export class LoginService {
 
     public crearBitacora(user: any): Observable<any>{
       return this.http.post(`${this.urlBase}/${this.endpointBitacora}`, user)
+    }
+
+    public crearEmpresaFormalizacion(user: any): Observable<any>{
+      return this.http.post(`${this.urlBase}/${this.endpointCrearEmpresaFormalizacion}`, user)
+    }
+
+    public crearPersonaFormalizacion(user: any): Observable<any>{
+      return this.http.post(`${this.urlBase}/${this.endpointCrearPersonaFormalizacion}`, user)
     }
 
     public lecturaUsuario(email:any): Observable<any> {

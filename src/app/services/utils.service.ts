@@ -90,6 +90,8 @@ export class UtilsService {
 
   private endpointConsolidadoHojaCostos='api/auth/hoja_costos_simula/consolidado';
 
+  private endpointConsolidadoHojaCostosUnidad='api/auth/hoja_costos_simula/consolidadoUnidad';
+
   private endpointConsolidadoHojaGastos='api/auth/hoja_gastos_simula/consolidado';
 
 
@@ -121,6 +123,10 @@ export class UtilsService {
 
   public consolidadoHojaCostos(idUser:any): Observable<any> {
     return this.httpClient.get(`${this.urlBase}/${this.endpointConsolidadoHojaCostos}/${idUser}`);
+  }
+
+  public consolidadoHojaCostosUnidad(idUser:any): Observable<any> {
+    return this.httpClient.get(`${this.urlBase}/${this.endpointConsolidadoHojaCostosUnidad}/${idUser}`);
   }
 
   public consolidadoHojaGastos(idUser:any): Observable<any> {

@@ -112,12 +112,22 @@ export class BasicoformalizacionComponent {
         const bitacora = {avance:1, idSeccion:24, idUsuario:parseInt(this.idUsuarioCargado)};
         this.loginService.crearBitacora(bitacora).subscribe( (data)=>{
           console.log("Bitacora registrada");
-          this.router.navigate(['personaformalizacion']);
+          this.crearFormalizacionPersona();
         }, (err) => {
           console.log(err); // Manejo de errores
         });
         //*******************************************//
         //Fin Modificacion Bitacora ***
+  }
+
+  crearFormalizacionPersona(){
+    const formalizacion = {idUsuario:parseInt(this.idUsuarioCargado)};
+    this.loginService.crearPersonaFormalizacion(formalizacion).subscribe((data)=>{
+      console.log("Formalizacion Persona registrada");
+      this.router.navigate(['personaformalizacion']);
+    }, (err) => {
+      console.log(err); // Manejo de errores
+    });
   }
 
   formalizacionEmpresa(){
@@ -126,7 +136,7 @@ export class BasicoformalizacionComponent {
         const bitacora = {avance:1, idSeccion:25, idUsuario:parseInt(this.idUsuarioCargado)};
         this.loginService.crearBitacora(bitacora).subscribe( (data)=>{
           console.log("Bitacora registrada");
-          this.router.navigate(['empresaformalizacion']);
+          this.crearFormalizacionEmpresa();
         }, (err) => {
           console.log(err); // Manejo de errores
         });
@@ -134,6 +144,15 @@ export class BasicoformalizacionComponent {
         //Fin Modificacion Bitacora ***
   }
 
+  crearFormalizacionEmpresa(){
+    const formalizacion = {idUsuario:parseInt(this.idUsuarioCargado)};
+    this.loginService.crearEmpresaFormalizacion(formalizacion).subscribe((data)=>{
+      console.log("Formalizacion Empresa registrada");
+      this.router.navigate(['empresaformalizacion']);
+    }, (err) => {
+      console.log(err); // Manejo de errores
+    });
+  }
 
   //Inicio nueva Ruta ***
   //*******************************************//

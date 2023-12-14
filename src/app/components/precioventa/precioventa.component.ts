@@ -96,7 +96,7 @@ export class PrecioventaComponent {
   }
 
   cargarCosto(idUsuario:any){
-    this.utilsService.consolidadoHojaCostos(idUsuario).subscribe(
+    this.utilsService.consolidadoHojaCostosUnidad(idUsuario).subscribe(
       (data) => {
         console.log("Data: " + JSON.stringify(data));
 
