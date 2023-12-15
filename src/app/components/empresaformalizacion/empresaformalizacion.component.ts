@@ -66,7 +66,7 @@ export class EmpresaformalizacionComponent {
   identificadorSeccion: string="";
   variableSeccion: string="";
   idUsuarioCargado: any;
-  pasosAvance: number=0;
+  pasosAvance: any;
   personaNaturalFlag: any;
   mensaje: string="";
   razonSocial: any;
@@ -283,7 +283,7 @@ export class EmpresaformalizacionComponent {
   updateFormalizacion(pasosAvance:any){
 
     const empresa={id:this.id, razonSocial:this.razonSocial, marca:this.marca, ciiu:this.ciiu, direccion:this.direccion, usoDeSuelo:this.usoDeSuelo, rut:this.rut, rutEmpresa:this.rutEmpresa, estatutos:this.estatutos, acta:this.acta,
-      sociedad:this.sociedad, impuestoRegistro:this.impuestoRegistro, rues:this.rues, libros:this.libros, sayco:this.sayco, bomberil:this.bomberil, placa:this.placa, seguridad:this.seguridad, salud:this.salud, pasosAvance:this.pasosAvance,
+      sociedad:this.sociedad, impuestoRegistro:this.impuestoRegistro, rues:this.rues, libros:this.libros, sayco:this.sayco, bomberil:this.bomberil, placa:this.placa, seguridad:this.seguridad, salud:this.salud, pasosAvance:pasosAvance,
       idUsuario:parseInt(this.idUsuarioCargado)};
 
       this.formalizacionService.formalizacionUpdateEmpresa(empresa).subscribe((data) => {

@@ -147,8 +147,6 @@ export class PersonaformalizacionComponent {
           this.sayco=this.arrayValores[dato].sayco;
           this.bomberil=this.arrayValores[dato].bomberil;
           this.placa=this.arrayValores[dato].placa;
-          //this.seguridad=this.arrayValores[dato].seguridad;
-          //this.afiliacion=this.arrayValores[dato].afiliacion;
           this.pasosAvance=this.arrayValores[dato].pasosAvance;
           console.log("PasosAvance: "+this.pasosAvance);
         }
@@ -240,9 +238,7 @@ export class PersonaformalizacionComponent {
   updateFormalizacion(pasosAvance:any){
 
     const persona={id:this.id, nombre:this.nombre, marca:this.marca, codigoCiiu:this.codigoCiiu, usoDeSuelo:this.usoDeSuelo, direccion:this.direccion, rut:this.rut, rues:this.rues, sayco:this.sayco, bomberil:this.bomberil,
-      placa:this.placa,
-      //seguridad:this.seguridad, afiliacion:this.afiliacion,
-      pasosAvance:pasosAvance, idUsuario:parseInt(this.idUsuarioCargado)};
+      placa:this.placa,pasosAvance:pasosAvance, idUsuario:parseInt(this.idUsuarioCargado)};
 
       this.formalizacionService.formalizacionUpdatePersona(persona).subscribe((data) => {
         console.log("Bitacora actualizada");
