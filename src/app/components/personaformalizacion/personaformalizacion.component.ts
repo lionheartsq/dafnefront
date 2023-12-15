@@ -61,7 +61,7 @@ export class PersonaformalizacionComponent {
   identificadorSeccion: string="";
   variableSeccion: string="";
   idUsuarioCargado: any;
-  pasosAvance: number=0;
+  pasosAvance: any;
   personaNaturalFlag: any;
   mensaje: string="";
   nombre: any;
@@ -237,10 +237,10 @@ export class PersonaformalizacionComponent {
     }
   }
 
-  updateFormalizacion(){
+  updateFormalizacion(pasosAvance:any){
 
     const persona={id:this.id, nombre:this.nombre, marca:this.marca, codigoCiiu:this.codigoCiiu, usoDeSuelo:this.usoDeSuelo, direccion:this.direccion, rut:this.rut, rues:this.rues, sayco:this.sayco, bomberil:this.bomberil,
-      placa:this.placa, seguridad:this.seguridad, afiliacion:this.afiliacion, pasosAvance:this.pasosAvance, idUsuario:parseInt(this.idUsuarioCargado)};
+      placa:this.placa, seguridad:this.seguridad, afiliacion:this.afiliacion, pasosAvance:pasosAvance, idUsuario:parseInt(this.idUsuarioCargado)};
 
       this.formalizacionService.formalizacionUpdatePersona(persona).subscribe((data) => {
         console.log("Bitacora actualizada");
@@ -251,63 +251,51 @@ export class PersonaformalizacionComponent {
 }
 
   guardarUno(){
-    this.pasosAvance=1;
-    this.updateFormalizacion();
+    this.updateFormalizacion(1);
   }
 
   guardarDos(){
-    this.pasosAvance=2;
-    this.updateFormalizacion();
+    this.updateFormalizacion(2);
   }
 
   guardarTres(){
-    this.pasosAvance=3;
-    this.updateFormalizacion();
+    this.updateFormalizacion(3);
   }
 
   guardarCuatro(){
-    this.pasosAvance=4;
-    this.updateFormalizacion();
+    this.updateFormalizacion(4);
   }
 
   guardarCinco(){
-    this.pasosAvance=5;
-    this.updateFormalizacion();
+    this.updateFormalizacion(5);
   }
 
   guardarSeis(){
-    this.pasosAvance=6;
-    this.updateFormalizacion();
+    this.updateFormalizacion(6);
   }
 
   guardarSiete(){
-    this.pasosAvance=7;
-    this.updateFormalizacion();
+    this.updateFormalizacion(7);
   }
 
   guardarOcho(){
-    this.pasosAvance=8;
-    this.updateFormalizacion();
+    this.updateFormalizacion(8);
   }
 
   guardarNueve(){
-    this.pasosAvance=9;
-    this.updateFormalizacion();
+    this.updateFormalizacion(9);
   }
 
   guardarDiez(){
-    this.pasosAvance=10;
-    this.updateFormalizacion();
+    this.updateFormalizacion(10);
   }
 
   guardarOnce(){
-    this.pasosAvance=11;
-    this.updateFormalizacion();
+    this.updateFormalizacion(11);
   }
 
   guardarDoce(){
-    this.pasosAvance=12;
-    this.updateFormalizacion();
+    this.updateFormalizacion(12);
   }
 
   guardarTrece(){

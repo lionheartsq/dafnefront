@@ -74,7 +74,7 @@
                 </div>
               </div><br>
 
-              <div class="row" *ngIf="isVerificadoDisponible==='1'">
+              <div class="row" *ngIf="isVerificadoDisponible==='1' && isVerificadoValidar==='1'">
                 <hr><h2>Agregue el nombre</h2>
                 <div class="col-md-3">
                   <b>Nombre : </b>
@@ -212,6 +212,16 @@
                 </div>
               </div><br>
 
+              <div class="row" *ngIf="isVerificadoEconomica==='1'">
+                <hr><h2>Agregue el código</h2>
+                <div class="col-md-3">
+                  Código CIUU :
+                </div>
+                <div class="col-md-3">
+                  <input type="text" [(ngModel)]="codigoCiiu">
+                </div>
+              </div><br>
+
             </div>
 
             <div *ngIf="this.pasosAvance==3">
@@ -319,7 +329,7 @@
               </div><br>
 
               <div class="row" *ngIf="isVerificadoSabeRut==='0'">
-                <hr><h2>Consulte el estado de su RUT</h2>
+                <hr>
                 <div class="col-md-12">
                   <a href="https://muisca.dian.gov.co/WebRutMuisca/DefConsultaEstadoRUT.faces" target="_NEW">Consulte el estado de su RUT</a>
                 </div>
@@ -681,7 +691,7 @@
       <div class="row">
         <div class="col-md-4">
           <button class="simulacion-button" (click)="endRouteFormalizacion()" *ngIf="this.pasosAvance==99">Finalizar</button>
-          <button class="simulacion-button" (click)="guardarUno()" *ngIf="this.pasosAvance==0">Continuemos</button>
+          <button class="simulacion-button" (click)="guardarUno()" *ngIf="this.pasosAvance==0 && isVerificadoDisponible==='1' && isVerificadoValidar==='1'">Continuemos</button>
           <button class="simulacion-button" (click)="guardarDos()" *ngIf="this.pasosAvance==1">Continuemos</button>
           <button class="simulacion-button" (click)="guardarTres()" *ngIf="this.pasosAvance==2">Continuemos</button>
           <button class="simulacion-button" (click)="guardarCuatro()" *ngIf="this.pasosAvance==3">Continuemos</button>
