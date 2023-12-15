@@ -280,7 +280,7 @@ export class EmpresaformalizacionComponent {
   }
 
 
-  updateFormalizacion(){
+  updateFormalizacion(pasosAvance:any){
 
     const empresa={id:this.id, razonSocial:this.razonSocial, marca:this.marca, ciiu:this.ciiu, direccion:this.direccion, usoDeSuelo:this.usoDeSuelo, rut:this.rut, rutEmpresa:this.rutEmpresa, estatutos:this.estatutos, acta:this.acta,
       sociedad:this.sociedad, impuestoRegistro:this.impuestoRegistro, rues:this.rues, libros:this.libros, sayco:this.sayco, bomberil:this.bomberil, placa:this.placa, seguridad:this.seguridad, salud:this.salud, pasosAvance:this.pasosAvance,
@@ -295,98 +295,79 @@ export class EmpresaformalizacionComponent {
 }
 
   guardarUno(){
-    this.pasosAvance=1;
-    this.updateFormalizacion();
+    this.updateFormalizacion(1);
   }
 
   guardarDos(){
-    this.pasosAvance=2;
-    this.updateFormalizacion();
+    this.updateFormalizacion(2);
   }
 
   guardarTres(){
-    this.pasosAvance=3;
-    this.updateFormalizacion();
+    this.updateFormalizacion(3);
   }
 
   guardarCuatro(){
-    this.pasosAvance=4;
-    this.updateFormalizacion();
+    this.updateFormalizacion(4);
   }
 
   guardarCinco(){
-    this.pasosAvance=5;
-    this.updateFormalizacion();
+    this.updateFormalizacion(5);
   }
 
   guardarSeis(){
-    this.pasosAvance=6;
-    this.updateFormalizacion();
+    this.updateFormalizacion(6);
   }
 
   guardarSiete(){
-    this.pasosAvance=7;
-    this.updateFormalizacion();
+    this.updateFormalizacion(7);
   }
 
   guardarOcho(){
-    this.pasosAvance=8;
-    this.updateFormalizacion();
+    this.updateFormalizacion(8);
   }
 
   guardarNueve(){
-    this.pasosAvance=9;
-    this.updateFormalizacion();
+    this.updateFormalizacion(9);
   }
 
   guardarDiez(){
-    this.pasosAvance=10;
-    this.updateFormalizacion();
+    this.updateFormalizacion(10);
   }
 
   guardarOnce(){
-    this.pasosAvance=11;
-    this.updateFormalizacion();
+    this.updateFormalizacion(11);
   }
 
   guardarDoce(){
-    this.pasosAvance=12;
-    this.updateFormalizacion();
+    this.updateFormalizacion(12);
   }
 
   guardarTrece(){
-    this.pasosAvance=13;
-    this.updateFormalizacion();
+    this.updateFormalizacion(13);
   }
 
   guardarCatorce(){
-    this.pasosAvance=14;
-    this.updateFormalizacion();
+    this.updateFormalizacion(14);
   }
 
   guardarQuince(){
-    this.pasosAvance=15;
-    this.updateFormalizacion();
+    this.updateFormalizacion(15);
   }
 
   guardarDieciseis(){
-    this.pasosAvance=16;
-    this.updateFormalizacion();
+    this.updateFormalizacion(16);
   }
 
   guardarDiecisiete(){
-    this.pasosAvance=17;
-    this.updateFormalizacion();
+    this.updateFormalizacion(17);
   }
 
   guardarDieciocho(){
-    this.pasosAvance=18;
-    this.updateFormalizacion();
+    this.updateFormalizacion(18);
   }
 
   guardarDiecinueve(){
-    this.pasosAvance=19;
-    this.updateFormalizacion();
+    this.updateFormalizacion(19);
   }
 
   guardarVeinte(){
