@@ -837,7 +837,7 @@
       <div class="row">
         <div class="col-md-4">
           <button class="simulacion-button" (click)="endRouteFormalizacion()" *ngIf="this.pasosAvance==99">Finalizar</button>
-          <button class="simulacion-button" (click)="guardarUno()" *ngIf="this.pasosAvance==0 && isVerificadoNombre==='1' && isVerificadoRazon==='1'">Continuemos</button>
+          <button class="simulacion-button" (click)="guardarUno()" *ngIf="this.pasosAvance==0">Continuemos</button>
           <button class="simulacion-button" (click)="guardarDos()" *ngIf="this.pasosAvance==1">Continuemos</button>
           <button class="simulacion-button" (click)="guardarTres()" *ngIf="this.pasosAvance==2">Continuemos</button>
           <button class="simulacion-button" (click)="guardarCuatro()" *ngIf="this.pasosAvance==3">Continuemos</button>
