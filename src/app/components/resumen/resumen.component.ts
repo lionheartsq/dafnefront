@@ -6,6 +6,8 @@ import { LoginService } from 'src/app/services/login.service';
 import { NgModel } from '@angular/forms';
 import { ResumenempresaService } from '../../services/resumenempresa.service';
 import Swal from 'sweetalert2';
+import { contains } from 'jquery';
+import { ConnectionPositionPair } from '@angular/cdk/overlay';
 
 @Component({
   selector: 'app-resumen',
@@ -15,6 +17,7 @@ import Swal from 'sweetalert2';
 export class ResumenComponent {
   selectedImage: File | null = null;
   arrayEmpresa: any;
+  logoDefault: any;
   logo: any;
   idEmpresa: any;
   nombreIdea: string="";
@@ -31,6 +34,7 @@ export class ResumenComponent {
   valLogo: number=0;
   totalVal: number=0;
 
+
     //Inicio variables para validar bitacora ***
     //*******************************************//
     idModulo:number=1;
@@ -38,6 +42,7 @@ export class ResumenComponent {
     identificadorSeccion: string="";
     variableSeccion: string="";
     idUsuarioCargado: any;
+  arrayGlobales: any;
     //*******************************************//
     //Fin variables para validar bitacora ***
 
@@ -49,6 +54,8 @@ export class ResumenComponent {
       console.log("Usuario cargado: "+this.idUsuarioCargado);
 
       this.verAvance(this.idUsuarioCargado,this.idModulo);
+
+      this.cargarLogoDefault();
   }
 
   //Inicio funciones nuevas para validar bitacora. ***
@@ -119,16 +126,29 @@ export class ResumenComponent {
         console.log("Actual mision: "+this.mision);
         console.log("Actual vision: "+this.vision);
         console.log("Actual slogan: "+this.slogan);
-        console.log("Actual logo: "+this.logo);
+        //console.log("Actual logo: "+this.logo);
 
         if(this.logo === null){
-          this.logo="./assets/nologo.png";
+          this.logo=this.logoDefault;
         }else{
           this.valLogo=1;
         }
-        console.log("Real logo: "+this.logo);
+        //console.log("Real logo: "+this.logo);
 
         this.totalVal=this.valIdea+this.valNombre+this.valMision+this.valVision+this.valSlogan+this.valLogo;
+      },
+      (err) => {
+        console.log(err); // Manejo de errores
+      }
+    );
+  }
+
+  cargarLogoDefault(){
+    this.loginService.lecturaGlobales().subscribe(
+      (data) => {
+        //
+        this.arrayGlobales=data.variables_globales;
+        this.logoDefault=this.arrayGlobales[3].variable;
       },
       (err) => {
         console.log(err); // Manejo de errores
@@ -147,7 +167,7 @@ export class ResumenComponent {
     if (file) {
       this.readAndEncodeFile(file)
         .then((base64String: string) => {
-          console.log(`Archivo ${fieldName} convertido a Base64:`, base64String);
+          //console.log(`Archivo ${fieldName} convertido a Base64:`, base64String);
 
           // Puedes enviar la cadena Base64 al servidor o realizar otras operaciones
           this.sendBase64ToServer(fieldName, base64String);
@@ -178,7 +198,7 @@ export class ResumenComponent {
     switch (fieldName) {
       case "logo":
         this.logo=base64String;
-        console.log("logo: "+this.logo);
+        //console.log("logo: "+this.logo);
         break;
       default:
         console.log("No existe case");
@@ -186,102 +206,86 @@ export class ResumenComponent {
     }
   }
 
-  uploadImage() {
-    const varNuevaEmpresa = {id:this.idEmpresa, idUsuario:this.idUsuarioCargado, nombreIdea:this.nombreIdea, nombreEmpresa:this.nombreEmpresa, mision:this.mision, vision:this.vision, slogan:this.slogan, logo:this.logo};
-    console.log("Var nuevaEmpresa: "+varNuevaEmpresa);
-    this.resumenempresaService.actualizarEmpresa(varNuevaEmpresa).subscribe( (data)=>{
-      console.log("Var nuevaEmpresa lanzada: "+varNuevaEmpresa);
-    }, (err) => {
-      //debugger
-      console.log("Error cargando objeto: "+varNuevaEmpresa);
-    });
-
-    if (this.selectedImage) {
-      const formData = new FormData();
-      formData.append('image', this.selectedImage);
-
-      // Utilizar el servicio para cargar la imagen
-      this.resumenempresaService.cargarImagen(formData).subscribe(
-        (response) => {
-          // Aquí puedes manejar la respuesta del servidor, que debe incluir la URL de la imagen almacenada
-          console.log('URL de la imagen:', response['imageUrl']);
-          this.url=response['imageUrl'];
-          // Realiza las acciones que necesites con la idea seleccionada
-          console.log("Actual idEmpresa: "+this.idEmpresa);
-          console.log("Actual idUsuario: "+this.idUsuarioCargado);
-          console.log("Actual nombreIdea: "+this.nombreIdea);
-          console.log("Actual nombreEmpresa: "+this.nombreEmpresa);
-          console.log("Actual mision: "+this.mision);
-          console.log("Actual vision: "+this.vision);
-          console.log("Actual slogan: "+this.slogan);
-          console.log("Actual logo: "+this.logo);
-          console.log("Actual URL: "+this.url);
-
-          const varNuevaEmpresa = {id:this.idEmpresa, idUsuario:this.idUsuarioCargado, nombreIdea:this.nombreIdea, nombreEmpresa:this.nombreEmpresa, mision:this.mision, vision:this.vision, slogan:this.slogan, logo:this.url};
-          console.log("Var nuevaEmpresa: "+varNuevaEmpresa);
-          this.resumenempresaService.actualizarEmpresa(varNuevaEmpresa).subscribe( (data)=>{
-            Swal.fire(
-              {
-                icon: 'success',
-                title: 'Solicitud enviada',
-                text: 'Logo empresa cargado correctamente',
-                footer: data.message
-              }
-            ).then(() => {
-              //this.router.navigate(['resumen'], { queryParams: { id: this.idUsuarioCargado} } );
-              //
-              window.location.reload();
-            });
-          }, (err) => {
-            //debugger
-            Swal.fire(
-              {
-                icon: 'error',
-                title: 'Error al crear',
-                html: 'Por favor verifique los datos e intente nuevamente',
-                footer: 'No se ha podido completar el registro'
-              }
-            )
-          });
-        },
-        (error) => {
-          console.error('Error al subir la imagen:', error);
-        }
-      );
-    }
-  }
 
   uploadUpdate() {
-    const varNuevaEmpresa = {id:this.idEmpresa, idUsuario:this.idUsuarioCargado, nombreIdea:this.nombreIdea, nombreEmpresa:this.nombreEmpresa, mision:this.mision, vision:this.vision, slogan:this.slogan, logo:this.logo};
-    console.log("Var nuevaEmpresa Enviado: "+varNuevaEmpresa);
-    this.resumenempresaService.actualizarEmpresa(varNuevaEmpresa).subscribe( (data)=>{
-      Swal.fire(
-        {
+    const varNuevaEmpresa = {
+      id: this.idEmpresa,
+      idUsuario: this.idUsuarioCargado,
+      nombreIdea: this.nombreIdea,
+      nombreEmpresa: this.nombreEmpresa,
+      mision: this.mision,
+      vision: this.vision,
+      slogan: this.slogan,
+      logo: this.logo
+    };
+
+    //console.log('Var nuevaEmpresa Enviado: ' + JSON.stringify(varNuevaEmpresa));
+
+    this.resumenempresaService.actualizarEmpresa(varNuevaEmpresa).subscribe({
+      next: (data) => {
+        // Maneja el éxito
+        this.showSuccessMessage(data.message);
+        window.location.reload();
+      },
+      error: (err) => {
+        // Maneja el error
+        this.showErrorMessage(err);
+        Swal.fire({
           icon: 'success',
           title: 'Solicitud enviada',
           text: 'Datos empresa cargados correctamente',
-          footer: data.message
-        }
-      ).then(() => {
-        //this.router.navigate(['resumen'], { queryParams: { id: this.idUsuarioCargado} } );
-        //
-        window.location.reload();
-      });
-    }, (err) => {
-      //debugger
-      Swal.fire(
-        {
-          icon: 'error',
-          title: 'Error al crear',
-          html: 'Por favor verifique los datos e intente nuevamente',
-          footer: 'No se ha podido completar el registro'
-        }
-      )
+          footer: 'Actualizado'
+        });
+      }
     });
   }
 
+  uploadOnly() {
+    const varNuevaEmpresa = {
+      id: this.idEmpresa,
+      idUsuario: this.idUsuarioCargado,
+      nombreIdea: this.nombreIdea,
+      nombreEmpresa: this.nombreEmpresa,
+      mision: this.mision,
+      vision: this.vision,
+      slogan: this.slogan,
+      logo: this.logo
+    };
+
+    //console.log('Var nuevaEmpresa Enviado: ' + JSON.stringify(varNuevaEmpresa));
+
+    this.resumenempresaService.actualizarEmpresa(varNuevaEmpresa).subscribe({
+      next: (data) => {
+        // Maneja el éxito
+        console.log("Actualizado");
+      },
+      error: (err) => {
+        // Maneja el error
+        console.log("Actualizado");
+      }
+    });
+  }
+
+  private async showSuccessMessage(message: string) {
+    await Swal.fire({
+      icon: 'success',
+      title: 'Solicitud enviada',
+      text: 'Datos empresa cargados correctamente',
+      footer: message
+    });
+  }
+
+  private async showErrorMessage(error: any) {
+    await Swal.fire({
+      icon: 'error',
+      title: 'Error al crear',
+      html: 'Por favor verifique los datos e intente nuevamente',
+      footer: 'No se ha podido completar el registro'
+    });
+  }
 
   fakeRoute(){
+    this.uploadOnly();
     //Inicio Modificacion Bitacora ***
     //*******************************************//
     const bitacora = {avance:1, idSeccion:13, idUsuario:parseInt(this.idUsuarioCargado)};

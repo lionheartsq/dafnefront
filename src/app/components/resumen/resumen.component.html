@@ -62,7 +62,7 @@
 
     <div class="col-md-6">
       <h2>Carga tu logo</h2>
-      <img src="{{this.logo}}" alt="Imagen 2" class="img-fluid" id="img-resumen" style="max-width: 30%; max-height: 30%;">
+      <img src="{{this.logo}}" alt="Logo" class="img-fluid" id="img-resumen" style="max-width: 30%; max-height: 30%;">
       <form (submit)="uploadUpdate()">
         <input type="file" (change)="onFileSelected($event, 'logo')" />
         <button class="step-button" id="btn-imagen" type="submit">Subir Imagen</button>

@@ -37,6 +37,7 @@ export class PrecioventaComponent {
   valorimpuesto: any;
   optionsImpuestos: any[]=[];
   iterador: any;
+  isVerificadoIva: string='1';
   //*******************************************//
   //Fin variables para validar bitacora ***
 

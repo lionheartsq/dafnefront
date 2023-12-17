@@ -76,8 +76,7 @@ export class ResumenempresaService {
   }
 
   public actualizarEmpresa(data: any): Observable<any>{
-    const url = `${this.urlBase}/${this.endpointUpdate}`;
-    return this.httpClient.put(url, data);
+    return this.httpClient.put(`${this.urlBase}/${this.endpointUpdate}`, data);
   }
 
   public cargarImagen(user: any): Observable<any>{
