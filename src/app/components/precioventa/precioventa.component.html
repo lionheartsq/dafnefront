@@ -13,7 +13,7 @@
       <h2>Costo:</h2>
     </div>
     <div class="col-md-6">
-        <input type="number" step="0.01" class="form-control" placeholder="Digite aquí" [(ngModel)]="costo" name="costo" required>
+        <input type="number" step="0.01" class="form-control" placeholder="Digite aquí" [(ngModel)]="costo" name="costo" required value="{{ costo | number : '1.0-2' }}">
     </div>
   </div>
 

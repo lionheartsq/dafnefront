@@ -140,35 +140,6 @@ export class ResumenComponent {
     this.selectedImage = event.target.files[0];
   }
 
-  uploadImageBase64() {
-    const varNuevaEmpresa = {id:this.idEmpresa, idUsuario:this.idUsuarioCargado, nombreIdea:this.nombreIdea, nombreEmpresa:this.nombreEmpresa, mision:this.mision, vision:this.vision, slogan:this.slogan, logo:this.logo};
-    console.log("Var nuevaEmpresa: "+varNuevaEmpresa);
-    this.resumenempresaService.actualizarEmpresa(varNuevaEmpresa).subscribe( (data)=>{
-      Swal.fire(
-        {
-          icon: 'success',
-          title: 'Solicitud enviada',
-          text: 'Logo empresa cargado correctamente',
-          footer: data.message
-        }
-      ).then(() => {
-        //this.router.navigate(['resumen'], { queryParams: { id: this.idUsuarioCargado} } );
-        //
-        window.location.reload();
-      });
-    }, (err) => {
-      //debugger
-      Swal.fire(
-        {
-          icon: 'error',
-          title: 'Error al crear',
-          html: 'Por favor verifique los datos e intente nuevamente',
-          footer: 'No se ha podido completar el registro'
-        }
-      )
-    });
-  }
-
   // Toma el valor del campo file
   onFileSelected(event: any, fieldName: string) {
     const file: File | null = event.target.files && event.target.files.length > 0 ? event.target.files[0] : null;
@@ -280,45 +251,15 @@ export class ResumenComponent {
     }
   }
 
-  uploadSlogan() {
-      const varNuevaEmpresa = {id:this.idEmpresa, idUsuario:this.idUsuarioCargado, nombreIdea:this.nombreIdea, nombreEmpresa:this.nombreEmpresa, mision:this.mision, vision:this.vision, slogan:this.slogan, logo:this.logo};
-      console.log("Var nuevaEmpresa: "+varNuevaEmpresa);
-      this.resumenempresaService.actualizarEmpresa(varNuevaEmpresa).subscribe( (data)=>{
-        Swal.fire(
-          {
-            icon: 'success',
-            title: 'Solicitud enviada',
-            text: 'Slogan empresa cargado correctamente',
-            footer: data.message
-          }
-        ).then(() => {
-          //this.router.navigate(['resumen'], { queryParams: { id: this.idUsuarioCargado} } );
-          //
-          window.location.reload();
-        });
-      }, (err) => {
-        //debugger
-        Swal.fire(
-          {
-            icon: 'error',
-            title: 'Error al crear',
-            html: 'Por favor verifique los datos e intente nuevamente',
-            footer: 'No se ha podido completar el registro'
-          }
-        )
-      });
-  }
-
-  uploadNombre() {
+  uploadUpdate() {
     const varNuevaEmpresa = {id:this.idEmpresa, idUsuario:this.idUsuarioCargado, nombreIdea:this.nombreIdea, nombreEmpresa:this.nombreEmpresa, mision:this.mision, vision:this.vision, slogan:this.slogan, logo:this.logo};
-    console.log("Var nuevaEmpresa: "+varNuevaEmpresa);
+    console.log("Var nuevaEmpresa Enviado: "+varNuevaEmpresa);
     this.resumenempresaService.actualizarEmpresa(varNuevaEmpresa).subscribe( (data)=>{
-      localStorage.setItem('nombre_empresa', this.nombreEmpresa);
       Swal.fire(
         {
           icon: 'success',
           title: 'Solicitud enviada',
-          text: 'Nombre empresa cargado correctamente',
+          text: 'Datos empresa cargados correctamente',
           footer: data.message
         }
       ).then(() => {
@@ -339,63 +280,6 @@ export class ResumenComponent {
     });
   }
 
-  uploadMision() {
-    const varNuevaEmpresa = {id:this.idEmpresa, idUsuario:this.idUsuarioCargado, nombreIdea:this.nombreIdea, nombreEmpresa:this.nombreEmpresa, mision:this.mision, vision:this.vision, slogan:this.slogan, logo:this.logo};
-    console.log("Var nuevaEmpresa: "+varNuevaEmpresa);
-    this.resumenempresaService.actualizarEmpresa(varNuevaEmpresa).subscribe( (data)=>{
-      Swal.fire(
-        {
-          icon: 'success',
-          title: 'Solicitud enviada',
-          text: 'Misión empresa cargada correctamente',
-          footer: data.message
-        }
-      ).then(() => {
-        //this.router.navigate(['resumen'], { queryParams: { id: this.idUsuarioCargado} } );
-        //
-        window.location.reload();
-      });
-    }, (err) => {
-      //debugger
-      Swal.fire(
-        {
-          icon: 'error',
-          title: 'Error al crear',
-          html: 'Por favor verifique los datos e intente nuevamente',
-          footer: 'No se ha podido completar el registro'
-        }
-      )
-    });
-  }
-
-  uploadVision() {
-    const varNuevaEmpresa = {id:this.idEmpresa, idUsuario:this.idUsuarioCargado, nombreIdea:this.nombreIdea, nombreEmpresa:this.nombreEmpresa, mision:this.mision, vision:this.vision, slogan:this.slogan, logo:this.logo};
-    console.log("Var nuevaEmpresa: "+varNuevaEmpresa);
-    this.resumenempresaService.actualizarEmpresa(varNuevaEmpresa).subscribe( (data)=>{
-      Swal.fire(
-        {
-          icon: 'success',
-          title: 'Solicitud enviada',
-          text: 'Visión empresa cargada correctamente',
-          footer: data.message
-        }
-      ).then(() => {
-        //this.router.navigate(['resumen'], { queryParams: { id: this.idUsuarioCargado} } );
-        //
-        window.location.reload();
-      });
-    }, (err) => {
-      //debugger
-      Swal.fire(
-        {
-          icon: 'error',
-          title: 'Error al crear',
-          html: 'Por favor verifique los datos e intente nuevamente',
-          footer: 'No se ha podido completar el registro'
-        }
-      )
-    });
-  }
 
   fakeRoute(){
     //Inicio Modificacion Bitacora ***
