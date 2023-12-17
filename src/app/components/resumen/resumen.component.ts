@@ -140,6 +140,81 @@ export class ResumenComponent {
     this.selectedImage = event.target.files[0];
   }
 
+  uploadImageBase64() {
+    const varNuevaEmpresa = {id:this.idEmpresa, idUsuario:this.idUsuarioCargado, nombreIdea:this.nombreIdea, nombreEmpresa:this.nombreEmpresa, mision:this.mision, vision:this.vision, slogan:this.slogan, logo:this.logo};
+    console.log("Var nuevaEmpresa: "+varNuevaEmpresa);
+    this.resumenempresaService.actualizarEmpresa(varNuevaEmpresa).subscribe( (data)=>{
+      Swal.fire(
+        {
+          icon: 'success',
+          title: 'Solicitud enviada',
+          text: 'Logo empresa cargado correctamente',
+          footer: data.message
+        }
+      ).then(() => {
+        //this.router.navigate(['resumen'], { queryParams: { id: this.idUsuarioCargado} } );
+        //
+        window.location.reload();
+      });
+    }, (err) => {
+      //debugger
+      Swal.fire(
+        {
+          icon: 'error',
+          title: 'Error al crear',
+          html: 'Por favor verifique los datos e intente nuevamente',
+          footer: 'No se ha podido completar el registro'
+        }
+      )
+    });
+  }
+
+  // Toma el valor del campo file
+  onFileSelected(event: any, fieldName: string) {
+    const file: File | null = event.target.files && event.target.files.length > 0 ? event.target.files[0] : null;
+
+    if (file) {
+      this.readAndEncodeFile(file)
+        .then((base64String: string) => {
+          console.log(`Archivo ${fieldName} convertido a Base64:`, base64String);
+
+          // Puedes enviar la cadena Base64 al servidor o realizar otras operaciones
+          this.sendBase64ToServer(fieldName, base64String);
+        })
+        .catch((error) => {
+          console.error(`Error al convertir archivo ${fieldName} a Base64:`, error);
+          // Maneja errores aquí
+        });
+    }
+  }
+
+  readAndEncodeFile(file: File): Promise<string> {
+    return new Promise<string>((resolve, reject) => {
+      const reader = new FileReader();
+
+      reader.onloadend = () => {
+        const base64String = reader.result as string;
+        resolve(base64String);
+      };
+
+      reader.readAsDataURL(file);
+    });
+  }
+
+  sendBase64ToServer(fieldName: string, base64String: string) {
+    // Implementa la lógica para enviar la cadena Base64 al servidor con el nombre del campo
+    // Puedes usar HttpClient y tu lógica de servidor aquí
+    switch (fieldName) {
+      case "logo":
+        this.logo=base64String;
+        console.log("logo: "+this.logo);
+        break;
+      default:
+        console.log("No existe case");
+        break;
+    }
+  }
+
   uploadImage() {
     const varNuevaEmpresa = {id:this.idEmpresa, idUsuario:this.idUsuarioCargado, nombreIdea:this.nombreIdea, nombreEmpresa:this.nombreEmpresa, mision:this.mision, vision:this.vision, slogan:this.slogan, logo:this.logo};
     console.log("Var nuevaEmpresa: "+varNuevaEmpresa);
