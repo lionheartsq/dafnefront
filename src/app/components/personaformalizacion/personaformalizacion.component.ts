@@ -77,6 +77,7 @@ export class PersonaformalizacionComponent {
   //seguridad: any;
   //afiliacion: any;
   id: any;
+  conteoSimulacion: string='';
   //*******************************************//
   //Fin variables para validar bitacora ***
   constructor(public router:Router, private loginService:LoginService, private utilsService:UtilsService, private route: ActivatedRoute, private simulacionService:SimulacionesService, private formalizacionService:FormalizacionService) {}
@@ -86,6 +87,7 @@ export class PersonaformalizacionComponent {
     //
     console.log("Usuario cargado: "+this.idUsuarioCargado);
     this.verAvance(this.idUsuarioCargado,this.idModulo);
+    this.validarSimulacion();
   }
 
     //Inicio funciones nuevas para validar bitacora. ***
@@ -128,6 +130,25 @@ export class PersonaformalizacionComponent {
   }
   //*******************************************//
   //Fin funciones nuevas para validar bitacora. ***
+
+  validarSimulacion(){
+    this.formalizacionService.validarSimulaPersona(this.idUsuarioCargado).subscribe(
+      (data) => {
+        //
+        console.log("Data simulacion: "+JSON.stringify(data));
+          this.conteoSimulacion=data.persona_natural;
+          console.log("ConteoSimulacion: "+this.conteoSimulacion);
+          if(this.conteoSimulacion=='1'){
+            this.isVerificadoMSimulacion='1';
+            this.isVerificadoMoSimula='1';
+            this.isVerificadoModSimula='1';
+          }
+      },
+      (err) => {
+        console.log(err); // Manejo de errores
+      }
+    );
+  }
 
   cargarDatosFormalizacion(){
     this.formalizacionService.lecturaResumenPersona(this.idUsuarioCargado).subscribe(

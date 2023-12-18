@@ -181,19 +181,7 @@
 
             <div *ngIf="this.pasosAvance==2">
 
-              <div class="row">
-                <hr><h2>¿El usuario ya diligenció el módulo de simulación?</h2>
-                <div class="col-md-3">
-                  <b style="color:green">Sí </b>
-                  <input type="radio" name="isVerificadoMSimulacion" [(ngModel)]="isVerificadoMSimulacion" value="1">
-                </div>
-                <div class="col-md-3">
-                  <b style="color: red;">No </b>
-                  <input type="radio" name="isVerificadoMSimulacion" [(ngModel)]="isVerificadoMSimulacion" value="0">
-                </div>
-              </div><br>
-
-              <div class="row" *ngIf="isVerificadoMSimulacion==='0'">
+              <div class="row" *ngIf="isVerificadoMSimulacion==='0' || isVerificadoMSimulacion==='1'">
                 <hr><h2>¿Sabe usted el código CIIU de la actividad económica principal de su negocio?</h2>
                 <div class="col-md-3">
                   <b style="color:green">Sí </b>
@@ -205,7 +193,7 @@
                 </div>
               </div><br>
 
-              <div class="row" *ngIf="isVerificadoEconomica==='0'">
+              <div class="row" *ngIf="isVerificadoEconomica==='0' || isVerificadoEconomica==='1'">
                 <hr>
                 <div class="col-md-12">
                   <a href="https://www.vue.gov.co/servicios-a-la-ciudadania/tramites-y-consultas/consulta-de-actividad-economica-ciiu?c=68001" target="_NEW">Enlace consulta de códigos CIIU</a>
@@ -439,19 +427,7 @@
 
             <div *ngIf="this.pasosAvance==7">
 
-              <div class="row">
-                <hr><h2>¿El usuario ya diligenció el módulo de simulación?</h2>
-                <div class="col-md-3">
-                  <b style="color:green">Sí </b>
-                  <input type="radio" name="isVerificadoMoSimula" [(ngModel)]="isVerificadoMoSimula" value="1">
-                </div>
-                <div class="col-md-3">
-                  <b style="color: red;">No </b>
-                  <input type="radio" name="isVerificadoMoSimula" [(ngModel)]="isVerificadoMoSimula" value="0">
-                </div>
-              </div><br>
-
-              <div class="row" *ngIf="isVerificadoMoSimula==='0'">
+              <div class="row" *ngIf="isVerificadoMoSimula==='0' || isVerificadoMoSimula==='1'">
                 <hr><h2>¿Va a contar con algún medio de proyección sonora o audiovisual en el negocio?</h2>
                 <div class="col-md-3">
                   <b style="color:green">Sí </b>
@@ -587,19 +563,7 @@
 
             <div *ngIf="this.pasosAvance==11">
 
-              <div class="row">
-                <hr><h2>¿El usuario ya diligenció el módulo de simulación?</h2>
-                <div class="col-md-3">
-                  <b style="color:green">Sí </b>
-                  <input type="radio" name="isVerificadoModSimula" [(ngModel)]="isVerificadoModSimula" value="1">
-                </div>
-                <div class="col-md-3">
-                  <b style="color: red;">No </b>
-                  <input type="radio" name="isVerificadoModSimula" [(ngModel)]="isVerificadoModSimula" value="0">
-                </div>
-              </div><br>
-
-              <div class="row" *ngIf="isVerificadoModSimula==='0'">
+              <div class="row" *ngIf="isVerificadoModSimula==='0' || isVerificadoModSimula==='1'">
                 <hr><h2>¿Va a contratar a una o más personas por nómina fija?</h2>
                 <div class="col-md-3">
                   <b style="color:green">Sí </b>

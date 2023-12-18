@@ -24,6 +24,8 @@ export class FormalizacionService {
 
   private validarProcesoSimulacion='api/auth/avances_legal/validarRegistroEmpresa';
 
+  private validarSimulacionPersona='api/auth/avances_legal/validarPersona';
+
   constructor(private httpClient: HttpClient) { }
 
   public formalizacionUpdatePersona(data: any): Observable<any>{
@@ -44,6 +46,10 @@ export class FormalizacionService {
 
   public validarSimulacion(idUsuario:any): Observable<any> {
     return this.httpClient.get(`${this.urlBase}/${this.validarProcesoSimulacion}/${idUsuario}`);
+  }
+
+  public validarSimulaPersona(idUsuario:any): Observable<any> {
+    return this.httpClient.get(`${this.urlBase}/${this.validarSimulacionPersona}/${idUsuario}`);
   }
 
 }
