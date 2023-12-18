@@ -153,7 +153,7 @@ export class EmpresaformalizacionComponent {
           this.conteoSimulacion=this.arraySimulacion[dato].cantidad_empresa;
           this.empresaSimulacion=this.arraySimulacion[dato].tipo_empresa;
           console.log("ConteoSimulacion: "+this.conteoSimulacion);
-          console.log("EmpresaSimulacion: "+this.EmpresaSimulacion);
+          console.log("EmpresaSimulacion: "+this.empresaSimulacion);
         }
       },
       (err) => {
