@@ -39,7 +39,7 @@ export class EmpresaformalizacionComponent {
   isVerificadoRut: string= '0';
   isVerificadoActualizado: string='0';
   isVerificadoEstatutos: string= '1';
-  isVerificadoActas: string= '0';
+  isVerificadoActas: string= '1';
   isVerificadoSociedad: string= '0';
   isVerificadoLiquidacion: string= '0';
   isVerificadoPresencial: string= '0';
@@ -254,6 +254,9 @@ export class EmpresaformalizacionComponent {
                 break;
             }
             console.log("TIPO EMPRESA: "+this.tipoEmpresa);
+          }else{
+            this.isVerificadoTipo='0';
+            this.isVerificadoSimulacion='0';
           }
       },
       (err) => {

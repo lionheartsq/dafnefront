@@ -219,6 +219,10 @@ export class PersonaformalizacionComponent {
             this.isVerificadoMSimulacion='1';
             this.isVerificadoMoSimula='1';
             this.isVerificadoModSimula='1';
+          }else{
+            this.isVerificadoMSimulacion='0';
+            this.isVerificadoMoSimula='0';
+            this.isVerificadoModSimula='0';
           }
       },
       (err) => {

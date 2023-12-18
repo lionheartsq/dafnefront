@@ -110,7 +110,7 @@
                 <div class="col-md-3">
                   <input type="text" [(ngModel)]="razonSocial">
                 </div>
-              </div>
+              </div><br>
 
               <div class="row">
                 <hr>
@@ -160,7 +160,7 @@
                   <br><br>
                   <a href="https://sipi.sic.gov.co/sipi/Extra/Default.aspx?sid=638374116246775962" target="_NEW">Enlace de consulta antecedentes marcarios</a>
                 </div>
-              </div><br>
+              </div>
 
               <div class="row" *ngIf="isVerificadoAntecedentes==='1'">
                 <hr><h2>¿La marca está disponible?</h2>
@@ -172,7 +172,7 @@
                   <b style="color: red;">No </b>
                   <input type="radio" name="isVerificadoDisponible" [(ngModel)]="isVerificadoDisponible" value="0">
                 </div>
-              </div><br>
+              </div>
 
               <div class="row" *ngIf="isVerificadoMarca==='0'">
                 <hr><h2>Genere una nueva marca</h2>
@@ -270,10 +270,10 @@
                 <div class="col-md-12">
                   <a href="https://matricula.sintramites.com/Consultas/UsoSuelo" target="_NEW">Consulta uso de suelo</a>
                 </div>
-              </div><br>
+              </div>
 
               <div class="row" *ngIf="isVerificadoSuelo==='1'">
-                <hr><h2>¿Se puede llevar acabo la actividad económica principal de su establecimiento en dicho sitio?</h2>
+                <hr><h2>¿Se puede llevar a cabo la actividad económica principal de su establecimiento en dicho sitio?</h2>
                 <div class="col-md-3">
                   <b style="color:green">Sí </b>
                   <input type="radio" name="isVerificadoActividad" [(ngModel)]="isVerificadoActividad" value="1">
@@ -284,8 +284,14 @@
                 </div>
               </div><br>
 
-              <div class="row" *ngIf="isVerificadoActividad==='0'">
+              <div class="row" *ngIf="isVerificadoActividad==='0' && isVerificadoSuelo==='1'">
                 <hr><h2>Relacione una nueva dirección</h2>
+                <div class="col-md-3">
+                  <b>Dirección : </b>
+                </div>
+                <div class="col-md-3">
+                  <input type="text" [(ngModel)]="direccion">
+                </div>
               </div><br>
 
               <div class="row" *ngIf="isVerificadoActividad==='1'">
@@ -308,8 +314,7 @@
             <div *ngIf="this.pasosAvance==5">
 
               <div class="row">
-                <hr><h2>¿Ha tramitado ya el concepto de uso de suelo en la  oficina de planeación o en la curaduría del
-                  municipio donde tiene previsto establecer su negocio?</h2>
+                <hr><h2>¿Ha tramitado ya el concepto de uso de suelo en la  oficina de planeación o en la curaduría del municipio donde tiene previsto establecer su negocio?</h2>
                 <div class="col-md-3">
                   <b style="color:green">Sí </b>
                   <input type="radio" name="isVerificadoTramite" [(ngModel)]="isVerificadoTramite" value="1">
@@ -325,6 +330,10 @@
                 <div class="col-md-6">
                   <input type="file" (change)="onFileSelected($event, 'usoDeSuelo')" />
                 </div>
+              </div><br>
+
+              <div class="row" *ngIf="isVerificadoTramite==='0'">
+                <hr><h2>Revise el directorio de entidades para más información de a donde debe acercarse</h2>
               </div><br>
 
               <div class="row">
@@ -372,7 +381,7 @@
                 <div class="col-md-12">
                   <a href="https://www.youtube.com/watch?v=NDdKK31Oahk" target="_NEW">Video de apoyo de cómo descargar el RUT</a>
                 </div>
-              </div><br>
+              </div>
 
               <div class="row" *ngIf="isVerificadoActualizado==='0'">
                 <hr>
@@ -469,6 +478,14 @@
                 </div>
               </div><br>
 
+              <div class="row" *ngIf="isVerificadoEstatutos==='0'">
+                <hr><h2>Descarga y diligencia los modelos de estatutos: </h2>
+                <div class="col-md-6">
+                  <a href="/assets/SOCIEDADES_DE_CAPITAL.zip" download>Sociedades de capital</a><br><br>
+                  <a href="/assets/SOCIEDADES_DE_PERSONAS.zip" download>Sociedades de personas</a>
+                </div>
+              </div><br>
+
               <div class="row" *ngIf="isVerificadoEstatutos==='1'">
                 <hr><h2>Adjunte los estatutos de la empresa en formato word o PDF</h2>
                 <div class="col-md-6">
@@ -502,7 +519,7 @@
                 <div class="col-md-6">
                   <input type="file" (change)="onFileSelected($event, 'acta')" />
                 </div>
-              </div><br>
+              </div>
 
               <div class="row" *ngIf="isVerificadoActas==='0'">
                 <hr><h2>¿El tipo jurídico de la empresa del usuario corresponde a una empresa de tipo Sociedad por Acciones Simplificadas,
@@ -514,6 +531,20 @@
                 <div class="col-md-3">
                   <b style="color: red;">No </b>
                   <input type="radio" name="isVerificadoSociedad" [(ngModel)]="isVerificadoSociedad" value="0">
+                </div>
+              </div><br>
+
+              <div class="row" *ngIf="isVerificadoSociedad==='0' && isVerificadoActas==='0'">
+                <hr><h2>Descarga y diligencia los modelos de actas: </h2>
+                <div class="col-md-6">
+                  <a href="/assets/ACTAS_SOCIEDADES_PERSONAS.zip" download>Actas para Sociedades de personas</a>
+                </div>
+              </div><br>
+
+              <div class="row" *ngIf="isVerificadoSociedad==='1' && isVerificadoActas==='0'">
+                <hr><h2>Descarga y diligencia los modelos de actas: </h2>
+                <div class="col-md-6">
+                  <a href="/assets/ACTAS_SOCIEDADES_CAPITAL.zip" download>Actas para Sociedades de capital</a>
                 </div>
               </div><br>
 
@@ -581,10 +612,11 @@
                 </div>
               </div><br>
 
-              <div class="row" *ngIf="isVerificadoPresencial==='0'">
+              <div class="row" *ngIf="isVerificadoPresencial==='0' && isVerificadoLiquidacion==='0'">
                 <hr>
                 <div class="col-md-12">
-                  <a href="https://registro.syc.com.co/oficinavirtual/" target="_NEW">Enlace para realizar el trámite del impuesto de registro de manera virtual</a>
+                  <p><a href="/assets/INSTRUCTIVO_IMPUESTO.zip" download>Instructivo Impuesto</a></p>
+                  <p><a href="https://registro.syc.com.co/oficinavirtual/" target="_NEW">Enlace para realizar el trámite del impuesto de registro de manera virtual</a></p>
                 </div>
               </div><br>
 
@@ -621,7 +653,7 @@
                 <div class="col-md-12">
                   <p>Dirijase a la sede más cercana de la cámara de comercio de Bucaramanga.</p>
                 </div>
-              </div><br>
+              </div>
 
               <div class="row" *ngIf="isVerificadoRues==='0'">
                 <hr><h2>¿El usuario va a constituir una Sociedad por acciones simplificadas S.A.S.?</h2>
@@ -638,14 +670,16 @@
               <div class="row" *ngIf="isVerificadoSas==='1'">
                 <hr>
                 <div class="col-md-12">
-                  <a href="https://www.youtube.com/watch?v=gHWBZqzvunk" target="_NEW">Video de apoyo de cómo diligenciar el RUES de una S.A.S. de manera virtual</a>
+                  <p><a href="/assets/RUES_SAS.zip" download>Manual de apoyo</a></p>
+                  <p><a href="https://www.youtube.com/watch?v=gHWBZqzvunk" target="_NEW">Video de apoyo de cómo diligenciar el RUES de una S.A.S. de manera virtual</a></p>
                 </div>
               </div><br>
 
               <div class="row" *ngIf="isVerificadoSas==='0'">
                 <hr>
                 <div class="col-md-12">
-                  <a href="https://www.youtube.com/watch?v=uubCY2mAfGw" target="_NEW">Video de apoyo de cómo diligenciar el RUES de una persona jurídica diferente a la S.A.S.</a>
+                  <p><a href="/assets/RUES_OTRAS.zip" download>Manual de apoyo</a></p>
+                  <p><a href="https://www.youtube.com/watch?v=uubCY2mAfGw" target="_NEW">Video de apoyo de cómo diligenciar el RUES de una persona jurídica diferente a la S.A.S.</a></p>
                 </div>
               </div><br>
 
@@ -692,15 +726,16 @@
               <div class="row" *ngIf="isVerificadoInscripcion==='0'">
                 <hr>
                 <div class="col-md-12">
-                  <a href="https://www.camaradirecta.com/crear-mi-empresa/responsabilidad-del-empresario/inscripcion-de-libros-de-comercio/"
-                  target="_NEW">Enlace de apoyo de la inscripción de libros de manera virtual</a>
+                  <p><a href="/assets/INSCRIPCION_LIBROS_VIRTUAL.zip" download>Manual de apoyo</a></p>
+                  <p><a href="https://www.camaradirecta.com/crear-mi-empresa/responsabilidad-del-empresario/inscripcion-de-libros-de-comercio/" target="_NEW">Enlace de apoyo de la inscripción de libros de manera virtual</a></p>
+                  <p><a href="https://www.sintramites.com/sintramites/dashboard/login.aspx" target="_NEW">Enlace portal de radicación de trámites virtuales</a></p>
                 </div>
-              </div><br>
+              </div>
 
-              <div class="row" *ngIf="isVerificadoInscripcion==='0'">
+              <div class="row" *ngIf="isVerificadoInscripcion==='1'">
                 <hr>
                 <div class="col-md-12">
-                  <a href="https://www.sintramites.com/sintramites/dashboard/login.aspx" target="_NEW">Enlace portal de radicación de trámites virtuales</a>
+                  <p><a href="/assets/INSCRIPCION_LIBROS_PRESENCIAL.zip" download>Manual de apoyo</a></p>
                 </div>
               </div><br>
 
