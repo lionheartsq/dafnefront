@@ -100,6 +100,7 @@ export class EmpresaformalizacionComponent {
     //
     console.log("Usuario cargado: "+this.idUsuarioCargado);
     this.verAvance(this.idUsuarioCargado,this.idModulo);
+    this.validarSimulacion();
   }
 
     //Inicio funciones nuevas para validar bitacora. ***
