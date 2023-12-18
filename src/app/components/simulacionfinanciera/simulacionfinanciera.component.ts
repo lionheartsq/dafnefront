@@ -7,6 +7,7 @@ import { NgModel } from '@angular/forms';
 import Swal from 'sweetalert2';
 import { isEmpty } from 'rxjs';
 import { SimulacionesService } from 'src/app/services/simulaciones.service';
+import { formatCurrency } from '@angular/common';
 
 @Component({
   selector: 'app-simulacionfinanciera',
@@ -83,6 +84,7 @@ export class SimulacionfinancieraComponent {
   selectCiuu: any;
   arrayResumenCiuu: any;
   personaNaturalFlag: any;
+  costoMaterialesView: any;
   //*******************************************//
   //Fin variables para validar bitacora ***
   constructor(public router:Router, private loginService:LoginService, private utilsService:UtilsService, private route: ActivatedRoute, private simulacionService:SimulacionesService) {}
@@ -525,6 +527,29 @@ export class SimulacionfinancieraComponent {
         console.log(err); // Manejo de errores
       }
     );
+  }
+
+  maskInput(event: any) {
+    const inputValue = event.target.value;
+
+    // Eliminar todos los puntos y comas existentes
+    const cleanedValue = inputValue.replace(/[.,]/g, '');
+
+    // Formatear el valor con puntos de mil
+    const formattedValue = this.formatWithCommas(cleanedValue);
+
+    // Actualizar el valor en el modelo
+    this.costoMateriales = inputValue;
+    this.costoMaterialesView = formattedValue;
+
+    console.log("Valor enviar: "+this.costoMateriales);
+  }
+
+  formatWithCommas(value: string): string {
+    const parts = value.toString().split('.');
+    parts[0] = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, '.');
+
+    return parts.join(',');
   }
 
 }
