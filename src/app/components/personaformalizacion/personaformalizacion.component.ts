@@ -78,9 +78,29 @@ export class PersonaformalizacionComponent {
   //afiliacion: any;
   id: any;
   conteoSimulacion: string='';
+  arrayDirectorio: any;
+  entidad: any;
+  municipio: any;
+  direccionDir: any;
+  web: any;
+  telefonos: any;
+  chat: any;
+  correo: any;
+  html: string | HTMLElement | JQuery<HTMLElement> | undefined;
+  ordinal: any;
+  header: string='';
+  footer: string='';
+  middle: string='';
   //*******************************************//
   //Fin variables para validar bitacora ***
-  constructor(public router:Router, private loginService:LoginService, private utilsService:UtilsService, private route: ActivatedRoute, private simulacionService:SimulacionesService, private formalizacionService:FormalizacionService) {}
+  constructor(
+    public router:Router,
+    private loginService:LoginService,
+    private utilsService:UtilsService,
+    private route: ActivatedRoute,
+    private simulacionService:SimulacionesService,
+    private formalizacionService:FormalizacionService
+    ) {}
 
   ngOnInit(): void {
     this.idUsuarioCargado=localStorage.getItem('identificador_usuario');
@@ -88,6 +108,7 @@ export class PersonaformalizacionComponent {
     console.log("Usuario cargado: "+this.idUsuarioCargado);
     this.verAvance(this.idUsuarioCargado,this.idModulo);
     this.validarSimulacion();
+    this.cargarDirectorio();
   }
 
     //Inicio funciones nuevas para validar bitacora. ***
@@ -130,6 +151,62 @@ export class PersonaformalizacionComponent {
   }
   //*******************************************//
   //Fin funciones nuevas para validar bitacora. ***
+
+  cargarDirectorio(){
+    this.formalizacionService.cargarDirectorio().subscribe(
+      (data) => {
+        //        console.log("Directorio: "+JSON.stringify(data));
+        this.arrayDirectorio=data.directorio;
+        for (let dato in this.arrayDirectorio){
+          this.ordinal=dato;
+          this.id=this.arrayDirectorio[dato].id;
+          this.entidad=this.arrayDirectorio[dato].entidad;
+          this.municipio=this.arrayDirectorio[dato].municipio;
+          this.direccionDir=this.arrayDirectorio[dato].direccion;
+          this.web=this.arrayDirectorio[dato].web;
+          this.telefonos=this.arrayDirectorio[dato].telefonos;
+          this.chat=this.arrayDirectorio[dato].chat;
+          this.correo=this.arrayDirectorio[dato].correo;
+        }
+        console.log("Directorio: "+JSON.stringify(this.arrayDirectorio));
+      },
+      (err) => {
+        console.log(err); // Manejo de errores
+      }
+    );
+  }
+
+  verDirectorio(datos:Array<any>){
+    console.log("ArrayParametros: "+datos);
+    this.header="<div class='container-fluid'><table class='table table-striped' style='width:1400px;'><thead><tr><th style='width:200px;'>Entidad</th><th style='width:200px;'>Municipio</th><th style='width:200px;'>Dirección</th><th style='width:200px;'>Web</th><th style='width:200px;'>Teléfonos</th><th style='width:200px;'>Chat o PQR</th><th style='width:200px;'>Correos</th></tr><tbody>";
+    for (let dato in datos){
+      this.ordinal=datos[dato];
+      console.log("Vuelta: "+dato);
+      console.log("OrdenVuelta: "+datos[dato]);
+      this.entidad=this.arrayDirectorio[this.ordinal].entidad;
+      this.municipio=this.arrayDirectorio[this.ordinal].municipio;
+      this.direccionDir=this.arrayDirectorio[this.ordinal].direccion;
+      this.web=this.arrayDirectorio[this.ordinal].web;
+      this.telefonos=this.arrayDirectorio[this.ordinal].telefonos;
+      this.chat=this.arrayDirectorio[this.ordinal].chat;
+      this.correo=this.arrayDirectorio[this.ordinal].correo;
+      this.middle=this.middle+"<tr><td>"+this.entidad+"</td><td>"+this.municipio+"</td><td>"+this.direccionDir+"</td><td><a href='"+this.web+"' target='_NEW'>"+this.web+"</a></td><td>"+this.telefonos+"</td><td><a href='"+this.chat+"' target='_NEW'>"+this.chat+"</a></td><td>"+this.correo+"</td><td></tr>";
+    }
+    this.footer="</tbody></table></div>";
+
+    this.html=this.header+this.middle+this.footer;
+
+    Swal.fire({
+      title: "<strong><u>Directorio de Entidades</u></strong>",
+      html: this.html,
+      showCloseButton: true,
+      focusConfirm: false,
+      width:1000,
+      customClass: {
+        container: 'ajustar-tamano-sweet-alert', // Agrega una clase CSS personalizada para ajustar el tamaño
+      },
+    });
+  }
 
   validarSimulacion(){
     this.formalizacionService.validarSimulaPersona(this.idUsuarioCargado).subscribe(

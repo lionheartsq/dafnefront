@@ -26,6 +26,10 @@ export class FormalizacionService {
 
   private validarSimulacionPersona='api/auth/avances_legal/validarPersona';
 
+  private directorio='api/auth/directorio';
+
+  private directorioUnico='api/auth/directorio/selectdirectorio';
+
   constructor(private httpClient: HttpClient) { }
 
   public formalizacionUpdatePersona(data: any): Observable<any>{
@@ -50,6 +54,14 @@ export class FormalizacionService {
 
   public validarSimulaPersona(idUsuario:any): Observable<any> {
     return this.httpClient.get(`${this.urlBase}/${this.validarSimulacionPersona}/${idUsuario}`);
+  }
+
+  public cargarDirectorio(): Observable<any> {
+    return this.httpClient.get(`${this.urlBase}/${this.directorio}`);
+  }
+
+  public cargarDirectorioUno(id:any): Observable<any> {
+    return this.httpClient.get(`${this.urlBase}/${this.directorioUnico}/${id}`);
   }
 
 }

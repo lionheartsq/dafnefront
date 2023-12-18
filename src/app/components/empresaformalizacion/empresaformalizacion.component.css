@@ -59,3 +59,9 @@ p {
   pointer-events: none; /* Evita interacciones con el botón */
   /* Otros estilos que desees aplicar a un botón deshabilitado */
 }
+
+/* Agrega estilos CSS personalizados para ajustar el tamaño de SweetAlert2 */
+.ajustar-tamano-sweet-alert {
+  min-width: 800px; /* Ajusta el ancho máximo según tus necesidades */
+  width: auto !important; /* Evita que el ancho sea fijo y se ajuste según el contenido */
+}
