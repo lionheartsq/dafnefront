@@ -88,6 +88,9 @@ export class EmpresaformalizacionComponent {
   rut: any;
   rutEmpresa: any;
   direccion: any;
+  arraySimulacion: any;
+  conteoSimulacion: any;
+  empresaSimulacion: any;
   //*******************************************//
   //Fin variables para validar bitacora ***
   constructor(public router:Router, private loginService:LoginService, private utilsService:UtilsService, private route: ActivatedRoute, private simulacionService:SimulacionesService, private formalizacionService:FormalizacionService) {}
@@ -140,6 +143,24 @@ export class EmpresaformalizacionComponent {
   //*******************************************//
   //Fin funciones nuevas para validar bitacora. ***
 
+  validarSimulacion(){
+    this.formalizacionService.validarSimulacion(this.idUsuarioCargado).subscribe(
+      (data) => {
+        //
+        console.log("Data simulacion: "+JSON.stringify(data));
+        this.arraySimulacion=data;
+        for (let dato in this.arraySimulacion){
+          this.conteoSimulacion=this.arraySimulacion[dato].cantidad_empresa;
+          this.empresaSimulacion=this.arraySimulacion[dato].tipo_empresa;
+          console.log("ConteoSimulacion: "+this.conteoSimulacion);
+          console.log("EmpresaSimulacion: "+this.EmpresaSimulacion);
+        }
+      },
+      (err) => {
+        console.log(err); // Manejo de errores
+      }
+    );
+  }
 
   cargarDatosFormalizacion(){
     this.formalizacionService.lecturaResumenEmpresa(this.idUsuarioCargado).subscribe(
