@@ -45,16 +45,13 @@
             <div class="form-group alert alert-info" role="alert"> Seleccione la respuesta adecuada a cada pregunta y pulse el botón guardar.</div>
 
             <div *ngIf="this.pasosAvance==0">
-              <div class="row">
-                <hr><h2>¿El usuario diligenció el módulo de simulación?</h2>
-                <div class="col-md-3">
-                  <b style="color:green">Sí </b>
-                  <input type="radio" name="isVerificadoTipo" [(ngModel)]="isVerificadoTipo" value="1">
-                </div>
-                <div class="col-md-3">
-                  <b style="color: red;">No </b>
-                  <input type="radio" name="isVerificadoTipo" [(ngModel)]="isVerificadoTipo" value="0">
-                </div>
+
+              <div class="form-group" *ngIf="isVerificadoTipo==='1'">
+                <br>
+                <label for="tipoEmpresa">Tipo de Empresa:</label>
+                <select id="tipoEmpresa" class="form-control" [(ngModel)]="tipoEmpresa" placeholder="Tipo de Empresa">
+                  <option value="{{this.tipoEmpresa}}">{{this.tipoEmpresa}}</option>
+                </select>
               </div>
 
               <div class="form-group" *ngIf="isVerificadoTipo==='0'">
@@ -63,11 +60,11 @@
                 <select id="tipoEmpresa" class="form-control" [(ngModel)]="tipoEmpresa" placeholder="Tipo de Empresa">
                   <option value="Empresa Unipersonal">Empresa Unipersonal</option>
                   <option value="Sociedad Anónima">Sociedad Anónima</option>
-                  <option value="Sociedad por acciones simplificadas">Sociedad  por acciones simplificadas</option>
-                  <option value="Sociedad comandita por acciones">Sociedad  comandita por acciones</option>
-                  <option value="Sociedad limitada">Sociedad limitada</option>
-                  <option value="Sociedad colectiva">Sociedad colectiva</option>
-                  <option value="Sociedad comandita simple">Sociedad comandita simple</option>
+                  <option value="Sociedad por acciones Simplificada">Sociedad por acciones Simplificada</option>
+                  <option value="Sociedad en Comandita por Acciones">Sociedad en Comandita por Acciones</option>
+                  <option value="Sociedad Limitada">Sociedad Limitada</option>
+                  <option value="Sociedad Colectiva">Sociedad Colectiva</option>
+                  <option value="Sociedad en Comandita Simple">Sociedad en Comandita Simple</option>
                 </select>
               </div>
 
@@ -206,18 +203,6 @@
             </div>
 
             <div *ngIf="this.pasosAvance==3">
-
-              <div class="row">
-                <hr><h2>¿El usuario ya diligenció el módulo de simulación?</h2>
-                <div class="col-md-3">
-                  <b style="color:green">Sí </b>
-                  <input type="radio" name="isVerificadoSimulacion" [(ngModel)]="isVerificadoSimulacion" value="1">
-                </div>
-                <div class="col-md-3">
-                  <b style="color: red;">No </b>
-                  <input type="radio" name="isVerificadoSimulacion" [(ngModel)]="isVerificadoSimulacion" value="0">
-                </div>
-              </div><br>
 
               <div class="row">
                 <hr><h2>¿Sabe usted el código CIIU de la actividad económica principal de su negocio?</h2>

@@ -13,7 +13,7 @@
       <h2>Costo:</h2>
     </div>
     <div class="col-md-6">
-        <input type="number" step="0.01" class="form-control" placeholder="Digite aquí" [(ngModel)]="costo" name="costo" required>
+        <input type="number" step="0.01" class="form-control" placeholder="Digite aquí" [(ngModel)]="costo" name="costo" required value="{{ costo | number : '1.0-2' }}">
     </div>
   </div>
 
@@ -28,11 +28,33 @@
 
   <div class="row">
     <div class="col-md-6">
+      <h2>¿Es responsable de IVA? <input type="radio" name="isVerificadoIva" [(ngModel)]="isVerificadoIva" value="1"></h2>
+    </div>
+    <div class="col-md-6">
+      <h2>¿Es responsable de IMPOCONSUMO? <input type="radio" name="isVerificadoIva" [(ngModel)]="isVerificadoIva" value="0"></h2>
+    </div>
+  </div>
+
+  <div class="row" *ngIf="isVerificadoIva==='1'">
+    <div class="col-md-6">
       <h2>Impuesto:</h2>
     </div>
     <div class="col-md-6">
       <select id="idImpuesto" class="form-control" [(ngModel)]="valorimpuesto">
         <option *ngFor="let option of optionsImpuestos" [value]="option.porcentaje">{{ option.impuesto }}</option>
+      </select>
+    </div>
+  </div>
+
+  <div class="row" *ngIf="isVerificadoIva==='0'">
+    <div class="col-md-6">
+      <h2>Impuesto:</h2>
+    </div>
+    <div class="col-md-6">
+      <select id="idImpuesto" class="form-control" [(ngModel)]="valorimpuesto">
+        <option [value]="4">4%</option>
+        <option [value]="8">8%</option>
+        <option [value]="16">16%</option>
       </select>
     </div>
   </div>

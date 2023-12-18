@@ -23,11 +23,11 @@
             <div *ngIf="this.pasosAvance==0">
                 <hr><h2>Selecciona si es un producto o servicio</h2>
                 <div class="row">
-                  <div class="col-md-3">
+                  <div class="col-md-5">
                     <b>Producto </b>
                     <input type="radio" name="isProducto" [(ngModel)]="isProducto" value="1">
                   </div>
-                  <div class="col-md-3">
+                  <div class="col-md-5">
                     <b>Servicio </b>
                     <input type="radio" name="isProducto" [(ngModel)]="isProducto" value="0">
                   </div>
@@ -35,30 +35,30 @@
 
                 <hr><h2>Ingrese el nombre del producto o servicio</h2>
                 <div class="row">
-                  <div class="col-md-3">
+                  <div class="col-md-5">
                     <b>Nombre : </b>
                   </div>
-                  <div class="col-md-3">
+                  <div class="col-md-5">
                     <input type="text" [(ngModel)]="nombreProducto">
                   </div>
                 </div>
 
                 <hr><h2>Ingrese la descripción del producto o servicio</h2>
                 <div class="row">
-                  <div class="col-md-3">
+                  <div class="col-md-5">
                     <b>Descripción : </b>
                   </div>
-                  <div class="col-md-3">
+                  <div class="col-md-5">
                     <input type="text" [(ngModel)]="descripcionProducto">
                   </div>
                 </div>
 
                 <hr><h2>Ingrese el nombre de la empresa</h2>
                 <div class="row">
-                  <div class="col-md-3">
+                  <div class="col-md-5">
                     <b>Nombre : </b>
                   </div>
-                  <div class="col-md-3">
+                  <div class="col-md-5">
                     <input type="text" [(ngModel)]="nombreEmpresa">
                   </div>
                 </div>
@@ -67,21 +67,21 @@
             <div *ngIf="this.pasosAvance==1">
                 <hr><h2>Ingrese la cantidad promedio de productos o servicios mensuales</h2>
                 <div class="row">
-                  <div class="col-md-3">
+                  <div class="col-md-5">
                     <b>Cantidad : </b>
                   </div>
-                  <div class="col-md-3">
+                  <div class="col-md-5">
                     <input type="number" [(ngModel)]="cantidadProducto">
                   </div>
                 </div>
 
                 <hr><h2>¿Requerirá de materiales para la producción o de productos para su venta posterior?</h2>
                 <div class="row">
-                  <div class="col-md-3">
+                  <div class="col-md-5">
                     <b>Sí </b>
                     <input type="radio" name="isMaterial" [(ngModel)]="isMaterial" value="1">
                   </div>
-                  <div class="col-md-3">
+                  <div class="col-md-5">
                     <b>No </b>
                     <input type="radio" name="isMaterial" [(ngModel)]="isMaterial" value="0">
                   </div>
@@ -90,11 +90,11 @@
                 <div *ngIf="isMaterial==='1'">
                     <hr><h2>¿Son unicamente materias primas para la transformación?</h2>
                     <div class="row">
-                      <div class="col-md-3">
+                      <div class="col-md-5">
                         <b>Sí </b>
                         <input type="radio" name="isMaterias" [(ngModel)]="isMaterias" value="1">
                       </div>
-                      <div class="col-md-3">
+                      <div class="col-md-5">
                         <b>No </b>
                         <input type="radio" name="isMaterias" [(ngModel)]="isMaterias" value="0">
                       </div>
@@ -103,10 +103,10 @@
                     <div *ngIf="isMaterias==='1'">
                       <hr><h2>Relacione el costo total de los materiales por unidad de producto</h2>
                       <div class="row">
-                        <div class="col-md-3">
+                        <div class="col-md-5">
                           <b>Valor : </b>
                         </div>
-                        <div class="col-md-3">
+                        <div class="col-md-5">
                           <input type="number" [(ngModel)]="costoMateriales">
                         </div>
                       </div>
@@ -115,10 +115,10 @@
                     <div *ngIf="isMaterias==='0'">
                       <hr><h2>Indique el costo del producto para la venta</h2>
                       <div class="row">
-                        <div class="col-md-3">
+                        <div class="col-md-5">
                           <b>Valor : </b>
                         </div>
-                        <div class="col-md-3">
+                        <div class="col-md-5">
                           <input type="number" [(ngModel)]="costoCompra">
                         </div>
                       </div>
@@ -129,11 +129,11 @@
                 <div *ngIf="isMaterial==='0'">
                     <hr><h2>¿Requerirá de insumos o materiales para la prestación del servicio?</h2>
                     <div class="row">
-                      <div class="col-md-3">
+                      <div class="col-md-5">
                         <b>Sí </b>
                         <input type="radio" name="isInsumos" [(ngModel)]="isInsumos" value="1">
                       </div>
-                      <div class="col-md-3">
+                      <div class="col-md-5">
                         <b>No </b>
                         <input type="radio" name="isInsumos" [(ngModel)]="isInsumos" value="0">
                       </div>
@@ -142,10 +142,10 @@
                     <div *ngIf="isInsumos==='1'">
                       <hr><h2>Relacione el costo total de los materiales por unidad de producto</h2>
                       <div class="row">
-                        <div class="col-md-3">
+                        <div class="col-md-5">
                           <b>Valor : </b>
                         </div>
-                        <div class="col-md-3">
+                        <div class="col-md-5">
                           <input type="number" [(ngModel)]="costoMateriales">
                         </div>
                       </div>
@@ -155,10 +155,10 @@
 
                 <hr><h2>Seleccione el código CIUU</h2>
                 <div class="row">
-                  <div class="col-md-3">
+                  <div class="col-md-5">
                     <b>Ciuu:</b>
                   </div>
-                  <div class="col-md-3">
+                  <div class="col-md-7">
                     <select id="selectCiuu" class="form-control" [(ngModel)]="selectCiuu">
                       <option *ngFor="let option of options" [value]="option.idCiuu" [title]="option.descripcion">{{ option.codigo }} - {{ option.descripcion.length > 200 ? option.descripcion.substring(0, 200) + '...' : option.descripcion }}</option>
                     </select>
@@ -170,11 +170,11 @@
 
                 <hr><h2>¿Va a vincular a una o más personas por nómina fija?</h2>
                 <div class="row">
-                  <div class="col-md-3">
+                  <div class="col-md-5">
                     <b>Sí </b>
                     <input type="radio" name="isNomina" [(ngModel)]="isNomina" value="1">
                   </div>
-                  <div class="col-md-3">
+                  <div class="col-md-5">
                     <b>No </b>
                     <input type="radio" name="isNomina" [(ngModel)]="isNomina" value="0">
                   </div>
@@ -183,10 +183,10 @@
                 <div *ngIf="isNomina==='1'">
                     <hr><h2>Cree los perfiles</h2>
                     <div class="row">
-                      <div class="col-md-3">
+                      <div class="col-md-5">
                         <b>Perfiles:</b>
                       </div>
-                      <div class="col-md-3">
+                      <div class="col-md-5">
                         <form (submit)="uploadPerfiles()">
                           <button class="step-button" type="submit">Cargar Perfiles</button>
                         </form>
@@ -195,10 +195,10 @@
 
                     <hr><h2>Cree los empleados</h2>
                     <div class="row">
-                      <div class="col-md-3">
+                      <div class="col-md-5">
                         <b>Empleados:</b>
                       </div>
-                      <div class="col-md-3">
+                      <div class="col-md-6">
                         <form (submit)="uploadEmpleados()">
                           <button class="step-button" type="submit">Cargar Empleados</button>
                         </form>
@@ -208,11 +208,11 @@
 
                 <hr><h2>¿Tendrá máquinas o equipos necesarios para la producción del bien o prestación del servicio?</h2>
                 <div class="row">
-                  <div class="col-md-3">
+                  <div class="col-md-5">
                     <b>Sí </b>
                     <input type="radio" name="isMaquinas" [(ngModel)]="isMaquinas" value="1">
                   </div>
-                  <div class="col-md-3">
+                  <div class="col-md-5">
                     <b>No </b>
                     <input type="radio" name="isMaquinas" [(ngModel)]="isMaquinas" value="0">
                   </div>
@@ -221,10 +221,10 @@
                 <div *ngIf="isMaquinas==='1'">
                     <hr><h2>Cree las máquinas</h2>
                     <div class="row">
-                      <div class="col-md-3">
+                      <div class="col-md-5">
                         <b>Máquinas:</b>
                       </div>
-                      <div class="col-md-3">
+                      <div class="col-md-6">
                         <form (submit)="uploadMaquinas()">
                           <button class="step-button" type="submit">Cargar Máquinas</button>
                         </form>
@@ -234,10 +234,10 @@
 
                 <hr><h2>Cree los cif</h2>
                 <div class="row">
-                  <div class="col-md-3">
+                  <div class="col-md-5">
                     <b>Cif:</b>
                   </div>
-                  <div class="col-md-3">
+                  <div class="col-md-5">
                     <form (submit)="uploadCif()">
                       <button class="step-button" type="submit">Cargar Cif</button>
                     </form>
@@ -248,11 +248,11 @@
             <div *ngIf="this.pasosAvance==3">
                 <hr><h2>¿Va a necesitar algún tipo de financiación para los recursos de la empresa?</h2>
                 <div class="row">
-                  <div class="col-md-3">
+                  <div class="col-md-5">
                     <b>Sí </b>
                     <input type="radio" name="isFinanciado" [(ngModel)]="isFinanciado" value="1">
                   </div>
-                  <div class="col-md-3">
+                  <div class="col-md-5">
                     <b>No </b>
                     <input type="radio" name="isFinanciado" [(ngModel)]="isFinanciado" value="0">
                   </div>
@@ -261,10 +261,10 @@
                 <div *ngIf="isFinanciado==='1'">
                     <hr><h2>Cree la financiación</h2>
                     <div class="row">
-                      <div class="col-md-3">
+                      <div class="col-md-5">
                         <b>Financiación:</b>
                       </div>
-                      <div class="col-md-3">
+                      <div class="col-md-6">
                         <form (submit)="uploadFinanciacion()">
                           <button class="step-button" type="submit">Cargar Financiación</button>
                         </form>
@@ -274,10 +274,10 @@
 
                 <hr><h2>Cree los gastos</h2>
                 <div class="row">
-                  <div class="col-md-3">
+                  <div class="col-md-5">
                     <b>Gastos:</b>
                   </div>
-                  <div class="col-md-3">
+                  <div class="col-md-5">
                     <form (submit)="uploadGastos()">
                       <button class="step-button" type="submit">Cargar Gastos</button>
                     </form>
@@ -288,10 +288,10 @@
             <div *ngIf="this.pasosAvance==4">
                 <hr><h2>Cree los precios de venta</h2>
                 <div class="row">
-                  <div class="col-md-3">
+                  <div class="col-md-5">
                     <b>Precio venta:</b>
                   </div>
-                  <div class="col-md-3">
+                  <div class="col-md-6">
                     <form (submit)="uploadPrecioventa()">
                       <button class="step-button" type="submit">Cargar Precio venta</button>
                     </form>
@@ -300,10 +300,10 @@
 
                 <hr><h2>Cree los ingresos adicionales</h2>
                 <div class="row">
-                  <div class="col-md-3">
+                  <div class="col-md-5">
                     <b>Ingresos adicionales:</b>
                   </div>
-                  <div class="col-md-3">
+                  <div class="col-md-6">
                     <form (submit)="uploadIngresosadicionales()">
                       <button class="step-button" type="submit">Cargar Ingresos adicionales</button>
                     </form>
@@ -312,10 +312,10 @@
 
                 <hr><h2>Cree los gastos adicionales</h2>
                 <div class="row">
-                  <div class="col-md-3">
+                  <div class="col-md-5">
                     <b>Gastos adicionales:</b>
                   </div>
-                  <div class="col-md-3">
+                  <div class="col-md-6">
                     <form (submit)="uploadGastosadicionales()">
                       <button class="step-button" type="submit">Cargar Gastos adicionales</button>
                     </form>
