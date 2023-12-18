@@ -55,7 +55,7 @@ export class EmpresaformalizacionComponent {
   isVerificadoExonerado: string= '0';
   isVerificadoAfiliaciones: string= '0';
   nombreEmpresa: any;
-  tipoEmpresa: any;
+  tipoEmpresa: string='';
 
   private isRequestInProgress: boolean = false;
 
@@ -89,8 +89,8 @@ export class EmpresaformalizacionComponent {
   rutEmpresa: any;
   direccion: any;
   arraySimulacion: any;
-  conteoSimulacion: any;
-  empresaSimulacion: any;
+  conteoSimulacion: string='';
+  empresaSimulacion: string='';
   //*******************************************//
   //Fin variables para validar bitacora ***
   constructor(public router:Router, private loginService:LoginService, private utilsService:UtilsService, private route: ActivatedRoute, private simulacionService:SimulacionesService, private formalizacionService:FormalizacionService) {}
@@ -149,13 +149,42 @@ export class EmpresaformalizacionComponent {
       (data) => {
         //
         console.log("Data simulacion: "+JSON.stringify(data));
-        this.arraySimulacion=data;
-        for (let dato in this.arraySimulacion){
-          this.conteoSimulacion=this.arraySimulacion[dato].cantidad_empresa;
-          this.empresaSimulacion=this.arraySimulacion[dato].tipo_empresa;
+          this.conteoSimulacion=data.cantidad_empresa;
+          this.empresaSimulacion=data.tipo_empresa;
           console.log("ConteoSimulacion: "+this.conteoSimulacion);
           console.log("EmpresaSimulacion: "+this.empresaSimulacion);
-        }
+          if(this.conteoSimulacion=='1'){
+            this.isVerificadoTipo='1';
+            this.isVerificadoSimulacion='1';
+
+            switch(this.empresaSimulacion){
+              case "Registrese como Empresa Unipersonal.":
+                this.tipoEmpresa="Empresa Unipersonal";
+                break;
+              case "Registrese como Sociedad por acciones Simplificada.":
+                this.tipoEmpresa="Sociedad por acciones Simplificada";
+                break;
+              case "Registrese como Sociedad Limitada.":
+                this.tipoEmpresa="Sociedad Limitada";
+                break;
+              case "Registrese como Sociedad Colectiva.":
+                this.tipoEmpresa="Sociedad Colectiva";
+                break;
+              case "Registrese como Sociedad en Comandita Simple.":
+                this.tipoEmpresa="Sociedad en Comandita Simple";
+                break;
+              case "Registrese como Sociedad en Comandita por Acciones.":
+                this.tipoEmpresa="Sociedad en Comandita por Acciones";
+                break;
+              case "Registrese como Sociedad Anónima.":
+                this.tipoEmpresa="Sociedad Anónima";
+                break;
+              default:
+                console.log("No existe case");
+                break;
+            }
+            console.log("TIPO EMPRESA: "+this.tipoEmpresa);
+          }
       },
       (err) => {
         console.log(err); // Manejo de errores
@@ -301,7 +330,6 @@ export class EmpresaformalizacionComponent {
     }
   }
 
-
   updateFormalizacion(pasosAvance:any){
 
     const empresa={id:this.id, razonSocial:this.razonSocial, marca:this.marca, ciiu:this.ciiu, direccion:this.direccion, usoDeSuelo:this.usoDeSuelo, rut:this.rut, rutEmpresa:this.rutEmpresa, estatutos:this.estatutos, acta:this.acta,
@@ -313,6 +341,7 @@ export class EmpresaformalizacionComponent {
         this.recargarPagina();
       }, (err) => {
         console.log(err); // Manejo de errores
+        this.recargarPagina();
       });
 }
 
